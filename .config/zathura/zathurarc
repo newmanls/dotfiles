@@ -1,0 +1,43 @@
+set font                "Iosevka Nerd Font Mono 10"
+set guioptions          shv
+set n-completion-items  4
+set statusbar-basename  true
+set adjust-open         width
+set page-padding        0
+set zoom-center         true
+set selection-clipboard clipboard
+
+# COLORS
+
+set completion-bg           "#1f2335"
+set completion-fg           "#a9b1d6"
+
+set completion-group-bg     "#1f2335"
+set completion-group-fg     "#a9b1d6"
+
+set completion-highlight-bg "#868d80"
+set completion-highlight-fg "#a7c080"
+
+set default-bg              "#1a1b26"
+set default-fg              "#a9b1d6"
+
+set inputbar-bg             "#1a1b26"
+set inputbar-fg             "#a9b1d6"
+
+set notification-bg         "#1a1b26"
+set notification-fg         "#a9b1d6"
+set notification-error-bg   "#1a1b26"
+set notification-error-fg   "#f7768e"
+set notification-warning-bg "#1a1b26"
+set notification-warning-fg "#e0af68"
+
+set statusbar-bg            "#1f2335"
+set statusbar-fg            "#a9b1d6"
+
+set highlight-color         "#1f2335"
+set highlight-active-color  "#f7768e"
+
+set recolor                 true
+set recolor-keephue         true
+set recolor-darkcolor       "#a9b1d6"
+set recolor-lightcolor      "#1a1b26"

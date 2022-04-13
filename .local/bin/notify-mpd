@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+musicdir="$HOME/Music"
+filepath="$musicdir/$(mpc current -f %file%)"
+
+state=$(mpc status %state%)
+title=$(mpc current -f "[%title%]|[%file%]")
+info=$(mpc current -f "[by <i>%artist%</i>][\nfrom <i>%album%</i>]")
+artwork='gnome-music'
+
+[[ $info ]] &&
+    notify-send "${state^}: $title" "$info" \
+    -i $artwork -h string:x-dunst-stack-tag:mpd

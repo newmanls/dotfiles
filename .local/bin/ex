@@ -1,0 +1,16 @@
+#!/bin/bash
+case "$1" in
+  *.tar)     tar xvf "$1" ;;
+  *.tar.bz2) tar xjvf "$1" ;;
+  *.tar.gz)  tar xzvf "$1" ;;
+  *.tar.xz)  tar xvf "$1" ;;
+  *.tbz2)    tar xjvf "$1" ;;
+  *.tgz)     tar xzvf "$1" ;;
+  *.rar)     unrar e "$1" ;;
+  *.zip)     unzip "$1" ;;
+  *.Z)       uncompress "$1" ;;
+  *.7z)      7z x "$1" ;;
+  *.bz2)     bunzip2 "$1" ;;
+  *.gz)      gunzip "$1" ;;
+  *)         echo "$1 cannot be extracted via extract()" ;;
+esac

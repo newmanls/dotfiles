@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+directory="/tmp/"
+delay=3
+
+screen="Fullscreen"
+window="Window"
+select="Select region"
+timer="Timer (${delay}s)"
+
+options="$screen\n$window\n$select\n$timer"
+
+take_screenshot() {
+    filename="IMG_$(date +%Y%m%d_%H%M%S).jpg"
+    filepath="$directory/$filename"
+
+    maim -Bud 0.1 $* "$filepath"
+
+    if [ -f "$filepath" ]; then
+        xclip -selection clipboard -t image/png -i "$filepath"
+        notify-send \
+            -i "$filepath" \
+            "Screenshot captured" \
+            "You can paste the image from the clipboard."
+    fi
+}
+
+chosen="$(echo -e "$options" | dmenu -p "Take screenshot")"
+
+case $chosen in
+    $screen)  take_screenshot ;;
+    $window)  take_screenshot "-i $(xdotool getactivewindow)" ;;
+    $select)  take_screenshot "-so" ;;
+    $timer)   take_screenshot "-d $delay" ;;
+esac

@@ -1,0 +1,100 @@
+# R U N 
+super + Return
+    st
+
+super + {_,shift +} space
+    {dmenu_run_i, ~/.config/rofi/scripts/appsmenu.sh}
+
+alt + space
+    emojipick
+
+super + w
+    firefox
+
+super + c
+    qalculate-gtk
+
+super + {_, shift + } e
+    {st -e ranger, pcmanfm}
+
+super + p
+    st -e ncmpcpp
+
+super + shift + s
+    dmenu_maim
+
+super + Escape
+    dmenu_power
+
+super + {equal,minus,0}
+    volume-pactl.sh {up,down,mute}
+
+
+# S Y S T E M   M A N A G E M E N T
+# restart bspwm
+super + shift + c 
+    bspc wm -r
+
+# close and kill
+super + {_, shift + } q 
+    bspc node -{c,k}
+
+# alternate between the tiled and monocle layout
+super + m 
+    bspc desktop -l next
+
+# swap the current node and the biggest window
+super + g 
+    bspc node -s biggest.local
+
+# set the window state (floating, fullscreen)
+super + {_, shift + } f
+    bspc node -t {~floating, ~fullscreen}
+
+# set sticky window
+super + s
+    bspc node -g sticky
+
+# focus the node in the given direction
+super + {_, shift + }{h, j, k, l}
+    bspc node -{f,s} {west, south, north, east}
+
+# focus the next/previous window in the current desktop
+alt + {_, shift +} Tab
+    bspc node -f {next, prev}.local.!hidden.window
+
+# focus the next/previous desktop in the current monitor
+super + {_, shift +} Tab
+    bspc desktop -f {next, prev}.local
+
+# focus the older or newer node in the focus history
+super + {o,i}
+    bspc wm -h off; \
+    bspc node {older,newer} -f; \
+    bspc wm -h on
+
+# focus or send to the given desktop
+super + {_,shift +} {1-9,0}
+    bspc {desktop -f,node -d} '^{1-9,10}'
+
+# preselect the direction
+super + ctrl + {h,j,k,l}
+    bspc node -p {west,south,north,east}
+
+# preselect the ratio
+super + ctrl + {1-9}
+    bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+super + ctrl + Escape
+    bspc node -p cancel
+
+# resize mode
+super + r : {_, shift +}{h, j, k, l}
+    bspc node -z { \
+        left -10 0, right -10 0, bottom 0 10, top 0 10,\
+        top 0 -10, bottom 0 -10, right 10 0, left 10 0 }
+
+# move a floating window
+super + {Left,Down,Up,Right}
+    bspc node -v {-10 0,0 10,0 -10,10 0}

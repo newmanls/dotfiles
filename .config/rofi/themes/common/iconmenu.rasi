@@ -1,0 +1,43 @@
+@import "settings.rasi"
+
+* {
+  icon-font        : "Iosevka Nerd Font Mono 24";
+  text-color       : @fg1;
+  background-color : @bg2;
+
+  margin  : 0px;
+  padding : 0px;
+  spacing : 0px;
+}
+
+window {
+  location : north;
+  children : [mainbox];
+}
+
+mainbox {
+  children : [listview];
+}
+
+listview {
+  columns : 8;
+  lines   : 1;
+}
+
+element {
+  children : [element-text];
+}
+
+element-text {
+  font    : @icon-font;
+  cursor  : pointer;
+  padding : 4px;
+
+  vertical-align   : 0.5;
+  horizontal-align : 0.5;
+}
+
+element-text selected {
+  text-color       : @bg1;
+  background-color : @accent;
+}

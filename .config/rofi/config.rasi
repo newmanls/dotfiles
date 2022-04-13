@@ -1,0 +1,6 @@
+configuration {
+  modi: [drun];
+  show-icons: true;
+  disable-history: true;
+  sidebar-mode: false;
+}

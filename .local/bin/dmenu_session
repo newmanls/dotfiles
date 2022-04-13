@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+shutdown='Shutdown'
+reboot='Reboot'
+suspend='Suspend'
+logout='Logout'
+
+options="$shutdown\n$reboot\n$suspend\n$logout"
+
+chosen="$(echo -e "$options" | dmenu -p "Session")"
+
+case $chosen in
+    $shutdown) systemctl poweroff -i ;;
+    $reboot)   systemctl reboot ;;
+    $suspend)  systemctl suspend ;;
+    $logout)   pkill -KILL -u $(whoami) ;;
+esac
