@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+brightness=$(xbacklight -get)
+
+if [ $brightness -lt 30 ]; then
+    icon=' '
+elif [ $brightness -lt 70 ]; then
+    icon=' '
+else
+    icon=' '
+fi
+
+echo "$icon $brightness%"

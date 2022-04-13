@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+if [[ $(mpc current) ]] ; then
+    echo "  $(mpc current)"
+fi

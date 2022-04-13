@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if [[ $(ip r) ]] ; then
+    icon='直 '
+else
+    icon='睊 '
+fi
+
+echo "$icon"
