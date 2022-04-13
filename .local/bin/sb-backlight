@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-brightness=$(xbacklight -get)
+sys_path='/sys/class/backlight/intel_backlight'
+max_brightness=$(cat $sys_path/max_brightness)
+actual_brightness=$(cat $sys_path/actual_brightness)
+
+brightness=$(((100 * $actual_brightness + $max_brightness / 2) / $max_brightness))
 
 if [ $brightness -lt 30 ]; then
     icon=' '
