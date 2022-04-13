@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+case $1 in
+    up)   xbacklight -inc 10 ;;
+    down) xbacklight -dec 10 ;;
+esac
+
+brightness=$(xbacklight -get)
+
+if [ $brightness -lt 30 ]; then
+    icon='display-brightness-low-symbolic'
+elif [ $brightness -lt 70 ]; then
+    icon='display-brightness-medium-symbolic'
+else
+    icon='display-brightness-high-symbolic'
+fi
+
+notify-send \
+    "$brightness%" \
+    -i $icon \
+    -h int:value:$brightness \
+    -h string:x-dunst-stack-tag:brightness
