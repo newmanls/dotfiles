@@ -1,0 +1,54 @@
+# vim:ft=sh
+source "~/.config/lf/mappings"
+
+set shellopts '-eu'
+set ifs "\n"
+set icons
+set cleaner '~/.config/lf/cleaner.sh'
+set previewer '~/.config/lf/scope.sh'
+set ratios 1:1
+set scrolloff 4
+
+cmd open $~/.config/lf/rifle.sh
+cmd mkdir %mkdir "$@"
+
+cmd extract ${{
+    set -f
+    clear
+    for f in $fx; do printf "$(basename $f)\n"; done
+    ~/.config/lf/prompt.sh "Extract?" &&
+        for file in $fx; do aunpack -- $file; done
+    ~/.config/lf/prompt.sh $? "Extracted successfully" "Failed operation"
+}}
+
+cmd delete ${{
+    set -f
+    clear
+    for f in $fx; do printf "$(basename $f)\n"; done
+    ~/.config/lf/prompt.sh "Delete?" && rm -rf $fx
+    ~/.config/lf/prompt.sh $? "File(s) deleted" "Failed operation"
+}}
+
+cmd recol ${{
+    w=$(tput cols)
+
+    if [ $w -le 60 ]; then
+        ~/.config/lf/cleaner.sh
+        lf -remote "send $id set nopreview"
+        lf -remote "send $id set ratios 1"
+    elif [ $w -le 80 ]; then
+        lf -remote "send $id set ratios 1:1"
+        lf -remote "send $id set preview"
+    else
+        lf -remote "send $id set ratios 1:2:3"
+        lf -remote "send $id set preview"
+    fi
+}}
+
+map D delete
+map E extract
+map = recol
+map a push :mkdir<space>
+map <c-z> $kill -STOP $PPID
+
+recol

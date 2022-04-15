@@ -28,6 +28,7 @@ alias ll='lsd --long'
 alias lla='lsd --long --almost-all'
 alias lt='lsd --tree'
 alias lta='lsd --tree --almost-all'
+alias lf='$HOME/.local/bin/lfub'
 
 alias gitst='git status --short --branch'
 alias gitadd='git add -v'
