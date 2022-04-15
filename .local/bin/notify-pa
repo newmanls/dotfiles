@@ -11,13 +11,13 @@ volume=$(pamixer --get-volume-human)
 is_muted=$(pamixer --get-mute)
 
 if [ $is_muted = 'true' ]; then
-    icon='audio-volume-muted'
+    icon='audio-volume-muted-symbolic'
 elif [ $vol -lt 30 ]; then
-    icon='audio-volume-low'
+    icon='audio-volume-low-symbolic'
 elif [ $vol -lt 70 ]; then
-    icon='audio-volume-medium'
+    icon='audio-volume-medium-symbolic'
 else
-    icon='audio-volume-high'
+    icon='audio-volume-high-symbolic'
 fi
 
 notify-send \
