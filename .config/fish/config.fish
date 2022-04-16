@@ -30,12 +30,6 @@ alias lt='lsd --tree'
 alias lta='lsd --tree --almost-all'
 alias lf='$HOME/.local/bin/lfub'
 
-alias gitst='git status --short --branch'
-alias gitadd='git add -v'
-alias gitcm='git commit -m'
-alias gitlog='git log --oneline'
-alias gitlast='git log -1 HEAD --stat'
-
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.files/ --work-tree=$HOME'
 
 alias mnt='udisksctl mount -b'
