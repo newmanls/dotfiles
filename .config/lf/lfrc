@@ -1,6 +1,4 @@
 # vim:ft=sh
-source "~/.config/lf/mappings"
-
 set shellopts '-eu'
 set ifs "\n"
 set icons
@@ -14,19 +12,17 @@ cmd mkdir %mkdir "$@"
 
 cmd extract ${{
     set -f
-    clear
-    for f in $fx; do printf "$(basename $f)\n"; done
-    ~/.config/lf/prompt.sh "Extract?" &&
+    lfv -l "$fx"
+    lfv -p "Extract?" &&
         for file in $fx; do aunpack -- $file; done
-    ~/.config/lf/prompt.sh $? "Extracted successfully" "Failed operation"
+    lfv -e $? "Extracted successfully" "Failed operation"
 }}
 
 cmd delete ${{
     set -f
-    clear
-    for f in $fx; do printf "$(basename $f)\n"; done
-    ~/.config/lf/prompt.sh "Delete?" && rm -rf $fx
-    ~/.config/lf/prompt.sh $? "File(s) deleted" "Failed operation"
+    lfv -l "$fx"
+    lfv -p "Delete?" && rm -rf $fx
+    lfv -e $? "File(s) deleted" "Failed operation"
 }}
 
 cmd recol ${{

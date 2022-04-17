@@ -25,9 +25,6 @@ case $FILE_MIMETYPE in
     image/x-xcf)
         setsid -f gimp "$f" >/dev/null 2>&1 ;;
 
-    image/svg+xml)
-        display -- "$f" ;;
-
     image/*)
         setsid -f nsxiv-rifle "$f" ;;
 
