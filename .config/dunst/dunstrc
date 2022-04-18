@@ -198,7 +198,7 @@
     max_icon_size = 64
 
     # Paths to default icons.
-    icon_path = /usr/share/icons/WhiteSur-dark/apps/scalable/:/usr/share/icons/WhiteSur-dark/status/symbolic/:/usr/share/icons/WhiteSur-dark/mimes/scalable/
+    icon_path = /usr/share/icons/WhiteSur-dark/apps/scalable/:/usr/share/icons/WhiteSur-dark/status/symbolic/:/usr/share/icons/WhiteSur-dark/mimes/scalable/:/usr/share/icons/WhiteSur-dark/devices/scalable
 
     ### History ###
 
