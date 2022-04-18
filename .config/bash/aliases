@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+alias e='nvim'
+alias nsxiv='nsxiv-rifle'
+alias trans='trans -brief -t es'
+
+alias ls='lsd'
+alias la='lsd --almost-all'
+alias ll='lsd --long'
+alias lla='lsd --long --almost-all'
+alias lt='lsd --tree'
+alias lta='lsd --tree --almost-all'
+alias lf='$HOME/.local/bin/lfub'
+
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.files/ --work-tree=$HOME'
+
+cl() { cd "$1" && ls; }

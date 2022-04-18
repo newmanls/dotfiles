@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+PROMPT_COMMAND=__bash_prompt
+
+__bash_prompt() {
+    local LAST_EXITSTATUS="$?"
+    local BOLD="\[$(tput bold)\]"
+    local BLACK="\[$(tput setaf 0)\]"
+    local RED="\[$(tput setaf 1)\]"
+    local GREEN="\[$(tput setaf 2)\]"
+    local YELLOW="\[$(tput setaf 3)\]"
+    local BLUE="\[$(tput setaf 4)\]"
+    local MAGENTA="\[$(tput setaf 5)\]"
+    local CYAN="\[$(tput setaf 6)\]"
+    local WHITE="\[$(tput setaf 7)\]"
+    local NORMAL="\[$(tput sgr0)\]"
+
+    # Bold prompt
+    PS1="${BOLD}"
+
+    # Current working directory
+    PS1+="${BLUE}\W "
+
+    # Git info
+    is_git_repo() {
+        which git > /dev/null 2>&1 && git rev-parse --git-dir > /dev/null 2>&1
+    }
+
+    if is_git_repo; then
+        local branch=$(git symbolic-ref --quiet HEAD 2> /dev/null)
+        local is_dirty=$(echo -n "$(git status --short 2> /dev/null)")
+
+        if [ "$branch" ]; then
+            branch="$(echo -n $branch | sed 's/^refs\/heads\///')"
+        else
+            branch="$(git rev-parse --short HEAD 2> /dev/null)"
+        fi
+        
+        PS1+="${WHITE}at ${RED}$branch "
+
+        [ "$is_dirty" ] && PS1+="${YELLOW}✗ "
+    fi
+
+    # Arrow with exit status indicator
+    [ $LAST_EXITSTATUS != 0 ] && arrow_color="${RED}" || arrow_color="${GREEN}"
+    PS1+="${arrow_color}> "
+
+    # Reset values
+    PS1+="${NORMAL}"
+}

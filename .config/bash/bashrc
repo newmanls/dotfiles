@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# Shell options
+shopt -s autocd
+
+# Complete options
+complete -c man whereis which
+complete -cf sudo
+
+# Keybindings
+bind '"\ep": history-search-backward'
+bind '"\en": history-search-forward'
+bind '"\eh": "\C-aman \C-e\n"'
+bind '"\es": "\C-asudo \C-e"'
+
+# Autostart X at login
+if [ -z "${DISPLAY}" -a "${XDG_VTNR}" -eq 1 ]; then
+    exec startx -- -keeptty > $HOME/.xorg.log 2>&1
+fi
