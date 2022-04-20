@@ -22,4 +22,4 @@
 *accentColor: #f7768e
 *urgentColor: #e0af68
 
-*.font: xft:Iosevka Nerd Font:size=10
+*font: Iosevka Nerd Font-9
