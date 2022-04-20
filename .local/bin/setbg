@@ -1,16 +1,14 @@
 #!/usr/bin/env bash
 
-bg="$HOME/.config/bg"
+BG_PATH="$HOME/.config/bg"
 
 path="$(readlink -f "$1")" &&
     case "$(file --mime-type -b "$path")" in
         image/* )
-            ln -sf "$path" "$bg" && echo "Changing wallpaper... "
-            ;;
+            ln -sf "$path" "$BG_PATH" &&
+                notify-send -i "$path" "Changing wallpaper... " || exit 1 ;;
         *)
-            echo "Error: not a valid file"
-            exit 1
-            ;;
+            notify-send -i "system-error" "Error: not a valid file" && exit 1 ;;
     esac
 
-xwallpaper --zoom "$bg"
+xwallpaper --zoom "$BG_PATH"
