@@ -1,0 +1,15 @@
+#!/bin/sh
+
+file="$1"
+filename="${file##*/}"
+n_current="$2"
+n_total="$3"
+width="$4"
+height="$5"
+zoom="$6%"
+
+if [ -n "$6" ]; then
+    printf "%s" "nsxiv - $filename ($zoom) [$n_current/$n_total]"
+else
+    printf "%s" "nsxiv - $filename [$n_current/$n_total]"
+fi

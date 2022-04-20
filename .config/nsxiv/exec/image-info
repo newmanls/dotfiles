@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# Arguments:
+#   $1: path to image file
+#   $2: image width
+#   $3: image height
+
+file=$(readlink -f -- "$1")
+filename="${file##*/}"
+filesize=$(du -Hh -- "$file" | cut -f 1)
+
+width="$2"
+height="$3"
+
+echo "$file ($filesize) | ${2}x${3}"
