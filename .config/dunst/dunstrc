@@ -161,7 +161,7 @@
 
     # Vertical alignment of message text and icon.
     # Possible values are "top", "center" and "bottom".
-    vertical_alignment = center
+    vertical_alignment = top
 
     # Show age of message if message is older than show_age_threshold
     # seconds.
@@ -198,7 +198,7 @@
     max_icon_size = 64
 
     # Paths to default icons.
-    icon_path = /usr/share/icons/WhiteSur-dark/apps/scalable/:/usr/share/icons/WhiteSur-dark/status/symbolic/:/usr/share/icons/WhiteSur-dark/mimes/scalable/:/usr/share/icons/WhiteSur-dark/devices/scalable
+    icon_path = /usr/share/icons/WhiteSur-dark/status/symbolic/:/usr/share/icons/WhiteSur-dark/apps/scalable/:/usr/share/icons/WhiteSur-dark/mimes/scalable/:/usr/share/icons/WhiteSur-dark/devices/scalable:/usr/share/icons/WhiteSur-dark/places/scalable
 
     ### History ###
 
