@@ -4,7 +4,7 @@ TMPDIR="${TMPDIR:-/tmp}"
 tmp="$TMPDIR/nsxiv_rifle_$$"
 
 is_img_extension() {
-  grep -iE '\.(jpe?g|png|svg|webp|tiff|heif|avif|ico|bmp)$'
+  grep -iE '\.(jpe?g|png|svg|webp|tiff|heif|avif|ico|bmp|gif)$'
 }
 
 listfiles() {
@@ -19,11 +19,11 @@ open_img() {
     count="$(listfiles "$1" | grep -nF "$1")"
   fi
   if [ -n "$count" ]; then
-    nsxiv -b -i -n "${count%%:*}" -- < "$tmp"
+    nsxiv -ab -i -n "${count%%:*}" -- < "$tmp"
   else
     # fallback incase file didn't have a valid extension, or we couldn't
     # find it inside the list
-    nsxiv -b -- "$@"
+    nsxiv -ab -- "$@"
   fi
 }
 
