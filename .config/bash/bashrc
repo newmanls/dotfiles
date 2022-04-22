@@ -8,8 +8,8 @@ complete -c man whereis which
 complete -cf sudo
 
 # Keybindings
-bind '"\ep": history-search-backward'
-bind '"\en": history-search-forward'
+bind '"\C-p": history-search-backward'
+bind '"\C-n": history-search-forward'
 bind '"\eh": "\C-aman \C-e\n"'
 bind '"\es": "\C-asudo \C-e"'
 
