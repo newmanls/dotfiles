@@ -51,10 +51,10 @@
 
     # Set the progress bar height. This includes the frame, so make sure
     # it's at least twice as big as the frame width.
-    progress_bar_height = 4
+    progress_bar_height = 2
 
     # Set the frame width of the progress bar
-    progress_bar_frame_width = 1
+    progress_bar_frame_width = 0
 
     # Set the minimum width for the progress bar
     progress_bar_min_width = 160
@@ -179,7 +179,7 @@
     stack_duplicates = true
 
     # Hide the count of stacked notifications with the same content
-    hide_duplicate_count = false
+    hide_duplicate_count = true
 
     # Display indicators for URLs (U) and actions (A).
     show_indicators = no
@@ -195,10 +195,10 @@
     min_icon_size = 0
 
     # Scale larger icons down to this size, set to 0 to disable
-    max_icon_size = 64
+    max_icon_size = 160
 
     # Paths to default icons.
-    icon_path = /usr/share/icons/WhiteSur-dark/status/symbolic/:/usr/share/icons/WhiteSur-dark/apps/scalable/:/usr/share/icons/WhiteSur-dark/mimes/scalable/:/usr/share/icons/WhiteSur-dark/devices/scalable:/usr/share/icons/WhiteSur-dark/places/scalable
+    icon_path = /usr/share/icons/kora/status/symbolic/:/usr/share/icons/kora/apps/scalable/:/usr/share/icons/kora/mimes/scalable/:/usr/share/icons/kora/devices/scalable:/usr/share/icons/kora/places/scalable
 
     ### History ###
 
@@ -231,7 +231,7 @@
     # corners.
     # The radius will be automatically lowered if it exceeds half of the
     # notification height to avoid clipping text and/or icons.
-    corner_radius = 0
+    corner_radius = 8
 
     # Ignore the dbus closeNotification message.
     # Useful to enforce the timeout set by dunst configuration. Without this
