@@ -3,6 +3,7 @@ vim.opt.termguicolors = true
 vim.opt.syntax = 'on'
 vim.opt.lazyredraw = true
 vim.opt.number = true
+vim.opt.relativenumber = true
 vim.opt.cursorline = true
 vim.opt.colorcolumn = '80'
 
