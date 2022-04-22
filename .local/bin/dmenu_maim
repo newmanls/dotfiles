@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-directory="/tmp/"
+directory='/tmp/'
 delay=3
 
-screen="Fullscreen"
-window="Window"
-select="Select region"
+screen='Fullscreen'
+window='Window'
+select='Select region'
 timer="Timer (${delay}s)"
 
 options="$screen\n$window\n$select\n$timer"
@@ -20,12 +20,12 @@ take_screenshot() {
         xclip -selection clipboard -t image/png -i "$filepath"
         notify-send \
             -i "$filepath" \
-            "Screenshot captured" \
-            "You can paste the image from the clipboard."
+            'Screenshot captured' \
+            'You can paste the image from the clipboard.'
     fi
 }
 
-chosen="$(echo -e "$options" | dmenu -p "Take screenshot")"
+chosen="$(echo -e "$options" | dmenu -p 'Take screenshot')"
 
 case $chosen in
     $screen)  take_screenshot ;;
