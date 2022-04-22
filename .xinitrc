@@ -3,6 +3,7 @@
 export PATH="$HOME/.local/bin:$PATH"
 export TERM="st-256color"
 export EDITOR="nvim"
+export HISTCONTROL=ignoredups
 export QT_QPA_PLATFORMTHEME="gtk2"
 
 # merge in defaults and keymaps
