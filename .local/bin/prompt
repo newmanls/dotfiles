@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+read -n1 -p "$(tput bold; tput setaf 4)::$(tput setaf 7) $1 [y/N] $(tput sgr0)" answer
+echo
+[ "$answer" = 'y' ] && exit 0 || exit 1
