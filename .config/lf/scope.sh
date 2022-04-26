@@ -6,9 +6,9 @@ FILE="$1"
 FILE_EXTENSION=$(echo "${FILE##*.}" | tr '[:upper:]' '[:lower:]')
 FILE_MIMETYPE=$(file --dereference --brief --mime-type -- "$FILE")
 
-PV_WIDTH="$(($2-2))"
+PV_WIDTH="$(($2-3))"
 PV_HEIGHT="$3"
-PV_X="$(($4+2))"
+PV_X="$(($4+1))"
 PV_Y="$5"
 
 image_pv() {
@@ -32,6 +32,16 @@ esac
 
 # Handle mimetype
 case "$FILE_MIMETYPE" in
+    application/pdf)
+        CACHE="$(hash)"
+        [ ! -f "$CACHE.jpg" ] && pdftoppm -jpeg -f 1 -singlefile "$FILE" "$CACHE"
+        image_pv "$CACHE.jpg" && exit 1 ;;
+
+    video/*)
+        CACHE="$(hash)"
+        [ ! -f "$CACHE" ] && ffmpegthumbnailer -i "$FILE" -o "$CACHE" -s 0
+        image_pv "$CACHE" && exit 1 ;;
+
     image/svg+xml)
         CACHE="$(hash).png"
         [ ! -f "$CACHE" ] && convert -format png -background transparent -- "$FILE" "$CACHE"
@@ -40,21 +50,10 @@ case "$FILE_MIMETYPE" in
     image/*)
         image_pv "$FILE" && exit 1 ;;
 
-    video/*)
-        CACHE="$(hash)"
-        [ ! -f "$CACHE" ] && ffmpegthumbnailer -i "$FILE" -o "$CACHE" -s 0
-        image_pv "$CACHE" && exit 1 ;;
-
-    application/pdf)
-        CACHE="$(hash)"
-        [ ! -f "$CACHE.jpg" ] && pdftoppm -jpeg -f 1 -singlefile "$FILE" "$CACHE"
-        image_pv "$CACHE.jpg" && exit 1 ;;
-
     # *opendocument*)
     #     odt2txt "$FILE" && exit 1 ;;
 
     text/*)
-        highlight -O ansi "$FILE" | fold -s -w "$PV_WIDTH" && exit 1
         cat "$FILE" | fold -s -w "$PV_WIDTH" && exit 1 ;;
 esac
 

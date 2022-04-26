@@ -1,50 +1,100 @@
 # vim:ft=sh
-set shellopts '-eu'
-set ifs "\n"
+set shellopts   '-eu'
+set ifs         "\n"
 set icons
-set cleaner '~/.config/lf/cleaner.sh'
-set previewer '~/.config/lf/scope.sh'
-set ratios 1:1
-set scrolloff 4
+set scrolloff   8
+set cleaner     '~/.config/lf/cleaner.sh'
+set previewer   '~/.config/lf/scope.sh'
 
-cmd open $~/.config/lf/rifle.sh
-cmd mkdir %mkdir "$@"
-
-cmd extract ${{
-    set -f
-    lfv -l "$fx"
-    lfv -p "Extract?" &&
-        for file in $fx; do aunpack -- $file; done
-    lfv -e $? "Extracted successfully" "Failed operation"
-}}
+cmd mkdir   %mkdir "$@"
+cmd on-quit $"$HOME/.config/lf/cleaner.sh"
+cmd open    $~/.config/lf/rifle.sh
+cmd setbg   &setbg "$f"
 
 cmd delete ${{
-    set -f
-    lfv -l "$fx"
-    lfv -p "Delete?" && rm -rf $fx
-    lfv -e $? "File(s) deleted" "Failed operation"
+    clear
+    printf "$fx\n"
+    prompt "Delete files permanently?" && rm -rf $fx
+}}
+
+cmd extract %{{
+    clear
+    for file in "$fx"; do aunpack -- "$file"; done
+}}
+
+cmd paste %{{
+    files="$HOME/.local/share/lf/files"
+    mode=$(head -n1 $files)
+    list=$(tail -n+2 $files)
+
+    if   [ "$1" = 'link' ];   then cp -vs --backup=numbered $list .
+    elif [ $mode = 'copy' ];  then cp -vr --backup=numbered $list .
+    elif [ $mode = 'move' ];  then mv -v  --backup=numbered $list . &&
+        rm ~/.local/share/lf/files && lf -remote 'send clear'; fi
 }}
 
 cmd recol ${{
-    w=$(tput cols)
+    width=$(tput cols)
 
-    if [ $w -le 60 ]; then
+    if [ $width -le 60 ]; then
         ~/.config/lf/cleaner.sh
-        lf -remote "send $id set nopreview"
-        lf -remote "send $id set ratios 1"
-    elif [ $w -le 80 ]; then
-        lf -remote "send $id set ratios 1:1"
-        lf -remote "send $id set preview"
+        lf -remote "send $id set nopreview; set ratios 1"
+    elif [ $width -le 80 ]; then
+        lf -remote "send $id set ratios 1:1; set preview"
     else
-        lf -remote "send $id set ratios 1:2:3"
-        lf -remote "send $id set preview"
+        lf -remote "send $id set ratios 1:2:3; set preview"
     fi
 }}
 
-map D delete
-map E extract
-map = recol
-map a push :mkdir<space>
-map <c-z> $kill -STOP $PPID
+cmd yank ${{
+    case $1 in
+        dir)  dirname "$f" ;;
+        name) basename "$f" ;;
+        path) readlink -f "$f" ;;
+    esac | tr -d '\n' | xclip -selection clipboard
+}}
+
+map c
+map d
+map p
+map u
+map y
+
+map cd push :cd<space>
+map ce extract
+map cn push :mkdir<space>
+map cw setbg
+
+map gd cd /dev
+map ge cd /etc
+map gh cd ~
+map gm cd /media
+map gM cd /mnt
+map go cd /opt
+map gp cd /tmp
+map gr cd /
+map gs cd /srv
+map gu cd /usr
+map gv cd /var
+
+map dd cut
+map dD delete
+
+map od push :mkdir<space>
+
+map pp paste normal
+map pl paste link
+
+map ud clear
+map uv unselect
+map uy clear
+map uu :unselect; clear
+
+map yy copy
+map yp yank path
+map yb yank dir
+map yw yank name
+
+map =  recol
 
 recol
