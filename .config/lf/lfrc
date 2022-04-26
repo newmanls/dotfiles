@@ -14,7 +14,7 @@ cmd setbg   &setbg "$f"
 cmd delete ${{
     clear
     printf "$fx\n"
-    prompt "Delete files permanently?" && rm -rf $fx
+    confirm "Delete files permanently?" && rm -rf $fx
 }}
 
 cmd extract %{{
