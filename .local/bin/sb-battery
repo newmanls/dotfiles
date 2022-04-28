@@ -1,40 +1,14 @@
 #!/usr/bin/env bash
 
 status=$(cat /sys/class/power_supply/BAT1/status)
-percentage=$(cat /sys/class/power_supply/BAT1/capacity)
+capacity=$(cat /sys/class/power_supply/BAT1/capacity)
 
-if [ $status == 'Charging' ]; then
-    if [ $percentage -lt 20 ]; then
-        icon=''
-    elif [ $percentage -lt 30 ]; then
-        icon=''
-    elif [ $percentage -lt 40 ]; then
-        icon=''
-    elif [ $percentage -lt 60 ]; then
-        icon=''
-    elif [ $percentage -lt 80 ]; then
-        icon=''
-    elif [ $percentage -lt 100 ]; then
-        icon=''
-    else
-        icon=''
-    fi
-else
-    if [ $percentage -lt 10 ]; then
-        icon=''
-    elif [ $percentage -lt 20 ]; then
-        icon=''
-    elif [ $percentage -lt 40 ]; then
-        icon=''
-    elif [ $percentage -lt 60 ]; then
-        icon=''
-    elif [ $percentage -lt 80 ]; then
-        icon=''
-    elif [ $percentage -lt 100 ]; then
-        icon=''
-    else
-        icon=''
-    fi
-fi
+if [ $status = 'Charging' ]; then icon=''
+elif [ $capacity -eq 100 ];  then icon=''
+elif [ $capacity -gt 80 ];   then icon=''
+elif [ $capacity -gt 60 ];   then icon=''
+elif [ $capacity -gt 40 ];   then icon=''
+elif [ $capacity -gt 20 ];   then icon=''
+else icon=''; fi
 
-echo "$icon $percentage%"
+echo "$icon $capacity%"
