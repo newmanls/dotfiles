@@ -1,0 +1,38 @@
+diff --git a/config.def.h b/config.def.h
+index 1e102fe..53b119a 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -1,19 +1,19 @@
+ #ifdef _WINDOW_CONFIG
+ 
+ /* default window dimensions (overwritten via -g option): */
+-static const int WIN_WIDTH  = 800;
+-static const int WIN_HEIGHT = 600;
++static const int WIN_WIDTH  = 850;
++static const int WIN_HEIGHT = 480;
+ 
+ /* colors and font can be overwritten via X resource properties.
+  * See nsxiv(1), X(7) section Resources and xrdb(1) for more information.
+  */
+-static const char *DEFAULT_WIN_BG     = "white";
+-static const char *DEFAULT_WIN_FG     = "black";
++static const char *DEFAULT_WIN_BG     = "black";
++static const char *DEFAULT_WIN_FG     = "white";
+ static const char *DEFAULT_MARK_COLOR = NULL;  /* NULL means it will default to window foreground */
+ #if HAVE_LIBFONTS
+ static const char *DEFAULT_BAR_BG     = NULL;  /* NULL means it will default to window background */
+ static const char *DEFAULT_BAR_FG     = NULL;  /* NULL means it will default to window foreground */
+-static const char *DEFAULT_FONT       = "monospace-8";
++static const char *DEFAULT_FONT       = "monospace-9";
+ 
+ /* if true, statusbar appears on top of the window */
+ static const bool TOP_STATUSBAR = false;
+@@ -86,7 +86,7 @@ static const keymap_t keys[] = {
+ 	{ 0,            XK_Return,        g_switch_mode,        None },
+ 	{ 0,            XK_f,             g_toggle_fullscreen,  None },
+ 	{ 0,            XK_b,             g_toggle_bar,         None },
+-	{ ControlMask,  XK_x,             g_prefix_external,    None },
++	{ 0,            XK_x,             g_prefix_external,    None },
+ 	{ 0,            XK_g,             g_first,              None },
+ 	{ 0,            XK_G,             g_n_or_last,          None },
+ 	{ 0,            XK_r,             g_reload_image,       None },
