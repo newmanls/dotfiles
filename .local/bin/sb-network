@@ -1,9 +1,4 @@
 #!/usr/bin/env bash
 
-if [[ $(ip r) ]] ; then
-    icon='直 '
-else
-    icon='睊 '
-fi
-
-echo "$icon"
+# Depends on wireless_tools and nerd fonts for icons
+ssid=$(iwgetid -r) && echo "直  $ssid" || echo '睊  disconnected'
