@@ -6,6 +6,7 @@ set scrolloff   8
 set cleaner     '~/.config/lf/cleaner.sh'
 set previewer   '~/.config/lf/scope.sh'
 
+cmd extract %for file in "$fx"; do aunpack -- "$file"; done
 cmd mkdir   %mkdir "$@"
 cmd on-quit $"$HOME/.config/lf/cleaner.sh"
 cmd open    $~/.config/lf/rifle.sh
@@ -15,11 +16,6 @@ cmd delete ${{
     clear
     printf "$fx\n"
     confirm "Delete files permanently?" && rm -rf $fx
-}}
-
-cmd extract %{{
-    clear
-    for file in "$fx"; do aunpack -- "$file"; done
 }}
 
 cmd paste %{{
@@ -57,13 +53,18 @@ cmd yank ${{
 map c
 map d
 map p
+map r
 map u
 map y
 
+map A  rename
+map a  push A<a-b><a-b><a-f>
+map cc push A<c-u>
+map cw push A<a-b><a-b><a-f><c-u>
+map I  push A<c-a>
+
 map cd push :cd<space>
-map ce extract
 map cn push :mkdir<space>
-map cw setbg
 
 map gd cd /dev
 map ge cd /etc
@@ -89,6 +90,11 @@ map ud clear
 map uv unselect
 map uy clear
 map uu :unselect; clear
+
+map xe extract
+map xw setbg
+map xx $$f
+map xX !$f
 
 map yy copy
 map yp yank path
