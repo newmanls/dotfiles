@@ -64,7 +64,6 @@ map cw push A<a-b><a-b><a-f><c-u>
 map I  push A<c-a>
 
 map cd push :cd<space>
-map cn push :mkdir<space>
 
 map gd cd /dev
 map ge cd /etc
@@ -81,8 +80,6 @@ map gv cd /var
 map dd cut
 map dD delete
 
-map od push :mkdir<space>
-
 map pp paste normal
 map pl paste link
 
@@ -92,6 +89,7 @@ map uy clear
 map uu :unselect; clear
 
 map xe extract
+map xn push :mkdir<space>
 map xw setbg
 map xx $$f
 map xX !$f
@@ -102,5 +100,7 @@ map yb yank dir
 map yw yank name
 
 map =  recol
+
+map <esc> :unselect; clear
 
 recol
