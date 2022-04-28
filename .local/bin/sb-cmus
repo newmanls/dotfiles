@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+query="$(cmus-remote --query)" 2> /dev/null || exit
+
+getinfo() { echo "$query" | grep -w "$1" | sed "s/$1 //1" 2> /dev/null; }
+
+status="$(getinfo 'status')"
+
+if [ "$status" != 'stopped' ]; then
+    artist="$(getinfo 'tag artist')"
+
+    if [ "$artist" ]; then
+        title="$(getinfo 'tag title')"
+        info="$artist - $title"
+    else
+        file="$(getinfo 'file')"
+        filename="$(basename "${file%.*}")" 
+        info="$filename"
+    fi
+
+    # (( ${#info} > 80 )) && info="${info:0:77}..."   # set max length
+
+    echo "  $info"
+fi
