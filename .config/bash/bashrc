@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+[[ $- != *i* ]] && return
+
+. "$HOME/.config/bash/aliases"
+. "$HOME/.config/bash/prompt"
 
 # Shell options
 shopt -s autocd
