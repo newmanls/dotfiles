@@ -19,5 +19,5 @@ bind '"\es": "\C-asudo \C-e"'
 
 # Autostart X at login
 if [ -z "${DISPLAY}" -a "${XDG_VTNR}" -eq 1 ]; then
-    exec startx -- -keeptty > $HOME/.xorg.log 2>&1
+    exec startx -- -keeptty > /tmp/startx.log 2>&1
 fi
