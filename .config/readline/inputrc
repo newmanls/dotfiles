@@ -1,0 +1,19 @@
+# Faster completion
+set show-all-if-unmodified on
+# Color files by types
+set colored-stats On
+# Mark symlinked directories
+set mark-symlinked-directories On
+# Color the common prefix
+set colored-completion-prefix On
+# Color the common prefix in menu-complete
+set menu-complete-display-prefix On
+# Disable control echo
+set echo-control-characters off
+# Case insensitive file and command completion.
+set completion-ignore-case on
+# Show conflicting completions directly.
+set show-all-if-ambiguous on
+# Briefly move the cursor to an opening parenthesis when closing
+# parenthesis is inserted.
+set blink-matching-paren on
