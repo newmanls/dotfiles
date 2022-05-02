@@ -10,3 +10,10 @@ set colored-completion-prefix On
 set menu-complete-display-prefix On
 # Disable control echo
 set echo-control-characters off
+# Case insensitive file and command completion.
+set completion-ignore-case on
+# Show conflicting completions directly.
+set show-all-if-ambiguous on
+# Briefly move the cursor to an opening parenthesis when closing
+# parenthesis is inserted.
+set blink-matching-paren on
