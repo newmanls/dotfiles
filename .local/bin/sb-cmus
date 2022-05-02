@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-query="$(cmus-remote --query)" 2> /dev/null || exit
+query="$(cmus-remote --query 2> /dev/null)" || exit
 
 getinfo() { echo "$query" | grep -w "$1" | sed "s/$1 //1" 2> /dev/null; }
 
