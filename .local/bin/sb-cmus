@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-MAX_LENGTH=50   # Set label max length. Set it to 0 or less to disable cut-off.
+MAX_LENGTH=0   # Label max length. Set it to 0 or less to disable cut-off.
 
 getinfo() { echo "$query" | grep -w "$1" | sed "s/$1 //1" 2> /dev/null; }
 
