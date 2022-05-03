@@ -2,6 +2,6 @@
 
 cd "/media/Data/GBA/"
 
-chosen=$(ls *.gba | sed 's/.gba//'| dmenu -l 8 -p "Play")
+chosen=$(ls *.gba | sed 's/.gba//'| dmenu -l 16 -p "Play")
 
 [ "$chosen" ] && mgba-qt "$chosen.gba"
