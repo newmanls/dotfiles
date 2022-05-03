@@ -6,7 +6,7 @@ set scrolloff   8
 set cleaner     '~/.config/lf/cleaner.sh'
 set previewer   '~/.config/lf/scope.sh'
 
-cmd extract %for file in "$fx"; do aunpack -- "$file"; done
+cmd extract !clear; for file in "$fx"; do aunpack -- "$file"; done
 cmd mkdir   %mkdir "$@"
 cmd on-quit $"$HOME/.config/lf/cleaner.sh"
 cmd open    $~/.config/lf/rifle.sh
@@ -18,7 +18,8 @@ cmd delete ${{
     confirm "Delete files permanently?" && rm -rf $fx
 }}
 
-cmd paste %{{
+cmd paste ${{
+    clear
     files="$HOME/.local/share/lf/files"
     mode=$(head -n1 $files)
     list=$(tail -n+2 $files)
