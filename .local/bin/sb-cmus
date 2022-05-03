@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-query="$(cmus-remote --query 2> /dev/null)" || exit
+MAX_LENGTH=50   # Set label max length. Set it to 0 or less to disable cut-off.
 
 getinfo() { echo "$query" | grep -w "$1" | sed "s/$1 //1" 2> /dev/null; }
 
+query="$(cmus-remote --query 2> /dev/null)" || exit
 status="$(getinfo 'status')"
 
 if [ "$status" != 'stopped' ]; then
@@ -18,7 +19,8 @@ if [ "$status" != 'stopped' ]; then
         info="$filename"
     fi
 
-    # (( ${#info} > 80 )) && info="${info:0:77}..."   # set max length
+    (( $MAX_LENGTH > 0 && ${#info} > $MAX_LENGTH )) &&
+        info="${info:0:(( $MAX_LENGTH - 1 ))}…"
 
     echo "  $info"
 fi
