@@ -27,7 +27,7 @@ cmd paste ${{
     if   [ "$1" = 'link' ];   then cp -vs --backup=numbered $list .
     elif [ $mode = 'copy' ];  then cp -vr --backup=numbered $list .
     elif [ $mode = 'move' ];  then mv -v  --backup=numbered $list . &&
-        rm ~/.local/share/lf/files && lf -remote 'send clear'; fi
+        rm ~/.local/share/lf/files && lf -remote 'send $id clear'; fi
 }}
 
 cmd recol ${{
