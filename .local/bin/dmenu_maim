@@ -11,7 +11,7 @@ timer="Timer (${delay}s)"
 options="$screen\n$window\n$select\n$timer"
 
 take_screenshot() {
-    filename="IMG_$(date +%Y%m%d_%H%M%S).jpg"
+    filename="IMG_$(date +%Y%m%d_%H%M%S).png"
     filepath="$directory/$filename"
 
     maim -Bud 0.1 $* "$filepath"
