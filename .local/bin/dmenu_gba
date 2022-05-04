@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-cd "/media/Data/GBA/"
+GBA_EMULATOR='visualboyadvance-m'
+GBA_DIR="$HOME/Games/gba/"
 
-chosen=$(ls *.gba | sed 's/.gba//'| dmenu -l 16 -p "Play")
+chosen="$(ls $GBA_DIR/*.gba | sed 's/.*\///;s/.gba//' | dmenu -l 16 -p 'Play')"
 
-[ "$chosen" ] && mgba-qt "$chosen.gba"
+[ "$chosen" ] && setsid -f $GBA_EMULATOR "$GBA_DIR/$chosen.gba"
