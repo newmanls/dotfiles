@@ -3,48 +3,50 @@
 PROMPT_COMMAND=__bash_prompt
 
 __bash_prompt() {
-    local LAST_EXITSTATUS="$?"
-    local BOLD="\[$(tput bold)\]"
-    local BLACK="\[$(tput setaf 0)\]"
-    local RED="\[$(tput setaf 1)\]"
-    local GREEN="\[$(tput setaf 2)\]"
-    local YELLOW="\[$(tput setaf 3)\]"
-    local BLUE="\[$(tput setaf 4)\]"
-    local MAGENTA="\[$(tput setaf 5)\]"
-    local CYAN="\[$(tput setaf 6)\]"
-    local WHITE="\[$(tput setaf 7)\]"
-    local NORMAL="\[$(tput sgr0)\]"
+    local LAST_EXITCODE=$?
+    local PROMPT_MODULES=('cwd' 'git' 'arrow')
 
-    # Bold prompt
-    PS1="${BOLD}"
+    declare -A COLORS=(
+        [black]='\[\e[1;30m\]'
+        [red]='\[\e[1;31m\]'
+        [green]='\[\e[1;32m\]'
+        [yellow]='\[\e[1;33m\]'
+        [blue]='\[\e[1;34m\]'
+        [purple]='\[\e[1;35m\]'
+        [cyan]='\[\e[1;36m\]'
+        [white]='\[\e[1;37m\]'
+        [reset]='\[\e[0m\]'
+    )
 
-    # Current working directory
-    PS1+="${BLUE}\W "
-
-    # Git info
-    is_git_repo() {
-        which git > /dev/null 2>&1 && git rev-parse --git-dir > /dev/null 2>&1
+    __prompt_cwd() {
+        PS1+="${COLORS[blue]}\W "
     }
 
-    if is_git_repo; then
-        local branch=$(git symbolic-ref --quiet HEAD 2> /dev/null)
-        local is_dirty=$(echo -n "$(git status --short 2> /dev/null)")
+    __prompt_git() {
+        which git > /dev/null 2>&1 || return 
 
-        if [ "$branch" ]; then
-            branch="$(echo -n $branch | sed 's/^refs\/heads\///')"
-        else
-            branch="$(git rev-parse --short HEAD 2> /dev/null)"
-        fi
-        
-        PS1+="${WHITE}at ${RED}$branch "
+        local branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
 
-        [ "$is_dirty" ] && PS1+="${YELLOW}✗ "
-    fi
+        [ "$branch" ] || return
 
-    # Arrow with exit status indicator
-    [ $LAST_EXITSTATUS != 0 ] && arrow_color="${RED}" || arrow_color="${GREEN}"
-    PS1+="${arrow_color}> "
+        PS1+="${COLORS[white]}at ${COLORS[red]}$branch "
 
-    # Reset values
-    PS1+="${NORMAL}"
+        local is_dirty=$(git status --porcelain 2> /dev/null)
+
+        [ "$is_dirty" ] && PS1+="${COLORS[yellow]}✗ "
+    }
+
+    __prompt_arrow() {
+        local arrow_color
+
+        [ $LAST_EXITCODE -ne 0 ] && arrow_color='red' || arrow_color='green'
+
+        PS1+="${COLORS[$arrow_color]}> "
+    }
+
+    PS1=""
+
+    for module in "${PROMPT_MODULES[@]}"; do __prompt_$module; done
+
+    PS1+="${COLORS[reset]}"
 }
