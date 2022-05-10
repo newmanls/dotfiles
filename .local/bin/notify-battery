@@ -14,7 +14,7 @@ if [ $status = 'Discharging' -a $capacity -le 15 ]; then notify-send \
 
     [ $status != 'Charging' ] && systemctl hibernate || exit 0
 
-elif [ $status = 'Discharging' -a $capacity -le 90 ]; then notify-send \
+elif [ $status = 'Discharging' -a $capacity -le 20 ]; then notify-send \
     -i battery-caution-symbolic \
     'Battery is low' \
     "$capacity% remaining."
