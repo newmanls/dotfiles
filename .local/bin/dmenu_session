@@ -1,17 +1,19 @@
 #!/usr/bin/env bash
 
 shutdown='Shutdown'
-reboot='Reboot'
 suspend='Suspend'
+hibernate='Hibernate'
+reboot='Reboot'
 logout='Logout'
 
-options="$shutdown\n$reboot\n$suspend\n$logout"
+options="$shutdown\n$suspend\n$hibernate\n$reboot\n$logout"
 
 chosen="$(echo -e "$options" | dmenu -p "Session")"
 
 case $chosen in
-    $shutdown) systemctl poweroff -i ;;
-    $reboot)   systemctl reboot ;;
-    $suspend)  systemctl suspend ;;
-    $logout)   pkill -KILL -u $(whoami) ;;
+    $shutdown)  systemctl poweroff -i ;;
+    $suspend)   systemctl suspend ;;
+    $hibernate) systemctl hibernate ;;
+    $reboot)    systemctl reboot ;;
+    $logout)    pkill -KILL -u $(whoami) ;;
 esac
