@@ -4,29 +4,28 @@ BATTERY='/sys/class/power_supply/BAT1/'
 status=$(cat $BATTERY/status)
 capacity=$(cat $BATTERY/capacity)
 
-if [ $status = 'Discharging' ]; then
-    if [ $capacity -le 15 ]; then notify-send -u critical \
-        -i battery-empty-symbolic \
-        'Battery is critically low' \
-        "$capacity% remaining. This computer is about to hibernate if not plugged in."
+if [ $status = 'Discharging' -a $capacity -le 15 ]; then notify-send \
+    -u critical \
+    -i battery-empty-symbolic \
+    'Battery is critically low' \
+    "This computer is about to hibernate if not plugged in."
 
-        sleep 60 && status=$(cat $BATTERY/status)
+    sleep 60 && status=$(cat $BATTERY/status)
 
-        [ $status != 'Charging' ] && systemctl hibernate || exit 0
+    [ $status != 'Charging' ] && systemctl hibernate || exit 0
 
-    elif [ $capacity -le 20 ]; then notify-send \
-        -i battery-caution-symbolic \
-        'Battery is low' \
-        "$capacity% remaining."
-    fi
+elif [ $status = 'Discharging' -a $capacity -le 90 ]; then notify-send \
+    -i battery-caution-symbolic \
+    'Battery is low' \
+    "$capacity% remaining."
 
 elif [ $status = 'Charging' -a $capacity -ge 95 ]; then notify-send \
-        -i battery-full-charging-symbolic \
-        'Battery is almost fully charged' \
-        "Please disconnect your charger."
+    -i battery-full-charging-symbolic \
+    'Battery is almost charged' \
+    'Please disconnect your charger.'
 
 elif [ $status = 'Full' ]; then notify-send \
     -i battery-full-charging-symbolic \
     'Battery is fully charged' \
-    "Please disconnect your charger."
+    'Please disconnect your charger.'
 fi
