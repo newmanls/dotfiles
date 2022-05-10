@@ -4,9 +4,13 @@ vim.g.mapleader = ' '
 
 -- Save and quit
 map('n',  '<leader>w',   ':w<CR>')
-map('n',  '<leader>wq',  ':wq<CR>')
+map('n',  '<leader>W',   ':wa<CR>')
 map('n',  '<leader>q',   ':q<CR>')
-map('n',  '<leader>qa',   ':qa<CR>')
+map('n',  '<leader>Q',   ':qa<CR>')
+
+-- Move between visible lines
+map('n', 'j', 'gj')
+map('n', 'k', 'gk')
 
 -- Split window
 map('n',  '<leader>x',  ':split ',   {silent=false})
