@@ -17,10 +17,6 @@ require('paq') {
     'tpope/vim-surround';
     'mattn/emmet-vim';
 
-    -- Nvim Tree
-    'kyazdani42/nvim-web-devicons';
-    'kyazdani42/nvim-tree.lua';
-
     -- Shortcuts
     'phaazon/hop.nvim';
     'terrortylor/nvim-comment';
