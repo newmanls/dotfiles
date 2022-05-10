@@ -1,4 +1,13 @@
 #!/usr/bin/env bash
 
-# Depends on wireless_tools and nerd fonts for icons
-ssid=$(iwgetid -r) && echo "直  $ssid" || echo '睊  disconnected'
+# Depends on wireless_tools
+
+icon_connected='直 '
+icon_disconnected='睊 '
+
+if ssid=$(iwgetid -r); then ping -c1 9.9.9.9 > /dev/null 2>&1 &&
+    icon=$icon_connected || icon=$icon_disconnected
+
+else ssid='disconnected' && icon=$icon_disconnected; fi
+
+echo "$icon $ssid"
