@@ -8,7 +8,9 @@ logout='Logout'
 
 options="$shutdown\n$suspend\n$hibernate\n$reboot\n$logout"
 
-chosen="$(echo -e "$options" | dmenu -p "Session")"
+prompt="Uptime: $(uptime | tr -d ',' | awk '{print $3}')"
+
+chosen="$(echo -e "$options" | dmenu -p "$prompt")"
 
 case $chosen in
     $shutdown)  systemctl poweroff -i ;;
