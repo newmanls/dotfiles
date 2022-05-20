@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+GAMES_DIR="$HOME/Games/"
+GAMES_EXTENSIONS='\.(bin|gba|sfc|smc)$'
+DMENU='dmenu -l 16 -p'
+
+console="$(ls -1 "$GAMES_DIR" | $DMENU 'Play')" || exit
+
+console_dir="$GAMES_DIR/$console"
+games="$(ls -1 "$console_dir" | grep -iE $GAMES_EXTENSIONS)"
+
+chosen_game="$(echo -e "$games" | $DMENU "$console")" || exit
+
+setsid -f xdg-open "$console_dir/$chosen_game"

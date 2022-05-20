@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-GBA_EMULATOR='visualboyadvance-m'
-GBA_DIR="$HOME/Games/gba/"
-
-chosen="$(ls $GBA_DIR/*.gba | sed 's/.*\///;s/.gba//' | dmenu -l 16 -p 'Play')"
-
-[ "$chosen" ] && setsid -f $GBA_EMULATOR "$GBA_DIR/$chosen.gba"
