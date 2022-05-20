@@ -15,4 +15,5 @@ alias lta='lsd --tree --almost-all'
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
+ex() { for i in "$@"; do aunpack "$i"; done }
 cl() { cd "$1" && ls; }
