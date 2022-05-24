@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+MODULES="$@"
+MODULES_DIR="$HOME/.local/bin/sb-modules/"
+
+while true; do
+    status=''
+    for module in $MODULES; do status+=" $($MODULES_DIR/sb-$module) "; done
+    xsetroot -name "$status" && sleep 0.5
+done

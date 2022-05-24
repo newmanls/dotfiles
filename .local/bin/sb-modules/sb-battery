@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
-status=$(cat /sys/class/power_supply/BAT1/status)
-capacity=$(cat /sys/class/power_supply/BAT1/capacity)
+battery='/sys/class/power_supply/BAT1/'
+
+[ -d $battery ] || echo '' && exit 1
+
+status=$(cat $battery/status)
+capacity=$(cat $battery/capacity)
 
 if [ $status = 'Charging' ]; then icon=''
 elif [ $capacity -eq 100 ];  then icon=''
