@@ -6,16 +6,17 @@ set scrolloff   8
 set cleaner     '~/.config/lf/cleaner.sh'
 set previewer   '~/.config/lf/scope.sh'
 
-cmd extract !clear; for file in "$fx"; do aunpack -- "$file"; done
-cmd mkdir   %mkdir "$@"
-cmd on-quit $"$HOME/.config/lf/cleaner.sh"
-cmd open    $~/.config/lf/rifle.sh
-cmd setbg   &setbg "$f"
+cmd extract   !clear; for file in "$fx"; do aunpack -- "$file"; done
+cmd mkdir     %mkdir "$@"
+cmd on-quit   $"$HOME/.config/lf/cleaner.sh"
+cmd open      $~/.config/lf/rifle.sh
+cmd open-with &setsid -f $1 $fx
+cmd setbg     &setbg "$f"
 
 cmd delete ${{
     clear
     printf "$fx\n"
-    confirm "Delete files permanently?" && rm -rf $fx
+    confirm "Delete files permanently?" && rm -rf $fx && clear
 }}
 
 cmd paste ${{
@@ -24,10 +25,10 @@ cmd paste ${{
     mode=$(head -n1 $files)
     list=$(tail -n+2 $files)
 
-    if   [ "$1" = 'link' ];   then cp -vs --backup=numbered $list .
-    elif [ $mode = 'copy' ];  then cp -vr --backup=numbered $list .
-    elif [ $mode = 'move' ];  then mv -v  --backup=numbered $list . &&
-        rm ~/.local/share/lf/files && lf -remote "send $id clear"; fi
+    if   [ "$1" = 'link' ];   then ln -s $list "$PWD"
+    elif [ $mode = 'copy' ];  then cp -vr --backup=numbered $list "$PWD"
+    elif [ $mode = 'move' ];  then mv -v  --backup=numbered $list "$PWD" &&
+        rm ~/.local/share/lf/files && lf -remote "send $id clear"; fi && clear
 }}
 
 cmd recol ${{
@@ -62,6 +63,7 @@ map A  rename
 map a  push A<a-b><a-b><a-f>
 map cc push A<c-u>
 map cw push A<a-b><a-b><a-f><c-u>
+map C  push A<c-u>
 map I  push A<c-a>
 
 map cd push :cd<space>
@@ -80,6 +82,8 @@ map gv cd /var
 
 map dd cut
 map dD delete
+
+map o  push :open-with<space>
 
 map pp paste normal
 map pl paste link
@@ -102,6 +106,7 @@ map yw yank name
 
 map =  recol
 
-map <esc> :unselect; clear
+map <enter> open
+map <esc>   :unselect; clear
 
 recol
