@@ -13,7 +13,7 @@ alias lla='lsd --long --almost-all'
 alias lt='lsd --tree'
 alias lta='lsd --tree --almost-all'
 
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 ex() { for i in "$@"; do aunpack "$i"; done }
 cl() { cd "$1" && ls; }
