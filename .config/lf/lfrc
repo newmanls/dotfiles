@@ -6,7 +6,7 @@ set scrolloff   8
 set cleaner     '~/.config/lf/cleaner.sh'
 set previewer   '~/.config/lf/scope.sh'
 
-cmd extract   !clear; for file in "$fx"; do aunpack -- "$file"; done
+cmd extract   !clear; for file in $fx; do aunpack -- "$file"; done
 cmd mkdir     %mkdir "$@"
 cmd on-quit   $"$HOME/.config/lf/cleaner.sh"
 cmd open      $~/.config/lf/rifle.sh
