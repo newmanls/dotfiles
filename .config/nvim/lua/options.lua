@@ -11,7 +11,7 @@ vim.opt.termguicolors = true
 -- Behavior
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.confirm = true
-vim.opt.scrolloff = 8
+vim.opt.scrolloff = 4
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.timeoutlen = 500

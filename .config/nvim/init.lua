@@ -19,7 +19,7 @@ require('paq') {
 
     -- Shortcuts
     'phaazon/hop.nvim';
-    'terrortylor/nvim-comment';
+    'numToStr/Comment.nvim';
 
     -- Utils
     'jghauser/mkdir.nvim';
