@@ -31,6 +31,23 @@ cmd paste ${{
         rm ~/.local/share/lf/files && lf -remote "send $id clear"; fi && clear
 }}
 
+cmd paste-on-dir %{{
+    clear
+    target_dir="$@"
+    [ -d "${target_dir}" ] || mkdir "${target_dir}"
+
+    files="$HOME/.local/share/lf/files"
+    mode=$(head -n1 $files)
+    list=$(tail -n+2 $files)
+
+    if [ $mode = 'copy' ]; then
+        cp -vr --backup=numbered $list "${target_dir}"
+    elif [ $mode = 'move' ]; then
+        mv -v  --backup=numbered $list "${target_dir}" &&
+            rm ~/.local/share/lf/files && lf -remote "send $id clear"
+    fi && clear
+}}
+
 cmd recol ${{
     width=$(tput cols)
 
@@ -87,6 +104,7 @@ map o  push :open-with<space>
 
 map pp paste normal
 map pl paste link
+map pd push :paste-on-dir<space>
 
 map ud clear
 map uv unselect
