@@ -26,7 +26,7 @@
     # dynamic width from 0 to 300
     # width = (0, 300)
     # constant width of 300
-    width = (160, 320)
+    width = (160, 360)
 
     # The maximum height of a single notification, excluding the frame.
     height = 400
@@ -35,7 +35,7 @@
     origin = top-right
 
     # Offset from the origin
-    offset = 8x28
+    offset = 8x26
 
     # Scale factor. It is auto-detected if value is 0.
     scale = 0
@@ -60,7 +60,7 @@
     progress_bar_min_width = 160
 
     # Set the maximum width for the progress bar
-    progress_bar_max_width = 320
+    progress_bar_max_width = 360
 
 
     # Show how many messages are currently hidden (because of
@@ -113,7 +113,7 @@
 
     ### Text ###
 
-    font = Iosevka Nerd Font 10
+    font = Iosevka Nerd Font 11
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
@@ -195,7 +195,7 @@
     min_icon_size = 0
 
     # Scale larger icons down to this size, set to 0 to disable
-    max_icon_size = 160
+    max_icon_size = 64
 
     # Paths to default icons.
     icon_path = /usr/share/icons/kora/status/symbolic/:/usr/share/icons/kora/status/scalable/:/usr/share/icons/kora/apps/scalable/:/usr/share/icons/kora/mimes/scalable/:/usr/share/icons/kora/devices/scalable:/usr/share/icons/kora/places/scalable
