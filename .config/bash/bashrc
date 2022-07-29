@@ -12,10 +12,15 @@ complete -c man whereis which
 complete -cf sudo
 
 # Keybindings
-bind '"\C-p": history-search-backward'
-bind '"\C-n": history-search-forward'
-bind '"\eh": "\C-aman \C-e\n"'
-bind '"\es": "\C-asudo \C-e"'
+set -o vi
+run-help() { help "$READLINE_LINE" 2>/dev/null || man "$READLINE_LINE"; }
+
+bind -m vi-insert -x '"\eh": run-help'
+bind -m vi-insert -x '"\C-l": clear'
+bind -m vi-insert '"\C-a": beginning-of-line'
+bind -m vi-insert '"\C-e": end-of-line'
+bind -m vi-insert '"\C-p": history-search-backward'
+bind -m vi-insert '"\C-n": history-search-forward'
 
 # Autostart X at login
 if [ -z "${DISPLAY}" -a "${XDG_VTNR}" -eq 1 ]; then

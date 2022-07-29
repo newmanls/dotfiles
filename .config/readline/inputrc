@@ -17,3 +17,8 @@ set show-all-if-ambiguous on
 # Briefly move the cursor to an opening parenthesis when closing
 # parenthesis is inserted.
 set blink-matching-paren on
+# Mode indicator in prompt
+set show-mode-in-prompt on
+# Different cursor shapes for each mode
+set vi-ins-mode-string \1\e[6 q\2
+set vi-cmd-mode-string \1\e[2 q\2
