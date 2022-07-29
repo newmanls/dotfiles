@@ -1,0 +1,40 @@
+set notification-error-bg       "#32302f"
+set notification-error-fg       "#ea6962"
+set notification-warning-bg     "#32302f"
+set notification-warning-fg     "#d8a657"
+set notification-bg             "#32302f"
+set notification-fg             "#a9b665"
+
+set completion-bg               "#32302f"
+set completion-fg               "#d4be98"
+set completion-group-bg         "#32302f"
+set completion-group-fg         "#928374"
+set completion-highlight-bg     "#7daea3"
+set completion-highlight-fg     "#3c3836"
+
+# Define the color in index mode
+set index-bg                    "#32302f"
+set index-fg                    "#d4be98"
+set index-active-bg             "#7daea3"
+set index-active-fg             "#3c3836"
+
+set inputbar-bg                 "#1d2021"
+set inputbar-fg                 "#d4be98"
+
+set statusbar-bg                "#32302f"
+set statusbar-fg                "#d4be98"
+
+set highlight-color             "#d8a657"
+set highlight-active-color      "#e78a4e"
+
+set default-bg                  "#1d2021"
+set default-fg                  "#ddc7a1"
+set render-loading              true
+set render-loading-bg           "#32302f"
+set render-loading-fg           "#d4be98"
+
+# Recolor book content's color
+set recolor-lightcolor          "#1d2021"
+set recolor-darkcolor           "#d4be98"
+set recolor                     true
+set recolor-keephue             true     
