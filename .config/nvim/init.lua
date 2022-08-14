@@ -8,18 +8,18 @@ require('paq') {
     {'folke/tokyonight.nvim', branch = 'main'};
 
     -- Syntax highlighting
-    {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'};
+    'nvim-treesitter/nvim-treesitter';
     'lukas-reineke/indent-blankline.nvim';
     'norcalli/nvim-colorizer.lua';
 
     -- Completion
     'jiangmiao/auto-pairs';
-    'tpope/vim-surround';
     'mattn/emmet-vim';
 
     -- Shortcuts
-    'phaazon/hop.nvim';
+    'kylechui/nvim-surround';
     'numToStr/Comment.nvim';
+    'phaazon/hop.nvim';
 
     -- Utils
     'jghauser/mkdir.nvim';
