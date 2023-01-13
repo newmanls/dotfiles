@@ -3,10 +3,9 @@
 PROMPT_COMMAND=__bash_prompt
 
 __bash_prompt() {
-    local LAST_EXITCODE=$?
-    local PROMPT_MODULES=('cwd' 'git' 'arrow')
+    local last_exitcode=${?}
 
-    declare -A COLORS=(
+    declare -A colors=(
         [black]='\[\e[1;30m\]'
         [red]='\[\e[1;31m\]'
         [green]='\[\e[1;32m\]'
@@ -19,34 +18,36 @@ __bash_prompt() {
     )
 
     __prompt_cwd() {
-        PS1+="${COLORS[blue]}\W "
+        PS1+="${colors[blue]}\W "
     }
 
     __prompt_git() {
-        which git > /dev/null 2>&1 || return 
+        which git > /dev/null 2>&1 || return
 
         local branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
 
-        [ "$branch" ] || return
+        [ "${branch}" ] || return
 
-        PS1+="${COLORS[white]}at ${COLORS[red]}$branch "
+        PS1+="${colors[white]}at ${colors[red]}${branch} "
 
         local is_dirty=$(git status --porcelain 2> /dev/null)
 
-        [ "$is_dirty" ] && PS1+="${COLORS[yellow]}✗ "
+        [ "${is_dirty}" ] && PS1+="${colors[yellow]}✗ "
     }
 
     __prompt_arrow() {
         local arrow_color
 
-        [ $LAST_EXITCODE -ne 0 ] && arrow_color='red' || arrow_color='green'
+        [ ${last_exitcode} -ne 0 ] && arrow_color='red' || arrow_color='green'
 
-        PS1+="${COLORS[$arrow_color]}> "
+        PS1+="${colors[${arrow_color}]}> "
     }
 
     PS1=""
 
-    for module in "${PROMPT_MODULES[@]}"; do __prompt_$module; done
+    __prompt_cwd
+    __prompt_git
+    __prompt_arrow
 
-    PS1+="${COLORS[reset]}"
+    PS1+="${colors[reset]}"
 }
