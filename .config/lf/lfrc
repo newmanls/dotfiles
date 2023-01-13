@@ -5,6 +5,7 @@ set icons
 set scrolloff   8
 set cleaner     '~/.config/lf/cleaner.sh'
 set previewer   '~/.config/lf/scope.sh'
+set ratios 1:1
 
 cmd extract   !clear; for file in $fx; do aunpack -- "$file"; done
 cmd mkdir     %mkdir "$@"
@@ -17,6 +18,7 @@ cmd delete ${{
     clear
     printf "$fx\n"
     confirm "Delete files permanently?" && rm -rf $fx && clear
+    lf -remote "send ${id} reload"
 }}
 
 cmd paste ${{
@@ -25,36 +27,21 @@ cmd paste ${{
     mode=$(head -n1 $files)
     list=$(tail -n+2 $files)
 
-    if   [ "$1" = 'link' ];   then ln -s $list "$PWD"
-    elif [ $mode = 'copy' ];  then cp -vr --backup=numbered $list "$PWD"
-    elif [ $mode = 'move' ];  then mv -v  --backup=numbered $list "$PWD" &&
-        rm ~/.local/share/lf/files && lf -remote "send $id clear"; fi && clear
-}}
-
-cmd paste-on-dir %{{
-    clear
-    target_dir="$@"
-    [ -d "${target_dir}" ] || mkdir "${target_dir}"
-
-    files="$HOME/.local/share/lf/files"
-    mode=$(head -n1 $files)
-    list=$(tail -n+2 $files)
-
-    if [ $mode = 'copy' ]; then
-        cp -vr --backup=numbered $list "${target_dir}"
-    elif [ $mode = 'move' ]; then
-        mv -v  --backup=numbered $list "${target_dir}" &&
-            rm ~/.local/share/lf/files && lf -remote "send $id clear"
+    if   [ "$1" = 'link' ];  then ln -vis ${list} "${PWD}"
+    elif [ $mode = 'copy' ]; then cp -vir ${list} "${PWD}"
+    elif [ $mode = 'move' ]; then mv -vi  ${list} "${PWD}" &&
+        rm ~/.local/share/lf/files && lf -remote "send $id clear"
     fi && clear
+    lf -remote "send ${id} reload"
 }}
 
 cmd recol ${{
     width=$(tput cols)
 
-    if [ $width -le 60 ]; then
+    if [ $width -le 80 ]; then
         ~/.config/lf/cleaner.sh
         lf -remote "send $id set nopreview; set ratios 1"
-    elif [ $width -le 80 ]; then
+    elif [ $width -le 120 ]; then
         lf -remote "send $id set ratios 1:1; set preview"
     else
         lf -remote "send $id set ratios 1:2:3; set preview"
@@ -104,7 +91,6 @@ map o  push :open-with<space>
 
 map pp paste normal
 map pl paste link
-map pd push :paste-on-dir<space>
 
 map ud clear
 map uv unselect
@@ -127,4 +113,4 @@ map =  recol
 map <enter> open
 map <esc>   :unselect; clear
 
-recol
+# recol
