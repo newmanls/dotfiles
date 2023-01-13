@@ -1,53 +1,37 @@
 #!/usr/bin/env bash
 
-timer=5
+directory="${HOME}/Pictures/Screenshots"
+timer_delay=3
 
-# Options
-select="麗"
-window="类"
+take_screenshot() {
+    args="${@}"
+    filename="IMG_$(date +%Y%m%d_%H%M%S).png"
+    filepath="${directory}/${filename}"
+
+    maim -Bud 0.1 ${args} "${filepath}"
+
+    if [ -f "${filepath}" ]; then
+        xclip -selection clipboard -t image/png -i "${filepath}"
+        notify-send -i "${filepath}" \
+            "Screenshot captured" "You can paste the image from the clipboard."
+    fi
+}
+
 screen=""
-delay=""
+window="类"
+region="麗"
+timer=""
 cancel=""
 
-# Variable passed to rofi
-options="$select\n$window\n$screen\n$delay\n$cancel"
+options="${screen}\n${window}\n${region}\n${timer}\n${cancel}"
 
-rofi_command="rofi -theme themes/screenshotsmenu.rasi"
+chosen=$(echo -e "${options}" | rofi \
+    -theme themes/screenshotsmenu.rasi -dmenu -hover-select \
+    -me-select-entry '' -me-accept-entry MousePrimary)
 
-setFilename() {
-  directory="/tmp/"
-  filename="IMG_$(date +%Y%m%d_%H%M%S).jpg"
-  filepath=$directory$filename
-}
-
-notify() {
-  dunstify "Screenshot saved and copied to clipboard" -i accessories-screenshot
-}
-
-chosen="$(echo -e "$options" | $rofi_command -dmenu)"
-case $chosen in
-  $select)
-    setFilename
-    maim -Buosd 0.25 \
-      | tee $filepath | xclip -selection c -t image/png
-    notify
-    ;;
-  $window)
-    setFilename
-    maim -Buod 0.25 -i $(xdotool getactivewindow) \
-      | tee $filepath | xclip -selection c -t image/png
-    notify
-    ;;
-  $screen)
-    setFilename
-    maim -Buod 0.25 \
-      | tee $filepath | xclip -selection c -t image/png
-    notify
-    ;;
-  $delay)
-    setFilename
-    maim -Buod $timer \
-      | tee $filepath | xclip -selection c -t image/png
-    notify
-    ;;
+case "${chosen}" in
+    "${screen}") take_screenshot ;;
+    "${window}") take_screenshot -i $(xdotool getactivewindow) ;;
+    "${region}") take_screenshot -so ;;
+    "${timer}")  take_screenshot -d ${timer_delay} ;;
 esac
