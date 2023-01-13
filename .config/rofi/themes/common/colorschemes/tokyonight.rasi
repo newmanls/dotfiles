@@ -13,6 +13,6 @@
   magenta : #9a7ecc;
   cyan    : #4abaaf;
 
-  accent: @red;
+  accent: @magenta;
   urgent: @yellow;
 }
