@@ -1,6 +1,9 @@
 super + space
     dmenu_run_i
 
+super + shift + space
+    ~/.config/rofi/scripts/appsmenu.sh
+
 super + Return
     st
 
@@ -9,6 +12,9 @@ super + shift + q
 
 super + e
     st -e lfub
+
+super + p
+    st -e cmus
 
 super + w
     firefox
