@@ -2,10 +2,23 @@
 
 set -C -f
 
-FILE_EXTENSION=$(echo "${f##*.}" | tr '[:upper:]' '[:lower:]')
-FILE_MIMETYPE=$(file --dereference --brief --mime-type -- "$f")
+file_extension=$(echo "${f##*.}" | tr '[:upper:]' '[:lower:]')
+file_mimetype=$(file --dereference --brief --mime-type -- "$f")
 
-case $FILE_MIMETYPE in
+hash() {
+    printf '%s/.cache/lf/thumb_%s' "$HOME" \
+        "$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$f")" | \
+        sha256sum | awk '{print $1}')"
+}
+
+case ${file_mimetype} in
+    *document*)
+        cache="$(hash).pdf"
+        [ ! -f "${cache}" ] &&
+            libreoffice --convert-to pdf --outdir "$HOME/.cache/lf" "${f}" &&
+            mv "$HOME/.cache/lf/$(basename ${f/.*/.pdf})" "${cache}"
+        setsid -f zathura "${cache}" ;;
+
     text/*|application/json|inode/x-empty|application/pgp-encrypted)
         [ -z "$fs" ] && $EDITOR "$f" || $EDITOR -O $fs ;;
 
