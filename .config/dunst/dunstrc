@@ -35,7 +35,7 @@
     origin = top-right
 
     # Offset from the origin
-    offset = 8x26
+    offset = 4x22
 
     # Scale factor. It is auto-detected if value is 0.
     scale = 0
@@ -91,7 +91,7 @@
     frame_width = 1
 
     # Defines color of the frame around the notification window.
-    frame_color = "#414868"
+    frame_color = "#181b20"
 
     # Define a color for the separator.
     # possible values are:
@@ -294,26 +294,26 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#24283b"
-    foreground = "#c0caf5"
-    highlight = "#bb9af7"
+    background = "#181b20"
+    foreground = "#a0a8b7"
+    highlight = "#535965"
     timeout = 3
     # Icon for notifications with low urgency, uncomment to enable
     icon = /dev/null
 
 [urgency_normal]
-    background = "#24283b"
-    foreground = "#a9b1d6"
-    highlight = "#bb9af7"
+    background = "#181b20"
+    foreground = "#a0a8b7"
+    highlight = "#535965"
     timeout = 5
     # Icon for notifications with normal urgency, uncomment to enable
     icon = /dev/null
 
 [urgency_critical]
-    background = "#24283b"
-    foreground = "#c0caf5"
-    frame_color = "#e9af68"
-    highlight = "#bb9af7"
+    background = "#181b20"
+    foreground = "#a0a8b7"
+    frame_color = "#e2b86b"
+    highlight = "#535965"
     timeout = 5
     # Icon for notifications with critical urgency, uncomment to enable
     #icon = /path/to/icon
