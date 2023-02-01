@@ -1,5 +1,5 @@
 super + space
-    dmenu_run_i
+    ~/.local/bin/dmenu_run_i
 
 super + shift + space
     ~/.config/rofi/scripts/appsmenu.sh
@@ -23,25 +23,22 @@ super + c
     qalculate-gtk
 
 super + shift + {equal,minus}
-    notify-backlight {up,down}
+    ~/.local/bin/notify-backlight {up,down}
 
 super + {equal,minus,0}
-    notify-pamixer {up,down,mute}
+    ~/.local/bin/notify-pamixer {up,down,mute}
 
 super + shift + s
-    dmenu_maim
+    ~/.local/bin/dmenu_maim
 
 super + shift + Escape
-    dmenu_session
+    ~/.local/bin/dmenu_session
 
 super + alt + space
-    emojipick
+    ~/.local/bin/emojipick
 
-super + alt + m
-    dmenu_mount
-
-super + alt + u
-    dmenu_unmount
+super + alt + {m,u}
+    ~/.local/bin/dmenu_disks {mount,unmount}
 
 super + alt + g
-    dmenu_emu
+    ~/.local/bin/dmenu_emu
