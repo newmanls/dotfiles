@@ -3,7 +3,7 @@
 rofi \
     -show drun \
     -drun-display-format {name} \
-    -theme themes/appsmenu.rasi \
+    -theme "themes/${1:-appsmenu.rasi}" \
     -hover-select \
     -me-select-entry '' -me-accept-entry MousePrimary \
     -ml-row-up '' -kb-page-prev ScrollUp \

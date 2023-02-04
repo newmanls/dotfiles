@@ -64,15 +64,21 @@ textbox {
 }
 
 listview {
-  columns : 5;
-  lines   : 5;
-  spacing : 16px;
+  columns : 2;
+  lines   : 8;
+  spacing : 4px;
   fixed-columns: true;
   fixed-height: true;
+  scrollbar: true;
+}
+
+scrollbar {
+  handle-width: 2px;
+  handle-color: @fg1;
 }
 
 element {
-  orientation   : vertical;
+  orientation   : horizontal;
   spacing       : 8px;
   padding       : 8px;
 }
@@ -94,11 +100,10 @@ element selected urgent {
 }
 
 element-icon {
-  size: 2em;
+  size: 1.5em;
 }
 
 element-text {
-  text-color       : inherit;
-  horizontal-align : 0.5;
+  text-color: inherit;
   highlight: none;
 }
