@@ -1,5 +1,4 @@
-# include colorschemes/tokyonight
-include colorschemes/gruvbox-material
+include colorschemes/onedark-darker
 
 set n-completion-items  8
 set font                'Iosevka Nerd Font 10'
