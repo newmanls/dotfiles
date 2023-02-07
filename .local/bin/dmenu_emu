@@ -1,24 +1,43 @@
 #!/usr/bin/env bash
 
-GAMES_DIR="$HOME/Games/"
-GAMES_EXTENSIONS='\.(bin|cue|gba|sfc|smc)$'
-DMENU='dmenu -l 16 -p'
+set -euo pipefail
 
-console="$(ls -1 "$GAMES_DIR" | $DMENU 'Play')" || exit
+roms_dir="${HOME}/Games/"
+dmenu='dmenu -l 16'
 
-console_dir="$GAMES_DIR/$console"
-games="$(ls -1 "$console_dir" | grep -iE $GAMES_EXTENSIONS)"
+lsfiles() {
+    find -- * -maxdepth 0
+}
 
-[ "$console" = 'Play Station' ] &&
-    games="$(echo -e "$games" | grep -iE '\.cue$')"
+select_console() {
+    cd "${roms_dir}"
+    console=$(lsfiles | ${dmenu} -p "play")
 
-chosen_game="$(echo -e "$games" | $DMENU "$console")" || exit
+    IFS=' - ' read -r console_code console_name <<< "${console}"
 
-FILE_EXTENSION=$(echo "${chosen_game##*.}" | tr '[:upper:]' '[:lower:]')
+    select_game
+}
 
-case $FILE_EXTENSION in
-    bin|cue|sfc|smc)
-        mednafen "$console_dir/$chosen_game" ;;
-    *)
-        setsid -f xdg-open "$console_dir/$chosen_game" ;;
-esac
+select_game() {
+    cd "${console}"
+    game=$(printf "..\n%s\n" "$(lsfiles)" | ${dmenu} -p "${console_name}")
+    
+    if [ "${game}" = ".." ]; then
+        select_console
+    else
+        run_game
+    fi
+}
+
+run_game() {
+    case "${console_code}" in
+        apple2|nes|snes|gb|gbc|gba|pce|lynx|md|pcfx|ngp|psx|ss|ssfplay|vb| \
+        wswan|sms|gg|sasplay|snes_faust|pce_fast)
+            mednafen "${game}" ;;
+        *)
+            notify-send -i 'dialog-error' \
+                "Error" "No emulator set for '${console_name}'" && exit 1 ;;
+    esac
+}
+
+select_console

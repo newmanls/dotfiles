@@ -2,6 +2,8 @@
 # dmenu script for (un)mounting disks and storage devices. Depends on udisks2.
 # Author: Newman Sanchez (https://github.com/newmanls)
 
+set -euo pipefail
+
 notify() {
     printf "%s\n" "${@}"
     notify-send \
@@ -19,7 +21,9 @@ notify_error() {
 }
 
 mount_device() {
-    devices=$(awk -F: '$2=="" {printf "%s %s(%s)\n",$1,$3,$4}' <<< "${devices}")
+    devices=$(
+        awk -F: '$2=="" {printf "%s %s(%s)\n",$1,$3,$4}' <<< "${devices}"
+    )
 
     [ ! "${devices}" ] && notify "No devices for mounting" && exit 0
 
@@ -39,19 +43,17 @@ unmount_device() {
 
 device_action() {
     action="${1}"
-    chosen=$(dmenu -p "${action}" <<< "${devices}" | awk '{ print $1 }')
-
-    [ ! "${chosen}" ] && exit 0
+    chosen=$(dmenu -p "${action}" <<< "${devices}" | awk '{print $1}')
 
     if udisksctl "${action}" -b "${chosen}" > "${log}" 2>&1; then
-        notify "$(cat ${log})"
+        notify "$(cat "${log}")"
     else
-        notify-error "$(cat ${log})"
+        notify-error "$(cat "${log}")"
     fi
 }
 
 print_usage() {
-    printf "%s\n" "Usage: dmenu_disks [mount|unmount]"
+    printf "%s\n" "Usage: dmenu_disks [mount | unmount]"
 }
 
 main() {
@@ -59,7 +61,7 @@ main() {
     devices=$(
         lsblk -npryo name,fstype,mountpoint,label,size |
             tr ' ' ':' |
-            awk -F: '$2!="" { printf "%s:%s:%s:%s\n",$1,$3,$4,$5 }'
+            awk -F: '$2!="" {printf "%s:%s:%s:%s\n",$1,$3,$4,$5}'
     )
     devices=$(printf "%b\n" "${devices}")
 
@@ -71,4 +73,4 @@ main() {
     esac
 }
 
-main "${1}"
+main "${1:-}"
