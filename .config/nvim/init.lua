@@ -5,10 +5,11 @@ require('paq') {
     'savq/paq-nvim';
 
     -- Colorscheme
-    {'folke/tokyonight.nvim', branch = 'main'};
+    -- {'folke/tokyonight.nvim', branch = 'main'};
+    'navarasu/onedark.nvim';
 
     -- Syntax highlighting
-    'nvim-treesitter/nvim-treesitter';
+    {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'};
     'lukas-reineke/indent-blankline.nvim';
     'norcalli/nvim-colorizer.lua';
 
