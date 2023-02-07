@@ -1,14 +1,17 @@
 #!/usr/bin/env bash
 
-BG_PATH="$HOME/.config/bg"
+set -euo pipefail
 
-path="$(readlink -f "$1")" &&
-    case "$(file --mime-type -b "$path")" in
-        image/* )
-            ln -sf "$path" "$BG_PATH" &&
-                notify-send -i "$path" "Changing wallpaper... " || exit 1 ;;
-        *)
-            notify-send -i "system-error" "Error: not a valid file" && exit 1 ;;
+bg_path="${HOME}/.cache/setbg"
+
+if [ "${1:-}" ]; then
+    filepath=$(readlink -f "${1}")
+    filetype=$(file --mime-type -b "${filepath}")
+
+    case "${filetype}" in
+        image/*) cp "${filepath}" "${bg_path}" ;;
+        *)       exit 1 ;;
     esac
+fi
 
-xwallpaper --zoom "$BG_PATH"
+hsetroot -cover "${bg_path}" > /dev/null 2>&1
