@@ -41,3 +41,4 @@ map('t',  ':q!',    '<C-\\><C-n>:q!<CR>')
 -- Plugins mappings
 map('n',  '<leader>f',   ':HopChar2<CR>')
 map('n',  '<leader>mt',  ':Toc<CR>')
+map('n',  '<leader>c',   ':ColorizerToggle<CR>')
