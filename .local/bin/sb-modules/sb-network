@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-# Depends on wireless_tools
-
-ssid=$(iwgetid -r) && echo "直  $ssid" || echo '睊  disconnected'
