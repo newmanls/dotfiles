@@ -24,5 +24,5 @@ bind -m vi-insert '"\C-n": history-search-forward'
 
 # Autostart X at login
 if [ -z "${DISPLAY}" -a "${XDG_VTNR}" -eq 1 ]; then
-    exec startx -- -keeptty > /tmp/startx.log 2>&1
+    exec startx -- -keeptty > ${HOME}/.cache/startx.log 2>&1
 fi
