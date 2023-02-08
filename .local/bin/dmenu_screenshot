@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Simple screenshot dmenu script. Depends on maim
+# Simple screenshot dmenu script. Depends on imagemagick
 # Author: Newman Sanchez (https://github.com/newmanls)
 
 set -euo pipefail
@@ -11,7 +11,7 @@ take_screenshot() {
 
     [ ! -d "${directory}" ] && mkdir -p "${directory}"
 
-    maim -Bud 0.1 "${@}" "${filepath}"
+    import -silent "${@}" "${filepath}"
 
     if [ -f "${filepath}" ]; then
         xclip -selection clipboard -t image/png -i "${filepath}"
@@ -33,10 +33,10 @@ main() {
     chosen=$(printf "%b\n" "${options}" | dmenu -p "Take screenshot")
 
     case "${chosen}" in
-        "${screen}") take_screenshot ;;
-        "${window}") take_screenshot -i "$(xdotool getactivewindow)" ;;
-        "${region}") take_screenshot -so ;;
-        "${timer}")  take_screenshot -d "${timer_delay}" ;;
+        "${screen}") take_screenshot -window root ;;
+        "${window}") take_screenshot -window "$(xdotool getactivewindow)" ;;
+        "${region}") take_screenshot ;;
+        "${timer}")  take_screenshot -window root -pause "${timer_delay}" ;;
     esac
 }
 

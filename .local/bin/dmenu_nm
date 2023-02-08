@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# dmenu script for simple network management. Depends on networkmanager
+# Author: Newman Sanchez (https://github.com/newmanls)
+
+set -euo pipefail
+
+select_network() {
+    nmcli -t -g bars,ssid,in-use device wifi list |
+        sed 's/:/ /g;s/\*/(connected)/;s/[[:blank:]]*$//' |
+        dmenu -l 16 -p 'networks' |
+        sed 's/^[▂▄▆█_]* //1;s/ (connected)$//'
+}
+
+is_connected() {
+    nmcli -t -g name connection show --active |
+        grep -x "${ssid}" > /dev/null 2>&1
+}
+
+is_saved() {
+    nmcli -t -g name,type connection |
+        grep "^${ssid}:.*wireless\$" > /dev/null 2>&1
+}
+
+ask_passphrase() {
+    passphrase=$(dmenu -p 'Password' <&-)
+}
+
+main() {
+    ssid=$(select_network)
+
+    if is_connected; then
+        nmcli connection down "${ssid}"
+    elif is_saved; then
+        nmcli connection up "${ssid}"
+    else
+        ask_passphrase
+        nmcli device wifi connect "${ssid}" password "${passphrase}"
+    fi
+}
+
+main

@@ -29,7 +29,7 @@ super + {equal,minus,0}
     ~/.local/bin/notify-pamixer {up,down,mute}
 
 super + shift + s
-    ~/.local/bin/dmenu_maim
+    ~/.local/bin/dmenu_screenshot
 
 super + shift + Escape
     ~/.local/bin/dmenu_session
@@ -42,3 +42,6 @@ super + alt + {m,u}
 
 super + alt + g
     ~/.local/bin/dmenu_emu
+
+super + alt + n
+    ~/.local/bin/dmenu_nm
