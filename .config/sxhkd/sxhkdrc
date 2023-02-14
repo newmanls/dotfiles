@@ -40,8 +40,5 @@ super + alt + space
 super + alt + {m,u}
     ~/.local/bin/dmenu_disks {mount,unmount}
 
-super + alt + g
-    ~/.local/bin/dmenu_emu
-
 super + alt + n
     ~/.local/bin/dmenu_nm
