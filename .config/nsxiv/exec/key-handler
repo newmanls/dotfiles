@@ -1,79 +1,53 @@
 #!/usr/bin/env bash
 
-notify() {
-    notify-send -i 'eog' "$@"
-}
+set -euo pipefail
 
-notify_error() {
-    notify-send -i 'system-error' "$@"
-}
-
-nsxiv_convert() {
-    local action="$1"
-
-    handle_conversion() {
-        convert $@ "$file" "/tmp/$filename" && mv "/tmp/$filename" "$file" &&
-            notify 'Convert' 'Converted successfully.' ||
-            notify_error 'Convert' 'Image conversion failed.'
-    }
-
-    case "$action" in
-        'rotate-right')
-            notify 'Convert' 'Rotating image 90° clockwise...'
-            handle_conversion -rotate 90 ;;
-        'rotate-left')
-            notify 'Convert' 'Rotating image 90° counterclockwise...'
-            handle_conversion -rotate -90 ;;
-        'flop')
-            notify 'Convert' 'Flopping image horizontally...'
-            handle_conversion -flop ;;
+copy() {
+    case "${1}" in
+        image) xclip -selection clipboard -target image/png "${files[@]}" ;;
+        path)  printf "'%s' " "${files[@]}" | xclip -selection clipboard ;;
     esac
+}
+
+open_with_editor() {
+    editor="gimp"
+
+    if which "${editor}" > /dev/null 2>&1; then
+        setsid -f "${editor}" "${files[@]}"
+    fi
+}
+
+remove() {
+    nfiles=${#files[@]}
+
+    if ((nfiles > 1)); then
+        prompt="delete ${nfiles} files?"
+    else
+        prompt="delete '${files[0]##*/}'"
+    fi
+
+    dmenu_prompt "${prompt}" && rm "${files[@]}"
+}
+
+rotate() {
+    degree="${1}"
+
+    for file in "${files[@]}"; do
+        mogrify -rotate "${degree}" "${file}"
+    done
 }
 
 while read -r file; do 
-    file="$(readlink -f "$file" | tr -d '\n')"
-    filename="${file##*/}"
-
-    case "$1" in
-        'w')
-            setbg "$file" & ;;
-
-        'y')
-            xclip -selection clipboard -target image/png "$file" &&
-                notify 'Image copied to clipboard.' ;;
-
-        'Y')
-            echo -n "$file" | xclip -selection clipboard &&
-                notify 'Image path copied to clipboard.' ;;
-
-        'd')
-            dmenu_prompt "Really delete \"$filename\"?" && rm "$file" && 
-                notify "\"$filename\" deleted." ;;
-
-        'r')
-            nsxiv_convert 'rotate-right' ;;
-
-        'R')
-            nsxiv_convert 'rotate-left' ;;
-
-        'f')
-            nsxiv_convert 'flop' ;;
-
-        'g')
-            if which gimp > /dev/null 2>&1; then
-                setsid -f gimp "$file" &&
-                    notify 'Opening file(s) with GIMP...'
-            else
-                notify_error 'GIMP is not installed!'
-            fi ;;
-
-        "i")
-            fileinfo() {
-                exiftool -S -d "%Y/%m/%d %H:%M:%S" \
-                    -FileName -Directory -FileSize -*Date -FileType \
-                    -MIMEType -AudioBitrate -ChannelMode -Duration -AvgBitrate \
-                    -ImageSize "$*" | sed -e 's/^/<b>/;s/:/:<\/b>/'
-            }
-            notify 'File information' "$(fileinfo "$file")" ;;
-    esac
+    file="$(realpath "${file}")"
+    files+=("${file}")
 done
+
+case "${1}" in
+    d) remove ;;
+    e) open_with_editor ;;
+    r) rotate 90 ;;
+    R) rotate 270 ;;
+    w) setbg "${files[@]}" & ;;
+    y) copy image ;;
+    Y) copy path ;;
+esac
