@@ -7,52 +7,51 @@ set cleaner     '~/.config/lf/cleaner.sh'
 set previewer   '~/.config/lf/scope.sh'
 set ratios 1:1
 
-cmd extract   !clear; for file in $fx; do aunpack -- "$file"; done
-cmd mkdir     %mkdir "$@"
-cmd on-quit   $"$HOME/.config/lf/cleaner.sh"
-cmd open      $~/.config/lf/rifle.sh
-cmd open-with &setsid -f $1 $fx
-cmd setbg     &setbg "$f"
+cmd on-quit     $~/.config/lf/cleaner.sh
+cmd open        $~/.config/lf/rifle.sh
+cmd open-with   &setsid -f ${1} ${fx}
+cmd mkdir       %mkdir ${@}
+cmd setbg       &setbg ${f}
+cmd bulk-rename $renamer ${fx}
 
-cmd delete ${{
+cmd extract !{{
     clear
-    printf "$fx\n"
-    confirm "Delete files permanently?" && rm -rf $fx && clear
-    lf -remote "send ${id} reload"
+    for file in ${fx}; do
+        aunpack -- "${file}"
+    done
 }}
 
-cmd paste ${{
-    clear
-    files="$HOME/.local/share/lf/files"
-    mode=$(head -n1 $files)
-    list=$(tail -n+2 $files)
+cmd link %{{
+    files="${XDG_DATA_HOME:-${HOME}/.local/share}/lf/files"
+    mode=$(sed -n '1p' "${files}")
+    list=$(sed '1d' "${files}")
 
-    if   [ "$1" = 'link' ];  then ln -vis ${list} "${PWD}"
-    elif [ $mode = 'copy' ]; then cp -vir ${list} "${PWD}"
-    elif [ $mode = 'move' ]; then mv -vi  ${list} "${PWD}" &&
-        rm ~/.local/share/lf/files && lf -remote "send $id clear"
-    fi && clear
-    lf -remote "send ${id} reload"
+    [ "${mode}" = 'copy' ] && ln -vs "${list}" "${PWD}"
+
+    lf -remote 'send clear'
 }}
 
 cmd recol ${{
     width=$(tput cols)
 
-    if [ $width -le 80 ]; then
+    if [ ${width} -le 80 ]; then
+        lf -remote 'send set nopreview'
+        lf -remote 'send set ratios 1'
         ~/.config/lf/cleaner.sh
-        lf -remote "send $id set nopreview; set ratios 1"
-    elif [ $width -le 120 ]; then
-        lf -remote "send $id set ratios 1:1; set preview"
+    elif [ ${width} -le 120 ]; then
+        lf -remote 'send set ratios 1:1'
+        lf -remote 'send set preview'
     else
-        lf -remote "send $id set ratios 1:2:3; set preview"
+        lf -remote 'send set ratios 1:2:3'
+        lf -remote 'send set preview'
     fi
 }}
 
-cmd yank ${{
-    case $1 in
-        dir)  dirname "$f" ;;
-        name) basename "$f" ;;
-        path) readlink -f "$f" ;;
+cmd yank &{{
+    case ${1} in
+        dir)  dirname "${f}" ;;
+        name) basename "${f}" ;;
+        path) readlink -f "${f}" ;;
     esac | tr -d '\n' | xclip -selection clipboard
 }}
 
@@ -63,18 +62,8 @@ map r
 map u
 map y
 
-map A  rename
-map a  push A<a-b><a-b><a-f>
-map cc push A<c-u>
-map cw push A<a-b><a-b><a-f><c-u>
-map C  push A<c-u>
-map I  push A<c-a>
-
-map cd push :cd<space>
-
 map gd cd /dev
 map ge cd /etc
-map gh cd ~
 map gm cd /media
 map gM cd /mnt
 map go cd /opt
@@ -87,26 +76,26 @@ map gv cd /var
 map dd cut
 map dD delete
 
-map o  push :open-with<space>
-
-map pp paste normal
-map pl paste link
-
-map ud clear
-map uv unselect
-map uy clear
-map uu :unselect; clear
-
-map xe extract
-map xn push :mkdir<space>
-map xw setbg
-map xx $$f
-map xX !$f
-
 map yy copy
 map yp yank path
 map yb yank dir
 map yw yank name
+
+map pp paste
+map pl link
+
+map A  rename
+map I  push A<c-a>
+map S  push A<c-u>
+map a  push A<a-b><a-b><a-f>
+map cw push A<a-b><a-b><a-f><c-u>
+
+map o  push :open-with<space>
+
+map xe extract
+map xw setbg
+map xx $${f}
+map xX !${f}
 
 map =  recol
 
