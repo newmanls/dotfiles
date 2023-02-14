@@ -1,5 +1,5 @@
 super + space
-    ~/.local/bin/dmenu_run_i
+    ~/.local/bin/dmenu-run-i
 
 super + shift + space
     ~/.config/rofi/scripts/appsmenu.sh
@@ -29,16 +29,16 @@ super + {equal,minus,0}
     ~/.local/bin/notify-pamixer {up,down,mute}
 
 super + shift + s
-    ~/.local/bin/dmenu_screenshot
+    ~/.local/bin/dmenu-screenshot
 
 super + shift + Escape
-    ~/.local/bin/dmenu_session
+    ~/.local/bin/dmenu-session
 
 super + alt + space
     ~/.local/bin/emojipick
 
 super + alt + {m,u}
-    ~/.local/bin/dmenu_disks {mount,unmount}
+    ~/.local/bin/dmenu-disks {mount,unmount}
 
 super + alt + n
-    ~/.local/bin/dmenu_nm
+    ~/.local/bin/dmenu-nm
