@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 [[ $- != *i* ]] && return
 
-. "$HOME/.config/bash/aliases"
-. "$HOME/.config/bash/prompt"
+. "${HOME}/.config/bash/aliases"
+. "${HOME}/.config/bash/prompt"
 
 # Shell options
 shopt -s autocd
@@ -13,7 +13,14 @@ complete -cf sudo
 
 # Keybindings
 set -o vi
-run-help() { help "$READLINE_LINE" 2>/dev/null || man "$READLINE_LINE"; }
+
+run-help() {
+    local command=$(cut -d ' ' -f1 <<< "$READLINE_LINE")
+
+    man "${command}" 2>/dev/null ||
+        help "${command}" 2>/dev/null ||
+        printf "No manual entry for ${command}\n"
+}
 
 bind -m vi-insert -x '"\eh": run-help'
 bind -m vi-insert -x '"\C-l": clear'
@@ -23,6 +30,6 @@ bind -m vi-insert '"\C-p": history-search-backward'
 bind -m vi-insert '"\C-n": history-search-forward'
 
 # Autostart X at login
-if [ -z "${DISPLAY}" -a "${XDG_VTNR}" -eq 1 ]; then
-    exec startx -- -keeptty > ${HOME}/.cache/startx.log 2>&1
+if [ -z "${DISPLAY}" -a ${XDG_VTNR:-0} -eq 1 ]; then
+    exec startx -- -keeptty > "${HOME}/.cache/startx.log" 2>&1
 fi

@@ -1,8 +1,12 @@
+export EDITOR='nvim'
+export HISTCONTROL='ignoredups'
 export PATH="${HOME}/.local/bin:${PATH}"
-export TERM="st-256color"
-export EDITOR="nvim"
-export HISTCONTROL=ignoredups
-export QT_QPA_PLATFORMTHEME="gtk2"
-export MEDNAFEN_HOME="${HOME}/.local/share/mednafen"
+export QT_QPA_PLATFORMTHEME='gtk2'
+export TERM='st-256color'
+export TERMINAL='st'
+
+[ -z "${XDG_CONFIG_HOME}" ] && export XDG_CONFIG_HOME="${HOME}/.config"
+[ -z "${XDG_CACHE_HOME}" ]  && export XDG_CACHE_HOME="${HOME}/.cache"
+[ -z "${XDG_DATA_HOME}" ]   && export XDG_DATA_HOME="${HOME}/.local/share"
 
 [ -f ~/.bashrc ] && . ~/.bashrc
