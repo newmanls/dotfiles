@@ -117,7 +117,7 @@ sb_volume() {
 sb_wifi() {
     is_installed nmcli || return 0
 
-    local ssid=$(nmcli -t -g name connection show --active)
+    local ssid=$(nmcli -t -g name connection show --active | grep -xv lo)
 
     if [ "${ssid}" ]; then
         printf "直  %s" "${ssid}"
