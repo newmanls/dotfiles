@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# simple script to control pulseaudio and notify volume
+# Author: Newman Sanchez (https://github.com/newmanls)
+
+set -euo pipefail
+
+step=10
+
+case "${1:-}" in
+    up)   pactl set-sink-mute 0 0; pactl set-sink-volume 0 "+${step}%" ;;
+    down) pactl set-sink-mute 0 0; pactl set-sink-volume 0 "-${step}%" ;;
+    mute) pactl set-sink-mute 0 toggle ;;
+esac
+
+vol=$(pactl get-sink-volume 0 | cut -s -d/ -f2 | tr -d " %")
+volume="${vol}%"
+is_muted=$(pactl get-sink-mute 0 | sed -n "s/Mute: //p")
+
+if [ "${is_muted}" = "yes" ]; then
+    volume="muted"
+    icon="audio-volume-muted-symbolic"
+elif (( vol == 0 )); then
+    icon="audio-volume-muted-symbolic"
+elif (( vol <= 30 )); then
+    icon="audio-volume-low-symbolic"
+elif (( vol <= 70 )); then
+    icon="audio-volume-medium-symbolic"
+else
+    icon="audio-volume-high-symbolic"
+fi
+
+notify-send \
+    "${volume}" \
+    -i "${icon}" \
+    -h int:value:"${vol}" \
+    -h string:x-dunst-stack-tag:volume

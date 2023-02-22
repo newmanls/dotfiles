@@ -26,7 +26,7 @@ super + shift + {equal,minus}
     ~/.local/bin/notify-backlight {up,down}
 
 super + {equal,minus,0}
-    ~/.local/bin/notify-pamixer {up,down,mute}
+    ~/.local/bin/notify-pulse {up,down,mute}
 
 super + shift + s
     ~/.local/bin/dmenu-screenshot
