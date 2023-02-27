@@ -60,4 +60,4 @@ if __name__ == "__main__":
     while True:
         status = [eval(module)() for module in modules]
         run(["xsetroot", "-name", SEPARATOR.join(status)])
-        sleep(1)
+        sleep(0.5)
