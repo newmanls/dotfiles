@@ -12,6 +12,8 @@ LABELS = {
     "network_off": "󰲛  ",
     "network_wifi_on": "󰤨  ",
     "network_wifi_off": "󰤭  ",
+    "volume": "󰕾  ",
+    "volume_muted": "󰸈  ",
 }
 
 def date():
@@ -29,13 +31,28 @@ def network():
     elif re.search("wireless", network_type):
         label = LABELS["network_wifi_on"]
     else:
-        label = LABELS["network_off"]
         network_name = "disconnected"
+        label = LABELS["network_off"]
 
     return label + network_name
 
+def pulseaudio():
+    cmd = ["pactl", "get-sink-mute", "0"]
+    muted = run(cmd, stdout=PIPE, text=True).stdout.split(":")[1].strip()
+
+    if muted == "yes":
+        volume = "muted"
+        label = LABELS["volume_muted"]
+    else:
+        cmd = ["pactl", "get-sink-volume", "0"]
+        volume = run(cmd, stdout=PIPE, text=True).stdout.split("/")[1].strip()
+        label = LABELS["volume"]
+
+    return label + volume
+
+
 if __name__ == "__main__":
-    DEFAULT_MODULES = [ "network", "date" ]
+    DEFAULT_MODULES = [ "pulseaudio", "network", "date" ]
     SEPARATOR = "  "
 
     modules = DEFAULT_MODULES
