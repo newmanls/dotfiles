@@ -5,7 +5,7 @@
 set -euo pipefail
 
 select_network() {
-    nmcli -t -g bars,ssid,in-use device wifi list |
+    nmcli -t -g bars,ssid,in-use device wifi list --rescan yes |
         sed 's/:/ /g;s/\*/(connected)/;s/[[:blank:]]*$//' |
         dmenu -l 16 -p 'networks' |
         sed 's/^[▂▄▆█_]* //1;s/ (connected)$//'

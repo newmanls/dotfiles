@@ -20,13 +20,13 @@ open_with_editor() {
 remove() {
     nfiles=${#files[@]}
 
-    if ((nfiles > 1)); then
+    if (( nfiles > 1 )); then
         prompt="delete ${nfiles} files?"
     else
         prompt="delete '${files[0]##*/}'"
     fi
 
-    dmenu_prompt "${prompt}" && rm "${files[@]}"
+    dmenu-prompt "${prompt}" && rm "${files[@]}"
 }
 
 rotate() {

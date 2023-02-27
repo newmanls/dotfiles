@@ -36,13 +36,10 @@ cmd recol ${{
 
     if [ ${width} -le 80 ]; then
         lf -remote 'send set nopreview'
-        lf -remote 'send set ratios 1'
         ~/.config/lf/cleaner.sh
-    elif [ ${width} -le 120 ]; then
-        lf -remote 'send set ratios 1:1'
-        lf -remote 'send set preview'
+        lf -remote 'send set ratios 1'
     else
-        lf -remote 'send set ratios 1:2:3'
+        lf -remote 'send set ratios 1:1'
         lf -remote 'send set preview'
     fi
 }}
@@ -101,5 +98,3 @@ map =  recol
 
 map <enter> open
 map <esc>   :unselect; clear
-
-# recol

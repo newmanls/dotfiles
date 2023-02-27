@@ -1,7 +1,7 @@
 export EDITOR='nvim'
 export HISTCONTROL='ignoredups'
 export PATH="${HOME}/.local/bin:${PATH}"
-export QT_QPA_PLATFORMTHEME='gtk2'
+export QT_QPA_PLATFORMTHEME='qt5ct'
 export TERM='st-256color'
 export TERMINAL='st'
 
