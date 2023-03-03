@@ -20,9 +20,9 @@ LABELS = {
     "network_off": "󰲛  ",
     "network_wifi_on": "󰤨  ",
     "network_wifi_off": "󰤭  ",
-    "volume": "󰕾  ",
-    "volume_muted": "󰸈  ",
-    "music": "  "
+    "volume": "󰝚  ",
+    "volume_muted": "󰝛  ",
+    "music": "󰎈  "
 }
 MODULE_SEPARATOR = "  "
 
