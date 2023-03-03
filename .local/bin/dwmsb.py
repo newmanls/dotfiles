@@ -3,6 +3,7 @@
 # Author: Newman Sanchez (https://github.com/newmanls)
 
 from datetime import datetime
+from shutil import which
 from subprocess import run, getoutput
 from time import sleep
 
@@ -15,6 +16,18 @@ LABELS = {
     "volume_muted": "󰸈  ",
     "music": "  "
 }
+
+def check_modules(modules):
+    warning_disable_module = "WARNING: '{}' is not installed. "
+    warning_disable_module += "'{}' module will be disabled."
+
+    for module in modules:
+        module_cmd = MODULES_CMD[module]
+        if module != "date" and not which(module_cmd):
+            print(warning_disable_module.format(module_cmd, module))
+            modules.remove(module)
+
+    return modules
 
 def cmus():
     keys = ["status", "file", "tag title", "tag artist"]
@@ -66,10 +79,18 @@ def pulseaudio():
 
 
 if __name__ == "__main__":
-    DEFAULT_MODULES = [ "cmus", "pulseaudio", "network", "date" ]
+    DEFAULT_MODULES = ["cmus", "pulseaudio", "network", "date"]
+    MODULES_CMD = {
+        "cmus": "cmus-remote",
+        "network": "nmcli",
+        "pulseaudio": "pactl",
+        "date": "",
+    }
+
     SEPARATOR = "  "
 
     modules = DEFAULT_MODULES
+    modules = check_modules(modules)
 
     while True:
         status = [eval(module)() for module in modules]
