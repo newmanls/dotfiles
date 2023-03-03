@@ -1,5 +1,5 @@
 #include ".config/X11/colorschemes/onedark-darker"
 
-*.font:     Iosevka Nerd Font Mono-11
-dmenu.font: Iosevka Nerd Font-9
-dwm.font:   Iosevka Nerd Font-9
+*.font:     IosevkaTerm NFM-11
+dmenu.font: IosevkaTerm NF-9
+dwm.font:   IosevkaTerm NF-9
