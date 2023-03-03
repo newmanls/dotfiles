@@ -3,10 +3,18 @@
 # Author: Newman Sanchez (https://github.com/newmanls)
 
 from datetime import datetime
+from os import environ
 from shutil import which
 from subprocess import run, getoutput
 from time import sleep
 
+DEFAULT_MODULES = ["cmus", "pulseaudio", "network", "date"]
+MODULES_CMD = {
+    "cmus": "cmus-remote",
+    "network": "nmcli",
+    "pulseaudio": "pactl",
+    "date": "",
+}
 LABELS = {
     "network_on": "󰛳  ",
     "network_off": "󰲛  ",
@@ -16,15 +24,24 @@ LABELS = {
     "volume_muted": "󰸈  ",
     "music": "  "
 }
+MODULE_SEPARATOR = "  "
 
 def check_modules(modules):
-    warning_disable_module = "WARNING: '{}' is not installed. "
-    warning_disable_module += "'{}' module will be disabled."
-
     for module in modules:
-        module_cmd = MODULES_CMD[module]
-        if module != "date" and not which(module_cmd):
-            print(warning_disable_module.format(module_cmd, module))
+        if module == "date":
+            continue
+        try:
+            DEFAULT_MODULES.index(module)
+        except:
+            warning = "WARNING: '{}' is not a valid module. It will be disabled"
+            print(warning.format(module))
+            modules.remove(module)
+            continue
+
+        if not which(MODULES_CMD[module]):
+            warning = "WARNING: '{}' is not installed. "
+            warning += "'{}' module will be disabled."
+            print(warning.format(MODULES_CMD[module], module))
             modules.remove(module)
 
     return modules
@@ -79,21 +96,13 @@ def pulseaudio():
 
 
 if __name__ == "__main__":
-    DEFAULT_MODULES = ["cmus", "pulseaudio", "network", "date"]
-    MODULES_CMD = {
-        "cmus": "cmus-remote",
-        "network": "nmcli",
-        "pulseaudio": "pactl",
-        "date": "",
-    }
+    modules = environ["DWMSB_MODULES"].split() if "DWMSB_MODULES" in environ \
+        else DEFAULT_MODULES
 
-    SEPARATOR = "  "
-
-    modules = DEFAULT_MODULES
     modules = check_modules(modules)
 
     while True:
         status = [eval(module)() for module in modules]
         status = [item for item in status if type(item) is str]
-        run(["xsetroot", "-name", SEPARATOR.join(status)])
+        run(["xsetroot", "-name", MODULE_SEPARATOR.join(status)])
         sleep(0.25)
