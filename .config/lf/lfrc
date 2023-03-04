@@ -83,6 +83,7 @@ map pl link
 
 map A  rename
 map I  push A<c-a>
+map C  push A<c-u>
 map S  push A<c-u>
 map a  push A<a-b><a-b><a-f>
 map cw push A<a-b><a-b><a-f><c-u>
