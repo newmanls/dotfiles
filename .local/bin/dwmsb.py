@@ -51,8 +51,8 @@ def cmus():
             if line.startswith(key + " "):
                 info[key.removeprefix("tag ")] = line.removeprefix(key).strip()
 
-    if info.get("status") and info["status"] != "stopped":
-        if info.get("title") and info.get("artist"):
+    if "status" in info and info["status"] != "stopped":
+        if "title" and "artist" in info:
             output = "{} - {}".format(info["artist"], info["title"])
         else:
             output = info["file"].split("/")[-1]
@@ -60,10 +60,7 @@ def cmus():
         return LABELS["music"] + output
 
 def date():
-    date = datetime.now().strftime("%a %b %d %H:%M")
-    label = LABELS["date"]
-
-    return label + date
+    return LABELS["date"] + datetime.now().strftime("%a %b %d %H:%M")
 
 def network():
     network = getoutput("nmcli -t -g NAME,TYPE connection show --active")
