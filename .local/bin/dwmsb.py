@@ -8,41 +8,37 @@ from shutil import which
 from subprocess import run, getoutput
 from time import sleep
 
-DEFAULT_MODULES = ["cmus", "pulseaudio", "network", "date"]
-MODULES_CMD = {
+MODULES = {
     "cmus": "cmus-remote",
+    "date": "",
     "network": "nmcli",
     "pulseaudio": "pactl",
-    "date": "",
 }
 LABELS = {
+    "date": "",
+    "music": "󰎈  ",
     "network_on": "󰛳  ",
     "network_off": "󰲛  ",
     "network_wifi_on": "󰤨  ",
     "network_wifi_off": "󰤭  ",
     "volume": "󰝚  ",
     "volume_muted": "󰝛  ",
-    "music": "󰎈  "
 }
-MODULE_SEPARATOR = "  "
+SEPARATOR = "  "
 
-def check_modules(modules):
-    for module in modules:
-        if module == "date":
-            continue
-        try:
-            DEFAULT_MODULES.index(module)
-        except:
-            warning = "WARNING: '{}' is not a valid module. It will be disabled"
+def check_modules(defined_modules):
+    modules = []
+    for module in defined_modules:
+        if module not in MODULES:
+            warning = "WARNING: '{}' is not a valid module. "
+            warning += "It will be disabled."
             print(warning.format(module))
-            modules.remove(module)
-            continue
-
-        if not which(MODULES_CMD[module]):
+        elif module != "date" and not which(MODULES[module]):
             warning = "WARNING: '{}' is not installed. "
             warning += "'{}' module will be disabled."
-            print(warning.format(MODULES_CMD[module], module))
-            modules.remove(module)
+            print(warning.format(MODULES[module], module))
+        else:
+            modules.append(module)
 
     return modules
 
@@ -65,8 +61,9 @@ def cmus():
 
 def date():
     date = datetime.now().strftime("%a %b %d %H:%M")
+    label = LABELS["date"]
 
-    return date
+    return label + date
 
 def network():
     network = getoutput("nmcli -t -g NAME,TYPE connection show --active")
@@ -94,15 +91,16 @@ def pulseaudio():
 
     return label + volume
 
-
 if __name__ == "__main__":
-    modules = environ["DWMSB_MODULES"].split() if "DWMSB_MODULES" in environ \
-        else DEFAULT_MODULES
+    if "DWMSB_MODULES" in environ:
+        modules = environ["DWMSB_MODULES"].split()
+    else:
+        modules = ["pulseaudio", "network", "date"]
 
     modules = check_modules(modules)
 
     while True:
         status = [eval(module)() for module in modules]
         status = [item for item in status if type(item) is str]
-        run(["xsetroot", "-name", MODULE_SEPARATOR.join(status)])
+        run(["xsetroot", "-name", SEPARATOR.join(status)])
         sleep(0.25)
