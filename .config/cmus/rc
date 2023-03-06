@@ -1,4 +1,4 @@
-set scroll_offset=8
+set scroll_offset=4
 set status_display_program=notify-cmus
 
 set format_playlist= %a - %t %= %d
