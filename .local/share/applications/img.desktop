@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Image Viewer
+Icon=accessories-image-viewer
+Exec=nsxiv-rifle %f
