@@ -1,3 +1,4 @@
+export DWMSB_MODULES="cmus pulseaudio network date"
 export EDITOR='nvim'
 export HISTCONTROL='ignoredups'
 export PATH="${HOME}/.local/bin:${PATH}"
