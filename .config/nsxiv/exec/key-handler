@@ -23,7 +23,7 @@ remove() {
     if (( nfiles > 1 )); then
         prompt="delete ${nfiles} files?"
     else
-        prompt="delete '${files[0]##*/}'"
+        prompt="delete '${files[0]##*/}'?"
     fi
 
     dmenu-prompt "${prompt}" && rm "${files[@]}"
