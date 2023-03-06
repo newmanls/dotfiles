@@ -1,1 +1,1 @@
-.config/bash/profile
+/home/nsanchez/.config/shell/profile

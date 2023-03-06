@@ -1,1 +1,1 @@
-.config/bash/bashrc
+/home/nsanchez/.config/bash/bashrc

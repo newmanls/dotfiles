@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# Default programs
+export EDITOR='nvim'
+export TERM='st-256color'
+export TERMINAL='st'
+
+# Settings
+export PATH="${HOME}/.local/bin:${PATH}"
+export DWMSB_MODULES="cmus pulseaudio network date"
+export HISTCONTROL='ignoredups'
+export QT_QPA_PLATFORMTHEME='qt5ct'
+
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_CACHE_HOME="${HOME}/.cache"
+export XDG_DATA_HOME="${HOME}/.local/share"
+export INPUTRM="${XDG_CONFIG_HOME}/shell/inputrc"
+export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
+
+[ -z "${DISPLAY}" -a ${XDG_VTNR:-0} -eq 1 ] && exec startx ~/.config/x11/xinitrc

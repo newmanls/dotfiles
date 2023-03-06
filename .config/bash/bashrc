@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 [[ $- != *i* ]] && return
 
-. "${HOME}/.config/bash/aliases"
-. "${HOME}/.config/bash/prompt"
-
 # Shell options
 shopt -s autocd
 
@@ -29,7 +26,5 @@ bind -m vi-insert '"\C-e": end-of-line'
 bind -m vi-insert '"\C-p": history-search-backward'
 bind -m vi-insert '"\C-n": history-search-forward'
 
-# Autostart X at login
-if [ -z "${DISPLAY}" -a ${XDG_VTNR:-0} -eq 1 ]; then
-    exec startx -- -keeptty > "${HOME}/.cache/startx.log" 2>&1
-fi
+source "${HOME}/.config/bash/prompt"
+source "${HOME}/.config/shell/aliasrc"

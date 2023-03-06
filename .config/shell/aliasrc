@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+# Verbosity and settings
+alias \
+    cp="cp -iv" \
+    mv="mv -iv" \
+    rm="rm -vI" \
+    mkdir="mkdir -pv" \
+    ffmpeg="ffmpeg -hide_banner"
+
+# Colorize commands when possible
+alias \
+    grep="grep --color=auto" \
+    diff="diff --color=auto" \
+    ip="ip -color=auto"
+
+# Programs
+alias \
+    e='nvim' \
+    lf='lfub' \
+    nsxiv='nsxiv-rifle' \
+    ls='exa --group-directories-first --icons' \
+    la='ls --all' \
+    ll='ls --long' \
+    lla='ls --long --all' \
+    lt='ls --tree' \
+    lta='ls --tree --all' \
+    trans='trans -brief -t es' \
+
+# Dotfiles
+alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'

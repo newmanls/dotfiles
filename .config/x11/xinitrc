@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile" ]; then
+    source "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile"
+else
+    source "${HOME}/.xprofile"
+fi
+
+/usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
+exec dwm

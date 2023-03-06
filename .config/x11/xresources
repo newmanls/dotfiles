@@ -1,4 +1,4 @@
-#include ".config/X11/colorschemes/onedark-darker"
+#include "colorschemes/onedark-darker"
 
 *.font:     IosevkaTerm NFM-11
 dmenu.font: Iosevka NF-9
