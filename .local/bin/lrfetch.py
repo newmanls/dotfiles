@@ -10,14 +10,6 @@ def get_value(key, file):
             if key in line:
                 return line.split("=")[1].strip(" \"\n")
 
-def maxlen(list):
-    maxlen = 0
-    for item in list:
-        item_len = len(item)
-        if item_len > maxlen:
-            maxlen = item_len
-    return maxlen
-
 def get_distro():
     distro = get_value("NAME", "/etc/os-release")
     return distro
@@ -59,14 +51,7 @@ if __name__ == "__main__":
     info["wm"] = get_wm()
     info["term"] = get_term()
     # info["theme"] = get_gtk_theme()
-    # info["icons"] = get_gtk_icons()
-
-    key_maxlen = maxlen(info.keys())
-    value_maxlen = maxlen(info.values())
-
-    print("╭─" + "─" * key_maxlen + "─┬─" + "─" * value_maxlen + "─╮")
+    info["icons"] = get_gtk_icons()
 
     for key, value in info.items():
-        print("│ {:>{}} │ {:<{}} │".format(key, key_maxlen, value, value_maxlen))
-
-    print("╰─" + "─" * key_maxlen + "─┴─" + "─" * value_maxlen + "─╯")
+        print(" \033[1;37m{}\t : \033[0;0m{}".format(key, value))
