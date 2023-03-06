@@ -10,4 +10,4 @@ size=$(du -Hh -- "$file" | cut -f 1)
 width="${2}"
 height="${3}"
 
-printf '%s (%s) | %sx%s' "${file}" "${size}" "${width}" "${height}"
+printf '%s (%s) | %sx%s' "${file##*/}" "${size}" "${width}" "${height}"
