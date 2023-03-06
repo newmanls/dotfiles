@@ -42,6 +42,14 @@ def get_wm():
     wm = getoutput("wmctrl -m").splitlines()[0].split(":")[1].strip()
     return wm
 
+def printcolors():
+    for i in 3, 9:
+        print()
+        for j in range(8):
+            print(" \033[0;{}{}m██".format(i, j), end="")
+    print()
+    print()
+
 if __name__ == "__main__":
     info = {}
     info["os"] = get_distro()
@@ -53,5 +61,8 @@ if __name__ == "__main__":
     # info["theme"] = get_gtk_theme()
     info["icons"] = get_gtk_icons()
 
+    print()
     for key, value in info.items():
         print(" \033[1;37m{}\t : \033[0;0m{}".format(key, value))
+
+    printcolors()
