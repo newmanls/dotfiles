@@ -1,37 +1,27 @@
 # Dotfiles
-_My personal dotfiles for bspwm, neovim, ranger, ncmpcpp, firefox, rofi and more!_
 
-## Screenshots
-
-![desktop screenshots](screenshots.jpg)
+![desktop screenshots](screenshots.png)
 
 ## Details
 
-- WM: [bspwm](https://github.com/baskerville/bspwm)
-- Wallpaper: [here](.local/share/backgrounds/20220301.jpg)
-- Colorscheme: [Tokyo Night](https://github.com/folke/tokyonight.nvim)
-- Bar: [Polybar](https://github.com/polybar/polybar)
-- Launcher: [rofi](https://github.com/davatorium/rofi)
-- Compositor: [Picom (ibhagwan)](https://github.com/ibhagwan/picom)
-- Terminal: [st](https://github.com/lr-tech/st)
-  - Font: [Iosevka Nerd Font Mono](https://www.nerdfonts.com/)
-  - Shell: [fish](https://github.com/fish-shell/fish-shell)
+- Distro: [Arch Linux](https://archlinux.org/)
+- Wallpaper: [here](.config/bg)
+- Colorscheme: [onedark](https://github.com/navarasu/onedark.nvim)
+- Font: [Iosevka Nerd Font](https://www.nerdfonts.com/)/[Inter](https://github.com/rsms/inter)
+- WM: [dwm](https://github.com/newmanls/dwm)
+  - Status: [dwmsb.py](.local/bin/dwmsb.py)
+- Terminal: [st](https://github.com/newmanls/st)
+  - Shell: [bash](https://www.gnu.org/software/bash/bash.html)
   - Editor: [neovim](https://neovim.io/)
-  - File Manager: [ranger](https://github.com/ranger/ranger)
-  - Music Player: [ncmpcpp](https://rybczak.net/ncmpcpp/)
-  - Task Manager: [htop-vim](https://github.com/KoffeinFlummi/htop-vim)
-  - Fetch: [neofetch](https://github.com/dylanaraps/neofetch)
-  - AUR Helper: [yay](https://github.com/Jguer/yay)
-- Web Browser: Firefox
-  - userChrome: [Cascade](https://github.com/andreasgrafen/cascade/)
-- File Manager: [pcmanfm-gtk3](https://wiki.lxde.org/en/PCManFM)
-- Image Viewer: [feh](https://feh.finalrewind.org/)
+  - File Manager: [lf](https://github.com/gokcehan/lf)
+  - Music Player: [cmus](https://cmus.github.io/)
+    - Notifications: [notify-cmus](.local/bin/notify-cmus)
+  - List command: [exa](https://the.exa.website/)
+- Launcher: [dmenu](https://github.com/newmanls/dmenu)
+- Web Browser: [firefox](https://www.mozilla.org/firefox/)
+- Image Viewer: [nsxiv](https://github.com/nsxiv/nsxiv)
 - Media Player: [mpv](https://mpv.io/)
-- Document Viewer: [Zathura](https://pwmt.org/projects/zathura/)([mupdf](https://pwmt.org/projects/zathura-pdf-mupdf/))
-- Icons: [WhiteSur](https://github.com/vinceliuice/WhiteSur-icon-theme)
-- Fonts: [Inter](https://github.com/rsms/inter)/[Iosevka Nerd Font Mono](https://www.nerdfonts.com/) 
-- GTK Theme: [Dracula](https://github.com/dracula/gtk)
-- Notifications: [dunst](https://dunst-project.org/)
-- Screenshooter: [maim](https://github.com/naelstrof/maim)
-- Clipboard Manager: [xclip](https://github.com/astrand/xclip)
-- Settings Manager: [LXAppearance](https://wiki.lxde.org/en/LXAppearance)/qt5ct
+- Document Viewer: [zathura](https://pwmt.org/projects/zathura/)([mupdf](https://pwmt.org/projects/zathura-pdf-mupdf/))
+- Notification daemon: [dunst](https://dunst-project.org/)
+- Screenshooter: [imagemagick](https://www.imagemagick.org/)
+- Settings Manager: [lxappearance-gtk3](https://wiki.lxde.org/en/LXAppearance)/[qt5ct](https://qt5ct.sourceforge.io/)
