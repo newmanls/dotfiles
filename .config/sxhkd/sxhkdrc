@@ -22,6 +22,9 @@ super + w
 super + c
     qalculate-gtk
 
+super + l
+    ~/.local/bin/lockscreen
+
 super + shift + {equal,minus}
     ~/.local/bin/notify-backlight {up,down}
 
