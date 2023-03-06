@@ -35,8 +35,8 @@ def get_gtk_icons():
     return theme
 
 def get_term():
-    term = getoutput("xdotool getwindowclassname $(xdotool getactivewindow)")
-    return term.lower()
+    term = getoutput("xdotool getactivewindow getwindowclassname")
+    return term
 
 def get_wm():
     wm = getoutput("wmctrl -m").splitlines()[0].split(":")[1].strip()
