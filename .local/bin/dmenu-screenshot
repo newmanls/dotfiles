@@ -6,7 +6,7 @@ set -euo pipefail
 
 take_screenshot() {
     directory="${HOME}/Pictures/Screenshots"
-    filename="IMG_$(date +%Y%m%d_%H%M%S).png"
+    filename="$(date +%Y%m%d_%H%M%S).png"
     filepath="${directory}/${filename}"
 
     [ ! -d "${directory}" ] && mkdir -p "${directory}"
@@ -14,9 +14,13 @@ take_screenshot() {
     import -silent "${@}" "${filepath}"
 
     if [ -f "${filepath}" ]; then
-        xclip -selection clipboard -t image/png -i "${filepath}"
-        notify-send -i "${filepath}" \
-            "Screenshot captured" "You can paste the image from the clipboard."
+        xclip -selection clipboard -t image/png -i "${filepath}" &&
+            notify-send \
+            -i "${filepath}" \
+            -A "xdg-open ${filepath}"="Open" \
+            "Screenshot captured" \
+            "You can paste the image from the clipboard." |
+            bash
     fi
 }
 
