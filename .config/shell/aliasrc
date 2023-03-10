@@ -16,7 +16,7 @@ alias \
 
 # Programs
 alias \
-    e='nvim' \
+    e='nvim -O' \
     lf='lfub' \
     nsxiv='nsxiv-rifle' \
     ls='exa --group-directories-first --icons' \
