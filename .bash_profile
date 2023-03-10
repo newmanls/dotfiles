@@ -1,1 +1,1 @@
-/home/nsanchez/.config/shell/profile
+/home/newman/.config/shell/profile
