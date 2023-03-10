@@ -4,6 +4,8 @@ SAVEHIST=1000
 PS1="%B%F{blue}%~ %F{%(?.green.red)}>%f%b "
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 
+mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
+
 autoload -Uz colors && colors
 autoload -Uz compinit && compinit
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
