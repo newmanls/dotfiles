@@ -99,5 +99,6 @@ if __name__ == "__main__":
     while True:
         status = [eval(module)() for module in modules]
         status = [item for item in status if type(item) is str]
-        run(["xsetroot", "-name", SEPARATOR.join(status)])
+        status = " {} ".format(SEPARATOR.join(status))
+        run(["xsetroot", "-name", status])
         sleep(0.25)
