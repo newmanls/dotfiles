@@ -3,45 +3,27 @@ set shellopts   '-eu'
 set ifs         "\n"
 set icons
 set scrolloff   8
-set cleaner     '~/.config/lf/cleaner.sh'
-set previewer   '~/.config/lf/scope.sh'
+set cleaner     '~/.config/lf/cleaner'
+set previewer   '~/.config/lf/scope'
 set ratios 1:1
 
-cmd on-quit     $~/.config/lf/cleaner.sh
-cmd open        $~/.config/lf/rifle.sh
+cmd extract     !clear; aunpack -- ${fx}
 cmd open-with   &setsid -f ${1} ${fx}
-cmd mkdir       %mkdir ${@}
-cmd setbg       &setbg ${f}
+cmd mkdir       %mkdir -vp "$(echo $* | tr ' ' '\ ')"
 cmd bulk-rename $renamer ${fx}
+cmd trash-put   %trash-put ${fx}
 
-cmd extract !{{
-    clear
-    for file in ${fx}; do
-        aunpack -- "${file}"
-    done
-}}
+cmd open ${{
+    case "$(file --dereference --brief --mime-type -- "$f")" in
+        text/*|application/json|inode/x-empty|application/pgp-encrypted)
+            [ -z "$fs" ] && ${EDITOR} "$f" || ${EDITOR} -O $fx ;;
 
-cmd link %{{
-    files="${XDG_DATA_HOME:-${HOME}/.local/share}/lf/files"
-    mode=$(sed -n '1p' "${files}")
-    list=$(sed '1d' "${files}")
+        *document*)
+            setsid -f zaread "$fx" >/dev/null 2>&1 ;;
 
-    [ "${mode}" = 'copy' ] && ln -vs "${list}" "${PWD}"
-
-    lf -remote 'send clear'
-}}
-
-cmd recol ${{
-    width=$(tput cols)
-
-    if [ ${width} -le 80 ]; then
-        lf -remote 'send set nopreview'
-        ~/.config/lf/cleaner.sh
-        lf -remote 'send set ratios 1'
-    else
-        lf -remote 'send set ratios 1:1'
-        lf -remote 'send set preview'
-    fi
+        *)
+            setsid -f xdg-open "$fx" >/dev/null 2>&1 ;;
+    esac
 }}
 
 cmd yank &{{
@@ -52,34 +34,22 @@ cmd yank &{{
     esac | tr -d '\n' | xclip -selection clipboard
 }}
 
-map c
 map d
-map p
-map r
-map u
-map y
-
-map gd cd /dev
-map ge cd /etc
-map gm cd /media
-map gM cd /mnt
-map go cd /opt
-map gp cd /tmp
-map gr cd /
-map gs cd /srv
-map gu cd /usr
-map gv cd /var
-
 map dd cut
-map dD delete
-
+map dD trash-put
+map y
 map yy copy
 map yp yank path
 map yb yank dir
 map yw yank name
-
+map p
 map pp paste
-map pl link
+map gm cd /media
+map o  push :open-with<space>
+map E  extract
+map b  &setbg ${f}
+map x  !$"{f}"
+map W  $setsid -f "${TERMINAL}" >/dev/null 2>&1
 
 map A  rename
 map I  push A<c-a>
@@ -88,14 +58,5 @@ map S  push A<c-u>
 map a  push A<a-b><a-b><a-f>
 map cw push A<a-b><a-b><a-f><c-u>
 
-map o  push :open-with<space>
-
-map xe extract
-map xw setbg
-map xx $${f}
-map xX !${f}
-
-map =  recol
-
-map <enter> open
+map <c-n>   push :mkdir<space>
 map <esc>   :unselect; clear
