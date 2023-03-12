@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Default programs
+export BROWSER='firefox'
 export EDITOR='nvim'
 export TERM='st-256color'
 export TERMINAL='st'
