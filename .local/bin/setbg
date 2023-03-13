@@ -6,11 +6,12 @@ bg="${XDG_CONFIG_HOME:-${HOME}/.config}/bg"
 
 if [ "${1:-}" ]; then
     file=$(readlink -f "${1}")
-    mime=$(file --mime-type --brief "${file}")
 
-    case "${mime}" in
-        image/*) cp "${file}" "${bg}" ;;
-        *)       exit 1 ;;
+    case $(file --mime-type --brief "${file}") in
+        image/*)
+            ln -fs "${file}" "${bg}" ;;
+        *)
+            exit 1 ;;
     esac
 fi
 
