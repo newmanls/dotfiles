@@ -51,6 +51,7 @@ map b  &setbg ${f}
 map x  !$"{f}"
 map W  $setsid -f "${TERMINAL}" >/dev/null 2>&1
 
+map c
 map A  rename
 map I  push A<c-a>
 map C  push A<c-u>
