@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+if [ -z "${1}" ]; then
+    url=$(xclip -o)
+else
+    url="${1}"
+fi
+
+translated_url=$(printf "%s" "${url}" | sed "s/.*\///;s/%20/ /g")
+
+case "${url}" in
+    *mkv|*webm|*mp4|*youtube.com/watch*|*youtube.com/playlist*|*youtube.com/shorts*|*youtu.be*)
+        setsid -f mpv --really-quiet "${url}" >/dev/null 2>&1 ;;
+    *png|*jpg|*jpe|*jpeg|*gif)
+        curl -sL "${url}" > "/tmp/${translated_url}" &&
+            setsid -f nsxiv -a "/tmp/${translated_url}" >/dev/null 2>&1 ;;
+    *pdf|*cbz|*cbr)
+        curl -sL "${url}" > "/tmp/${translated_url}" &&
+            setsid -f zathura "/tmp/${translated_url}" >/dev/null 2>&1 ;;
+    *mp3|*flac|*opus|*mp3?source*)
+        curl -LO "${url}" >/dev/null 2>&1 ;;
+    *)
+        if [ -f "${url}" ]; then
+            setsid -f "$TERMINAL" -e "$EDITOR" "${url}" >/dev/null 2>&1
+        else
+            setsid -f xdg-open "${url}" >/dev/null 2>&1
+        fi ;;
+esac
