@@ -32,4 +32,4 @@ color article            default default
 color end-of-text-marker default default invis
 
 highlight article "(^Feed:.*|^Title:.*|^Author:.*)" blue default bold
-highlight article "https?://[^ ]+" green default underline
+highlight article "(https?://|magnet:\?)[^ ]+" green default underline
