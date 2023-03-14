@@ -1,47 +1,23 @@
-super + space
-    ~/.local/bin/dmenu-run-i
-
-super + shift + space
-    ~/.config/rofi/scripts/appsmenu.sh
-
-super + Return
-    st
+super + {_, shift + } space
+    {dmenu-run-i, ~/.config/rofi/scripts/appsmenu.sh}
 
 super + shift + q
     xdotool getwindowfocus windowkill
 
-super + e
-    st -e lfub
+super + {Return, e, n, p}
+    st -e {_, lfub, newsboat, cmus}
 
-super + p
-    st -e cmus
+super + {w, c, l}
+    {firefox, qalculate-gtk, lockscreen}
 
-super + w
-    firefox
+super + {0, minus, equal}
+    notify-pulse {mute, down, up}
 
-super + c
-    qalculate-gtk
+super + shift + {minus, equal}
+    notify-backlight {down, up}
 
-super + l
-    ~/.local/bin/lockscreen
+super + shift + {Escape, s}
+    dmenu-{session,screenshot}
 
-super + shift + {equal,minus}
-    ~/.local/bin/notify-backlight {up,down}
-
-super + {equal,minus,0}
-    ~/.local/bin/notify-pulse {up,down,mute}
-
-super + shift + s
-    ~/.local/bin/dmenu-screenshot
-
-super + shift + Escape
-    ~/.local/bin/dmenu-session
-
-super + alt + space
-    ~/.local/bin/emojipick
-
-super + alt + {m,u}
-    ~/.local/bin/dmenu-disks {mount,unmount}
-
-super + alt + n
-    ~/.local/bin/dmenu-nm
+super + alt + {space, m, u, n}
+    dmenu-{emoji,disks mount,disks unmount,nm}
