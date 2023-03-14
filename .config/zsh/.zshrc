@@ -34,6 +34,7 @@ bindkey -M vicmd 'k' up-line-or-beginning-search
 set_cursor_block() { echo -ne '\e[1 q'; }
 set_cursor_beam() { echo -ne '\e[5 q'; }
 preexec() { set_cursor_beam; }
+
 zle-keymap-select() {
     case "${KEYMAP}" in
         vicmd) set_cursor_block ;;
@@ -41,6 +42,13 @@ zle-keymap-select() {
     esac
 }
 zle -N zle-keymap-select
+
+zle-line-init() {
+    zle -K viins
+    set_cursor_beam
+}
+zle -N zle-line-init
+
 set_cursor_beam
 
 source "${XDG_CONFIG_HOME}/shell/aliasrc"
