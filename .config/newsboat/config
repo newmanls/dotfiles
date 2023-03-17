@@ -1,35 +1,49 @@
 auto-reload         yes
 browser             linkhandler
+max-items           250
 refresh-on-startup  yes
 reload-threads      100
 scrolloff           4
 show-keymap-hint    no
 
+articlelist-title-format "%T (%u unread, %t total)%?F? matching filter '%F'&?"
+itemview-title-format    "Article: %T (%u unread, %t total)"
+
 bind-key j down
 bind-key k up
-bind-key J next-feed articlelist
-bind-key K prev-feed articlelist
-bind-key G end
-bind-key g home
 bind-key d pagedown
 bind-key u pageup
+bind-key G end
+bind-key g home
 bind-key l open
 bind-key h quit
+
+bind-key J next-feed articlelist
+bind-key K prev-feed articlelist
 bind-key a toggle-article-read
 bind-key n next-unread
 bind-key N prev-unread
 
-articlelist-title-format "%T (%u unread, %t total)%?F? matching filter '%F'&?"
-itemview-title-format    "Article: %T (%u unread, %t total)"
+# Podboat
+download-path               "~/Podcasts/%n"
+download-filename-format    "%t.%e"
+podlist-format              "%4i %5p%% (%6dMB/%6tMB) %-16S %F"
 
+bind-key a pb-toggle-download-all podboat
+bind-key e pb-download podboat
+
+# Colors
 color background         default default
 color listnormal         color7  default
 color listfocus          color7  color8
 color listnormal_unread  default default
 color listfocus_unread   default color8
 color title              default default bold
+color info               default color8
 color article            default default
 color end-of-text-marker default default invis
 
-highlight article "(^Feed:.*|^Title:.*|^Author:.*)" blue default bold
-highlight article "(https?://|magnet:\?)[^ ]+" green default underline
+highlight article "^[a-zA-Z ]+:"                default default bold
+highlight article "^Title:.*"                   cyan    default bold
+highlight article "([a-z]+://|magnet:\?)[^ ]+"  blue    default underline
+highlight article "\\[[0-9]+\\]"                blue    default

@@ -16,6 +16,7 @@
   - File Manager: [lf](https://github.com/gokcehan/lf)
   - Music Player: [cmus](https://cmus.github.io/)
     - Notifications: [notify-cmus](.local/bin/notify-cmus)
+  - Feed reader: [newsboat](https://newsboat.org/)
   - List command: [exa](https://the.exa.website/)
 - Launcher: [dmenu](https://github.com/newmanls/dmenu)
 - Web Browser: [firefox](https://www.mozilla.org/firefox/)

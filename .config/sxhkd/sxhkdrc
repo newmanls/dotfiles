@@ -4,8 +4,8 @@ super + {_, shift + } space
 super + shift + q
     xdotool getwindowfocus windowkill
 
-super + {Return, e, n, p}
-    st -e {_, lfub, newsboat, cmus}
+super + {Return, e, n, shift + n, p}
+    st -e {_, lfub, newsboat, podboat, cmus}
 
 super + {w, c, l}
     {firefox, qalculate-gtk, lockscreen}
