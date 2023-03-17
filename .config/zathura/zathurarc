@@ -1,5 +1,3 @@
-include colorschemes/onedark-darker
-
 set n-completion-items      8
 set font                    'Iosevka Nerd Font 10'
 set guioptions              s
@@ -10,3 +8,33 @@ set recolor-reverse-video   true
 set statusbar-basename      true
 set zoom-center             true
 set selection-clipboard     clipboard
+
+set completion-bg           '#282c34'
+set completion-fg           '#a0a8b7'
+set completion-group-bg     '#282c34'
+set completion-group-fg     '#a0a8b7'
+set completion-highlight-bg '#4fa6ed'
+set completion-highlight-fg '#282c34'
+set default-bg              '#1f2329'
+set default-fg              '#a0a8b7'
+set inputbar-bg             '#1f2329'
+set inputbar-fg             '#a0a8b7'
+set notification-bg         '#1f2329'
+set notification-fg         '#a0a8b7'
+set notification-error-bg   '#1f2329'
+set notification-error-fg   '#e55561'
+set notification-warning-bg '#1f2329'
+set notification-warning-fg '#e2b86b'
+set statusbar-bg            '#282c34'
+set statusbar-fg            '#a0a8b7'
+set highlight-color         '#1f2329'
+set highlight-fg            '#e55561'
+set highlight-active-color  '#e2b86b'
+set recolor-darkcolor       '#a0a8b7'
+set recolor-lightcolor      '#1f2329'
+set render-loading-bg       '#1f2329'
+set render-loading-fg       '#a0a8b7'
+set index-fg                '#a0a8b7'
+set index-bg                '#1f2329'
+set index-active-fg         '#a0a8b7'
+set index-active-bg         '#282c34'
