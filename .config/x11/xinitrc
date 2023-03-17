@@ -6,9 +6,9 @@ else
     source "${HOME}/.xprofile"
 fi
 
-/usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
-sxhkd &
 dwmsb.py &
+sxhkd &
 setbg &
+/usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
 
 exec dwm
