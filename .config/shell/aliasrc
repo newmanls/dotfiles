@@ -25,7 +25,6 @@ alias \
     lla='ls --long --all' \
     lt='ls --tree' \
     lta='ls --tree --all' \
-    trans='trans -brief -t es' \
 
 # Dotfiles
 alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
