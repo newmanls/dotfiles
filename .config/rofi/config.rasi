@@ -4,3 +4,4 @@ configuration {
   disable-history: true;
   sidebar-mode: false;
 }
+@theme "/home/newman/.config/rofi/themes/appsmenu.rasi"

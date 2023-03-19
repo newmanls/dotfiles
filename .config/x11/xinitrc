@@ -7,7 +7,6 @@ else
 fi
 
 dwmsb.py &
-sxhkd &
 setbg &
 /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
 
