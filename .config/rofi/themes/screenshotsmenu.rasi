@@ -1,5 +1,0 @@
-@import "common/iconmenu.rasi"
-
-* { icon-font: "Iosevka Nerd Font Mono 24"; }
-
-window { width: 264px; }

@@ -1,7 +1,12 @@
-@import "common/settings.rasi"
-
 * {
-  font: "Inter 9";
+  font: "Inter 10";
+
+  bg0     : #181b20;
+  bg1     : #1f2329;
+  bg2     : #282c34;
+  fg0     : #a0a8b7;
+  fg1     : #535965;
+  yellow  : #e2b86b;
 
   background-color : transparent;
   text-color       : @fg0;
@@ -16,13 +21,12 @@ element-icon, element-text, scrollbar {
 }
 
 window {
-  location : south;
-  width    : 520px;
-  y-offset : -36px;
+  location : center;
+  width    : 600px;
 
   background-color : @bg1;
   border: 1px solid;
-  border-color: @accent;
+  border-color: @fg1;
 }
 
 mainbox {
@@ -33,8 +37,6 @@ mainbox {
 inputbar {
   padding          : 8px;
   spacing          : 4px;
-  border           : 0 0 2px 0 solid;
-  border-color     : @accent;
   background-color : @bg0;
   children         : [ icon-search, entry ];
 }
@@ -73,7 +75,7 @@ listview {
 }
 
 scrollbar {
-  handle-width: 2px;
+  handle-width: 4px;
   handle-color: @fg1;
 }
 
@@ -84,11 +86,11 @@ element {
 }
 
 element normal urgent {
-  text-color: @urgent;
+  text-color: @yellow;
 }
 
 element normal active {
-  text-color: @accent;
+  text-color: @fg1;
 }
 
 element selected {
@@ -96,7 +98,7 @@ element selected {
 }
 
 element selected urgent {
-  background-color: @urgent;
+  background-color: @yellow;
 }
 
 element-icon {

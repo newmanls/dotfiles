@@ -1,7 +1,19 @@
 configuration {
-  modi: [drun];
+  modes: "drun";
   show-icons: true;
+  drun-display-format: "{name}";
   disable-history: true;
-  sidebar-mode: false;
+  cycle: false;
+  hover-select: true;
+  kb-row-left: "Alt+h";
+  kb-row-right: "Alt+l";
+  kb-row-up: "Up,Alt+k";
+  kb-row-down: "Down,Alt+j";
+  kb-page-prev: "Page_Up,Alt+u,ScrollUp";
+  kb-page-next: "Page_Down,Alt+d,ScrollDown";
+  ml-row-up: "";
+  ml-row-down: "";
+  me-select-entry: "";
+  me-accept-entry: "MousePrimary";
 }
 @theme "/home/newman/.config/rofi/themes/appsmenu.rasi"
