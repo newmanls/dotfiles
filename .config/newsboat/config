@@ -1,6 +1,6 @@
 auto-reload         yes
 browser             linkhandler
-max-items           250
+max-items           100
 refresh-on-startup  yes
 reload-threads      100
 scrolloff           4
@@ -27,7 +27,7 @@ bind-key N prev-unread
 # Podboat
 download-path               "~/Podcasts/%n"
 download-filename-format    "%t.%e"
-podlist-format              "%4i %5p%% (%6dMB/%6tMB) %-16S %F"
+podlist-format              "%4i %5p%% (%6dMB/%6tMB, %12K) %-16S %F"
 
 bind-key a pb-toggle-download-all podboat
 bind-key e pb-download podboat
