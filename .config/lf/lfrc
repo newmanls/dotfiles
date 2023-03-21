@@ -11,7 +11,14 @@ cmd extract     !clear; aunpack -- ${fx}
 cmd open-with   &setsid -f ${1} ${fx}
 cmd mkdir       %mkdir -vp "$(echo $* | tr ' ' '\ ')"
 cmd bulk-rename $renamer ${fx}
-cmd trash-put   %trash-put ${fx}
+cmd trash-put   &{{
+    if trash-put ${fx}; then
+        lf -remote "send reload"
+        lf -remote "send ${id} echo 'File(s) sent to trash'"
+    else
+        lf -remote "send ${id} echo 'Deletion failed'"
+    fi
+}}
 
 cmd open ${{
     case "$(file --dereference --brief --mime-type -- "$f")" in
