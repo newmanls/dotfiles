@@ -19,4 +19,5 @@ export INPUTRC="${XDG_CONFIG_HOME}/shell/inputrc"
 export XINITRC="${XDG_CONFIG_HOME}/x11/xinitrc"
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 
-[ -z "${DISPLAY}" -a ${XDG_VTNR:-0} -eq 1 ] && exec startx -- -keeptty -quiet
+[ -z "${DISPLAY}" -a ${XDG_VTNR:-0} -eq 1 ] &&
+    exec startx -- -keeptty >/dev/null 2>&1
