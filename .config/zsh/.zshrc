@@ -10,11 +10,12 @@ autoload -Uz colors && colors
 autoload -Uz compinit && compinit
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 
-setopt autocd nomatch interactive_comments
+setopt autocd nomatch interactive_comments menu_complete
 unsetopt beep notify
 
 zmodload zsh/complist
 
+zstyle ':completion:*' matcher-list "m:{a-zA-Z}={A-Za-z}"
 zstyle ':completion:*' menu select
 
 stty stop undef
