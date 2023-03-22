@@ -12,7 +12,8 @@ alias \
 alias \
     grep="grep --color=auto" \
     diff="diff --color=auto" \
-    ip="ip -color=auto"
+    ip="ip -color=auto" \
+    ncdu="ncdu --color dark"
 
 # Programs
 alias \
