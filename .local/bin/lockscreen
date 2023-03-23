@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-background="/tmp/i3lock_background.png"
-
-import -silent -window root "${background}"
-mogrify -blur 0x16 "${background}"
-i3lock -i "${background}"

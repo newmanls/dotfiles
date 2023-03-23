@@ -4,23 +4,16 @@
 
 set -euo pipefail
 
-shutdown='Shutdown'
-suspend='Suspend'
-hibernate='Hibernate'
-reboot='Reboot'
-logout='Logout'
-
-options="${shutdown}\n${suspend}\n${hibernate}\n${reboot}\n${logout}"
-
 prompt=$(uptime -p | sed 's/up/Uptime:/;s/ days\?/d/;s/ hours\?/h/;
     s/ minutes\?/m/;s/,//g')
-
-chosen=$(printf "%b\n" "${options}" | dmenu -p "${prompt}")
+options="Shutdown\nSuspend\nHibernate\nReboot\nLock\nLogout"
+chosen=$(printf "%b" "${options}" | dmenu -p "${prompt}")
 
 case "${chosen}" in
-    "${shutdown}")  systemctl poweroff -i ;;
-    "${suspend}")   systemctl suspend ;;
-    "${hibernate}") systemctl hibernate ;;
-    "${reboot}")    systemctl reboot ;;
-    "${logout}")    loginctl terminate-user "$(whoami)" ;;
+    Shutdown)  systemctl poweroff -i ;;
+    Suspend)   systemctl suspend ;;
+    Hibernate) systemctl hibernate ;;
+    Reboot)    systemctl reboot ;;
+    Lock)      i3lock -c "$(xrdb -get background | tr -d \#)" ;;
+    Logout)    loginctl terminate-user "$(whoami)" ;;
 esac
