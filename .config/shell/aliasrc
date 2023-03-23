@@ -6,6 +6,8 @@ alias \
     mv="mv -iv" \
     rm="rm -vI" \
     mkdir="mkdir -pv" \
+    yt="yt-dlp" \
+    yta="yt -x -f bestaudio/best" \
     ffmpeg="ffmpeg -hide_banner"
 
 # Colorize commands when possible
