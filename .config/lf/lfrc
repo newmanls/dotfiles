@@ -13,6 +13,11 @@ cmd mkdir       %IFS=" "; mkdir -vp "$*"
 cmd bulk-rename $renamer ${fx}
 
 cmd open ${{
+    case "${f##*.}" in
+        cbr|cbz)
+            setsid -f zathura "$fx" >/dev/null 2>&1 && exit;;
+    esac
+
     case $(file --dereference --brief --mime-type -- "${f}") in
         text/*|application/json|inode/x-empty|application/pgp-encrypted)
             ${EDITOR} -O $fx ;;
