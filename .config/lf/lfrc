@@ -15,16 +15,14 @@ cmd bulk-rename $renamer ${fx}
 cmd open ${{
     case "${f##*.}" in
         cbr|cbz)
-            setsid -f zathura "$fx" >/dev/null 2>&1 && exit;;
+            setsid -f zathura "$f" >/dev/null 2>&1 && exit ;;
     esac
 
-    case $(file --dereference --brief --mime-type -- "${f}") in
+    case $(file --dereference --brief --mime-type -- "$f") in
         text/*|application/json|inode/x-empty|application/pgp-encrypted)
             ${EDITOR} -O $fx ;;
-
-        *document*)
-            setsid -f zaread "$fx" >/dev/null 2>&1 ;;
-
+        *msword|*ms-excel|*ms-powerpoint|*officedocument*|*opendocument*)
+            setsid -f docpreview "$f" >/dev/null 2>&1 ;;
         *)
             setsid -f xdg-open "$fx" >/dev/null 2>&1 ;;
     esac
