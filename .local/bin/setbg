@@ -15,4 +15,4 @@ if [ "${1:-}" ]; then
     esac
 fi
 
-hsetroot -cover "${bg}" > /dev/null 2>&1
+hsetroot -cover "${bg}"
