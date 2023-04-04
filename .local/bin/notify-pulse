@@ -7,14 +7,19 @@ set -euo pipefail
 step=10
 
 case "${1:-}" in
-    up)   pactl set-sink-mute 0 0; pactl set-sink-volume 0 "+${step}%" ;;
-    down) pactl set-sink-mute 0 0; pactl set-sink-volume 0 "-${step}%" ;;
-    mute) pactl set-sink-mute 0 toggle ;;
+    up)
+        pactl set-sink-mute @DEFAULT_SINK@ 0
+        pactl set-sink-volume @DEFAULT_SINK@ "+${step}%" ;;
+    down)
+        pactl set-sink-mute @DEFAULT_SINK@ 0
+        pactl set-sink-volume @DEFAULT_SINK@ "-${step}%" ;;
+    mute)
+        pactl set-sink-mute @DEFAULT_SINK@ toggle ;;
 esac
 
-vol=$(pactl get-sink-volume 0 | cut -s -d/ -f2 | tr -d " %")
+vol=$(pactl get-sink-volume @DEFAULT_SINK@ | cut -s -d/ -f2 | tr -d " %")
 volume="${vol}%"
-is_muted=$(pactl get-sink-mute 0 | sed -n "s/Mute: //p")
+is_muted=$(pactl get-sink-mute @DEFAULT_SINK@ | sed -n "s/Mute: //p")
 
 if [ "${is_muted}" = "yes" ]; then
     volume="muted"

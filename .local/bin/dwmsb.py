@@ -77,13 +77,15 @@ def network():
     return label + network_name
 
 def pulseaudio():
-    muted = getoutput("pactl get-sink-mute 0").split(":")[1].strip()
+    muted = getoutput("pactl get-sink-mute @DEFAULT_SINK@") \
+        .removeprefix("Mute: ")
 
     if muted == "yes":
         volume = "muted"
         label = LABELS["volume_muted"]
     else:
-        volume = getoutput("pactl get-sink-volume 0").split("/")[1].strip()
+        volume = getoutput("pactl get-sink-volume @DEFAULT_SINK@") \
+            .split("/")[1].strip()
         label = LABELS["volume"]
 
     return label + volume
