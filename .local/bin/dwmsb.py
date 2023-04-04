@@ -91,16 +91,17 @@ def pulseaudio():
     return label + volume
 
 if __name__ == "__main__":
-    if "DWMSB_MODULES" in environ:
+    try:
         modules = environ["DWMSB_MODULES"].split()
-    else:
+    except:
+        print("WARNING: DWMSB_MODULES environment variable is not set.")
+        print("WARNING: Using pulseaudio, network and date modules as a fallback.")
         modules = ["pulseaudio", "network", "date"]
 
     modules = check_modules(modules)
 
     while True:
-        status = [eval(module)() for module in modules]
-        status = [item for item in status if type(item) is str]
-        status = " {} ".format(SEPARATOR.join(status))
-        run(["xsetroot", "-name", status])
+        output = [eval(module)() for module in modules]
+        status = SEPARATOR.join([item for item in output if type(item) is str])
+        run(["xsetroot", "-name", " {} ".format(status)])
         sleep(0.25)
