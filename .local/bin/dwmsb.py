@@ -16,7 +16,9 @@ MODULES = {
 }
 LABELS = {
     "date": "",
-    "music": "󰎈  ",
+    "music": "󰎈 ",
+    "music_playing": "󰐊 ",
+    "music_paused": "󰏤 ",
     "network_on": "󰛳  ",
     "network_off": "󰲛  ",
     "network_wifi_on": "󰤨  ",
@@ -57,7 +59,14 @@ def cmus():
         else:
             output = info["file"].split("/")[-1]
 
-        return LABELS["music"] + output
+        if info["status"] == "playing":
+            label = LABELS["music_playing"]
+        elif info["status"] == "paused":
+            label = LABELS["music_paused"]
+        else:
+            label = LABELS["music"]
+
+        return label + output
 
 def date():
     return LABELS["date"] + datetime.now().strftime("%a %b %d %H:%M")
