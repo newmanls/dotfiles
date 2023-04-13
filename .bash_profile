@@ -1,1 +1,0 @@
-/home/newman/.config/shell/profile
