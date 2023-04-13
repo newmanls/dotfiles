@@ -3,18 +3,26 @@
 # Author: Newman Sanchez (https://github.com/newmanls)
 
 from datetime import datetime
-from os import environ
+from os import environ, path
 from shutil import which
 from subprocess import run, getoutput
 from time import sleep
 
 MODULES = {
+    "battery": "BAT1",
     "cmus": "cmus-remote",
     "date": "",
     "network": "nmcli",
     "pulseaudio": "pactl",
 }
+
 LABELS = {
+    "battery_full": "󰁹",
+    "battery_high": "󰂁",
+    "battery_medium": "󰁿",
+    "battery_low": "󰁽",
+    "battery_alert": "󰂃",
+    "battery_charging": "󰂄",
     "date": "",
     "music": "󰎈 ",
     "music_playing": "󰐊 ",
@@ -30,12 +38,18 @@ SEPARATOR = "  "
 
 def check_modules(defined_modules):
     modules = []
+    battery = '/sys/class/power_supply/{}/'.format(MODULES['battery'])
+
     for module in defined_modules:
         if module not in MODULES:
             warning = "WARNING: '{}' is not a valid module. "
             warning += "It will be disabled."
             print(warning.format(module))
-        elif module != "date" and not which(MODULES[module]):
+        elif module == 'battery' and not path.exists(battery):
+            warning = "WARNING: '{}' not detected. "
+            warning += "'battery' module will be disabled."
+            print(warning.format(MODULES['battery']))
+        elif module not in ('date', 'battery') and not which(MODULES[module]):
             warning = "WARNING: '{}' is not installed. "
             warning += "'{}' module will be disabled."
             print(warning.format(MODULES[module], module))
@@ -43,6 +57,21 @@ def check_modules(defined_modules):
             modules.append(module)
 
     return modules
+
+def battery():
+    battery = '/sys/class/power_supply/{}/'.format(MODULES['battery'])
+
+    status = open(path.join(battery, 'status')).read().strip()
+    capacity = int(open(path.join(battery, "capacity")).read())
+
+    if status == 'Charging': label = LABELS['battery_charging']
+    elif capacity >= 80: label = LABELS['battery_full']
+    elif capacity >= 60: label = LABELS['battery_high']
+    elif capacity >= 40: label = LABELS['battery_medium']
+    elif capacity >= 20: label = LABELS['battery_low']
+    else: label = LABELS['battery_alert']
+
+    return '{} {}%'.format(label, capacity)
 
 def cmus():
     keys = ["status", "file", "tag title", "tag artist"]
@@ -103,9 +132,7 @@ if __name__ == "__main__":
     try:
         modules = environ["DWMSB_MODULES"].split()
     except:
-        print("WARNING: DWMSB_MODULES environment variable is not set.")
-        print("WARNING: Using pulseaudio, network and date modules as a fallback.")
-        modules = ["pulseaudio", "network", "date"]
+        modules = ['cmus', 'battery', 'pulseaudio', 'network', 'date']
 
     modules = check_modules(modules)
 

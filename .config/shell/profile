@@ -8,7 +8,7 @@ export TERMINAL='st'
 
 # Settings
 export PATH="${HOME}/.local/bin:${PATH}"
-export DWMSB_MODULES="cmus pulseaudio network date"
+# export DWMSB_MODULES="cmus pulseaudio network date"
 export HISTCONTROL='ignoredups'
 export QT_QPA_PLATFORMTHEME='qt5ct'
 
