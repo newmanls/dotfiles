@@ -1,7 +1,6 @@
 HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/history"
 HISTSIZE=1000
 SAVEHIST=1000
-PS1="%B%F{blue}%~ %F{%(?.green.red)}>%f%b "
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 
 mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
@@ -51,6 +50,8 @@ zle-line-init() {
 zle -N zle-line-init
 
 set_cursor_beam
+
+eval "$(starship init zsh)"
 
 source "${XDG_CONFIG_HOME}/shell/aliasrc"
 source "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"

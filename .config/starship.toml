@@ -1,0 +1,47 @@
+format = """
+$username\
+$hostname\
+$localip\
+$shlvl\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$cmd_duration\
+$line_break\
+$jobs\
+$character"""
+
+[character]
+success_symbol = "[>](bold green)"
+error_symbol = "[x](bold red)"
+vimcmd_symbol = "[<](bold green)"
+
+[directory]
+truncation_length = 0
+truncate_to_repo = false
+style = "bold blue"
+read_only = " (read only)"
+read_only_style = "bold red"
+
+[hostname]
+ssh_symbol = "@"
+
+[git_branch]
+format = "[on](bold white) [$branch(:$remote_branch)]($style) "
+style = "bold red"
+
+[git_commit]
+tag_symbol = " tag "
+
+[git_status]
+ahead = ">"
+behind = "<"
+diverged = "<>"
+renamed = "r"
+deleted = "x"
+
+[jobs]
+symbol = "+"
+style = "bold yellow"
