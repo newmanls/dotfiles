@@ -7,15 +7,12 @@ set -euo pipefail
 get_page() {
     find "${wikidir}" -iregex ".*\.html\$" -printf "%P\n" |
         sed "s/_/ /g;s/.html\$//" |
+        sort |
         dmenu -l 16 -p "Arch Wiki" |
         sed "s/ /_/g;s/\$/.html/"
 }
 
-main() {
-    wikidir="/usr/share/doc/arch-wiki/html/en"
-    page=$(get_page)
+wikidir="/usr/share/doc/arch-wiki/html/en"
+page=$(get_page)
 
-    xdg-open "${wikidir}/${page}"
-}
-
-main
+xdg-open "${wikidir}/${page}"

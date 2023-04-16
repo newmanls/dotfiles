@@ -5,43 +5,31 @@
 set -euo pipefail
 
 take_screenshot() {
-    directory="${HOME}/Pictures/Screenshots"
     filename="$(date +%Y%m%d_%H%M%S).png"
-    filepath="${directory}/${filename}"
+    filepath="${ssdir}/${filename}"
 
-    [ ! -d "${directory}" ] && mkdir -p "${directory}"
-
+    mkdir -p "${ssdir}"
     import -silent "${@}" "${filepath}"
 
-    if [ -f "${filepath}" ]; then
-        xclip -selection clipboard -t image/png -i "${filepath}" &&
-            notify-send \
+    [ ! -f "${filepath}" ] && exit 1
+
+    xclip -selection clipboard -t image/png -i "${filepath}" &&
+        notify-send \
             -i "${filepath}" \
-            -A "xdg-open ${filepath}"="Open" \
-            "Screenshot captured" \
-            "You can paste the image from the clipboard." |
+            -A "xdg-open ${filepath}"=Open \
+            "Screenshot saved" \
+            "You can also paste the image from the clipboard." |
             bash
-    fi
 }
 
-main() {
-    timer_delay=3
+ssdir="${HOME}/Pictures/Screenshots"
+timer_delay=3
+options="Fullscreen\nWindow\nSelect region\nTimer (${timer_delay}s)"
+chosen="$(printf "%b\n" "${options}" | dmenu -p "Take screenshot")"
 
-    screen="Fullscreen"
-    window="Window"
-    region="Select region"
-    timer="Timer (${timer_delay}s)"
-
-    options="${screen}\n${window}\n${region}\n${timer}"
-
-    chosen=$(printf "%b\n" "${options}" | dmenu -p "Take screenshot")
-
-    case "${chosen}" in
-        "${screen}") take_screenshot -window root ;;
-        "${window}") take_screenshot -window "$(xdotool getactivewindow)" ;;
-        "${region}") take_screenshot ;;
-        "${timer}")  take_screenshot -window root -pause "${timer_delay}" ;;
-    esac
-}
-
-main
+case "${chosen}" in
+    Fullscreen) take_screenshot -window root ;;
+    Window)     take_screenshot -window "$(xdotool getactivewindow)" ;;
+    Select*)    take_screenshot ;;
+    Timer*)     take_screenshot -window root -pause "${timer_delay}" ;;
+esac
