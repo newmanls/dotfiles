@@ -21,14 +21,18 @@ bind-key ^F pagedown
 bind-key ^B pageup
 bind-key G  end
 bind-key g  home
-bind-key l  open
+bind-key q  hard-quit
 bind-key h  quit
+bind-key l  open
 
 bind-key J  next-feed articlelist
 bind-key K  prev-feed articlelist
 bind-key n  next-unread articlelist
 bind-key N  prev-unread articlelist
 bind-key a  toggle-article-read articlelist
+bind-key l  open-in-browser article
+
+unbind-key h feedlist
 
 # Colors
 color background         default default
