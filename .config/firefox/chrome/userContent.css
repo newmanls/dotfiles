@@ -1,0 +1,8 @@
+.outer-wrapper.only-search {
+    padding: 32px !important;
+    display: flex !important;
+}
+
+.outer-wrapper.only-search .search-wrapper {
+    padding-bottom: 138px !important;
+}
