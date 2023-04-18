@@ -4,28 +4,19 @@ require('paq') {
     -- Plugin Manager
     'savq/paq-nvim';
 
-    -- Colorscheme
-    -- {'folke/tokyonight.nvim', branch = 'main'};
-    'navarasu/onedark.nvim';
-
     -- Syntax highlighting
+    'navarasu/onedark.nvim';
     {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'};
-    'lukas-reineke/indent-blankline.nvim';
     'norcalli/nvim-colorizer.lua';
 
-    -- Completion
-    'jiangmiao/auto-pairs';
-    'mattn/emmet-vim';
-
-    -- Shortcuts
-    'kylechui/nvim-surround';
-    'numToStr/Comment.nvim';
-    'phaazon/hop.nvim';
-
     -- Utils
+    'echasnovski/mini.align';
+    'echasnovski/mini.comment';
+    'echasnovski/mini.indentscope';
+    'echasnovski/mini.jump2d';
+    'echasnovski/mini.pairs';
+    'echasnovski/mini.surround';
+    'echasnovski/mini.trailspace';
     'jghauser/mkdir.nvim';
-    'godlygeek/tabular';
-
-    -- Markdown
-    'preservim/vim-markdown';
+    'mattn/emmet-vim';
 }

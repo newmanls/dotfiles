@@ -1,44 +1,27 @@
-require('utils')
+function map(mode, shortcut, command, new_options)
+    local options = { silent = true }
+    if new_options then
+        options = vim.tbl_extend("force", options, new_options)
+    end
+    vim.api.nvim_set_keymap(mode, shortcut, command, options)
+end
 
 vim.g.mapleader = ' '
-
--- Save and quit
-map('n',  '<leader>w',   ':w<CR>')
-map('n',  '<leader>W',   ':wa<CR>')
-map('n',  '<leader>q',   ':q<CR>')
-map('n',  '<leader>Q',   ':qa<CR>')
 
 -- Move between visible lines
 map('n', 'j', 'gj')
 map('n', 'k', 'gk')
 
 -- Split window
-map('n',  '<leader>x',  ':split ',   {silent=false})
-map('n',  '<leader>v',  ':vsplit ',  {silent=false})
+map('n', '<leader>x', ':split ',  { silent = false })
+map('n', '<leader>v', ':vsplit ', { silent = false })
 
 -- Reselect text after (un)indentation.
-map('v',  '<',  '<gv')
-map('v',  '>',  '>gv')
+map('v', '<', '<gv')
+map('v', '>', '>gv')
 
 -- Remove highlights
-map('n',  '<Esc>',  ':noh<CR>')
-
--- Navigating through splits
-map('n',  '<C-h>',  ':wincmd h<CR>')
-map('n',  '<C-j>',  ':wincmd j<CR>')
-map('n',  '<C-k>',  ':wincmd k<CR>')
-map('n',  '<C-l>',  ':wincmd l<CR>')
-
--- Toggle terminal on/off (neovim)
-map('n',  '<A-CR>',  ':call TermToggle(12)<CR>')
-map('i',  '<A-CR>',  '<Esc>:call TermToggle(12)<CR>')
-map('t',  '<A-CR>',  '<C-\\><C-n>:call TermToggle(12)<CR>')
-
--- Terminal go back to normal mode
-map('t',  '<Esc>',  '<C-\\><C-n>')
-map('t',  ':q!',    '<C-\\><C-n>:q!<CR>')
+map('n', '<Esc>', ':noh<CR>')
 
 -- Plugins mappings
-map('n',  '<leader>f',   ':HopChar2<CR>')
-map('n',  '<leader>mt',  ':Toc<CR>')
-map('n',  '<leader>c',   ':ColorizerToggle<CR>')
+map('n', '<leader>c', ':ColorizerToggle<CR>')

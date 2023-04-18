@@ -14,17 +14,14 @@ vim.opt.confirm = true
 vim.opt.scrolloff = 4
 vim.opt.splitbelow = true
 vim.opt.splitright = true
-vim.opt.timeoutlen = 500
 
 -- Indentation
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
-vim.opt.softtabstop = 4
 
 -- Line wrapping
 vim.opt.breakindent = true
 vim.opt.linebreak = true
 
 -- Searching
-vim.opt.ignorecase = true
 vim.opt.smartcase = true
