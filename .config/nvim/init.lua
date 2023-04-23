@@ -10,13 +10,7 @@ require('paq') {
     'norcalli/nvim-colorizer.lua';
 
     -- Utils
-    'echasnovski/mini.align';
-    'echasnovski/mini.comment';
-    'echasnovski/mini.indentscope';
-    'echasnovski/mini.jump2d';
-    'echasnovski/mini.pairs';
-    'echasnovski/mini.surround';
-    'echasnovski/mini.trailspace';
+    'echasnovski/mini.nvim';
     'jghauser/mkdir.nvim';
     'mattn/emmet-vim';
 }
