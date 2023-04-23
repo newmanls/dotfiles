@@ -3,10 +3,7 @@
 #alltabs-button,
 .private-browsing-indicator,
 #private-browsing-indicator-with-label,
-.tab-close-button,
-#urlbar:not([focused]) #tracking-protection-icon-container, 
-#urlbar:not([focused]) #identity-box,
-#urlbar:not([focused]) #star-button-box:not([open]) {
+.tab-close-button {
     display: none !important;
 }
 
@@ -23,7 +20,7 @@
     --tab-block-margin: 0 !important;
 }
 #tabbrowser-tabs:not([secondarytext-unsupported]) .tab-label-container {
-    height: initial !important; 
+    height: initial !important;
 }
 #tabbrowser-arrowscrollbox,
 #tabbrowser-tabs {
@@ -64,6 +61,16 @@
 #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
 .tabbrowser-tab[first-visible-unpinned-tab] {
     margin-inline-start: 0 !important;
+}
+
+/* remove shadows */
+.tab-background {
+    box-shadow: none !important;
+}
+
+/* add background */
+#tabbrowser-tabs {
+    background: var(--toolbar-field-background-color) !important;
 }
 
 /* URLBAR */
