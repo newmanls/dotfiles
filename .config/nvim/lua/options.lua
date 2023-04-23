@@ -37,3 +37,8 @@ vim.api.nvim_create_autocmd('BufWrite', {
         MiniTrailspace.trim_last_lines()
     end
 })
+
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = 'html',
+    callback = function() vim.opt_local.shiftwidth=2 end
+})

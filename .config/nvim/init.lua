@@ -5,8 +5,8 @@ require('paq') {
     'savq/paq-nvim';
 
     -- Syntax highlighting
+    { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' };
     'navarasu/onedark.nvim';
-    {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'};
     'norcalli/nvim-colorizer.lua';
 
     -- Utils
