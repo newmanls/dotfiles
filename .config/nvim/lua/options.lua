@@ -25,3 +25,15 @@ vim.opt.linebreak = true
 
 -- Searching
 vim.opt.smartcase = true
+
+-- Autocommands
+vim.api.nvim_create_autocmd('TextYankPost', {
+    callback = function() vim.highlight.on_yank() end
+})
+
+vim.api.nvim_create_autocmd('BufWrite', {
+    callback = function()
+        MiniTrailspace.trim()
+        MiniTrailspace.trim_last_lines()
+    end
+})
