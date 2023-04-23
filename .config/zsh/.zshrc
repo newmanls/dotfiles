@@ -30,6 +30,8 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M vicmd 'j' down-line-or-beginning-search
 bindkey -M vicmd 'k' up-line-or-beginning-search
+bindkey '^P' up-line-or-beginning-search
+bindkey '^N' down-line-or-beginning-search
 
 set_cursor_block() { echo -ne '\e[1 q'; }
 set_cursor_beam() { echo -ne '\e[5 q'; }
