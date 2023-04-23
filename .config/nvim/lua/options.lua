@@ -2,7 +2,7 @@
 vim.opt.colorcolumn = '80'
 vim.opt.cursorline = true
 vim.opt.laststatus = 1
-vim.opt.lazyredraw = true
+vim.opt.cmdheight = 0
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.syntax = 'on'
