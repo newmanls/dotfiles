@@ -11,7 +11,8 @@ require('mini.indentscope').setup({
 })
 
 require('mini.jump2d').setup({
-    view = { dim = true }
+    view = { dim = true },
+    mappings = { start_jumping = '' }
 })
 
 require('mini.pairs').setup()
