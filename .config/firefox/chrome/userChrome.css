@@ -51,12 +51,6 @@
     max-width: .1px !important;
 }
 
-/* center tab title */
-.tab-label {
-    width: 100% !important;
-    text-align: center !important;
-}
-
 /* remove gap after pinned tabs */
 #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
 .tabbrowser-tab[first-visible-unpinned-tab] {
@@ -71,6 +65,55 @@
 /* add background */
 #tabbrowser-tabs {
     background: var(--toolbar-field-background-color) !important;
+}
+
+/* TAB CONTENT */
+
+/* Center all inside tab */
+.tab-content {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-top: -1px;
+	min-width: 100% !important;
+	padding: 0 8px !important;
+}
+
+/* Prevent tab icons size breaking */
+.tab-icon-image, .tab-icon-sound, .tab-throbber, .tab-throbber-fallback, .tab-close-button {
+	min-width: 16px;
+}
+
+/* Adjust tab label width */
+.tab-label-container {
+	min-width: 0 !important;
+}
+
+/* Force tab favicon to the center */
+.tab-throbber, .tab-throbber-fallback,
+.tabbrowser-tab:not([busy]):not([soundplaying="true"],[muted="true"]) .tab-icon-image,
+.tabbrowser-tab:not([class*="identity-color-"]) .tab-icon-stack {
+	margin-left: auto !important;
+}
+
+/* If tab favicon is not present, force tab label to the center */
+.tabbrowser-tab .tab-label-container {
+	margin-left: 0 !important;
+	margin-right: auto !important;
+}
+
+.tabbrowser-tab:not([image]):not([busy]):not([progress]) .tab-label-container {
+	margin-left: auto !important;
+}
+
+/* Fix website with no favicon centred text */
+.tabbrowser-tab:not([image]) .tab-icon-overlay:not([pinned], [sharing], [crashed]) .tab-icon-stack {
+	margin-left: 0 !important
+}
+
+.tabbrowser-tab:not([image], [busy]) .tab-icon-stack {
+	margin-left: 0 !important
 }
 
 /* URLBAR */
