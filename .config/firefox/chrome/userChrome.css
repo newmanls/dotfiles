@@ -16,8 +16,6 @@
 }
 :root[uidensity="compact"] {
     --tab-min-height: 20px !important;
-    --tab-border-radius: 0 !important;
-    --tab-block-margin: 0 !important;
 }
 #tabbrowser-tabs:not([secondarytext-unsupported]) .tab-label-container {
     height: initial !important;
@@ -135,4 +133,12 @@
 #sidebar-header,
 #sidebar-splitter {
     border: none !important;
+}
+
+/* EXTENSIONS MENU */
+.panel-header,
+#unified-extensions-view > toolbarseparator:first-of-type,
+.unified-extensions-item-message-deck,
+.unified-extensions-item-menu-button.subviewbutton {
+    display: none !important;
 }
