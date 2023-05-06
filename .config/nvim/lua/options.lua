@@ -40,5 +40,5 @@ vim.api.nvim_create_autocmd('BufWrite', {
 
 vim.api.nvim_create_autocmd('FileType', {
     pattern = 'html',
-    callback = function() vim.opt_local.shiftwidth=2 end
+    callback = function() vim.opt_local.shiftwidth = 2 end
 })
