@@ -1,4 +1,4 @@
-require('colorizer').setup()
+require('colorizer').setup(nil, { css = true; })
 require('mini.align').setup()
 require('mini.comment').setup()
 
@@ -18,11 +18,7 @@ require('mini.jump2d').setup({
 require('mini.pairs').setup()
 require('mini.surround').setup()
 require('mini.trailspace').setup()
-
-require('onedark').setup({
-    style = 'darker'
-})
-
+require('onedark').setup({ style = 'darker' })
 require('onedark').load()
 
 require('nvim-treesitter.configs').setup({
