@@ -74,7 +74,7 @@ def battery():
     return '{} {}%'.format(label, capacity)
 
 def cmus():
-    keys = ["status", "file", "tag title", "tag artist"]
+    keys = ["status", "file", "tag title", "tag artist", "stream"]
     info = {}
 
     for line in getoutput("cmus-remote -Q").splitlines():
@@ -83,7 +83,9 @@ def cmus():
                 info[key.removeprefix("tag ")] = line.removeprefix(key).strip()
 
     if "status" in info and info["status"] != "stopped":
-        if "title" and "artist" in info:
+        if "stream" in info:
+            output = info["stream"]
+        elif "title" and "artist" in info:
             output = "{} - {}".format(info["artist"], info["title"])
         else:
             output = info["file"].split("/")[-1]
