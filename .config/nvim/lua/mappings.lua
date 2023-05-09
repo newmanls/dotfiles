@@ -3,12 +3,12 @@ require('terminal')
 vim.g.mapleader = ' '
 
 -- Write and quit
-vim.keymap.set('n', '<leader>w', '<Cmd>write<CR>')
-vim.keymap.set('n', '<leader>q', '<Cmd>quit<CR> ')
+vim.keymap.set('', '<leader>w', '<Cmd>write<CR>')
+vim.keymap.set('', '<leader>q', '<Cmd>quit<CR> ')
 
 -- Move between visible lines
-vim.keymap.set('n', 'j', 'gj')
-vim.keymap.set('n', 'k', 'gk')
+vim.keymap.set('', 'j', 'gj')
+vim.keymap.set('', 'k', 'gk')
 
 -- Split window
 vim.keymap.set('n', '<leader>s', ':split ')
@@ -19,13 +19,13 @@ vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
 
 -- Remove highlights
-vim.keymap.set('n', '<Esc>', ':noh<CR>')
+vim.keymap.set('n', '<Esc>', '<Cmd>noh<CR>')
 
 -- Plugins mappings
-vim.keymap.set('n', '<leader>c', '<Cmd>ColorizerToggle<CR>')
-vim.keymap.set({ 'n', 'v' }, '<CR>', function()
+vim.keymap.set('', '<leader>c', '<Cmd>ColorizerToggle<CR>')
+vim.keymap.set('', '<CR>', function()
     MiniJump2d.start(require('mini.jump2d').builtin_opts.single_character)
 end)
 
 -- TermToggle
-vim.keymap.set({ 'n', 'v', 't' }, '<A-CR>', ToggleTerminal)
+vim.keymap.set({ '', 't' }, '<A-CR>', function() ToggleTerminal() end)
