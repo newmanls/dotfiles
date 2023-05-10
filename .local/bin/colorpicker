@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Simple color picking script for X11.
+# Author: Newman Sanchez (https://github.com/newmanls)
+
+preview='/tmp/colorpicker-preview.png'
+color="$(xcolor)"
+
+xclip -selection clipboard -rmlastnl <<< "${color}"
+magick -size 128x128 xc:"${color}" "${preview}"
+notify-send -i "${preview}" "${color}"
