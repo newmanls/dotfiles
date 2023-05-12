@@ -18,12 +18,14 @@ vim.opt.splitright = true
 -- Indentation
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
+vim.opt.softtabstop = -1
 
 -- Line wrapping
 vim.opt.breakindent = true
 vim.opt.linebreak = true
 
 -- Searching
+vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Autocommands
