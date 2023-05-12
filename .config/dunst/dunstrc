@@ -37,7 +37,7 @@
 
     frame_color = "#282c34"
     min_icon_size = 0
-    max_icon_size = 48
+    max_icon_size = 40
     icon_position = left
     ellipsize = end
     alignment = left
@@ -70,8 +70,4 @@
 
 [screenshots]
     summary = "*Screenshot*"
-    max_icon_size = 80
-
-[cmus]
-    stack_tag = "notify-cmus"
     max_icon_size = 80
