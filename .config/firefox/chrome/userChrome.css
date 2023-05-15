@@ -36,7 +36,8 @@
 
 /* tabs below */
 #titlebar {
-    -moz-box-ordinal-group: 2;
+    -moz-box-ordinal-group: 10;
+    order: 10;
 }
 
 /* expand tabs */
@@ -69,49 +70,75 @@
 
 /* Center all inside tab */
 .tab-content {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	margin-top: -1px;
-	min-width: 100% !important;
-	padding: 0 8px !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: center !important;
+    align-items: center !important;
+    min-width: 100% !important;
+    padding: 0 8px !important;
 }
 
 /* Prevent tab icons size breaking */
-.tab-icon-image, .tab-icon-sound, .tab-throbber, .tab-throbber-fallback, .tab-close-button {
-	min-width: 16px;
+.tab-icon-image,
+.tab-icon-sound,
+.tab-throbber,
+.tab-throbber-fallback,
+.tab-close-button {
+    min-width: 16px;
+}
+
+/* Center tab text */
+.tab-label {
+    margin-inline: 0 !important;
 }
 
 /* Adjust tab label width */
 .tab-label-container {
-	min-width: 0 !important;
+    min-width: 0 !important;
+    max-width: min-content !important;
+}
+
+.tab-throbber:not([pinned]),
+.tab-icon-pending:not([pinned]),
+.tab-icon-image:not([pinned]),
+.tab-sharing-icon-overlay:not([pinned]),
+.tab-icon-overlay:not([pinned]) {
+    margin-inline-end: 0 !important;
+}
+
+.tabbrowser-tab:not([soundplaying], [muted], [activemedia-blocked], [crashed]) .tab-icon-stack {
+    padding: 0 6px;
 }
 
 /* Force tab favicon to the center */
 .tab-throbber, .tab-throbber-fallback,
-.tabbrowser-tab:not([busy]):not([soundplaying="true"],[muted="true"]) .tab-icon-image,
-.tabbrowser-tab:not([class*="identity-color-"]) .tab-icon-stack {
-	margin-left: auto !important;
+.tabbrowser-tab:not([busy]):not([soundplaying="true"], [muted="true"]) .tab-icon-image,
+.tabbrowser-tab .tab-icon-stack {
+    margin-left: auto !important;
 }
 
 /* If tab favicon is not present, force tab label to the center */
 .tabbrowser-tab .tab-label-container {
-	margin-left: 0 !important;
-	margin-right: auto !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
 }
 
 .tabbrowser-tab:not([image]):not([busy]):not([progress]) .tab-label-container {
-	margin-left: auto !important;
+    margin-left: auto !important;
 }
 
 /* Fix website with no favicon centred text */
 .tabbrowser-tab:not([image]) .tab-icon-overlay:not([pinned], [sharing], [crashed]) .tab-icon-stack {
-	margin-left: 0 !important
+    margin-left: 0 !important
 }
 
 .tabbrowser-tab:not([image], [busy]) .tab-icon-stack {
-	margin-left: 0 !important
+    margin-left: 0 !important
+}
+
+.tab-background {
+    border-radius: 0 !important;
+    margin-block: 0 !important;
 }
 
 /* URLBAR */
