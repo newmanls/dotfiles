@@ -10,6 +10,6 @@ xrdb "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources"
 setxkbmap us altgr-intl &
 dwmsb.py &
 setbg &
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+lxpolkit &
 
 exec dwm
