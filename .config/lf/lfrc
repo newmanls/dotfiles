@@ -1,11 +1,12 @@
 # vim:ft=sh
-set shellopts   '-eu'
-set ifs         "\n"
-set icons
-set scrolloff   8
-set cleaner     '~/.config/lf/cleaner'
-set previewer   '~/.config/lf/scope'
+set cursorpreviewfmt ""
+set icons true
+set ifs "\n"
 set ratios 1:1
+set scrolloff 4
+set shellopts '-eu'
+set cleaner '~/.config/lf/cleaner'
+set previewer '~/.config/lf/scope'
 
 cmd extract     !clear; aunpack -- ${fx}
 cmd open-with   &setsid -f ${1} ${fx}
@@ -20,7 +21,7 @@ cmd open ${{
 
     case $(file --dereference --brief --mime-type -- "$f") in
         text/*|application/json|inode/x-empty|application/pgp-encrypted)
-            ${EDITOR} -O $fx ;;
+            ${EDITOR} $fx ;;
         *msword|*ms-excel|*ms-powerpoint|*officedocument*|*opendocument*)
             setsid -f docpreview "$f" >/dev/null 2>&1 ;;
         *)
@@ -63,12 +64,11 @@ map x  !$"{f}"
 map W  $setsid -f "${TERMINAL}" >/dev/null 2>&1
 
 map c
-map A  rename
-map I  push A<c-a>
-map C  push A<c-u>
-map S  push A<c-u>
-map a  push A<a-b><a-b><a-f>
-map cw push A<a-b><a-b><a-f><c-u>
+map a  rename
+map A  push a<c-e>
+map I  push a<c-a>
+map cc push a<c-e><c-u>
+map cw push a<c-u>
 
 map <c-l>   push :cd<space>
 map <c-n>   push :mkdir<space>
