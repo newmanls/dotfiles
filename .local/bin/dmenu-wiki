@@ -4,15 +4,11 @@
 
 set -euo pipefail
 
-get_page() {
-    find "${wikidir}" -iregex ".*\.html\$" -printf "%P\n" |
-        sed "s/_/ /g;s/.html\$//" |
-        sort |
-        dmenu -l 16 -p "Arch Wiki" |
-        sed "s/ /_/g;s/\$/.html/"
-}
-
 wikidir="/usr/share/doc/arch-wiki/html/en"
-page=$(get_page)
+page="$(find "${wikidir}" -iregex ".*\.html\$" -printf "%P\n" |
+    sed "s/_/ /g;s/.html\$//" |
+    sort |
+    dmenu -l 16 -p "Arch Wiki" |
+    sed "s/ /_/g;s/\$/.html/")"
 
 xdg-open "${wikidir}/${page}"

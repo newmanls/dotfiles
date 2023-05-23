@@ -4,12 +4,8 @@
 
 set -euo pipefail
 
-pick_emoji() {
-    dmenu -p "Emoji picker" -l 16 < "${HOME}/.local/share/dotfiles/emoji" |
-        cut -d " " -f1 | tr -d '\n'
-}
-
-chosen=$(pick_emoji)
+chosen="$(dmenu -p "Emoji picker" -l 16 < "${HOME}/.local/share/dotfiles/emoji" |
+    cut -d " " -f1 | tr -d '\n')"
 
 xdotool type "${chosen}"
-xclip -selection clipboard <<< "${chosen}"
+xclip -selection clipboard -rmlastnl <<< "${chosen}"
