@@ -8,10 +8,13 @@ set shellopts '-eu'
 set cleaner '~/.config/lf/cleaner'
 set previewer '~/.config/lf/scope'
 
-cmd extract     !clear; aunpack -- ${fx}
-cmd open-with   &setsid -f ${1} ${fx}
-cmd mkdir       %IFS=" "; mkdir -vp "$*"
 cmd bulk-rename $renamer ${fx}
+cmd extract !clear; aunpack -- ${fx}
+cmd execute !"${f}"
+cmd mkdir %IFS=" "; mkdir -vp "$*"
+cmd open-terminal-here &setsid -f "${TERMINAL}" >/dev/null 2>&1
+cmd open-with &setsid -f ${1} ${fx}
+cmd set-as-wallpaper &setbg ${f}
 
 cmd open ${{
     case "${f##*.}" in
@@ -29,7 +32,7 @@ cmd open ${{
     esac
 }}
 
-cmd trash-put &{{
+cmd move-to-trash &{{
     if trash-put ${fx}; then
         lf -remote "send load"
         lf -remote "send ${id} echo 'File(s) sent to trash'"
@@ -48,7 +51,7 @@ cmd yank &{{
 
 map d
 map dd cut
-map dD trash-put
+map dD move-to-trash
 map y
 map yy copy
 map yp yank path
@@ -58,10 +61,12 @@ map p
 map pp paste
 map gm cd /media
 map o  push :open-with<space>
-map E  extract
-map b  &setbg ${f}
-map x  !$"{f}"
-map W  $setsid -f "${TERMINAL}" >/dev/null 2>&1
+
+map xw set-as-wallpaper
+map xe extract
+map xr bulk-rename
+map xt open-terminal-here
+map xx execute
 
 map c
 map a  rename
