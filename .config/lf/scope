@@ -54,13 +54,7 @@ esac
 
 # Handle mimetype
 case "${file_mimetype}" in
-    application/pdf)
-        thumbnail_pv && exit 1 ;;
-
-    video/*)
-        thumbnail_pv && exit 1 ;;
-
-    image/svg+xml)
+    application/pdf | video/* | image/svg+xml)
         thumbnail_pv && exit 1 ;;
 
     image/*)
@@ -73,6 +67,6 @@ case "${file_mimetype}" in
         fold -sw "${pv_width}" "${file}" && exit 1 ;;
 esac
 
-printf "%s\n" "----- File Type Classification -----" \
+printf "%s\n" "--- File Type Classification ---" \
     "$(file --dereference --brief -- "${file}")" |
     fold -sw "${pv_width}" && exit 1
