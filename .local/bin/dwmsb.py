@@ -103,15 +103,19 @@ def date():
     return LABELS["date"] + datetime.now().strftime("%a %b %d %H:%M")
 
 def network():
-    network = getoutput("nmcli -t -g NAME,TYPE connection show --active")
-    network_name, network_type = network.splitlines()[0].split(":")
+    output = getoutput("nmcli -t -g NAME,TYPE connection show --active")
+    networks = [i for i in output.splitlines() if not i.startswith('lo:')]
+
+    try:
+        network_name, network_type = networks[0].split(":")
+    except:
+        network_name, network_type  = "disconnected", "none"
 
     if network_type.endswith("ethernet"):
         label = LABELS["network_on"]
     elif network_type.endswith("wireless"):
         label = LABELS["network_wifi_on"]
     else:
-        network_name = "disconnected"
         label = LABELS["network_off"]
 
     return label + network_name
