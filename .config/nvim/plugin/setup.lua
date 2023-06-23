@@ -1,7 +1,6 @@
 require('colorizer').setup(nil, { css = true; })
 require('mini.align').setup()
 require('mini.comment').setup()
-
 require('mini.indentscope').setup({
     draw = {
         delay = 0,
@@ -20,11 +19,3 @@ require('mini.surround').setup()
 require('mini.trailspace').setup()
 require('onedark').setup({ style = 'darker' })
 require('onedark').load()
-
-require('nvim-treesitter.configs').setup({
-    ensure_installed = {
-        'bash', 'c', 'css', 'html', 'javascript', 'lua', 'markdown',
-        'markdown_inline', 'python', 'vim', 'vimdoc'
-    },
-    highlight = { enable = true }
-})

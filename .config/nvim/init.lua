@@ -10,7 +10,8 @@ require('paq') {
     'norcalli/nvim-colorizer.lua';
 
     -- Utils
+    'mattn/emmet-vim';
+    { 'iamcco/markdown-preview.nvim', run = vim.fn['mkdp#util#install']() };
     'echasnovski/mini.nvim';
     'jghauser/mkdir.nvim';
-    'mattn/emmet-vim';
 }
