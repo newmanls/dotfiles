@@ -1,20 +1,34 @@
-/* tab width */
-.tabbrowser-tab[fadein]:not([pinned]) {
-    max-width: 100vw !important;
-}
-
-/* .tabbrowser-tab[fadein]:not([selected]):not([pinned]) { */
-/*     max-width: 240px !important; */
-/* } */
-
-/* center all inside tab */
-.tab-content {
-    justify-content: center !important;
+/* simplify tabs appearance */
+:root {
+    --tab-border-radius: 0 !important;
+    --tab-block-margin: 0 !important;
+    --tab-min-height: 28px !important;
 }
 .tab-label-container {
-    min-width: 0 !important;
-    max-width: min-content !important;
+    height: initial !important;
 }
+.tabbrowser-tab {
+    padding: 0 !important;
+}
+.tab-background[selected] {
+    background-image: none !important;
+    background-color: var(--toolbar-bgcolor) !important;
+    outline: none !important;
+}
+
+/* tab width */
+.tabbrowser-tab[fadein]:not([pinned]) {
+    max-width: 260px !important;
+}
+
+/* center all inside tab */
+/* .tab-content { */
+/*     justify-content: center !important; */
+/* } */
+/* .tab-label-container { */
+/*     min-width: 0 !important; */
+/*     max-width: min-content !important; */
+/* } */
 
 /* remove gap after pinned tabs */
 #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
