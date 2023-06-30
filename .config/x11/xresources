@@ -19,6 +19,6 @@
 *color14: #48b0bd
 *color15: #a0a8b7
 
-*.font:     IosevkaTerm Nerd Font Mono-11
+*.font:     Iosevka Nerd Font Mono-11
 dmenu.font: Iosevka Nerd Font-9
 dwm.font:   Iosevka Nerd Font-9
