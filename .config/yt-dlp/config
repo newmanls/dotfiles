@@ -1,7 +1,7 @@
 --paths "~/Downloads"
 --restrict-filenames
 --trim-filenames 200
---format 'bestvideo[height>=?360][height<=?720][fps<=?30][vcodec!=?vp9]+bestaudio/best'
+--format 'best[height>=?360][height<=?720]/best'
 --sub-langs "en.*,es.*"
 --embed-subs
 --embed-metadata
