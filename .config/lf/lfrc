@@ -9,6 +9,7 @@ set cleaner '~/.config/lf/cleaner'
 set previewer '~/.config/lf/scope'
 
 cmd bulk-rename $renamer ${fx}
+cmd chmod %chmod $* ${fx} && lf -remote "send reload"
 cmd extract !clear; aunpack -- ${fx}
 cmd execute !"${f}"
 cmd mkdir %IFS=" "; mkdir -vp "$*"
@@ -73,6 +74,7 @@ map a  rename
 map A  push a<c-e>
 map I  push a<c-a>
 map cc push a<c-e><c-u>
+map cm push :chmod<space>
 map cw push a<c-u>
 
 map <c-l>   push :cd<space>
