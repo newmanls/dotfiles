@@ -1,5 +1,7 @@
 [Desktop Entry]
 Type=Application
-Name=File Manager
 Icon=file-manager
 Exec=st -e lfub %u
+Name=File Manager
+Categories=System;FileTools;FileManager;Utility;Core;GTK;
+MimeType=inode/directory;
