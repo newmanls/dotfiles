@@ -1,14 +1,12 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # dmenu_run improved
-# if a command ends with "!", it is started in term.
-
-termcmd="st -e"
-test -s $HOME/.dmenurc && . $HOME/.dmenurc
+# if a command ends with "!", it is started in a terminal.
+# if a command ends with "?", it is searched with your web browser.
 
 cmd="$(dmenu_path | dmenu $@)"
-case $cmd in
-    *\! ) ${termcmd} "$(printf "%s" "${cmd}" | cut -d'!' -f1)";;
+
+case ${cmd} in
+    *\! ) st -e "${cmd%!}" ;;
+    *\? ) xdg-open "https://duckduckgo.com/?q=${cmd%?}" ;;
     * ) ${cmd} ;;
 esac
-exit
-
