@@ -1,0 +1,7 @@
+.tab-content {
+    justify-content: center !important;
+}
+.tab-label-container {
+    min-width: 0 !important;
+    max-width: min-content !important;
+}

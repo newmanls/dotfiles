@@ -1,0 +1,3 @@
+#urlbar:not([focused]) #urlbar-input {
+    text-align: center !important;
+}

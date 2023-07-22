@@ -1,51 +1,9 @@
-/* simplify tabs appearance */
-:root {
-    --tab-border-radius: 0 !important;
-    --tab-block-margin: 0 !important;
-    --tab-min-height: 28px !important;
-}
-.tab-label-container {
-    height: initial !important;
-}
-.tabbrowser-tab {
-    padding: 0 !important;
-}
-.tab-background[selected] {
-    background-image: none !important;
-    background-color: var(--toolbar-bgcolor) !important;
-    outline: none !important;
-}
-
-/* tab width */
-.tabbrowser-tab[fadein]:not([pinned]) {
-    max-width: 260px !important;
-}
-
-/* center all inside tab */
-/* .tab-content { */
-/*     justify-content: center !important; */
-/* } */
-/* .tab-label-container { */
-/*     min-width: 0 !important; */
-/*     max-width: min-content !important; */
-/* } */
-
-/* remove gap after pinned tabs */
-#tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
-.tabbrowser-tab[first-visible-unpinned-tab] {
-    margin-inline-start: 0 !important;
-}
-
-/* center urlbar text when not focused */
-#urlbar:not([focused]) #urlbar-input {
-    text-align: center !important;
-}
-
-/* remove sidebar borders */
-#sidebar-header,
-#sidebar-splitter {
-    border: none !important;
-}
+@import "tweaks/simple-squared-tabs.css";
+@import "tweaks/full-width-tabs.css";
+@import "tweaks/center-tab-content.css";
+@import "tweaks/hide-only-one-tab.css";
+@import "tweaks/center-unfocused-urlbar.css";
+@import "tweaks/sidebar-styling.css";
 
 /* hide elements */
 .tab-close-button,

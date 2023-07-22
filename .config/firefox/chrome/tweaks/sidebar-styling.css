@@ -1,0 +1,17 @@
+/* use the same background color as toolbarr */
+#bookmarksPanel,
+#sidebar-box {
+    background: var(--toolbar-bgcolor) !important;
+}
+
+/* reduce splitter width */
+#sidebar-splitter {
+    background: var(--chrome-content-separator-color) !important;
+    width: 1px !important;
+}
+
+/* remove borders */
+#sidebar-header,
+#sidebar-splitter {
+    border: none !important;
+}

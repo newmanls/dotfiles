@@ -1,0 +1,7 @@
+#tabbrowser-tabs .tabbrowser-tab:only-of-type {
+    display: none !important;
+}
+#tabbrowser-tabs,
+#tabbrowser-arrowscrollbox {
+    min-height: 0 !important;
+}
