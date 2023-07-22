@@ -27,15 +27,15 @@ try:
 except:
     print_help()
 
-lsblk = 'lsblk -npro name,label,size,rm,fstype,mountpoint'
+lsblk = 'lsblk -npro name,label,size,fstype,mountpoint'
 devices = [i.split(' ') for i in getoutput(lsblk).splitlines()]
-devices = [i for i in devices if i[3] == '1' and i[4]]
+devices = [i for i in devices if i[3] and i[4] not in ['/', '/boot', '/home']]
 
 match action:
     case 'mount':
-        devices = [i for i in devices if not i[5]]
+        devices = [i for i in devices if not i[4]]
     case 'unmount':
-        devices = [i for i in devices if i[5]]
+        devices = [i for i in devices if i[4]]
     case _:
         print_help()
 
