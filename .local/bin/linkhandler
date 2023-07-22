@@ -19,8 +19,6 @@ case "${url}" in
             setsid -f zathura "/tmp/${translated_url}" >/dev/null 2>&1 ;;
     *mp3|*flac|*opus|*mp3?source*)
         curl -LO "${url}" >/dev/null 2>&1 ;;
-    magnet:\?*)
-        setsid -f $TERMINAL -e aria2c "${url}" ;;
     *)
         if [ -f "${url}" ]; then
             setsid -f $TERMINAL -e $EDITOR "${url}" >/dev/null 2>&1
