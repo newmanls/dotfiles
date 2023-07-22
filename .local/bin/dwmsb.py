@@ -34,7 +34,7 @@ LABELS = {
     "volume": "󰝚  ",
     "volume_muted": "󰝛  ",
 }
-SEPARATOR = "  "
+SEPARATOR = "   "
 
 def check_modules(defined_modules):
     modules = []
