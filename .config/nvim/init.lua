@@ -12,7 +12,6 @@ require('paq') {
     -- Utils
     'mattn/emmet-vim';
     { 'iamcco/markdown-preview.nvim', run = ':call mkdp#util#install' };
-    'iamcco/markdown-preview.nvim';
     'echasnovski/mini.nvim';
     'jghauser/mkdir.nvim';
 }
