@@ -4,6 +4,7 @@
 @import "tweaks/hide-only-one-tab.css";
 @import "tweaks/center-unfocused-urlbar.css";
 @import "tweaks/sidebar-styling.css";
+@import "tweaks/tabs-below-navbar.css";
 
 /* hide elements */
 .tab-close-button,

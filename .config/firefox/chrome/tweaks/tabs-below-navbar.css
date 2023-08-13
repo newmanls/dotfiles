@@ -1,0 +1,11 @@
+#titlebar {
+    order: 3 !important;
+}
+
+#nav-bar {
+    order: 1 !important;
+}
+
+#PersonalToolbar {
+    order: 2 !important;
+}
