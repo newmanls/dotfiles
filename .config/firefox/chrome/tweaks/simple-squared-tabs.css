@@ -9,9 +9,13 @@
 .tabbrowser-tab {
     padding: 0 !important;
 }
+
 .tab-background[selected] {
     background: var(--toolbar-bgcolor) !important;
-    /* outline: none !important; */
+}
+
+.tab-background[selected]:not([multiselected="true"]) {
+    outline: none !important;
 }
 
 /* remove gap after pinned tabs */
