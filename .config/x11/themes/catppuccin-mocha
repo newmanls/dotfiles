@@ -4,7 +4,7 @@
 
 ! black
 *.color0:      #181825
-*.color8:      #45475a
+*.color8:      #313244
 
 ! red
 *.color1:      #F38BA8
@@ -31,5 +31,5 @@
 *.color14:     #94E2D5
 
 ! white
-*.color7:      #A6ADC8
-*.color15:     #BAC2DE
+*.color7:      #6c7086
+*.color15:     #A6ADC8
