@@ -6,12 +6,12 @@ require('paq') {
 
     -- Syntax highlighting
     { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' };
-    'navarasu/onedark.nvim';
-    'norcalli/nvim-colorizer.lua';
+    { 'catppuccin/nvim', as = 'catppuccin' };
 
     -- Utils
     'mattn/emmet-vim';
     { 'iamcco/markdown-preview.nvim', run = ':call mkdp#util#install' };
     'echasnovski/mini.nvim';
     'jghauser/mkdir.nvim';
+    'norcalli/nvim-colorizer.lua';
 }

@@ -17,5 +17,9 @@ require('mini.jump2d').setup({
 require('mini.pairs').setup()
 require('mini.surround').setup()
 require('mini.trailspace').setup()
-require('onedark').setup({ style = 'darker' })
-require('onedark').load()
+
+require("catppuccin").setup({
+    integrations = { mini = true }
+})
+
+vim.cmd('colorscheme catppuccin-mocha')
