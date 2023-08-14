@@ -47,6 +47,5 @@ color end-of-text-marker default default invis
 
 # Highlights
 highlight article "^[a-zA-Z ]+:"                default default bold
-highlight article "^Title:.*"                   cyan    default bold
 highlight article "([a-z]+://|magnet:\?)[^ ]+"  blue    default underline
 highlight article "\\[[0-9]+\\]"                blue    default
