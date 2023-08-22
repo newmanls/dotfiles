@@ -1,7 +1,7 @@
 :root {
     --tab-border-radius: 0 !important;
     --tab-block-margin: 0 !important;
-    --tab-min-height: 28px !important;
+    --tab-min-height: 22px !important;
 }
 .tab-label-container {
     height: initial !important;
