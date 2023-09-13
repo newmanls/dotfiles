@@ -3,7 +3,4 @@ vim.opt_local.shiftwidth = 2
 vim.opt_local.spell = true
 vim.opt_local.spelllang = 'es'
 
-vim.api.nvim_create_autocmd('BufWritePost', {
-    pattern = '*.tex',
-    command = '!xelatex -shell-escape %'
-})
+vim.api.nvim_buf_set_keymap(0, 'n', '<F5>', '<Cmd>!xelatex -shell-escape %<CR>', { noremap = true })
