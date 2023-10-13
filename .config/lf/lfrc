@@ -26,8 +26,6 @@ cmd open ${{
     case $(file --dereference --brief --mime-type -- "$f") in
         text/*|application/json|inode/x-empty|application/pgp-encrypted)
             ${EDITOR} $fx ;;
-        *msword|*ms-excel|*ms-powerpoint|*officedocument*|*opendocument*)
-            setsid -f docpreview "$f" >/dev/null 2>&1 ;;
         *)
             setsid -f xdg-open "$fx" >/dev/null 2>&1 ;;
     esac
