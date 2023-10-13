@@ -7,6 +7,6 @@ cmd="$(dmenu_path | dmenu $@)"
 
 case ${cmd} in
     *\! ) st -e "${cmd%!}" ;;
-    *\? ) xdg-open "https://duckduckgo.com/?q=${cmd%?}" ;;
+    \?* ) xdg-open "https://duckduckgo.com/?q=${cmd#?}" ;;
     * ) ${cmd} ;;
 esac
