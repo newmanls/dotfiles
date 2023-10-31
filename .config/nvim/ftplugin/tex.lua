@@ -4,4 +4,4 @@ vim.opt_local.spell = true
 vim.opt_local.spelllang = 'es'
 
 vim.api.nvim_buf_set_keymap(0, 'n', '<F5>',
-    '<Cmd>w | !xelatex -shell-escape %<CR>', { noremap = true })
+    '<Cmd>wa | !xelatex -shell-escape "%"<CR>', { noremap = true })
