@@ -8,6 +8,7 @@ $git_branch\
 $git_commit\
 $git_state\
 $git_status\
+$python\
 $cmd_duration\
 $line_break\
 $jobs\
@@ -29,7 +30,7 @@ read_only_style = "bold red"
 ssh_symbol = "@"
 
 [git_branch]
-format = "[on](bold white) [$branch(:$remote_branch)]($style) "
+format = "[on](bold) [$branch(:$remote_branch)]($style) "
 style = "bold red"
 
 [git_commit]
@@ -45,3 +46,8 @@ deleted = "x"
 [jobs]
 symbol = "+"
 style = "bold yellow"
+
+[python]
+format = '[via](bold) [Python (${version} )(\(${virtualenv}\) )]($style)'
+version_format = "${raw}"
+detect_extensions = []
