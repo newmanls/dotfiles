@@ -15,4 +15,6 @@ require('paq') {
     'echasnovski/mini.nvim';
     'jghauser/mkdir.nvim';
     'norcalli/nvim-colorizer.lua';
+    'nvim-tree/nvim-tree.lua';
+    'nvim-tree/nvim-web-devicons';
 }

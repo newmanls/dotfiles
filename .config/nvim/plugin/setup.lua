@@ -17,6 +17,13 @@ require('mini.jump2d').setup({
 require('mini.pairs').setup()
 require('mini.surround').setup()
 require('mini.trailspace').setup()
+require('nvim-tree').setup({
+    actions = {
+        open_file = {
+            quit_on_open = true
+        }
+    }
+})
 
 require("catppuccin").setup({
     integrations = { mini = true }
