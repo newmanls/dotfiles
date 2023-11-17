@@ -17,4 +17,5 @@ require('paq') {
     'norcalli/nvim-colorizer.lua';
     'nvim-tree/nvim-tree.lua';
     'nvim-tree/nvim-web-devicons';
+    'mzlogin/vim-markdown-toc';
 }
