@@ -1,3 +1,5 @@
+! vi: ft=xdefaults
+
 *.background:  #1d2021
 *.foreground:  #d4be98
 *.cursorColor: #d4be98
