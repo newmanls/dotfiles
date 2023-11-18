@@ -1,4 +1,4 @@
-#include "themes/catppuccin-mocha"
+#include "themes/kanagawa.Xresources"
 
 *.font:     Iosevka Nerd Font Mono-11
 dmenu.font: Iosevka Nerd Font-9
