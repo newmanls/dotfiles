@@ -2,15 +2,28 @@ require('nvim-treesitter.configs').setup({
     ensure_installed = {
         'bash',
         'c',
+        'cmake',
         'css',
+        'git_config',
+        'git_rebase',
+        'gitattributes',
+        'gitcommit',
+        'gitignore',
         'html',
+        'ini',
         'javascript',
+        'json',
+        'latex',
         'lua',
+        'make',
         'markdown',
         'markdown_inline',
+        'passwd',
         'python',
+        'toml',
         'vim',
-        'vimdoc'
+        'vimdoc',
+        'yaml'
     },
     highlight = { enable = true }
 })
