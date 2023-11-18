@@ -5,6 +5,7 @@
 @import "tweaks/center-unfocused-urlbar.css";
 @import "tweaks/sidebar-styling.css";
 @import "tweaks/tabs-below-navbar.css";
+@import "icons/papirus/icons.css";
 
 /* reduce outlines width */
 #urlbar[focused="true"]:not([suppress-focus-border]) > #urlbar-background,

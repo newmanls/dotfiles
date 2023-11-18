@@ -37,5 +37,8 @@ user_pref("signon.prefillForms", false);
 // Enable userChrome
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 
+// Enable SVG context-propertes
+user_pref("svg.context-properties.content.enabled", true);
+
 // Disable all tabs dropdown menu
 user_pref("browser.tabs.tabmanager.enabled", false);
