@@ -24,9 +24,16 @@ require('nvim-tree').setup({
         }
     }
 })
-
-require("catppuccin").setup({
-    integrations = { mini = true }
+require('kanagawa').setup({
+    colors = {
+        theme = {
+            all = {
+                ui = {
+                    bg_gutter = "none"
+                }
+            }
+        }
+    }
 })
 
-vim.cmd('colorscheme catppuccin-mocha')
+vim.cmd('colorscheme kanagawa')

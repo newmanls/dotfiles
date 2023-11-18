@@ -6,7 +6,7 @@ require('paq') {
 
     -- Syntax highlighting
     { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' };
-    { 'catppuccin/nvim', as = 'catppuccin' };
+    'rebelot/kanagawa.nvim';
 
     -- Utils
     'mattn/emmet-vim';
