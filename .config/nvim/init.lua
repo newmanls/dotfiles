@@ -5,13 +5,13 @@ require('paq') {
     'savq/paq-nvim';
 
     -- Syntax highlighting
-    { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' };
+    { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' };
     { 'catppuccin/nvim', as = 'catppuccin' };
 
     -- Utils
     'mattn/emmet-vim';
-    'mbpowers/lorem-nvim';
-    { 'iamcco/markdown-preview.nvim', run = ':call mkdp#util#install' };
+    'derektata/lorem.nvim';
+    { 'iamcco/markdown-preview.nvim', build = ':call mkdp#util#install' };
     'echasnovski/mini.nvim';
     'jghauser/mkdir.nvim';
     'norcalli/nvim-colorizer.lua';
