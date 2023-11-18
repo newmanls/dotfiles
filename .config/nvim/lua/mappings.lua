@@ -23,7 +23,7 @@ vim.keymap.set('n', '<Esc>', '<Cmd>noh<CR>')
 
 -- Plugins mappings
 vim.keymap.set('i' , '<C-l>', '<Cmd>LoremIpsum<CR>')
-vim.keymap.set('', '<leader>', '<Cmd>ColorizerToggle<CR>')
+vim.keymap.set('', '<leader>c', '<Cmd>ColorizerToggle<CR>')
 vim.keymap.set('', '<leader>p', '<Plug>MarkdownPreviewToggle')
 vim.keymap.set('', '<leader>t', '<Cmd>NvimTreeToggle<CR>')
 
