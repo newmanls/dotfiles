@@ -1,35 +1,58 @@
+local map = vim.keymap.set
+
 require('terminal')
 
 vim.g.mapleader = ' '
 
 -- Write and quit
-vim.keymap.set('', '<leader>w', '<Cmd>write<CR>')
-vim.keymap.set('', '<leader>q', '<Cmd>quit<CR>')
+map('', '<C-s>', '<Cmd>write<CR>')
 
 -- Move between visible lines
-vim.keymap.set('', 'j', 'gj')
-vim.keymap.set('', 'k', 'gk')
+map('', 'j', 'gj')
+map('', 'k', 'gk')
 
 -- Split window
-vim.keymap.set('n', '<leader>s', ':split ')
-vim.keymap.set('n', '<leader>v', ':vsplit ')
+map('n', '<leader>s', ':split ')
+map('n', '<leader>v', ':vsplit ')
 
 -- Reselect text after (un)indentation.
-vim.keymap.set('v', '<', '<gv')
-vim.keymap.set('v', '>', '>gv')
+map('v', '<', '<gv')
+map('v', '>', '>gv')
 
 -- Remove highlights
-vim.keymap.set('n', '<Esc>', '<Cmd>noh<CR>')
+map('n', '<Esc>', '<Cmd>noh<CR>')
+
+-- TermToggle
+map({ '', 't' }, '<A-CR>', function() ToggleTerminal() end)
 
 -- Plugins mappings
-vim.keymap.set('i' , '<C-l>', '<Cmd>LoremIpsum<CR>')
-vim.keymap.set('', '<leader>c', '<Cmd>ColorizerToggle<CR>')
-vim.keymap.set('', '<leader>p', '<Plug>MarkdownPreviewToggle')
-vim.keymap.set('', '<leader>t', '<Cmd>NvimTreeToggle<CR>')
+map('i' , '<C-l>', '<Cmd>LoremIpsum<CR>')
+map('n', '<leader>ct', '<Cmd>ColorizerToggle<CR>')
+map('n', '<leader>t', '<Cmd>NvimTreeToggle<CR>')
+map('', '<leader>p', '<Plug>MarkdownPreviewToggle')
 
-vim.keymap.set('', '<CR>', function()
+map('', '<CR>', function()
     MiniJump2d.start(require('mini.jump2d').builtin_opts.single_character)
 end)
 
--- TermToggle
-vim.keymap.set({ '', 't' }, '<A-CR>', function() ToggleTerminal() end)
+-- LSP
+map('n', '[d', vim.diagnostic.goto_prev)
+map('n', ']d', vim.diagnostic.goto_next)
+map('n', '<leader>q', vim.diagnostic.setloclist)
+
+vim.api.nvim_create_autocmd('LspAttach', {
+    group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+    callback = function(ev)
+        -- Enable completion triggered by <c-x><c-o>
+        vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+
+        local opts = { buffer = ev.buf }
+        map('n', 'gD', vim.lsp.buf.declaration, opts)
+        map('n', 'gd', vim.lsp.buf.definition, opts)
+        map('n', 'K', vim.lsp.buf.hover, opts)
+        map('n', 'gr', vim.lsp.buf.references, opts)
+        map('n', '<leader>f', function()
+            vim.lsp.buf.format { async = true }
+        end, opts)
+    end
+})
