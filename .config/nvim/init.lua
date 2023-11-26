@@ -3,19 +3,23 @@ require('mappings')
 require('paq') {
     -- Plugin Manager
     'savq/paq-nvim';
+    'williamboman/mason.nvim';
 
     -- Syntax highlighting
     { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' };
     'rebelot/kanagawa.nvim';
+    'norcalli/nvim-colorizer.lua';
 
-    -- Utils
+    -- Autocompletion
     'mattn/emmet-vim';
     'derektata/lorem.nvim';
+    'mzlogin/vim-markdown-toc';
+    'neovim/nvim-lspconfig';
+
+    -- Utils
     { 'iamcco/markdown-preview.nvim', build = ':call mkdp#util#install' };
     'echasnovski/mini.nvim';
     'jghauser/mkdir.nvim';
-    'norcalli/nvim-colorizer.lua';
     'nvim-tree/nvim-tree.lua';
     'nvim-tree/nvim-web-devicons';
-    'mzlogin/vim-markdown-toc';
 }
