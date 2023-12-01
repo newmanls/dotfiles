@@ -10,11 +10,12 @@ require('paq') {
     'rebelot/kanagawa.nvim';
     'norcalli/nvim-colorizer.lua';
 
-    -- Autocompletion
+    -- Autocompletion and formatting
     'mattn/emmet-vim';
     'derektata/lorem.nvim';
     'mzlogin/vim-markdown-toc';
     'neovim/nvim-lspconfig';
+    'tell-k/vim-autopep8';
 
     -- Utils
     { 'iamcco/markdown-preview.nvim', build = ':call mkdp#util#install' };
