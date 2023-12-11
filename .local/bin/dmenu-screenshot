@@ -4,9 +4,38 @@
 
 set -euo pipefail
 
+gen_filename() {
+    date +%Y%m%d_%H%M%S
+}
+
+is_recording() {
+    pgrep ffmpeg > /dev/null 2>&1
+}
+
+start_recording() {
+    ffmpeg -f x11grab \
+        -i :0.0 \
+        -c:v libx264 \
+        -quality realtime \
+        -framerate 25 \
+        -profile:v baseline \
+        -pix_fmt yuv420p \
+        "${ssdir}/$(gen_filename).mp4" &
+
+    notify-send -i "record-desktop" "Record started"
+}
+
+stop_recording() {
+    pkill ffmpeg &&
+        notify-send -i "record-desktop" "Record stopped" \
+            -A "xdg-open ${filepath}"=Open \
+            "Screenshot saved" \
+            "You can also paste the image from the clipboard." |
+            bash
+}
+
 take_screenshot() {
-    filename="$(date +%Y%m%d_%H%M%S).png"
-    filepath="${ssdir}/${filename}"
+    filepath="${ssdir}/$(gen_filename).png"
 
     mkdir -p "${ssdir}"
     import -silent "${@}" "${filepath}"
@@ -22,14 +51,24 @@ take_screenshot() {
             bash
 }
 
+is_recording && stop_recording && exit 0
+
 ssdir="${HOME}/Pictures/Screenshots"
 timer_delay=3
-options="Fullscreen\nWindow\nSelect region\nTimer (${timer_delay}s)"
+
+fullscreen="Fullscreen"
+window="Window"
+select="Select region"
+timer="Timer (${timer_delay}s)"
+record="Start recording"
+
+options="${fullscreen}\n${window}\n${select}\n${timer}\n${record}"
 chosen="$(printf "%b\n" "${options}" | dmenu -p "Take screenshot")"
 
 case "${chosen}" in
-    Fullscreen) take_screenshot -window root ;;
-    Window)     take_screenshot -window "$(xdotool getactivewindow)" ;;
-    Select*)    take_screenshot ;;
-    Timer*)     take_screenshot -window root -pause "${timer_delay}" ;;
+    "${fullscreen}") take_screenshot -window root ;;
+    "${window}")     take_screenshot -window "$(xdotool getactivewindow)" ;;
+    "${select}")     take_screenshot ;;
+    "${timer}")      take_screenshot -window root -pause "${timer_delay}" ;;
+    "${record}")     start_recording ;;
 esac
