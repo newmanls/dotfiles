@@ -3,6 +3,7 @@ local map = vim.keymap.set
 require('terminal')
 
 vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 -- Write and quit
 map('', '<C-s>', '<Cmd>write<CR>')
@@ -12,7 +13,7 @@ map('', 'j', 'gj')
 map('', 'k', 'gk')
 
 -- Split window
-map('n', '<leader>s', ':split ')
+map('n', '<leader>x', ':split ')
 map('n', '<leader>v', ':vsplit ')
 
 -- Reselect text after (un)indentation.
@@ -27,7 +28,7 @@ map({ '', 't' }, '<A-CR>', function() ToggleTerminal() end)
 
 -- Plugins mappings
 map('i' , '<C-l>', '<Cmd>LoremIpsum<CR>')
-map('n', '<leader>ct', '<Cmd>ColorizerToggle<CR>')
+map('n', '<leader>c', '<Cmd>ColorizerToggle<CR>')
 map('n', '<leader>t', '<Cmd>NvimTreeToggle<CR>')
 map('', '<leader>p', '<Plug>MarkdownPreviewToggle')
 

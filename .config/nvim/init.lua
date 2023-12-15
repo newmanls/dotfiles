@@ -16,6 +16,7 @@ require('paq') {
     'mzlogin/vim-markdown-toc';
     'neovim/nvim-lspconfig';
     'tell-k/vim-autopep8';
+    'lervag/vimtex';
 
     -- Utils
     { 'iamcco/markdown-preview.nvim', build = ':call mkdp#util#install' };

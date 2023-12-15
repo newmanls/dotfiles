@@ -63,7 +63,7 @@ case "${file_mimetype}" in
     *opendocument*)
         odt2txt "${file}" && exit 1 ;;
 
-    text/*|application/json)
+    text/*|application/json|application/javascript)
         fold -sw "${pv_width}" "${file}" && exit 1 ;;
 esac
 
