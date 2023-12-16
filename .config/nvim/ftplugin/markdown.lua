@@ -2,4 +2,4 @@ vim.opt_local.colorcolumn = '0'
 vim.opt_local.spell = true
 vim.opt_local.spelllang = 'es'
 
-vim.g.mkdp_page_title = '${name}' -- markdown-preview.nvim
+vim.keymap.set('n', '<f5>', '<Cmd>PeekOpen<CR>')

@@ -30,7 +30,6 @@ map({ '', 't' }, '<A-CR>', function() ToggleTerminal() end)
 map('i' , '<C-l>', '<Cmd>LoremIpsum<CR>')
 map('n', '<leader>c', '<Cmd>ColorizerToggle<CR>')
 map('n', '<leader>t', '<Cmd>NvimTreeToggle<CR>')
-map('', '<leader>p', '<Plug>MarkdownPreviewToggle')
 
 map('', '<CR>', function()
     MiniJump2d.start(require('mini.jump2d').builtin_opts.single_character)
