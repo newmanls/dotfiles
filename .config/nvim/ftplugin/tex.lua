@@ -3,4 +3,4 @@ vim.opt_local.shiftwidth = 2
 vim.opt_local.spell = true
 vim.opt_local.spelllang = 'es'
 
-vim.keymap.set('n', '<f5>', '<Plug>(vimtex-compile)')
+vim.keymap.set('n', '<f5>', '<Cmd>VimtexCompile<CR>')
