@@ -27,7 +27,7 @@ map('n', '<Esc>', '<Cmd>noh<CR>')
 map({ '', 't' }, '<A-CR>', function() ToggleTerminal() end)
 
 -- Plugins mappings
-map('i' , '<C-l>', '<Cmd>LoremIpsum<CR>')
+map('i', '<C-l>', '<Cmd>LoremIpsum<CR>')
 map('n', '<leader>c', '<Cmd>ColorizerToggle<CR>')
 map('n', '<leader>t', '<Cmd>NvimTreeToggle<CR>')
 
