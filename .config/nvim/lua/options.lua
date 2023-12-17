@@ -1,7 +1,7 @@
 -- Interface
 vim.opt.colorcolumn = '80'
 vim.opt.cursorline = true
-vim.opt.laststatus = 3
+vim.opt.laststatus = 2
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.syntax = 'on'
@@ -30,11 +30,4 @@ vim.opt.smartcase = true
 -- Autocommands
 vim.api.nvim_create_autocmd('TextYankPost', {
     callback = function() vim.highlight.on_yank() end
-})
-
-vim.api.nvim_create_autocmd('BufWrite', {
-    callback = function()
-        MiniTrailspace.trim()
-        MiniTrailspace.trim_last_lines()
-    end
 })
