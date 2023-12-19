@@ -10,8 +10,9 @@ if is_muted; then
     volume="muted"
     label="󰎊 "
 else
-    volume=$(pactl get-sink-volume @DEFAULT_SINK@ | head -n1 | cut -d'/' -f2)
+    volume=$(pactl get-sink-volume @DEFAULT_SINK@ |
+        head -n1 | cut -d'/' -f2 | tr -d ' %')
     label="󰎈"
 fi
 
-printf "%s %s\n" "$label" "${volume// /}"
+printf "%s %s\n" "$label" "${volume}"
