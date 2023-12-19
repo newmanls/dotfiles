@@ -4,10 +4,10 @@ set format_playlist= %a - %t %= %d
 set altformat_playlist= %F %= %d
 
 set format_trackwin_album= %l %{?y?(%y)}
-set format_trackwin=  %{?n?%2n. }%t %= %d
+set format_trackwin=  %{?n?%3n. }%t %= %d
 set altformat_trackwin=  %F %= %d
 
-set format_current= %A %{?l?"%l" %{?y?(%y) }}- %t
+set format_current= %{?a?%a %{?l?"%l" }%{?y?(%y) }- }%t
 set altformat_current= %F
 set status_display_program=update-block-cmus
 
