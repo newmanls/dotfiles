@@ -36,6 +36,7 @@ LABELS = {
 }
 SEPARATOR = "   "
 
+
 def check_modules(defined_modules):
     modules = []
     battery = '/sys/class/power_supply/{}/'.format(MODULES['battery'])
@@ -58,20 +59,28 @@ def check_modules(defined_modules):
 
     return modules
 
+
 def battery():
     battery = '/sys/class/power_supply/{}/'.format(MODULES['battery'])
 
     status = open(path.join(battery, 'status')).read().strip()
     capacity = int(open(path.join(battery, "capacity")).read())
 
-    if status == 'Charging': label = LABELS['battery_charging']
-    elif capacity >= 80: label = LABELS['battery_full']
-    elif capacity >= 60: label = LABELS['battery_high']
-    elif capacity >= 40: label = LABELS['battery_medium']
-    elif capacity >= 20: label = LABELS['battery_low']
-    else: label = LABELS['battery_alert']
+    if status == 'Charging':
+        label = LABELS['battery_charging']
+    elif capacity >= 80:
+        label = LABELS['battery_full']
+    elif capacity >= 60:
+        label = LABELS['battery_high']
+    elif capacity >= 40:
+        label = LABELS['battery_medium']
+    elif capacity >= 20:
+        label = LABELS['battery_low']
+    else:
+        label = LABELS['battery_alert']
 
     return '{} {}%'.format(label, capacity)
+
 
 def cmus():
     keys = ["status", "file", "tag title", "tag artist", "stream"]
@@ -99,8 +108,10 @@ def cmus():
 
         return label + output
 
+
 def date():
     return LABELS["date"] + datetime.now().strftime("%a %b %d %H:%M")
+
 
 def network():
     output = getoutput("nmcli -t -g NAME,TYPE connection show --active")
@@ -109,7 +120,7 @@ def network():
     try:
         network_name, network_type = networks[0].split(":")
     except:
-        network_name, network_type  = "disconnected", "none"
+        network_name, network_type = "disconnected", "none"
 
     if network_type.endswith("ethernet"):
         label = LABELS["network_on"]
@@ -120,19 +131,21 @@ def network():
 
     return label + network_name
 
+
 def pulseaudio():
-    muted = getoutput("pactl get-sink-mute @DEFAULT_SINK@") \
-        .removeprefix("Mute: ")
+    muted = getoutput(
+        "pactl get-sink-mute @DEFAULT_SINK@").removeprefix("Mute: ")
 
     if muted == "yes":
         volume = "muted"
         label = LABELS["volume_muted"]
     else:
-        volume = getoutput("pactl get-sink-volume @DEFAULT_SINK@") \
-            .split("/")[1].strip()
+        volume = getoutput(
+            "pactl get-sink-volume @DEFAULT_SINK@").split("/")[1].strip()
         label = LABELS["volume"]
 
     return label + volume
+
 
 if __name__ == "__main__":
     try:
@@ -145,5 +158,5 @@ if __name__ == "__main__":
     while True:
         output = [eval(module)() for module in modules]
         status = SEPARATOR.join([item for item in output if type(item) is str])
-        run(["xsetroot", "-name", " {} ".format(status)])
+        run(["xprop", "-root", "-set", "WM_NAME", " {} ".format(status)])
         sleep(0.25)

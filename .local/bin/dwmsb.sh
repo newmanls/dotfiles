@@ -7,7 +7,7 @@ is_installed() {
 }
 
 sb_backlight() {
-    local backlight max_brightnes actual_brightness brightness icon
+    local backlight max_brightness actual_brightness brightness icon
 
     backlight="/sys/class/backlight/intel_backlight/"
 
@@ -49,7 +49,7 @@ sb_battery() {
 sb_cmus() {
     is_installed cmus || return 0
 
-    local max_length query status artist title info file filename info
+    local max_length query status artist title info file info
 
     max_length=90   # Label max length. Setting it to 0 disables cut-off.
 
@@ -117,7 +117,8 @@ sb_volume() {
 sb_wifi() {
     is_installed nmcli || return 0
 
-    local ssid=$(nmcli -t -g name connection show --active | grep -xv lo)
+    local ssid
+    ssid=$(nmcli -t -g name connection show --active | grep -xv lo)
 
     if [ "${ssid}" ]; then
         printf "直  %s" "${ssid}"
@@ -141,17 +142,17 @@ print_help() {
 main() {
     local modules status
 
-    modules="${@}"
+    modules="${*}"
 
     while true; do
         status=''
 
         for module in ${modules}; do
-            module_output=$(sb_${module})
+            module_output=$(sb_"${module}")
             [ "${module_output}" ] && status+=" ${module_output} "
         done
 
-        xsetroot -name "${status}" && sleep 0.5
+        xprop -root -set WM_NAME "${status}" && sleep 0.5
     done
 }
 
