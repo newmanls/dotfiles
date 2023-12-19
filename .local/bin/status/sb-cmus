@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+which cmus > /dev/null 2>&1 || exit 1
+
+getinfo() {
+    grep -w "$1" <<< "$query" | sed "s/$1 //1" 2> /dev/null || exit 0
+}
+
+query=$(cmus-remote -Q 2> /dev/null) || exit 1
+status="$(getinfo "status")"
+
+case "$status" in
+    stopped)
+        exit 0 ;;
+    playing)
+        label="󰐊" ;;
+    paused)
+        label="󰏤" ;;
+    *)
+        label="󰝚" ;;
+esac
+
+stream=$(getinfo "stream")
+artist=$(getinfo "tag artist")
+title=$(getinfo "tag title")
+
+if [ "$stream" ]; then
+    info="$stream"
+elif [ "$artist" ] && [ "$title" ]; then
+    info="$artist - $title"
+else
+    info=$(getinfo "file")
+    info="${info##*/}"
+fi
+
+# Label max length. Setting it to 0 disables cut-off.
+max_length=90
+
+if (( max_length > 0 && ${#info} > max_length )); then
+    info="${info:0:(( max_length - 1 ))}…"
+fi
+
+printf "%s %s\n" "$label" "$info"

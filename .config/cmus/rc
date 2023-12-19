@@ -9,8 +9,9 @@ set altformat_trackwin=  %F %= %d
 
 set format_current= %A %{?l?"%l" %{?y?(%y) }}- %t
 set altformat_current= %F
+set status_display_program=update-block-cmus
 
-set format_statusline= %{status} %{?show_playback_position?%{position} %{?duration?/ %{duration} }?%{?duration?%{duration} }}• %{?volume>=0?vol %{?lvolume!=rvolume?%{lvolume},%{rvolume} ?%{volume} }}%{?stream?buf %{buffer} }%{?show_current_bitrate & bitrate>=0? %{bitrate} kbps }%=%{?repeat_current?repeat current?%{?play_library?%{playlist_mode} from %{?play_sorted?sorted }library?playlist}} • %1{continue}%1{follow}%1{repeat}%1{shuffle} 
+set format_statusline= %{status} %{?show_playback_position?%{position} %{?duration?/ %{duration} }?%{?duration?%{duration} }}• %{?volume>=0?vol %{?lvolume!=rvolume?%{lvolume},%{rvolume} ?%{volume} }}%{?stream?buf %{buffer} }%{?show_current_bitrate & bitrate>=0? %{bitrate} kbps }%=%{?repeat_current?repeat current?%{?play_library?%{playlist_mode} from %{?play_sorted?sorted }library?playlist}} • %1{continue}%1{follow}%1{repeat}%1{shuffle}
 
 colorscheme clean
 bind -f common q quit

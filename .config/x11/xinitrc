@@ -8,7 +8,7 @@ fi
 
 xrdb "${XDG_CONFIG_HOME:-$HOME/.config}/x11/Xresources"
 setxkbmap us altgr-intl &
-dwmsb.py &
+dwmblocks &
 setbg &
 lxpolkit &
 
