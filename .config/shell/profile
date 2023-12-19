@@ -7,8 +7,8 @@ export TERM='st-256color'
 export TERMINAL='st'
 
 # Settings
-export PATH="${HOME}/.local/bin:${PATH}"
-# export DWMSB_MODULES="cmus pulseaudio network date"
+# Add all directories in `~/.local/bin` to $PATH
+export PATH="$PATH:$(find "${HOME}/.local/bin" -type d | paste -sd ':' -)"
 export HISTCONTROL='ignoredups'
 export QT_QPA_PLATFORMTHEME='gtk2'
 
@@ -19,5 +19,5 @@ export INPUTRC="${XDG_CONFIG_HOME}/shell/inputrc"
 export XINITRC="${XDG_CONFIG_HOME}/x11/xinitrc"
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 
-[ -z "${DISPLAY}" -a ${XDG_VTNR:-0} -eq 1 ] &&
+[ -z "${DISPLAY}" ] && [ "${XDG_VTNR:-0}" -eq 1 ] &&
     exec startx -- -keeptty >/dev/null 2>&1
