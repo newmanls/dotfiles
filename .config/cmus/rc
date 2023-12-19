@@ -3,6 +3,9 @@ set scroll_offset=4
 set format_playlist= %a - %t %= %d
 set altformat_playlist= %F %= %d
 
+set format_title=%{?a?%a %{?l?"%l" }%{?y?(%y) }- }%t
+set altformat_title=%F
+
 set format_trackwin_album= %l %{?y?(%y)}
 set format_trackwin=  %{?n?%3n. }%t %= %d
 set altformat_trackwin=  %F %= %d
