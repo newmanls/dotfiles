@@ -18,9 +18,10 @@
 
 // Define blocks for the status feed as X(cmd, interval, signal).
 #define BLOCKS(X) \
-    X("sb-cmus",    0,  4) \
-    X("sb-volume",  0,  3) \
-    X("sb-network", 5,  2) \
-    X("sb-date",    60, 1)
+    X("sb-cmus",    0,     4) \
+    X("sb-dollar",  43200, 5) \
+    X("sb-volume",  0,     3) \
+    X("sb-network", 5,     2) \
+    X("sb-date",    60,    1)
 
 #endif  // CONFIG_H

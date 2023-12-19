@@ -1,0 +1,22 @@
+#!/usr/bin/env python3
+# api from https://github.com/fcoagz/api-pydolarvenezuela/tree/main/src
+
+import requests
+
+try:
+    url = 'https://pydolarvenezuela-api.vercel.app/api/v1/dollar/'
+    req = requests.get(url)
+    data = req.json()['monitors']
+    monitors = ['bcv', 'enparalelovzla']
+    prices = []
+
+    for monitor in monitors:
+        if monitor in data:
+            prices.append(f'{data[monitor]["price"]:.2f}')
+        else:
+            prices.append('??')
+
+    print(f' {" / ".join(prices)}')
+
+except:
+    pass
