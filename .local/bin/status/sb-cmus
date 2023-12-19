@@ -37,7 +37,7 @@ fi
 max_length=90
 
 if (( max_length > 0 && ${#info} > max_length )); then
-    info="${info:0:(( max_length - 1 ))}…"
+    info="${info:0:(( max_length - 3 ))}..."
 fi
 
 printf "%s %s\n" "$label" "$info"
