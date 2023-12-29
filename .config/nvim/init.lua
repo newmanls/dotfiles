@@ -11,7 +11,7 @@ require('paq') {
 
     -- Syntax highlighting
     { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' };
-    'rebelot/kanagawa.nvim';
+    'sainnhe/gruvbox-material';
     'norcalli/nvim-colorizer.lua';
 
     -- Autocompletion and formatting
@@ -25,7 +25,6 @@ require('paq') {
     { 'toppair/peek.nvim', build = 'deno task --quiet build:fast' };
     'echasnovski/mini.nvim';
     'jghauser/mkdir.nvim';
-    'nvim-tree/nvim-tree.lua';
     'nvim-tree/nvim-web-devicons';
     'tpope/vim-dadbod';
 }

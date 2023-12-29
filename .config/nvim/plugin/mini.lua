@@ -1,6 +1,16 @@
 require('mini.align').setup()
 require('mini.comment').setup()
 require('mini.completion').setup()
+require('mini.files').setup({
+    mappings = {
+        go_in_plus  = 'l',
+        go_out_plus = 'h',
+    },
+    windows = {
+        preview = true,
+    }
+})
+
 require('mini.indentscope').setup({
     draw = {
         delay = 0,
@@ -38,11 +48,21 @@ require('mini.surround').setup({
         },
     },
 })
+
 require('mini.trailspace').setup()
 
+-- Autocommands
 vim.api.nvim_create_autocmd('BufWrite', {
     callback = function()
         MiniTrailspace.trim()
         MiniTrailspace.trim_last_lines()
     end
 })
+
+-- Mappings
+local map = vim.keymap.set
+
+map('n', '<leader>t', function() MiniFiles.open() end)
+map('', '<CR>', function()
+    MiniJump2d.start(require('mini.jump2d').builtin_opts.single_character)
+end)

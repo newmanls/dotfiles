@@ -1,4 +1,4 @@
-#include "themes/kanagawa"
+#include "themes/gruvbox-material-dark"
 
 *.font:     Iosevka Nerd Font Mono-11
 dmenu.font: Iosevka Nerd Font-9
