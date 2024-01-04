@@ -1,0 +1,72 @@
+#!/usr/bin/env python3
+# API from https://openweathermap.org/
+# You'll need an API Key from https://openweathermap.org/
+
+import requests
+
+api_key = ''
+latitude = ''
+longitude = ''
+units = 'metric'
+api = f'https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&units={units}&appid={api_key}'
+
+try:
+    req = requests.get(api)
+    data = req.json()
+    temp = data['main']['temp']
+    icon_code = data['weather'][0]['icon']
+
+    match icon_code:
+        # clear sky
+        case '01d':
+            icon = ' '
+        case '01n':
+            icon = ' '
+        # few clouds
+        case '02d':
+            icon = ' '
+        case '02n':
+            icon = ' '
+        # scattered clouds
+        case '03d':
+            icon = '󰖐 '
+        case '03n':
+            icon = '󰖐 '
+        # broken clouds
+        case '04d':
+            icon = ' '
+        case '04n':
+            icon = ' '
+        # shower rain
+        case '09d':
+            icon = ' '
+        case '09n':
+            icon = ' '
+        # rain
+        case '10d':
+            icon = ' '
+        case '10n':
+            icon = ' '
+        # thunderstorm
+        case '11d':
+            icon = ' '
+        case '11n':
+            icon = ' '
+        # snow
+        case '13d':
+            icon = '󰖘 '
+        case '13n':
+            icon = '󰖘 '
+        # mist
+        case '50d':
+            icon = ' '
+        case '50n':
+            icon = ' '
+        # default
+        case _:
+            icon = '󰨹'
+
+    print(f'{icon} {temp}°C')
+
+except:
+    pass
