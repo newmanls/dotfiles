@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -Ceo pipefail
+set -Co pipefail
 
 file="$1"
 file_extension="${file##*.}"
@@ -58,7 +58,16 @@ case "${file_mimetype}" in
         thumbnail_pv && exit 1 ;;
 
     image/*)
-        image_pv "${file}" && exit 1 ;;
+        image_pv "${file}" && exit 1
+        magick identify "$file" && exit 1
+        ;;
+
+    audio/*)
+        id3v2 -l "$file" |
+            sed 's/^\(id3v. tag info\) for .*/=== \1 ===/' |
+            fold -sw "${pv_width}" &&
+            exit 1
+        ;;
 
     *opendocument*)
         odt2txt "${file}" && exit 1 ;;
@@ -67,6 +76,6 @@ case "${file_mimetype}" in
         fold -sw "${pv_width}" "${file}" && exit 1 ;;
 esac
 
-printf "%s\n" "--- File Type Classification ---" \
+printf "%s\n" "=== File Type Classification ===" \
     "$(file --dereference --brief -- "${file}")" |
     fold -sw "${pv_width}" && exit 1
