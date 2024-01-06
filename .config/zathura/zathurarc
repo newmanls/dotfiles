@@ -9,4 +9,4 @@ set statusbar-basename      true
 set zoom-center             true
 set selection-clipboard     clipboard
 
-include 'themes/kanagawa'
+include 'themes/gruvbox-material-dark'
