@@ -1,13 +1,3 @@
 #!/usr/bin/env bash
 
-# Arguments:
-#   $1: path to image file
-#   $2: image width
-#   $3: image height
-
-file="${1}"
-size=$(du -Hh -- "$file" | cut -f 1)
-width="${2}"
-height="${3}"
-
-printf '%s (%s) | %sx%s' "${file##*/}" "${size}" "${width}" "${height}"
+magick identify "${1##*/}"
