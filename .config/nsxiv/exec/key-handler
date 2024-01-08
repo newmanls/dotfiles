@@ -2,52 +2,50 @@
 
 set -euo pipefail
 
-copy() {
-    case "${1}" in
-        image) xclip -selection clipboard -target image/png "${files[@]}" ;;
-        path)  printf "'%s' " "${files[@]}" | xclip -selection clipboard ;;
-    esac
-}
-
-open_with_editor() {
-    editor="gimp"
-
-    if which "${editor}" > /dev/null 2>&1; then
-        setsid -f "${editor}" "${files[@]}"
-    fi
-}
-
-remove() {
-    nfiles=${#files[@]}
-
-    if (( nfiles > 1 )); then
-        prompt="delete ${nfiles} files?"
-    else
-        prompt="delete '${files[0]##*/}'?"
-    fi
-
-    dmenu-prompt "${prompt}" && rm "${files[@]}"
-}
-
 rotate() {
-    degree="${1}"
+    degree="$1"
 
     for file in "${files[@]}"; do
-        mogrify -rotate "${degree}" "${file}"
+        mogrify -rotate "$degree" "$file"
     done
 }
 
-while read -r file; do 
-    file="$(realpath "${file}")"
-    files+=("${file}")
+while read -r file; do
+    file="$(realpath "$file")"
+    files+=("$file")
 done
 
-case "${1}" in
-    d) remove ;;
-    e) open_with_editor ;;
-    r) rotate 90 ;;
-    R) rotate 270 ;;
+case "$1" in
+    d) # Remove
+        nfiles=${#files[@]}
+
+        if (( nfiles > 1 )); then
+            prompt="delete ${nfiles} files?"
+        else
+            prompt="delete '${files[0]##*/}'?"
+        fi
+
+        dmenu-prompt "$prompt" && rm "${files[@]}"
+        ;;
+    e) # Edit
+        setsid -f gimp "${files[@]}"
+        ;;
+    r) # Rotate right
+        magick rotate 90
+        ;;
+    R) # Rotate left
+        magick rotate 270
+        ;;
     w) setbg "${files[@]}" & ;;
-    y) copy image ;;
-    Y) copy path ;;
+    y) # Copy to clipboard
+        xclip -selection clipboard -target image/png "${files[@]}"
+        ;;
+    Y) # Copy paths to clipboard
+        printf "'%s' " "${files[@]}" | xclip -selection clipboard
+        ;;
+    l) # Save to lf copy buffer
+        lf_sel_file="${XDG_DATA_HOME:-$HOME/.local/share}/lf/files"
+        printf "copy\n" > "$lf_sel_file"
+        printf "%s\n" "${files[@]}" >> "$lf_sel_file"
+        ;;
 esac
