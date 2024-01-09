@@ -1,1 +1,1 @@
-colorscheme gruvbox-material
+colorscheme onedark

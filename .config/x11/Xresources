@@ -1,4 +1,4 @@
-#include "themes/gruvbox-material-dark"
+#include "themes/onedark-warmer"
 
 *.font:     Iosevka Nerd Font Mono-11
 dmenu.font: Iosevka Nerd Font-9

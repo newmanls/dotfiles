@@ -11,7 +11,7 @@ require('paq') {
 
     -- Syntax highlighting
     { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' };
-    'sainnhe/gruvbox-material';
+    'navarasu/onedark.nvim';
     'norcalli/nvim-colorizer.lua';
 
     -- Autocompletion and formatting

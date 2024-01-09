@@ -1,0 +1,37 @@
+! vi: ft=xdefaults
+
+*.background:  #232326
+*.foreground:  #a7aab0
+*.cursorColor: #a7aab0
+
+! black
+*.color0:      #101012
+*.color8:      #35363b
+
+! red
+*.color1:      #de5d68
+*.color9:      #de5d68
+
+! green
+*.color2:      #8fb573
+*.color10:     #8fb573
+
+! yellow
+*.color3:      #dbb671
+*.color11:     #dbb671
+
+! blue
+*.color4:      #57a5e5
+*.color12:     #57a5e5
+
+! magenta
+*.color5:      #bb70d2
+*.color13:     #bb70d2
+
+! cyan
+*.color6:      #51a8b3
+*.color14:     #51a8b3
+
+! white
+*.color7:      #5a5b5e
+*.color15:     #a0a8b7

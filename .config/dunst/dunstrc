@@ -35,7 +35,7 @@
     mouse_right_click = context
     ignore_dbusclose = false
 
-    frame_color = "#282c34"
+    frame_color = "#35363b"
     min_icon_size = 0
     max_icon_size = 42
     icon_position = left
@@ -47,24 +47,24 @@
     per_monitor_dpi = false
 
 [urgency_low]
-    background = "#181b20"
-    foreground = "#a0a8b7"
-    highlight = "#535965"
+    background = "#101012"
+    foreground = "#a7aab0"
+    highlight = "#5a5b5e"
     timeout = 3
     icon = gnome-info
 
 [urgency_normal]
-    background = "#181b20"
-    foreground = "#a0a8b7"
-    highlight = "#535965"
+    background = "#101012"
+    foreground = "#a7aab0"
+    highlight = "#5a5b5e"
     timeout = 5
     icon = gnome-info
 
 [urgency_critical]
-    background = "#181b20"
-    foreground = "#a0a8b7"
-    frame_color = "#e2b86b"
-    highlight = "#535965"
+    background = "#101012"
+    foreground = "#a7aab0"
+    frame_color = "#dbb671"
+    highlight = "#5a5b5e"
     timeout = 5
     icon = gnome-warning
 
