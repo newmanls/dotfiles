@@ -9,7 +9,7 @@ autoload -Uz colors && colors
 autoload -Uz compinit && compinit
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 
-setopt autocd nomatch interactive_comments menu_complete
+setopt autocd nomatch interactive_comments
 unsetopt beep notify
 
 zmodload zsh/complist
