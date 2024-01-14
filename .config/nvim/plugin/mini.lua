@@ -24,6 +24,7 @@ require('mini.jump2d').setup({
     mappings = { start_jumping = '' }
 })
 
+require('mini.notify').setup()
 require('mini.pairs').setup()
 require('mini.surround').setup({
     custom_surroundings = {
@@ -62,7 +63,7 @@ vim.api.nvim_create_autocmd('BufWrite', {
 -- Mappings
 local map = vim.keymap.set
 
-map('n', '<leader>t', function() MiniFiles.open() end)
+map('n', '<leader>e', function() MiniFiles.open() end)
 map('', '<CR>', function()
     MiniJump2d.start(require('mini.jump2d').builtin_opts.single_character)
 end)
