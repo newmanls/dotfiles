@@ -1,0 +1,22 @@
+snippet table "Create a LaTeX table" b
+    \\begin{table}[H]
+        \\centering
+        \\caption{${1:caption}}
+        \\begin{tabular}{lllp{8cm}}
+            \\hline
+            ${3:table content} \\\\ \\hline
+        \\end{tabular}
+        \\figurenote{${2:note}}
+    \\end{table}
+
+snippet figure "Create a LaTeX figure" b
+    \\begin{figure}[H]
+        \\centering
+        \\caption{${1:caption}}
+        \\includegraphics[width=0.9\textwidth]{${2:path}}
+    \\end{figure}
+
+snippet code "Create a LaTeX code block" b
+    \\begin{lstlisting}[language=${1:lang}]
+        ${2:$VISUAL}
+    \\end{lstlisting}

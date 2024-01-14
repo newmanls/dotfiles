@@ -20,6 +20,7 @@ require('paq') {
     'mzlogin/vim-markdown-toc';
     'tell-k/vim-autopep8';
     'lervag/vimtex';
+    'dcampos/nvim-snippy';
 
     -- Utils
     { 'toppair/peek.nvim', build = 'deno task --quiet build:fast' };
