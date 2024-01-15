@@ -1,3 +1,4 @@
+
 -- Interface
 vim.opt.colorcolumn = '80'
 vim.opt.cursorline = true
@@ -30,4 +31,9 @@ vim.opt.smartcase = true
 -- Autocommands
 vim.api.nvim_create_autocmd('TextYankPost', {
     callback = function() vim.highlight.on_yank() end
+})
+
+vim.api.nvim_create_autocmd('BufNewFile', {
+    pattern = {"*_u.tex"},
+    command = "0r ~/Templates/apa7_u.tex"
 })
