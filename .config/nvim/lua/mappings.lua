@@ -25,6 +25,3 @@ map('n', '<Esc>', '<Cmd>noh<CR>')
 
 -- TermToggle
 map({ '', 't' }, '<A-CR>', function() ToggleTerminal() end)
-
--- Plugins mappings
-map('i', '<C-l>', '<Cmd>LoremIpsum<CR>')

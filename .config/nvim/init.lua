@@ -15,7 +15,6 @@ require('paq') {
 
     -- Autocompletion and formatting
     'mattn/emmet-vim';
-    'derektata/lorem.nvim';
     'mzlogin/vim-markdown-toc';
     'tell-k/vim-autopep8';
     'lervag/vimtex';
