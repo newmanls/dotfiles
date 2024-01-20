@@ -11,6 +11,12 @@ require('mini.files').setup({
     }
 })
 
+require('mini.hipatterns').setup({
+    highlighters = {
+        hex_color = require('mini.hipatterns').gen_highlighter.hex_color(),
+    }
+})
+
 require('mini.indentscope').setup({
     draw = {
         delay = 0,
@@ -39,11 +45,11 @@ require('mini.surround').setup({
         ['e'] = {
             input = { '\\begin(%b{}).-\\end%1', '^.-%s().*()%s.-$' },
             output = function()
-                local command = MiniSurround.user_input('LaTeX environment')
-                if command == nil then return nil end
+                local environment = MiniSurround.user_input('LaTeX environment')
+                if environment == nil then return nil end
                 return {
-                    left = '\\begin{' .. command .. '}\n',
-                    right = '\n\\end{' .. command .. '}'
+                    left = '\\begin{' .. environment .. '}\n',
+                    right = '\n\\end{' .. environment .. '}'
                 }
             end,
         },
@@ -61,9 +67,7 @@ vim.api.nvim_create_autocmd('BufWrite', {
 })
 
 -- Mappings
-local map = vim.keymap.set
-
-map('n', '<leader>e', function() MiniFiles.open() end)
-map('', '<CR>', function()
+vim.keymap.set('n', '<leader>e', function() MiniFiles.open() end)
+vim.keymap.set('', '<CR>', function()
     MiniJump2d.start(require('mini.jump2d').builtin_opts.single_character)
 end)
