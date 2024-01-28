@@ -16,7 +16,7 @@ Shell           | [zsh](https://www.zsh.org/) with [starship shell](https://star
 Editor          | [neovim](https://neovim.io/)
 File Manager    | [lf](https://github.com/gokcehan/lf)
 Music Player    | [cmus](https://cmus.github.io/)
-Feed reader     | [newsboat](https://newsboat.org/)
+Feed reader     | [newsraft](https://codeberg.org/newsraft/newsraft)
 Launcher        | [dmenu](https://github.com/newmanls/dmenu)
 Web Browser     | [firefox](https://www.mozilla.org/firefox/)
 Image Viewer    | [nsxiv](https://github.com/nsxiv/nsxiv)
