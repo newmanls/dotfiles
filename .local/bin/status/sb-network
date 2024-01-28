@@ -8,11 +8,11 @@ network=$(nmcli -t -g NAME,TYPE conn show --active | grep -v ':loopback$' -m 1)
 
 case "$network" in
     *ethernet)
-        label="󰛳 " ;;
+        label="󰈀 " ;;
     *wireless)
         label="󰤨 " ;;
     *)
-        label="󰲛 " ;;
+        label="󰇨 " ;;
 esac
 
 # printf "%s %s\n" "$label" "$network_name"
