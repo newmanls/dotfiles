@@ -20,6 +20,7 @@
 
 /* remove gap after pinned tabs */
 #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
-.tabbrowser-tab[first-visible-unpinned-tab] {
+> #tabbrowser-arrowscrollbox
+> .tabbrowser-tab:nth-child(1 of :not([pinned], [hidden])) {
     margin-inline-start: 0 !important;
 }
