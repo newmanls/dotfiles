@@ -31,6 +31,14 @@ require('mini.jump2d').setup({
 })
 
 require('mini.notify').setup()
+require('mini.move').setup({
+    mappings = {
+        down = '<C-j>',
+        up = '<C-k>',
+        line_down = '<C-j>',
+        line_up = '<C-k>',
+    },
+})
 require('mini.pairs').setup()
 require('mini.surround').setup({
     custom_surroundings = {
