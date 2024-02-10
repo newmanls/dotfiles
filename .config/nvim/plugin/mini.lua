@@ -30,7 +30,6 @@ require('mini.jump2d').setup({
     mappings = { start_jumping = '' }
 })
 
-require('mini.notify').setup()
 require('mini.move').setup({
     mappings = {
         down = '<C-j>',
