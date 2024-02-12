@@ -9,14 +9,6 @@ vim.g.maplocalleader = ' '
 map('', 'j', 'gj')
 map('', 'k', 'gk')
 
--- Split window
-map('n', '<leader>s', ':split ')
-map('n', '<leader>v', ':vsplit ')
-
--- Reselect text after (un)indentation.
-map('v', '<', '<gv')
-map('v', '>', '>gv')
-
 -- Remove highlights
 map('n', '<Esc>', '<Cmd>noh<CR>')
 
