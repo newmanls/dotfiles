@@ -1,12 +1,54 @@
-#!/usr/bin/env bash
-# dmenu_run improved
-# if a command ends with "!", it is started in a terminal.
-# if a command ends with "?", it is searched with your web browser.
+#!/usr/bin/env python3
+# improved dmenu run with run-in-terminal and search support
+# Author: Newman Sanchez (https://github.com/newmanls)
 
-cmd="$(dmenu_path | dmenu $@)"
+from os import environ
+from subprocess import getoutput, run, Popen
 
-case ${cmd} in
-    *\! ) st -e "${cmd%!}" ;;
-    \?* ) xdg-open "https://duckduckgo.com/?q=${cmd#?}" ;;
-    * ) ${cmd} ;;
-esac
+TERMINAL = environ.get('TERMINAL', default='xterm')
+SEARCH_ENGINES = {
+    'ddg': 'https://duckduckgo.com/?q=',
+    'g': 'https://www.google.com/search?q=',
+    'gh': 'https://github.com/search?q=',
+    'w': 'https://en.wikipedia.org/wiki/Special:Search?search=',
+    'wes': 'https://es.wikipedia.org/wiki/Special:Search?search=',
+    'you': 'https://you.com/search?tbm=youchat&q=',
+    'yt': 'https://www.youtube.com/results?search_query=',
+}
+DEFAULT_ENGINE = 'ddg'
+
+
+def search(key, query):
+    try:
+        Popen(['xdg-open', SEARCH_ENGINES[key] + query.replace(' ', '+')])
+    except KeyError:
+        run(['notify-send', 'Error',
+            f'"{key}" is not a valid keyword for any registered search engine'])
+        quit(1)
+
+
+def run_in_terminal(command):
+    Popen([TERMINAL, command])
+
+
+def main():
+    dmenu_path = getoutput('dmenu_path')
+    input = run('dmenu', input=dmenu_path,
+                capture_output=True, text=True).stdout.strip()
+
+    if not input:
+        quit(0)
+    elif input.startswith('@'):  # Search with provided engine
+        key, query = input[1:].split(' ', 1)
+        search(key, query)
+    elif input.endswith('!'):  # Run in terminal
+        command = input[:-1]
+        run_in_terminal(command)
+    elif input in dmenu_path:  # Run
+        Popen([input])
+    else:  # Fallback to search
+        search(DEFAULT_ENGINE, input)
+
+
+if __name__ == '__main__':
+    main()
