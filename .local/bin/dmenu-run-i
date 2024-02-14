@@ -3,7 +3,7 @@
 # Author: Newman Sanchez (https://github.com/newmanls)
 
 from os import environ
-from subprocess import getoutput, run, Popen
+from subprocess import Popen, getoutput, run
 
 TERMINAL = environ.get('TERMINAL', default='xterm')
 SEARCH_ENGINES = {
