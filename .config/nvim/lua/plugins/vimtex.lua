@@ -1,9 +1,6 @@
 return {
     'lervag/vimtex',
     ft = 'tex',
-    keys = {
-        { '<f5>', '<Cmd>VimtexCompile<CR>' }
-    },
     config = function()
         vim.g.vimtex_imaps_enabled = 0
         vim.g.vimtex_syntax_enabled = 0
