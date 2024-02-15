@@ -7,13 +7,13 @@ from subprocess import Popen, getoutput, run
 
 TERMINAL = environ.get('TERMINAL', default='xterm')
 SEARCH_ENGINES = {
-    'ddg': 'https://duckduckgo.com/?q=',
-    'g': 'https://www.google.com/search?q=',
-    'gh': 'https://github.com/search?q=',
-    'w': 'https://en.wikipedia.org/wiki/Special:Search?search=',
-    'wes': 'https://es.wikipedia.org/wiki/Special:Search?search=',
+    'duckduckgo': 'https://duckduckgo.com/?q=',
+    'google': 'https://www.google.com/search?q=',
+    'github': 'https://github.com/search?q=',
+    'wikipedia-en': 'https://en.wikipedia.org/wiki/Special:Search?search=',
+    'wikipedia-es': 'https://es.wikipedia.org/wiki/Special:Search?search=',
     'you': 'https://you.com/search?tbm=youchat&q=',
-    'yt': 'https://www.youtube.com/results?search_query=',
+    'youtube': 'https://www.youtube.com/results?search_query=',
 }
 DEFAULT_ENGINE = 'ddg'
 
@@ -32,12 +32,13 @@ def run_in_terminal(command):
 
 
 def main():
-    dmenu_path = getoutput('dmenu_path')
+    keys = '\n'.join([f'@{key}' for key in SEARCH_ENGINES.keys()])
+    dmenu_path = getoutput('dmenu_path') + '\n' + keys
     input = run('dmenu', input=dmenu_path,
                 capture_output=True, text=True).stdout.strip()
 
     if not input:
-        quit(0)
+        quit()
     elif input.startswith('@'):  # Search with provided engine
         key, query = input[1:].split(' ', 1)
         search(key, query)
