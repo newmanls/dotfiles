@@ -10,7 +10,7 @@ export TERMINAL='st'
 # Add all directories in `~/.local/bin` to $PATH
 export PATH="$PATH:$(find "${HOME}/.local/bin" -type d | paste -sd ':' -)"
 export HISTCONTROL='ignoredups'
-export QT_QPA_PLATFORMTHEME='gtk2'
+export QT_QPA_PLATFORMTHEME='qt5ct'
 
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_CACHE_HOME="${HOME}/.cache"
