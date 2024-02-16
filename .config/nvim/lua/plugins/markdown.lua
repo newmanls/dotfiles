@@ -16,6 +16,7 @@ return {
     {
         'toppair/peek.nvim',
         ft = 'markdown',
+        event = 'VeryLazy',
         build = 'deno task --quiet build:fast',
         keys = {
             { '<leader>mp', function() require('peek').open() end }
