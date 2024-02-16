@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+which playerctl > /dev/null 2>&1 || exit 1
+
+status="$(playerctl status 2> /dev/null)"
+
+case "${status@L}" in
+    playing)
+        label="󰐊" ;;
+    paused)
+        label="󰏤" ;;
+    *)
+        exit 0 ;;
+esac
+
+artist="$(playerctl metadata artist)"
+title="$(playerctl metadata title)"
+
+info=""
+[ "$artist" ] && info+="${artist} - "
+info+="$title"
+
+# Label max length. Setting it to 0 disables cut-off.
+max_length=90
+
+if (( max_length > 0 && ${#info} > max_length )); then
+    info="${info:0:(( max_length - 3 ))}..."
+fi
+
+printf "%s %s\n" "$label" "$info"

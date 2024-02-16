@@ -18,7 +18,7 @@
 
 // Define blocks for the status feed as X(cmd, interval, signal).
 #define BLOCKS(X) \
-    X("sb-cmus",    0,     4) \
+    X("sb-player",  1,     6) \
     X("sb-dollar",  43200, 5) \
     X("sb-volume",  0,     3) \
     X("sb-network", 5,     2) \
