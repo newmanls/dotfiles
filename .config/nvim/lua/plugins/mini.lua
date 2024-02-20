@@ -46,23 +46,6 @@ return {
         config = true
     },
     {
-        'echasnovski/mini.files',
-        version = false,
-        event = 'VeryLazy',
-        keys = {
-            { '<leader>e', function() MiniFiles.open() end },
-        },
-        opts = {
-            mappings = {
-                go_in_plus  = 'l',
-                go_out_plus = 'h',
-            },
-            windows = {
-                preview = true,
-            }
-        }
-    },
-    {
         'echasnovski/mini.hipatterns',
         version = false,
         event = 'VeryLazy',
