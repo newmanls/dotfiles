@@ -32,11 +32,6 @@ return {
         'echasnovski/mini.splitjoin',
         version = false,
         event = 'VeryLazy',
-        keys = {
-            { '<leader>ss', function() MiniSplitjoin.split() end },
-            { '<leader>sj', function() MiniSplitjoin.join() end },
-            { '<leader>st', function() MiniSplitjoin.toggle() end },
-        },
         config = true
     },
     {

@@ -2,6 +2,8 @@ return {
     {
         'hedyhli/markdown-toc.nvim',
         ft = 'markdown',
+        lazy = true,
+        cmd = 'Mtoc',
         opts = {
             fences = {
                 enabled = true,
@@ -15,9 +17,9 @@ return {
     },
     {
         'toppair/peek.nvim',
-        ft = 'markdown',
-        event = 'VeryLazy',
         build = 'deno task --quiet build:fast',
+        ft = 'markdown',
+        lazy = true,
         keys = {
             { '<leader>mp', function() require('peek').open() end }
         },
