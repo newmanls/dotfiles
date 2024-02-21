@@ -8,7 +8,7 @@ return {
             }
         },
         opts = {
-            ensure_installed = { 'bashls', 'html', 'lua_ls', 'pyright', 'tsserver' },
+            ensure_installed = { 'bashls', 'html', 'lua_ls', 'pylsp', 'tsserver' },
             handlers = {
                 function(server_name)
                     require('lspconfig')[server_name].setup({})
@@ -79,7 +79,6 @@ return {
 
             null_ls.setup({
                 sources = {
-                    null_ls.builtins.formatting.autopep8,
                     null_ls.builtins.formatting.isort,
                 },
             })
