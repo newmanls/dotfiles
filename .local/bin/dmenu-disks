@@ -2,56 +2,86 @@
 # dmenu script for (un)mounting removable storage devices. Depends on udisks2.
 # Author: Newman Sanchez (https://github.com/newmanls)
 
+import json
 from subprocess import getoutput, run
 from sys import argv
 
+
 def notify(type, message):
     match type:
-        case 'disk':
-            icon = 'drive-removable-media'
-        case 'info':
-            icon = 'dialog-info'
-        case 'error':
-            icon = 'dialog=error'
+        case "disk":
+            icon = "drive-removable-media"
+        case "info":
+            icon = "dialog-information"
+        case "error":
+            icon = "dialog-error"
         case _:
-            icon = ''
+            icon = ""
 
-    run(['notify-send', '-i', icon, 'udisks', message])
+    run(["notify-send", "-i", icon, "udisks", message])
+
 
 def print_help():
-    print('Usage: dmenu-disks [mount|unmount]')
+    print("Usage: dmenu-disks [mount|unmount]")
     quit(1)
+
+
+def get_devices(obj):
+    if isinstance(obj, list):
+        for item in obj:
+            get_devices(item)
+    elif isinstance(obj, dict):
+        if (
+            obj["fstype"] not in excluded_fstypes and
+            obj["mountpoint"] not in excluded_mountpoints
+        ):
+            devices.append(obj)
+        if "children" in obj:
+            get_devices(obj["children"])
+
+
+action = None
 
 try:
     action = argv[1]
-except:
+except IndexError:
     print_help()
 
-lsblk = 'lsblk -npro name,label,size,fstype,mountpoint'
-devices = [i.split(' ') for i in getoutput(lsblk).splitlines()]
-devices = [i for i in devices if i[3] and i[4] not in ['/', '/boot', '/home']]
+excluded_mountpoints = ["/", "/boot", "/boot/efi", "/home"]
+excluded_fstypes = [None]
+
+lsblk_cmd = "lsblk -JMp -o name,fstype,mountpoint,size,label,uuid"
+lsblk = json.loads(getoutput(lsblk_cmd))["blockdevices"]
+
+devices = []
+get_devices(lsblk)
 
 match action:
-    case 'mount':
-        devices = [i for i in devices if not i[4]]
-    case 'unmount':
-        devices = [i for i in devices if i[4]]
+    case "mount":
+        devices = [i for i in devices if not i["mountpoint"]]
+    case "unmount":
+        devices = [i for i in devices if i["mountpoint"]]
     case _:
         print_help()
 
 if not devices:
-    notify('info', 'No devices for {}ing'.format(action))
+    notify("info", f"No devices for {action}ing")
     quit()
 
-selected = run(['dmenu', '-p', action],
-    input = '\n'.join(['{} {} ({})'.format(i[0], i[1], i[2]) for i in devices]),
-    capture_output = True, text = True).stdout
+dmenu_input = [
+    "{}: {} ({})".format(
+        device['name'], device['label'] or device['uuid'], device['size'])
+    for device in devices
+]
+
+selected = run(["dmenu", "-p", action], input="\n".join(dmenu_input),
+               capture_output=True, text=True).stdout
 
 if selected:
-    output = run(['udisksctl', action, '-b', selected.split()[0]],
-        capture_output = True)
+    output = run(["udisksctl", action, "-b", selected.split(":")[0]],
+                 capture_output=True)
 
     if output.returncode == 0:
-        notify('disk', output.stdout)
+        notify("disk", output.stdout)
     else:
-        notify('error', output.stderr)
+        notify("error", output.stderr)
