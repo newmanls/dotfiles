@@ -48,7 +48,7 @@ except IndexError:
     print_help()
 
 excluded_mountpoints = ["/", "/boot", "/boot/efi", "/home"]
-excluded_fstypes = [None]
+excluded_fstypes = [None, "LVM2_member"]
 
 lsblk_cmd = "lsblk -JMp -o name,fstype,mountpoint,size,label,uuid"
 lsblk = json.loads(getoutput(lsblk_cmd))["blockdevices"]
