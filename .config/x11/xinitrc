@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
 display_config="$HOME/.config/display.sh"
-
 [ -f "$display_config" ] && sh "$display_config"
+
 xrdb "${XDG_CONFIG_HOME:-$HOME/.config}/x11/Xresources"
-setxkbmap us altgr-intl &
+setxkbmap us altgr-intl
+setbg
 dwmblocks &
-setbg &
+dunst &
 lxpolkit &
 
 exec dwm
