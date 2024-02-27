@@ -1,26 +1,46 @@
 :root {
     --tab-border-radius: 0 !important;
     --tab-block-margin: 0 !important;
-    --tab-min-height: 22px !important;
+    --tab-min-height: 26px !important;
 }
-.tab-label-container {
-    height: initial !important;
+
+.tab-throbber,
+.tab-icon-pending,
+.tab-icon-image,
+.tab-sharing-icon-overlay,
+.tab-icon-overlay {
+    height: 14px !important;
+    width: 14px !important;
+
+    &:not([pinned]) {
+        margin-inline-end: 8px !important;
+    }
 }
+
+
 .tabbrowser-tab {
     padding: 0 !important;
+
+    /* remove gap after pinned tabs */
+    &:nth-child(1 of :not([pinned], [hidden])) {
+        margin-inline-start: 0 !important;
+    }
+
+    /* reduce not-selected tabs opacity for better contrast */
+    &:not([selected="true"]):not(:hover) .tab-content {
+        opacity: 50% !important;
+    }
 }
 
 .tab-background[selected] {
     background: var(--toolbar-bgcolor) !important;
+
+    &:not([multiselected="true"]) {
+        outline: none !important;
+    }
 }
 
-.tab-background[selected]:not([multiselected="true"]) {
-    outline: none !important;
-}
-
-/* remove gap after pinned tabs */
-#tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
-> #tabbrowser-arrowscrollbox
-> .tabbrowser-tab:nth-child(1 of :not([pinned], [hidden])) {
-    margin-inline-start: 0 !important;
+.tab-label-container {
+    height: initial !important;
+    font-size: .95rem !important;
 }

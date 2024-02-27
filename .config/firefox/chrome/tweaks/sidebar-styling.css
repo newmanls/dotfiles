@@ -1,7 +1,10 @@
-/* use the same background color as toolbarr */
-#bookmarksPanel,
+/* use the same background color as toolbar */
 #sidebar-box {
     background: var(--toolbar-bgcolor) !important;
+}
+
+.sidebar-panel {
+    background: none !important;
 }
 
 /* reduce splitter width */
