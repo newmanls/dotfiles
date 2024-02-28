@@ -8,13 +8,8 @@
 .tab-icon-pending,
 .tab-icon-image,
 .tab-sharing-icon-overlay,
-.tab-icon-overlay {
-    height: 14px !important;
-    width: 14px !important;
-
-    &:not([pinned]) {
-        margin-inline-end: 8px !important;
-    }
+.tab-icon-overlay:not([pinned]) {
+    margin-inline-end: 8px !important;
 }
 
 
