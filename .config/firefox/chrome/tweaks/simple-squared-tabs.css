@@ -7,9 +7,10 @@
 .tab-throbber,
 .tab-icon-pending,
 .tab-icon-image,
-.tab-sharing-icon-overlay,
-.tab-icon-overlay:not([pinned]) {
-    margin-inline-end: 8px !important;
+.tab-sharing-icon-overlay {
+    &:not([pinned]) {
+        margin-inline-end: 8px !important;
+    }
 }
 
 
