@@ -28,7 +28,8 @@ alias \
     lla='ls --long --all' \
     lt='ls --tree' \
     lta='ls --tree --all' \
-    prename='perl-rename'
+    prename='perl-rename' \
+    wtr='curl wttr.in/Caracas\?Fq'
 
 # Dotfiles
 alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
