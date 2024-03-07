@@ -1,16 +1,9 @@
-local map = vim.keymap.set
-
-require('terminal')
-
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Move between visible lines
-map('', 'j', 'gj')
-map('', 'k', 'gk')
+vim.keymap.set('', 'j', 'gj')
+vim.keymap.set('', 'k', 'gk')
 
 -- Remove highlights
-map('n', '<Esc>', '<Cmd>noh<CR>')
-
--- TermToggle
-map({ '', 't' }, '<A-CR>', function() ToggleTerminal() end)
+vim.keymap.set('n', '<Esc>', '<Cmd>noh<CR>')

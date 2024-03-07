@@ -38,5 +38,16 @@ return {
                 return save_dir .. os.date("!%Y%m%d_%H%M%S") .. "_code.png"
             end,
         }
+    },
+    {
+        "kassio/neoterm",
+        lazy = true,
+        keys = {
+            { "<A-CR>", "<Cmd>Ttoggle<CR>", mode = { "", "t" } }
+        },
+        config = function()
+            vim.g.neoterm_autoinsert = true
+            vim.g.neoterm_default_mod = "botright"
+        end
     }
 }

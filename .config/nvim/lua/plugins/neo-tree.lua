@@ -4,8 +4,8 @@ return {
     lazy = true,
     cmd = "Neotree",
     keys = {
-        { "<leader>tl", "<Cmd>Neotree left reveal<CR>" },
-        { "<leader>tt", "<Cmd>Neotree reveal toggle<CR>" },
+        { "<leader>fl", "<Cmd>Neotree left reveal<CR>" },
+        { "<leader>ft", "<Cmd>Neotree reveal toggle<CR>" },
     },
     opts = {
         close_if_last_window = true,
