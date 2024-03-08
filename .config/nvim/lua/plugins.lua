@@ -33,6 +33,7 @@ return {
         opts = {
             font = "Iosevka Nerd Font=24",
             theme = "OneHalfDark",
+            to_clipboard = true,
             output = function()
                 local save_dir = "~/Pictures/Screenshots/"
                 return save_dir .. os.date("!%Y%m%d_%H%M%S") .. "_code.png"
