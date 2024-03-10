@@ -1,30 +1,30 @@
 return {
     {
-        'hedyhli/markdown-toc.nvim',
-        ft = 'markdown',
+        "hedyhli/markdown-toc.nvim",
+        ft = "markdown",
         lazy = true,
-        cmd = 'Mtoc',
+        cmd = "Mtoc",
         opts = {
             fences = {
                 enabled = true,
-                start_text = 'TOC',
-                end_text = 'TOC'
+                start_text = "TOC",
+                end_text = "TOC"
             },
             toc_list = {
-                markers = '-',
+                markers = "-",
             }
         }
     },
     {
-        'toppair/peek.nvim',
-        build = 'deno task --quiet build:fast',
-        ft = 'markdown',
+        "toppair/peek.nvim",
+        build = "deno task --quiet build:fast",
+        ft = "markdown",
         lazy = true,
         keys = {
-            { '<leader>mp', function() require('peek').open() end }
+            { "<leader>mp", function() require("peek").open() end }
         },
         opts = {
-            app = 'browser'
+            app = "browser"
         }
     }
 }

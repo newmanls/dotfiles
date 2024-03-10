@@ -1,10 +1,10 @@
 return {
-    'nvim-treesitter/nvim-treesitter',
-    event = 'VeryLazy',
-    build = ':TSUpdate',
+    "nvim-treesitter/nvim-treesitter",
+    event = "VeryLazy",
+    build = ":TSUpdate",
     config = function()
-        require('nvim-treesitter.configs').setup({
-            ensure_installed = { 'bash', 'lua', 'python' },
+        require("nvim-treesitter.configs").setup({
+            ensure_installed = { "bash", "lua", "python" },
             auto_install = true,
             highlight = {
                 enable = true
@@ -12,9 +12,6 @@ return {
             incremental_selection = {
                 enable = true,
             },
-            indent = {
-                enable = true,
-            }
         })
-        end
-    }
+    end
+}

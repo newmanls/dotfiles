@@ -4,8 +4,8 @@ return {
     lazy = true,
     cmd = "Neotree",
     keys = {
-        { "<leader>fl", "<Cmd>Neotree left reveal<CR>" },
-        { "<leader>ft", "<Cmd>Neotree reveal toggle<CR>" },
+        { "<leader>fl", "<Cmd>Neotree left reveal toggle<CR>" },
+        { "<leader>ft", "<Cmd>Neotree float reveal toggle<CR>" },
     },
     opts = {
         close_if_last_window = true,
@@ -16,7 +16,6 @@ return {
             mappings = {
                 ["h"] = "close_node",
                 ["l"] = "open",
-                ["o"] = "add",
                 ["d"] = "cut_to_clipboard",
                 ["D"] = "delete",
                 ["<C-s>"] = "open_split",

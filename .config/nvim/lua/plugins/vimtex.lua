@@ -1,6 +1,6 @@
 return {
-    'lervag/vimtex',
-    ft = 'tex',
+    "lervag/vimtex",
+    ft = "tex",
     config = function()
         vim.g.vimtex_imaps_enabled = 0
         vim.g.vimtex_syntax_enabled = 0
@@ -9,17 +9,17 @@ return {
             show_help = 0,
         }
         vim.g.vimtex_compiler_latexmk = {
-            aux_dir = '.aux',
-            out_dir = '',
+            aux_dir = ".aux",
+            out_dir = "",
             callback = 1,
             continuous = 1,
-            executable = 'latexmk',
+            executable = "latexmk",
             hooks = {},
             options = {
-                '-verbose',
-                '-file-line-error',
-                '-synctex=0',
-                '-interaction=nonstopmode',
+                "-verbose",
+                "-file-line-error",
+                "-synctex=0",
+                "-interaction=nonstopmode",
             },
         }
     end
