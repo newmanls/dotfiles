@@ -1,6 +1,6 @@
 return {
     "dcampos/nvim-snippy",
-    event = { "BufReadPre", "BufNewFile" },
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     opts = {
         mappings = {
             is = {

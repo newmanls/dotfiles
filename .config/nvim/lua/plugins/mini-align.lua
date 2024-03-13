@@ -1,6 +1,6 @@
 return {
     "echasnovski/mini.align",
     version = false,
-    event = "VeryLazy",
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     opts = {}
 }
