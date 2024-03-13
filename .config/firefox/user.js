@@ -42,3 +42,6 @@ user_pref("svg.context-properties.content.enabled", true);
 
 // Disable all tabs dropdown menu
 user_pref("browser.tabs.tabmanager.enabled", false);
+
+// Tabs in titlebar
+user_pref("browser.tabs.inTitlebar", 1);
