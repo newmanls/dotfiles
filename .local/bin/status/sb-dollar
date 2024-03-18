@@ -4,7 +4,7 @@
 import requests
 
 try:
-    url = 'https://pydolarvenezuela-api.vercel.app/api/v1/dollar/'
+    url = 'https://pydolarvenezuela-api.vercel.app/api/v1/dollar'
     req = requests.get(url)
     data = req.json()['monitors']
     monitors = ['bcv', 'enparalelovzla']
