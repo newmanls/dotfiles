@@ -7,7 +7,12 @@ from subprocess import getoutput, run
 from sys import argv
 
 
-def notify(type, message):
+def print_help() -> None:
+    print("Usage: dmenu-disks [mount|unmount]")
+    quit(1)
+
+
+def notify(type: str, message: str) -> None:
     match type:
         case "disk":
             icon = "drive-removable-media"
@@ -21,67 +26,77 @@ def notify(type, message):
     run(["notify-send", "-i", icon, "udisks", message])
 
 
-def print_help():
-    print("Usage: dmenu-disks [mount|unmount]")
-    quit(1)
+def is_mounted(device: dict) -> bool:
+    return device["mountpoint"]
 
 
-def get_devices(obj):
-    if isinstance(obj, list):
-        for item in obj:
-            get_devices(item)
-    elif isinstance(obj, dict):
-        if (
-            obj["fstype"] not in excluded_fstypes and
-            obj["mountpoint"] not in excluded_mountpoints
-        ):
-            devices.append(obj)
-        if "children" in obj:
-            get_devices(obj["children"])
+def is_not_excluded(device: dict) -> bool:
+    excluded_fstypes = [None, "LVM2_member"]
+    excluded_mountpoints = ["/", "/boot", "/boot/efi", "/home"]
+
+    return (
+        device["fstype"] not in excluded_fstypes and
+        device["mountpoint"] not in excluded_mountpoints
+    )
 
 
-action = None
+def get_devices(mounted: bool) -> list:
+    lsblk_cmd = "lsblk -JMp -o name,fstype,mountpoint,size,label,uuid"
+    lsblk = json.loads(getoutput(lsblk_cmd))["blockdevices"]
+    devices = []
 
-try:
-    action = argv[1]
-except IndexError:
-    print_help()
+    for device in lsblk:
+        if "children" in device:
+            devices.extend(device["children"])
+            del device["children"]
+        else:
+            devices.append(device)
 
-excluded_mountpoints = ["/", "/boot", "/boot/efi", "/home"]
-excluded_fstypes = [None, "LVM2_member"]
+    devices = [device for device in devices if is_not_excluded(device) and (
+        is_mounted(device) if mounted else not is_mounted(device)
+    )]
 
-lsblk_cmd = "lsblk -JMp -o name,fstype,mountpoint,size,label,uuid"
-lsblk = json.loads(getoutput(lsblk_cmd))["blockdevices"]
+    return devices
 
-devices = []
-get_devices(lsblk)
 
-match action:
-    case "mount":
-        devices = [i for i in devices if not i["mountpoint"]]
-    case "unmount":
-        devices = [i for i in devices if i["mountpoint"]]
-    case _:
-        print_help()
-
-if not devices:
-    notify("info", f"No devices for {action}ing")
-    quit()
-
-dmenu_input = [
-    "{}: {} ({})".format(
+def format_entry(device: dict) -> str:
+    return "{}: {} ({})".format(
         device['name'], device['label'] or device['uuid'], device['size'])
-    for device in devices
-]
 
-selected = run(["dmenu", "-p", action], input="\n".join(dmenu_input),
-               capture_output=True, text=True).stdout
 
-if selected:
-    output = run(["udisksctl", action, "-b", selected.split(":")[0]],
-                 capture_output=True)
+def main(action: str):
+    match action:
+        case "mount":
+            devices = get_devices(mounted=False)
+        case "unmount":
+            devices = get_devices(mounted=True)
+        case _:
+            print_help()
 
-    if output.returncode == 0:
-        notify("disk", output.stdout)
-    else:
-        notify("error", output.stderr)
+    if not devices:
+        notify("info", f"No devices for {action}ing")
+        quit()
+
+    input_list = [format_entry(device) for device in devices]
+    selected = run(
+        ["dmenu", "-p", action],
+        input="\n".join(input_list),
+        capture_output=True,
+        text=True
+    ).stdout
+
+    if selected:
+        output = run(["udisksctl", action, "-b", selected.split(":")[0]],
+                     capture_output=True)
+
+        if output.returncode == 0:
+            notify("disk", output.stdout)
+        else:
+            notify("error", output.stderr)
+
+
+if __name__ == "__main__":
+    try:
+        main(argv[1])
+    except IndexError:
+        print_help()
