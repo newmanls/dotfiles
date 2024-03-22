@@ -1,25 +1,19 @@
 return {
     {
-        "hedyhli/markdown-toc.nvim",
+        "tadmccorkle/markdown.nvim",
         ft = "markdown",
-        lazy = true,
-        cmd = "Mtoc",
-        opts = {
-            fences = {
-                enabled = true,
-                start_text = "TOC",
-                end_text = "TOC"
-            },
-            toc_list = {
-                markers = "-",
-            }
-        }
+        keys = {
+            { "gtt",        "<Cmd>MDTaskToggle<CR>" },
+            { "<M-l><M-o>", "<Cmd>MDListItemBelow<CR>", mode = { "n", "i" } },
+            { "<M-L><M-O>", "<Cmd>MDListItemAbove<CR>", mode = { "n", "i" } },
+            { "<leader>mt", "<Cmd>MDToc<CR>" }
+        },
+        opts = {}
     },
     {
         "toppair/peek.nvim",
         build = "deno task --quiet build:fast",
         ft = "markdown",
-        lazy = true,
         keys = {
             { "<leader>mp", function() require("peek").open() end }
         },
