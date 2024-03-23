@@ -15,7 +15,7 @@ SEARCH_ENGINES = {
     'you': 'https://you.com/search?tbm=youchat&q=',
     'youtube': 'https://www.youtube.com/results?search_query=',
 }
-DEFAULT_ENGINE = 'ddg'
+DEFAULT_ENGINE = 'duckduckgo'
 
 
 def search(key, query):
