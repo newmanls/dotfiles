@@ -3,7 +3,11 @@ return {
     lazy = true,
     cmd = "Oil",
     keys = {
-        { "-", "<Cmd>Oil<CR>" }
+        {
+            "-",
+            "<Cmd>Oil<CR>",
+            desc = "Open Oil file explorer"
+        }
     },
     opts = {
         win_options = {

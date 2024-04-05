@@ -4,8 +4,16 @@ return {
     lazy = true,
     cmd = "Neotree",
     keys = {
-        { "<leader>fl", "<Cmd>Neotree left reveal toggle<CR>" },
-        { "<leader>ft", "<Cmd>Neotree float reveal toggle<CR>" },
+        {
+            "<leader>fl",
+            "<Cmd>Neotree left reveal toggle<CR>",
+            desc = "Open file explorer at left"
+        },
+        {
+            "<leader>ft",
+            "<Cmd>Neotree float reveal toggle<CR>",
+            desc = "Open file explorer as a floating window"
+        },
     },
     opts = {
         close_if_last_window = true,

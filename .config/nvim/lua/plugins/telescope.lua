@@ -2,9 +2,26 @@ return {
     {
         "nvim-telescope/telescope.nvim",
         keys = {
-            { "<leader>ff", "<Cmd>Telescope find_files<CR>" },
-            { "<leader>fg", "<Cmd>Telescope live_grep<CR>" },
-            { "<leader>fb", "<Cmd>Telescope buffers<CR>" },
+            {
+                "<leader>ff",
+                "<Cmd>Telescope find_files<CR>",
+                desc = "List Files"
+            },
+            {
+                "<leader>fg",
+                "<Cmd>Telescope live_grep<CR>",
+                desc = "Search for a string"
+            },
+            {
+                "<leader>fb",
+                "<Cmd>Telescope buffers<CR>",
+                desc = "List buffers"
+            },
+            {
+                "z=",
+                "<Cmd>Telescope spell_suggest<CR>",
+                desc = "List spelling suggestions"
+            },
         },
         dependencies = {
             "nvim-lua/plenary.nvim",

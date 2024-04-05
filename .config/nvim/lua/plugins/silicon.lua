@@ -1,7 +1,12 @@
 return {
     "michaelrommel/nvim-silicon",
     keys = {
-        { "<leader>sc", "<Cmd>Silicon<CR>", mode = "v" }
+        {
+            "<leader>sc",
+            "<Cmd>Silicon<CR>",
+            mode = "v",
+            desc = "Create image out of the selected lines"
+        }
     },
     opts = {
         font = "Iosevka Nerd Font=24",

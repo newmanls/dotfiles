@@ -2,13 +2,42 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     keys = {
-        { "K",          vim.lsp.buf.hover },
-        { "gd",         vim.lsp.buf.definition },
-        { "[d",         vim.diagnostic.goto_prev },
-        { "]d",         vim.diagnostic.goto_next },
-        { "<leader>ca", vim.lsp.buf.code_action, mode = { "n", "v" } },
-        { "<leader>cr", vim.lsp.buf.rename },
-        { "<leader>=",  vim.lsp.buf.format },
+        {
+            "K",
+            vim.lsp.buf.hover,
+            desc = "Display information about the symbol under the cursor"
+        },
+        {
+            "gd",
+            vim.lsp.buf.definition,
+            desc = "Go to definition"
+        },
+        {
+            "[d",
+            vim.diagnostic.goto_prev,
+            desc = "Go to previous diagnostic"
+        },
+        {
+            "]d",
+            vim.diagnostic.goto_next,
+            desc = "Go to next diagnostic"
+        },
+        {
+            "<leader>ca",
+            vim.lsp.buf.code_action,
+            mode = { "n", "v" },
+            desc = "List available code actions"
+        },
+        {
+            "<leader>cr",
+            vim.lsp.buf.rename,
+            desc = "Renames all references to the symbol under the cursor"
+        },
+        {
+            "<leader>=",
+            vim.lsp.buf.format,
+            desc = "Formats a buffer using the attached language server"
+        },
     },
     dependencies = {
         {
@@ -67,6 +96,7 @@ return {
                 null_ls.setup({
                     sources = {
                         null_ls.builtins.formatting.isort,
+                        null_ls.builtins.completion.spell
                     }
                 })
 

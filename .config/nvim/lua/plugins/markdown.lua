@@ -3,10 +3,32 @@ return {
         "tadmccorkle/markdown.nvim",
         ft = "markdown",
         keys = {
-            { "gtt",        "<Cmd>MDTaskToggle<CR>" },
-            { "<M-l><M-o>", "<Cmd>MDListItemBelow<CR>", mode = { "n", "i" } },
-            { "<M-L><M-O>", "<Cmd>MDListItemAbove<CR>", mode = { "n", "i" } },
-            { "<leader>mt", "<Cmd>MDToc<CR>" }
+            {
+                "gtt",
+                "<Cmd>MDTaskToggle<CR>",
+                desc = "Toggle task on the current cursor line"
+            },
+            {
+                "gt",
+                ":MDTaskToggle<CR>",
+                silent = true,
+                mode = "v",
+                desc = "Toggle tasks under selected lines"
+            },
+            {
+                "<M-l><M-o>",
+                "<Cmd>MDListItemBelow<CR>",
+                mode = { "n", "i" }
+            },
+            {
+                "<M-L><M-O>",
+                "<Cmd>MDListItemAbove<CR>",
+                mode = { "n", "i" }
+            },
+            {
+                "<leader>mt",
+                "<Cmd>MDToc<CR>"
+            }
         },
         opts = {}
     },
@@ -15,7 +37,11 @@ return {
         build = "deno task --quiet build:fast",
         ft = "markdown",
         keys = {
-            { "<leader>mp", function() require("peek").open() end }
+            {
+                "<leader>mp",
+                function() require("peek").open() end,
+                desc = "Open live preview"
+            }
         },
         opts = {
             app = "browser"

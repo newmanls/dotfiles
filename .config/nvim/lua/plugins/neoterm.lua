@@ -1,7 +1,12 @@
 return {
     "kassio/neoterm",
     keys = {
-        { "<A-CR>", "<Cmd>Ttoggle<CR>", mode = { "", "t" } }
+        {
+            "<A-CR>",
+            "<Cmd>Ttoggle<CR>",
+            mode = { "", "t" },
+            desc = "Toggle the last active terminal buffer"
+        }
     },
     config = function()
         vim.g.neoterm_autoinsert = true
