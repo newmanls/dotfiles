@@ -73,7 +73,9 @@ case "${file_mimetype}" in
         odt2txt "${file}" && exit 1 ;;
 
     text/*|application/json|application/javascript)
-        fold -sw "${pv_width}" "${file}" && exit 1 ;;
+        if ! bat --color always --number --decorations always "$file"; then
+            fold -sw "$pv_width" "$file"
+        fi && exit 1 ;;
 esac
 
 printf "%s\n" "=== File Type Classification ===" \
