@@ -27,6 +27,13 @@ return {
             "nvim-lua/plenary.nvim",
             "BurntSushi/ripgrep"
         },
+        opts = {
+            defaults = {
+                file_ignore_patterns = {
+                    "node_modules"
+                }
+            }
+        }
     },
     {
         "nvim-telescope/telescope-ui-select.nvim",
