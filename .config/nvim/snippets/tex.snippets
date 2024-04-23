@@ -26,4 +26,7 @@ snippet \begin "LaTeX environment" b
         ${0:${VISUAL}}
     \\end{$1}
 
-# vim:ft=snippets:
+snippet \usepackage "LaTeX package" b
+    \\usepackage[${1}]{${2:package}}
+
+# vim:ft=snippets:foldmethod=manual
