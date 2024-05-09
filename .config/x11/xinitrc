@@ -9,5 +9,6 @@ setbg
 dwmblocks &
 dunst &
 lxpolkit &
+unclutter &
 
 exec dwm
