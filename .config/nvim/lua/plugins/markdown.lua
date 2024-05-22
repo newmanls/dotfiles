@@ -16,12 +16,12 @@ return {
                 desc = "Toggle tasks under selected lines"
             },
             {
-                "<M-l><M-o>",
+                "<M-o>",
                 "<Cmd>MDListItemBelow<CR>",
                 mode = { "n", "i" }
             },
             {
-                "<M-L><M-O>",
+                "<M-O>",
                 "<Cmd>MDListItemAbove<CR>",
                 mode = { "n", "i" }
             },
