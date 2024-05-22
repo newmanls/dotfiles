@@ -13,23 +13,13 @@ return {
             desc = "Go to definition"
         },
         {
-            "[d",
-            vim.diagnostic.goto_prev,
-            desc = "Go to previous diagnostic"
-        },
-        {
-            "]d",
-            vim.diagnostic.goto_next,
-            desc = "Go to next diagnostic"
-        },
-        {
-            "<leader>ca",
+            "crr",
             vim.lsp.buf.code_action,
             mode = { "n", "v" },
             desc = "List available code actions"
         },
         {
-            "<leader>cr",
+            "crn",
             vim.lsp.buf.rename,
             desc = "Renames all references to the symbol under the cursor"
         },
