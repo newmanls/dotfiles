@@ -9,7 +9,7 @@ autoload -Uz colors && colors
 autoload -Uz compinit && compinit
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 
-setopt autocd nomatch interactive_comments
+setopt autocd nomatch interactive_comments appendhistory
 unsetopt beep notify
 
 zmodload zsh/complist
@@ -37,6 +37,7 @@ set_cursor_block() { echo -ne '\e[1 q'; }
 set_cursor_beam() { echo -ne '\e[5 q'; }
 preexec() { set_cursor_beam; }
 
+
 zle-keymap-select() {
     case "${KEYMAP}" in
         vicmd) set_cursor_block ;;
@@ -57,3 +58,4 @@ eval "$(starship init zsh)"
 
 source "${XDG_CONFIG_HOME}/shell/aliasrc"
 source "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source <(fzf --zsh)
