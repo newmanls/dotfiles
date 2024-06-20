@@ -17,8 +17,6 @@ source "${ZINIT_HOME}/zinit.zsh"
 source "${XDG_CONFIG_HOME}/shell/aliasrc"
 
 # Plugins
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=7"
-
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
