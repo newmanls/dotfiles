@@ -21,6 +21,8 @@
 .panel-header,
 #unified-extensions-view>toolbarseparator:first-of-type,
 .unified-extensions-item-message-deck,
+.titlebar-spacer,
+.titlebar-buttonbox-container,
 .unified-extensions-item-menu-button.subviewbutton {
     display: none !important;
 }
