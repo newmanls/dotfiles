@@ -20,7 +20,6 @@ alias \
 # Programs
 alias \
     e='nvim -O' \
-    lf='lfub' \
     nsxiv='nsxiv-rifle' \
     ls='eza --group-directories-first --group --icons=auto' \
     la='ls --all' \

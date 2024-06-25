@@ -7,6 +7,7 @@ set scrolloff 4
 set shellopts '-eu'
 set cleaner '~/.config/lf/cleaner'
 set previewer '~/.config/lf/scope'
+set sixel true
 
 cmd bulk-rename $renamer ${fx}
 cmd chmod %chmod $* ${fx} && lf -remote "send reload"
@@ -45,7 +46,7 @@ cmd yank &{{
         dir)  dirname "${f}" ;;
         name) basename "${f}" ;;
         path) printf "%s" "${f}" ;;
-    esac | xclip -rmlastnl -selection clipboard
+    esac | wl-copy --trim-newline
 }}
 
 map d

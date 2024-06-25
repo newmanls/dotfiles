@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-[ "$(printf "No\nYes" | dmenu -p "$*")" = "Yes" ]

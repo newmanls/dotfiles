@@ -1,22 +1,49 @@
 #!/usr/bin/env python3
-# api from https://github.com/fcoagz/api-pydolarvenezuela/tree/main/src
+# api from https://github.com/fcoagz/api-pydolarvenezuela
 
 import requests
 
-try:
-    url = 'https://pydolarvenezuela-api.vercel.app/api/v1/dollar'
-    req = requests.get(url)
-    data = req.json()['monitors']
-    monitors = ['bcv', 'enparalelovzla']
-    prices = []
 
-    for monitor in monitors:
-        if monitor in data:
-            prices.append(f'{data[monitor]["price"]:.2f}')
-        else:
-            prices.append('??')
+def fetch_data(url: str) -> dict:
+    try:
+        req = requests.get(url)
+        req.raise_for_status()
+        data = req.json()['monitors']
 
-    print(f' {" / ".join(prices)}')
+        return data
+    except requests.exceptions.RequestException:
+        exit(1)
 
-except:
-    pass
+
+def format_text(data: list) -> str:
+    text = [str(monitor["price"]) for monitor in data]
+
+    return f" {" / ".join(text)}"
+
+
+def format_tooltip(data: list) -> str:
+    tooltip = []
+
+    for monitor in data:
+        title = monitor["title"]
+        price = monitor["price"]
+        change = monitor["change"]
+        symbol = monitor["symbol"]
+
+        tooltip.append(f"<b>{title}:</b> {price} ({symbol} {change})")
+
+    return "&#013;".join(tooltip)
+
+
+def main():
+    url = "https://pydolarvenezuela-api.vercel.app/api/v1/dollar"
+    monitors = ["bcv", "enparalelovzla"]
+    raw_data = fetch_data(url)
+    data = [raw_data[monitor] for monitor in monitors]
+
+    print(format_text(data))
+    print(format_tooltip(data))
+
+
+if __name__ == "__main__":
+    main()

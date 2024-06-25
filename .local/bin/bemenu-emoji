@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# dmenu-like script to insert emojis and copy them to clipboard.
+# Depends on bemenu and wl-copy/wtype (for wayland) or xclip/xdotool (for x11).
+# Author: Newman Sanchez (https://github.com/newmanls)
+
+set -euo pipefail
+
+emojis="${XDG_CACHE_HOME}/emojis.txt"
+
+download_emojis() {
+    echo -n "Downloading emojis... "
+    curl -sSL "https://unicode.org/Public/emoji/latest/emoji-test.txt" |
+        sed -n 's/^.*; fully-qualified.*# \(\S*\) \S* \(.*$\)/\1 \2/gp' > "$emojis"
+    echo "Done"
+}
+
+case "${1:-}" in "--download"|"-d")
+    download_emojis ;;
+esac
+
+[ ! -f "$emojis" ] && download_emojis
+
+chosen="$(bemenu -p "Emoji picker" -l 16 < "$emojis" |
+    cut -d " " -f1 | tr -d '\n')"
+
+if [ "$XDG_SESSION_TYPE" == "wayland" ]; then
+    wl-copy "$chosen"
+    wtype "$chosen"
+else
+    xclip -selection clipboard -rmlastnl <<< "$chosen"
+    xdotool type "$chosen"
+fi

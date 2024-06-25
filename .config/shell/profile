@@ -3,11 +3,11 @@
 # Default programs
 export BROWSER='firefox'
 export EDITOR='nvim'
-export TERMINAL='st'
 
 # Settings
 # Add all directories in `~/.local/bin` to $PATH
-export PATH="$PATH:$(find "${HOME}/.local/bin" -type d | paste -sd ':' -)"
+localpath=$(find "${HOME}/.local/bin" -type d | paste -sd ':' -)
+export PATH="$PATH:$localpath"
 export HISTCONTROL='ignoredups'
 export QT_QPA_PLATFORMTHEME='qt5ct'
 
@@ -18,5 +18,8 @@ export INPUTRC="${XDG_CONFIG_HOME}/shell/inputrc"
 export XINITRC="${XDG_CONFIG_HOME}/x11/xinitrc"
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 
-[ -z "${DISPLAY}" ] && [ "${XDG_VTNR:-0}" -eq 1 ] &&
-    exec startx -- -keeptty >/dev/null 2>&1
+export BEMENU_OPTS="-i -H 18 --hp 8 --fn 'Iosevka Nerd Font 9' --tb '#37383d' --tf '#a7aab0' --fb '#101012' --ff '#a7aab0' --cb '#101012' --cf '#a7aab0' --nb '#101012' --nf '#a7aab0' --ab '#101012' --af '#a7aab0' --hb '#37383d' --hf '#a7aab0'"
+
+
+[ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR:-0}" -eq 1 ] &&
+    exec dbus-run-session river > "${XDG_CACHE_HOME}/river.log" 2>&1

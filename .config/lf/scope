@@ -6,11 +6,10 @@ file="$1"
 file_extension="${file##*.}"
 file_extension="${file_extension@L}"
 file_mimetype="$(file --dereference --brief --mime-type -- "${file}")"
+file_info="$(file --dereference --brief -- "$file")"
 
-pv_width="$(($2-3))"
-pv_height="$3"
-pv_x="$(($4+1))"
-pv_y="$5"
+width="$2"
+height="$3"
 
 hash() {
     stat --printf "%n\0%i\0%F\0%s\0%W\0%Y" "$(readlink -f "${file}")" |
@@ -18,66 +17,57 @@ hash() {
 }
 
 image_pv() {
-    [ -n "${DISPLAY}" ] && [ -z "${WAYLAND_DISPLAY}" ] &&
-        printf '{"action": "add", "identifier": "PREVIEW", "x": "%s", "y": "%s", "width": "%s", "height": "%s", "scaler": "contain", "path": "%s"}\n' \
-        "${pv_x}" "${pv_y}" "${pv_width}" "${pv_height}" "${1}" > "${FIFO_UEBERZUG}"
+    chafa -f sixel -s "${width}x${height}" --animate off --polite on "${1}"
 }
 
 thumbnail_pv() {
     thumbnails_dir="${XDG_CACHE_HOME:-${HOME}/.cache}/lf/thumbnails/"
     thumbnail="${thumbnails_dir}/$(hash).jpg"
 
-    if [ ! -f "${thumbnail}" ]; then
-        mkdir -p "${thumbnails_dir}"
+    if [ ! -f "$thumbnail" ]; then
+        mkdir -p "$thumbnails_dir"
 
-        case "${file_mimetype}" in
+        case "$file_mimetype" in
             application/pdf)
-                pdftoppm -singlefile -jpeg "${file}" "${thumbnail%%.jpg}" ;;
+                pdftoppm -singlefile -jpeg "$file" "${thumbnail%%.jpg}" ;;
 
             video/*)
-                ffmpegthumbnailer -s 0 -i "${file}" -o "${thumbnail}" ;;
+                ffmpegthumbnailer -s 0 -i "$file" -o "$thumbnail" ;;
 
             image/svg+xml)
-                magick -format jpg -background transparent "${file}" "${thumbnail}" ;;
+                magick -format jpg -background transparent "$file" "$thumbnail" ;;
         esac
     fi
 
-    image_pv "${thumbnail}"
+    image_pv "$thumbnail"
 }
 
-# Handle extension
-case "${file_extension}" in
-    7z|a|ace|alz|arc|arj|bz|bz2|cab|cpio|deb|gz|iso|jar|lha|lz|lzh|lzma| \
-    lzo|rar|rpm|rz|t7z|tar|tbz|tbz2|tgz|tlz|txz|tZ|tzo|war|xpi|xz|Z|zip)
-        atool --list -- "${file}" && exit 1 ;;
-esac
-
 # Handle mimetype
-case "${file_mimetype}" in
+case "$file_mimetype" in
+    */zip | */java-archive)
+        atool --list -- "$file" && exit 1 ;;
     application/pdf | video/* | image/svg+xml)
         thumbnail_pv && exit 1 ;;
 
     image/*)
-        image_pv "${file}" && exit 1
+        image_pv "$file" && exit 1
         magick identify "$file" && exit 1
         ;;
 
     audio/*)
-        id3v2 -l "$file" |
-            sed 's/^\(id3v. tag info\) for .*/=== \1 ===/' |
-            fold -sw "${pv_width}" &&
+        id3v2 -l "$file" | sed 's/^\(id3v. tag info\) for .*/=== \1 ===/' |
+            fold -sw "$width" &&
             exit 1
         ;;
 
     *opendocument*)
-        odt2txt "${file}" && exit 1 ;;
+        odt2txt "$file" && exit 1 ;;
 
     text/*|application/json|application/javascript)
-        if ! bat --color always --number --decorations always "$file"; then
-            fold -sw "$pv_width" "$file"
-        fi && exit 1 ;;
+        bat --color always --number --decorations always "$file" && exit 1
+        fold -sw "$width" "$file" && exit 1
+        ;;
 esac
 
-printf "%s\n" "=== File Type Classification ===" \
-    "$(file --dereference --brief -- "${file}")" |
-    fold -sw "${pv_width}" && exit 1
+printf "%s\n" "=== File Type Classification ===" "$file_info" |
+    fold -sw "$width" && exit 1

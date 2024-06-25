@@ -25,7 +25,7 @@ case "$1" in
             prompt="delete '${files[0]##*/}'?"
         fi
 
-        dmenu-prompt "$prompt" && rm "${files[@]}"
+        bemenu-prompt "$prompt" && rm "${files[@]}"
         ;;
     e) # Edit
         setsid -f gimp "${files[@]}"

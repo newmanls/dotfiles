@@ -1,0 +1,66 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 18,
+    "modules-left": [
+        "river/tags",
+    ],
+    "modules-right": [
+        "custom/player",
+        "custom/dollar",
+        "battery",
+        "pulseaudio",
+        "network",
+        "clock",
+        "tray",
+    ],
+    "river/tags": {
+        "num-tags": 5,
+    },
+    "custom/player": {
+        "exec": "sb-player",
+        "interval": 1,
+    },
+    "custom/dollar": {
+        "exec": "sb-dollar",
+        "interval": 21600,
+    },
+    "network": {
+        "interval": 5,
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+        "format-wifi": "{icon}  {essid}",
+        "format-ethernet": "󰈀 ",
+        "format-disconnected": "󰇨 ",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "pulseaudio": {
+        "format": "󰎈 {volume}",
+        "format-muted": "󰎊  muted",
+    },
+    "clock": {
+      "interval": 60,
+      "format": "{:%a %b %d %R}",
+      "tooltip-format": "<tt><small>{calendar}</small></tt>",
+      "calendar": {
+          "mode-mon-col": 3,
+          "format": {
+              "months":     "<b>{}</b>",
+              "days":       "{}",
+              "weeks":      "<b>{:%W}</b>",
+              "weekdays":   "<b>{}</b>",
+              "today":      "<b><u>{}</u></b>",
+          },
+      },
+      "actions": {
+          "on-click": "mode",
+          "on-scroll-up": "shift_up",
+          "on-scroll-down": "shift_down",
+      },
+    },
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
+    }
+}
+
+// vi: ft=hjson

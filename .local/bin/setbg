@@ -2,17 +2,26 @@
 
 set -euo pipefail
 
-bg="${XDG_CONFIG_HOME:-${HOME}/.config}/bg"
+# Path for cached image
+bg="${XDG_CACHE_HOME:-${HOME}/.cache}/bg"
 
+# Cache image
 if [ "${1:-}" ]; then
     file=$(readlink -f "${1}")
 
     case $(file --mime-type --brief "${file}") in
         image/*)
-            ln -fs "${file}" "${bg}" ;;
+            mkdir -p "$(dirname "$bg")"
+            cp "${file}" "${bg}" ;;
         *)
             exit 1 ;;
     esac
 fi
 
-hsetroot -root -cover "${bg}"
+# Set background
+if [ "$XDG_SESSION_TYPE" == "wayland" ]; then
+    pidof swaybg && pkill swaybg
+    swaybg -m fill -i "${bg}"
+else
+    hsetroot -root -cover "${bg}"
+fi

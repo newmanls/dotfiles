@@ -1,0 +1,98 @@
+#!/usr/bin/env python3
+# dmenu-like script for (un)mounting removable storage devices.
+# Depends on udisks2 and bemenu.
+# Author: Newman Sanchez (https://github.com/newmanls)
+
+import argparse
+import json
+from subprocess import getoutput, run
+
+
+def show_notification(message: str, icon="drive-removable-media") -> None:
+    run(["notify-send", "-i", icon, "udisks", message])
+
+
+def is_mounted(device: dict) -> bool:
+    return bool(device.get("mountpoint"))
+
+
+def is_removable(device: dict) -> bool:
+    return bool(device.get("rm"))
+
+
+def get_devices(action: str) -> list:
+    lsblk_cmd = "lsblk -JMp -o name,label,uuid,size,rm,mountpoint"
+    lsblk = json.loads(getoutput(lsblk_cmd))["blockdevices"]
+    lsblk = [device for device in lsblk if is_removable(device)]
+
+    devices = []
+
+    for device in lsblk:
+        if "children" in device:
+            devices.extend(device["children"])
+            del device["children"]
+        else:
+            devices.append(device)
+
+    if action == "mount":
+        devices = [device for device in devices if not is_mounted(device)]
+    else:
+        devices = [device for device in devices if is_mounted(device)]
+
+    if not devices:
+        show_notification(f"No devices for {action}ing")
+        quit()
+
+    return devices
+
+
+def format_entry(device: dict) -> str:
+    return "{}: {} ({})".format(
+        device['name'],
+        device['label'] or device['uuid'],
+        device['size']
+    )
+
+
+def select_device(devices: list, prompt: str) -> str:
+    devices = [format_entry(device) for device in devices]
+    selected_device = run(["bemenu", "-p", prompt],
+                          input="\n".join(devices),
+                          capture_output=True,
+                          text=True).stdout
+
+    if not selected_device:
+        exit()
+
+    return selected_device.split(":")[0]
+
+
+def run_udiskctl(action: str, device: str) -> None:
+    command = run(["udisksctl", action, "-b", device],
+                  capture_output=True, text=True)
+
+    if command.returncode > 0:
+        message = "\n".join(command.stderr.split(": ")[2:]).strip()
+        show_notification(message, icon="dialog-error")
+        exit()
+
+    show_notification(command.stdout.strip())
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Mount or unmount removable storage devices.")
+
+    parser.add_argument("action",
+                        choices=["mount", "unmount"],
+                        help="Action to perform on the devices.")
+
+    args = parser.parse_args()
+    devices = get_devices(action=args.action)
+    selected_device = select_device(devices, prompt=args.action)
+
+    run_udiskctl(action=args.action, device=selected_device)
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+font=$(xrdb -get font)
+background=$(xrdb -get background | tr -d '#')
+foreground=$(xrdb -get foreground | tr -d '#')
+color0=$(xrdb -get color0 | tr -d '#')
+color1=$(xrdb -get color1 | tr -d '#')
+color2=$(xrdb -get color2 | tr -d '#')
+color3=$(xrdb -get color3 | tr -d '#')
+color4=$(xrdb -get color4 | tr -d '#')
+color5=$(xrdb -get color5 | tr -d '#')
+color6=$(xrdb -get color6 | tr -d '#')
+color7=$(xrdb -get color7 | tr -d '#')
+color8=$(xrdb -get color8 | tr -d '#')
+color9=$(xrdb -get color9 | tr -d '#')
+color10=$(xrdb -get color10 | tr -d '#')
+color11=$(xrdb -get color11 | tr -d '#')
+color12=$(xrdb -get color12 | tr -d '#')
+color13=$(xrdb -get color13 | tr -d '#')
+color14=$(xrdb -get color14 | tr -d '#')
+color15=$(xrdb -get color15 | tr -d '#')
+
+foot --server \
+    -o font="$font" \
+    -o cursor.color="$color8 $foreground" \
+    -o colors.foreground="$foreground" \
+    -o colors.background="$background" \
+    -o colors.regular0="$color0" \
+    -o colors.regular1="$color1" \
+    -o colors.regular2="$color2" \
+    -o colors.regular3="$color3" \
+    -o colors.regular4="$color4" \
+    -o colors.regular5="$color5" \
+    -o colors.regular6="$color6" \
+    -o colors.regular7="$color7" \
+    -o colors.bright0="$color8" \
+    -o colors.bright1="$color9" \
+    -o colors.bright2="$color10" \
+    -o colors.bright3="$color11" \
+    -o colors.bright4="$color12" \
+    -o colors.bright5="$color13" \
+    -o colors.bright6="$color14" \
+    -o colors.bright7="$color15"

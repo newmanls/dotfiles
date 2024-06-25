@@ -1,0 +1,9 @@
+icon-path=/usr/share/icons/Papirus-Dark
+max-icon-size=48
+default-timeout=5000
+font=Iosevka Nerd Font 11
+margin=8
+padding=12
+border-size=1
+
+# vi: ft=properties
