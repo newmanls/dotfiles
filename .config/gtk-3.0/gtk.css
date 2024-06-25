@@ -1,0 +1,30 @@
+/* No (default) title bar on wayland */
+headerbar.default-decoration {
+    margin-bottom: 50px;
+    margin-top: -100px;
+}
+
+/* rm -rf window shadows */
+.titlebar,
+window,
+window.csd,
+.window-frame.csd.popup,
+decoration,
+decoration:backdrop {
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.window-frame,
+.window-frame:backdrop {
+    box-shadow: 0 0 0 black;
+    border-style: none;
+    margin: 0;
+    border-radius: 0;
+}
+
+.header-bar {
+    background-image: none;
+    background-color: #ededed;
+    box-shadow: none;
+}
