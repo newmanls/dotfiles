@@ -6,12 +6,6 @@ if [ ! -d "$ZINIT_HOME" ]; then
    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
-# Automatically install oh-my-posh
-if ! which oh-my-posh > /dev/null 2>&1; then
-    mkdir -p "${HOME}/.local/bin"
-    curl -s https://ohmyposh.dev/install.sh | bash -s -- -d "${HOME}/.local/bin"
-fi
-
 # Sources
 source "${ZINIT_HOME}/zinit.zsh"
 source "${XDG_CONFIG_HOME}/shell/aliasrc"
@@ -77,4 +71,4 @@ set_cursor_beam
 
 # Shell integrations
 source <(fzf --zsh)
-source <(oh-my-posh init zsh --config "${XDG_CONFIG_HOME:-${HOME}/.config}/oh-my-posh.toml")
+source <(starship init zsh)
