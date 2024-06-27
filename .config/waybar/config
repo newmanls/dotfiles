@@ -36,6 +36,7 @@
     "pulseaudio": {
         "format": "󰎈 {volume}",
         "format-muted": "󰎊  muted",
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
     },
     "clock": {
       "interval": 60,
