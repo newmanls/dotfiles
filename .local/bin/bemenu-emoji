@@ -20,7 +20,7 @@ esac
 
 [ ! -f "$emojis" ] && download_emojis
 
-chosen="$(bemenu -p "Emoji picker" -l 16 < "$emojis" |
+chosen="$(bemenu -p '' -l 10 --center -W 0.3 --fn 'sans-serif 16' < "$emojis" |
     cut -d " " -f1 | tr -d '\n')"
 
 if [ "$XDG_SESSION_TYPE" == "wayland" ]; then
