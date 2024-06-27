@@ -1,4 +1,3 @@
-
 -- Interface
 vim.opt.colorcolumn = '80'
 vim.opt.cursorline = true
@@ -33,7 +32,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     callback = function() vim.highlight.on_yank() end
 })
 
-vim.api.nvim_create_autocmd('BufNewFile', {
-    pattern = {"*_u.tex"},
-    command = "0r ~/Templates/apa7_u.tex"
+vim.api.nvim_create_autocmd({ "BufRead", "BufEnter" }, {
+    pattern = { "*.astro" },
+    command = "set filetype=astro"
 })
