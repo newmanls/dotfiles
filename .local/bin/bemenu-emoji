@@ -5,7 +5,9 @@
 
 set -euo pipefail
 
-emojis="${XDG_CACHE_HOME}/emojis.txt"
+emojis="${XDG_CACHE_HOME}/emoji"
+history="${XDG_CACHE_HOME}/emoji-history"
+hist_size=10
 
 download_emojis() {
     echo -n "Downloading emojis... "
@@ -14,19 +16,43 @@ download_emojis() {
     echo "Done"
 }
 
+get_output() {
+    output=""
+
+    [ ! -f "$emojis" ] && download_emojis
+    [ -f "$history" ] && output="$(cat "$history")\n"
+
+    output+="$(cat "$emojis")"
+
+    printf "%b\n" "$output"
+}
+
+save_to_history() {
+    item="$1"
+
+    if [ ! -f "$history" ]; then
+        printf "%b\n" "$item" > "$history"
+    else
+        history_content="$(grep -v "$item" "$history" |
+            head -n $((hist_size - 1)))"
+        printf "%b\n" "$item" "$history_content" > "$history"
+    fi
+}
+
 case "${1:-}" in "--download"|"-d")
     download_emojis ;;
 esac
 
-[ ! -f "$emojis" ] && download_emojis
+chosen=$(get_output | bemenu -p '' -l 10 --center -W 0.3 --fn 'sans-serif 16')
 
-chosen="$(bemenu -p '' -l 10 --center -W 0.3 --fn 'sans-serif 16' < "$emojis" |
-    cut -d " " -f1 | tr -d '\n')"
+save_to_history "$chosen"
+
+chosen_emoji=$(echo "$chosen" | cut -d " " -f1 | tr -d '\n')
 
 if [ "$XDG_SESSION_TYPE" == "wayland" ]; then
-    wl-copy "$chosen"
-    wtype "$chosen"
+    wl-copy "$chosen_emoji"
+    wtype "$chosen_emoji"
 else
-    xclip -selection clipboard -rmlastnl <<< "$chosen"
-    xdotool type "$chosen"
+    xclip -selection clipboard -rmlastnl <<< "$chosen_emoji"
+    xdotool type "$chosen_emoji"
 fi
