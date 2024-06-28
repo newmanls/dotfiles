@@ -1,3 +1,4 @@
-vim.opt_local.colorcolumn = '0'
 vim.opt_local.spell = true
-vim.opt_local.spelllang = 'es'
+vim.opt_local.spelllang = "es,en"
+vim.opt_local.textwidth = 80
+vim.opt_local.wrapmargin = 1
