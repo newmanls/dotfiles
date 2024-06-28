@@ -27,6 +27,7 @@ alias \
     lla='ls --long --all' \
     lt='ls --tree' \
     lta='ls --tree --all' \
+    md2pdf='pandoc --from markdown --to pdf --template apa7 --listings' \
     prename='perl-rename' \
     wtr='curl wttr.in/Caracas\?Fq'
 
