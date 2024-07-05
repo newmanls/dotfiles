@@ -1,5 +1,10 @@
 return {
     "folke/flash.nvim",
     event = "VeryLazy",
-    opts = {}
+    opts = {
+        modes = {
+            search = { enabled = true },
+            char = { multi_line = false },
+        }
+    }
 }
