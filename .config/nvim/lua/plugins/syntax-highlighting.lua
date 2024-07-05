@@ -6,6 +6,7 @@ return {
         main = "nvim-treesitter.configs",
         opts = {
             auto_install = true,
+            ignore_install = { "latex" },
             highlight = {
                 enable = true
             },
