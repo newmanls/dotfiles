@@ -55,6 +55,13 @@ return {
             "nvim-treesitter/nvim-treesitter",
             "nvim-tree/nvim-web-devicons",
         },
+        keys = {
+            {
+                "<leader>mr",
+                "<Cmd>RenderMarkdownToggle<CR>",
+                desc = "Toggle Markdown Rendering"
+            },
+        },
         opts = {
             headings = { "⦿ " },
             bullets = { "•", "◦" },
