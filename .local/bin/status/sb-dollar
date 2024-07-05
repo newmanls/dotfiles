@@ -8,9 +8,8 @@ def fetch_data(url: str) -> dict:
     try:
         req = requests.get(url)
         req.raise_for_status()
-        data = req.json()['monitors']
 
-        return data
+        return req.json()
     except requests.exceptions.RequestException:
         exit(1)
 
@@ -39,7 +38,7 @@ def main():
     url = "https://pydolarvenezuela-api.vercel.app/api/v1/dollar"
     monitors = ["bcv", "enparalelovzla"]
     raw_data = fetch_data(url)
-    data = [raw_data[monitor] for monitor in monitors]
+    data = [raw_data["monitors"][monitor] for monitor in monitors]
 
     print(format_text(data))
     print(format_tooltip(data))
