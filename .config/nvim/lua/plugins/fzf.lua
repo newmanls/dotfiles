@@ -1,34 +1,28 @@
 return {
     "ibhagwan/fzf-lua",
     dependencies = {
-        "nvim-tree/nvim-web-devicons",
+        "echasnovski/mini.icons",
     },
-    lazy = false,
-    config = function()
-        local fzf_lua = require("fzf-lua")
-        fzf_lua.setup()
-        fzf_lua.register_ui_select()
+    init = function()
+        require("fzf-lua").register_ui_select()
     end,
+    opts = {},
+    lazy = false,
     keys = {
         {
             "<leader>ff",
             "<Cmd>FzfLua files<CR>",
-            desc = "List Files"
+            desc = "Fuzzy list files"
         },
         {
             "<leader>fb",
             "<Cmd>FzfLua buffers<CR>",
-            desc = "List buffers"
+            desc = "Fuzzy list buffers"
         },
         {
             "<leader>fg",
             "<Cmd>FzfLua live_grep<CR>",
-            desc = "Search for a pattern"
-        },
-        {
-            "z=",
-            "<Cmd>FzfLua spell_suggest<CR>",
-            desc = "List spelling suggestions"
+            desc = "Fuzzy search for a pattern"
         },
     },
 }

@@ -33,6 +33,12 @@ return {
         end
     },
     {
+        'echasnovski/mini.icons',
+        version = false,
+        opts = {},
+        event = "VeryLazy",
+    },
+    {
         "brenoprata10/nvim-highlight-colors",
         opts = {}
     },
