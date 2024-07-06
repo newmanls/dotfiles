@@ -1,8 +1,6 @@
 return {
     "ibhagwan/fzf-lua",
-    dependencies = {
-        "echasnovski/mini.icons",
-    },
+    dependencies = { "echasnovski/mini.icons" },
     init = function()
         require("fzf-lua").register_ui_select()
     end,

@@ -32,6 +32,9 @@ return {
     },
     {
         'echasnovski/mini.icons',
+        init = function()
+            require("mini.icons").mock_nvim_web_devicons()
+        end,
         version = false,
         opts = {},
         event = "VeryLazy",
