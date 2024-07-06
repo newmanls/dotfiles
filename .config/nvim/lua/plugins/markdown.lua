@@ -63,6 +63,20 @@ return {
             checkbox = {
                 unchecked = "☐ ",
                 checked = "☑ ",
+                custom = {
+                    todo = {
+                        raw = "[-]",
+                        rendered = "▣ ",
+                        highlight = "@diff.delta"
+                    },
+                },
+            },
+            highlights = {
+                bullet = "@markup.list",
+                checkbox = {
+                    unchecked = "@diff.minus",
+                    checked = "@diff.plus",
+                },
             }
         },
         ft = "markdown",
