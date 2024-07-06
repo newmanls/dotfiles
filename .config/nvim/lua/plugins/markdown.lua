@@ -1,6 +1,7 @@
 return {
     {
         "tadmccorkle/markdown.nvim",
+        opts = {},
         ft = "markdown",
         keys = {
             {
@@ -18,22 +19,27 @@ return {
             {
                 "<M-o>",
                 "<Cmd>MDListItemBelow<CR>",
-                mode = { "n", "i" }
+                mode = { "n", "i" },
+                desc = "Add new list item in the next line"
             },
             {
                 "<M-O>",
                 "<Cmd>MDListItemAbove<CR>",
-                mode = { "n", "i" }
+                mode = { "n", "i" },
+                desc = "Add new list item in the previous line"
             },
             {
                 "<leader>mt",
-                "<Cmd>MDToc<CR>"
+                "<Cmd>MDToc<CR>",
+                desc = "Open table of contents"
             }
         },
-        opts = {}
     },
     {
         "toppair/peek.nvim",
+        opts = {
+            app = "browser"
+        },
         build = "deno task --quiet build:fast",
         ft = "markdown",
         keys = {
@@ -43,24 +49,13 @@ return {
                 desc = "Open live preview"
             }
         },
-        opts = {
-            app = "browser"
-        }
     },
     {
         "MeanderingProgrammer/markdown.nvim",
         name = "render-markdown",
-        ft = "markdown",
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
             "echasnovski/mini.icons",
-        },
-        keys = {
-            {
-                "<leader>mr",
-                "<Cmd>RenderMarkdownToggle<CR>",
-                desc = "Toggle Markdown Rendering"
-            },
         },
         opts = {
             headings = { "⦿ " },
@@ -69,6 +64,14 @@ return {
                 unchecked = "☐ ",
                 checked = "☑ ",
             }
+        },
+        ft = "markdown",
+        keys = {
+            {
+                "<leader>mr",
+                "<Cmd>RenderMarkdownToggle<CR>",
+                desc = "Toggle Markdown Rendering"
+            },
         },
     }
 }

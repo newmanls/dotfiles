@@ -1,5 +1,9 @@
 return {
     "kassio/neoterm",
+    init = function()
+        vim.g.neoterm_autoinsert = true
+        vim.g.neoterm_default_mod = "botright"
+    end,
     keys = {
         {
             "<A-CR>",
@@ -8,8 +12,4 @@ return {
             desc = "Toggle the last active terminal buffer"
         }
     },
-    config = function()
-        vim.g.neoterm_autoinsert = true
-        vim.g.neoterm_default_mod = "botright"
-    end
 }

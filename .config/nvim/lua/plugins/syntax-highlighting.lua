@@ -1,9 +1,9 @@
 return {
     {
         "nvim-treesitter/nvim-treesitter",
-        event = { "BufReadPost", "BufWritePost", "BufNewFile" },
-        build = ":TSUpdate",
+        dependencies = { "nvim-treesitter/nvim-treesitter-context" },
         main = "nvim-treesitter.configs",
+        build = ":TSUpdate",
         opts = {
             auto_install = true,
             ignore_install = { "latex" },
@@ -14,14 +14,11 @@ return {
                 enable = true,
             },
         },
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter-context"
-        }
+        event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     },
     {
         "echasnovski/mini.indentscope",
         version = false,
-        event = "VeryLazy",
         config = function()
             require("mini.indentscope").setup({
                 draw = {
@@ -30,7 +27,8 @@ return {
                 },
                 symbol = "│"
             })
-        end
+        end,
+        event = "VeryLazy",
     },
     {
         'echasnovski/mini.icons',

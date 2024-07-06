@@ -1,6 +1,13 @@
 return {
     {
         "neovim/nvim-lspconfig",
+        init = function()
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                callback = function()
+                    vim.lsp.buf.format()
+                end,
+            })
+        end,
         event = { "BufReadPost", "BufWritePost", "BufNewFile" },
         keys = {
             {
@@ -89,7 +96,7 @@ return {
     },
     {
         "nvimtools/none-ls.nvim",
-        lazy = true,
+        dependencies = { "nvim-lua/plenary.nvim" },
         config = function()
             local null_ls = require("null-ls")
 
@@ -98,15 +105,7 @@ return {
                     null_ls.builtins.completion.spell
                 }
             })
-
-            vim.api.nvim_create_autocmd("BufWritePre", {
-                callback = function()
-                    vim.lsp.buf.format()
-                end,
-            })
         end,
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
+        lazy = true,
     },
 }

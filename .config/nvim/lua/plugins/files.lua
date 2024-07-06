@@ -1,19 +1,19 @@
 return {
     {
         "rolv-apneseth/tfm.nvim",
-        lazy = false,
-        keys = {
-            {
-                "<leader>e",
-                "<Cmd>Tfm<CR>",
-                desc = "Terminal File Manager"
-            },
-        },
         opts = {
             file_manager = "lf",
             replace_netrw = true,
             enable_cmds = true,
             ui = { border = "none" }
+        },
+        lazy = false,
+        keys = {
+            {
+                "<leader>fe",
+                "<Cmd>Tfm<CR>",
+                desc = "Open Terminal File Manager"
+            }
         }
     },
     {
