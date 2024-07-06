@@ -5,7 +5,11 @@ return {
             file_manager = "lf",
             replace_netrw = true,
             enable_cmds = true,
-            ui = { border = "none" }
+            ui = {
+                border = "single",
+                height = 0.8,
+                width = 0.9,
+            }
         },
         lazy = false,
         keys = {
