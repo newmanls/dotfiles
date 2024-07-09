@@ -26,11 +26,22 @@ return {
             "echasnovski/mini.icons",
         },
         opts = {
-            headings = { "⦿ " },
-            bullets = { "•", "◦" },
+            heading = {
+                icons = { "⦿ " },
+            },
+            bullet = {
+                icons = { "•", "◦" },
+                highlight = "@markup.list",
+            },
             checkbox = {
-                unchecked = "☐ ",
-                checked = "☑ ",
+                unchecked = {
+                    icon = "☐ ",
+                    highlight = "@diff.minus",
+                },
+                checked = {
+                    icon = "☑ ",
+                    highlight = "@diff.plus",
+                },
                 custom = {
                     todo = {
                         raw = "[-]",
@@ -39,13 +50,6 @@ return {
                     },
                 },
             },
-            highlights = {
-                bullet = "@markup.list",
-                checkbox = {
-                    unchecked = "@diff.minus",
-                    checked = "@diff.plus",
-                },
-            }
         },
         ft = "markdown",
         keys = {
