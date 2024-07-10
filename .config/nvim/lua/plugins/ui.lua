@@ -19,6 +19,9 @@ return {
                 position = "left",
                 width = 30,
                 auto_close = true,
+            },
+            symbol_folding = {
+                autofold_depth = false
             }
         },
         keys = {
