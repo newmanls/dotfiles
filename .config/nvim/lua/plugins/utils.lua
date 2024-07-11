@@ -34,4 +34,25 @@ return {
         "jghauser/mkdir.nvim",
         event = "VeryLazy"
     },
+    {
+        "michaelrommel/nvim-silicon",
+        keys = {
+            {
+                "<leader>sc",
+                "<Cmd>Silicon<CR>",
+                mode = "v",
+                desc = "Create image out of the selected lines"
+            }
+        },
+        opts = {
+            font = "Iosevka Nerd Font=24",
+            theme = "OneHalfDark",
+            to_clipboard = true,
+            output = function()
+                local savedir = "~/Pictures/Screenshots/"
+                local timestamp = os.date("!%Y%m%d_%H%M%S")
+                return savedir .. timestamp .. "_code.png"
+            end,
+        }
+    }
 }
