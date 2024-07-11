@@ -11,17 +11,22 @@ return {
             {
                 "<leader>ff",
                 "<Cmd>FzfLua files<CR>",
-                desc = "Fuzzy list files"
+                desc = "Search files"
             },
             {
                 "<leader>fb",
                 "<Cmd>FzfLua buffers<CR>",
-                desc = "Fuzzy list buffers"
+                desc = "Search buffers"
             },
             {
                 "<leader>fg",
                 "<Cmd>FzfLua live_grep<CR>",
-                desc = "Fuzzy search for a pattern"
+                desc = "Search for a pattern"
+            },
+            {
+                "<leader>fd",
+                "<Cmd>FzfLua lsp_workspace_diagnostics<CR>",
+                desc = "Search workspace diagnostics"
             },
         },
     },
@@ -72,7 +77,7 @@ return {
             {
                 "<leader>o",
                 "<Cmd>Outline<CR>",
-                desc = "Toggle outline sidebar"
+                desc = "Toggle outline"
             }
         }
     },
@@ -91,7 +96,7 @@ return {
         lazy = false,
         keys = {
             {
-                "<leader>fe",
+                "<leader>e",
                 "<Cmd>Tfm<CR>",
                 desc = "Open Terminal File Manager"
             }
