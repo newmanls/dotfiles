@@ -8,6 +8,9 @@ return {
         opts = {
             content = {
                 format = function(notif) return notif.msg end,
+            },
+            window = {
+                winblend = 0,
             }
         },
         event = "VeryLazy",
