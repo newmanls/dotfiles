@@ -13,9 +13,15 @@ take_screenshot() {
 
     grim "$@" "$filepath"
     wl-copy < "$filepath"
-    notify-send -i "$filepath" \
-        "Screenshot saved" \
-        "You can also paste the image from your clipboard."
+    action=$(notify-send -i "$filepath" \
+        --action "default=Edit" \
+        "Screenshot saved and copied to clipboard" \
+        "Click to edit.")
+
+    case "$action" in
+        "default")
+            swappy -f "$filepath" -o "${filepath/%.png/_swappy.png}" ;;
+    esac
 }
 
 pick_color() {
