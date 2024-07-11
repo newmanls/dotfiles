@@ -96,9 +96,19 @@ return {
         lazy = false,
         keys = {
             {
-                "<leader>e",
+                "<leader>ee",
                 "<Cmd>Tfm<CR>",
-                desc = "Open Terminal File Manager"
+                desc = "Open file manager"
+            },
+            {
+                "<leader>es",
+                "<Cmd>TfmSplit<CR>",
+                desc = "Open file manager (horizontal split)"
+            },
+            {
+                "<leader>ev",
+                "<Cmd>TfmVsplit<CR>",
+                desc = "Open file manager (vertical split)"
             }
         }
     },
