@@ -20,28 +20,29 @@ def is_removable(device: dict) -> bool:
     return bool(device.get("rm"))
 
 
+def has_valid_filesystem(device: dict) -> bool:
+    return bool(device.get("fstype"))
+
+
 def get_devices(action: str) -> list:
-    lsblk_cmd = "lsblk -JMp -o name,label,uuid,size,rm,mountpoint"
-    lsblk = json.loads(getoutput(lsblk_cmd))["blockdevices"]
-    lsblk = [device for device in lsblk if is_removable(device)]
+    lsblk_cmd = "lsblk -JMp -o name,label,uuid,fstype,size,rm,mountpoint"
+    blockdevices = json.loads(getoutput(lsblk_cmd))["blockdevices"]
+    removable_devices = [device for device in blockdevices if
+                         is_removable(device)]
 
-    devices = []
+    unpacked_devices = []
 
-    for device in lsblk:
+    for device in removable_devices:
         if "children" in device:
-            devices.extend(device["children"])
+            unpacked_devices.extend(device["children"])
             del device["children"]
         else:
-            devices.append(device)
+            unpacked_devices.append(device)
 
-    if action == "mount":
-        devices = [device for device in devices if not is_mounted(device)]
-    else:
-        devices = [device for device in devices if is_mounted(device)]
-
-    if not devices:
-        show_notification(f"No devices for {action}ing")
-        quit()
+    devices = [device for device in unpacked_devices if
+               has_valid_filesystem(device) and (
+                   action == "mount" and not is_mounted(device) or
+                   action == "unmount" and is_mounted(device))]
 
     return devices
 
@@ -89,6 +90,11 @@ def main():
 
     args = parser.parse_args()
     devices = get_devices(action=args.action)
+
+    if not devices:
+        show_notification(f"No devices for {args.action}ing")
+        exit()
+
     selected_device = select_device(devices, prompt=args.action)
 
     run_udiskctl(action=args.action, device=selected_device)
