@@ -1,4 +1,3 @@
-# vim:ft=sh
 set cursorpreviewfmt ""
 set icons true
 set ifs "\n"
@@ -13,10 +12,21 @@ cmd bulk-rename $renamer ${fx}
 cmd chmod %chmod $* ${fx} && lf -remote "send reload"
 cmd extract !clear; aunpack -- ${fx}
 cmd execute !"${f}"
-cmd mkdir %IFS=" "; mkdir -vp "$*"
 cmd open-terminal-here &setsid -f "${TERMINAL}" >/dev/null 2>&1
 cmd open-with &setsid -f ${1} ${fx}
 cmd set-as-wallpaper &setbg ${f}
+
+cmd create &{{
+    file="$@"
+
+    case "$file" in
+        */)
+            mkdir -p "$file" ;;
+        *)
+            mkdir -p $(dirname "$file")
+            touch "$file" ;;
+    esac
+}}
 
 cmd open ${{
     case "${f##*.}" in
@@ -77,6 +87,8 @@ map cm push :chmod<space>
 map cw push a<c-u>
 
 map <c-l>   push :cd<space>
-map <c-n>   push :mkdir<space>
+map <c-n>   push :create<space>
 map <esc>   :unselect; clear
 map <enter> open
+
+# vim:ft=conf
