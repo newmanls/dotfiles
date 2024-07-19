@@ -1,9 +1,9 @@
-*.background:  #1d2021
-*.background_d: #141617
+*.background:  #282828
+*.background_d: #1b1b1b
 *.foreground:  #d4be98
 
 ! black
-*.color0:      #3c3836
+*.color0:      #45403d
 *.color8:      #7c6f64
 
 ! red
