@@ -31,6 +31,29 @@ return {
         },
     },
     {
+        "echasnovski/mini.indentscope",
+        version = false,
+        config = function()
+            require("mini.indentscope").setup({
+                draw = {
+                    delay = 0,
+                    animation = require("mini.indentscope").gen_animation.none()
+                },
+                symbol = "│"
+            })
+        end,
+        event = "VeryLazy",
+    },
+    {
+        'echasnovski/mini.icons',
+        init = function()
+            require("mini.icons").mock_nvim_web_devicons()
+        end,
+        version = false,
+        opts = {},
+        event = "VeryLazy",
+    },
+    {
         "echasnovski/mini.notify",
         version = false,
         init = function()
