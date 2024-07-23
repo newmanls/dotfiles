@@ -53,8 +53,12 @@ return {
                     },
                 },
             },
+            sign = {
+                enabled = false,
+            },
         },
         ft = "markdown",
+        cmd = "RenderMarkdown",
         keys = {
             {
                 "<leader>mr",
