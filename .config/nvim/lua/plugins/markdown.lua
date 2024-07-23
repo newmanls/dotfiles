@@ -31,6 +31,7 @@ return {
         opts = {
             heading = {
                 icons = { "⦿ " },
+                backgrounds = { "CursorLine" }
             },
             bullet = {
                 icons = { "•", "◦" },
