@@ -36,7 +36,8 @@
     "pulseaudio": {
         "format": "󰎈 {volume}",
         "format-muted": "󰎊  muted",
-        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "scroll-step": 5,
     },
     "clock": {
       "interval": 60,
@@ -64,4 +65,4 @@
     }
 }
 
-// vi: ft=hjson
+// vi:ft=hjson
