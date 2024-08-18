@@ -35,7 +35,7 @@ def format_tooltip(data: list) -> str:
 
 
 def main():
-    url = "https://pydolarvenezuela-api.vercel.app/api/v1/dollar"
+    url = "http://pydolarve.org/api/v1/dollar"
     monitors = ["bcv", "enparalelovzla"]
     raw_data = fetch_data(url)
     data = [raw_data["monitors"][monitor] for monitor in monitors]
