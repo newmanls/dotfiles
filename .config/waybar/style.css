@@ -12,7 +12,7 @@
 #waybar {
     font-family: "Iosevka Nerd Font";
     font-size: 12px;
-    background: @bg;
+    background: @bg-75;
     color: @fg;
 }
 
@@ -20,15 +20,18 @@ label.module {
     padding: 0 0.5rem;
 }
 
-label.module:hover,
-#tags button:hover,
 #tags button.focused {
-    background: @bg_light;
+    background: @bg-light-75;
+}
+
+label.module:hover,
+#tags button:hover {
+    background: @bg-light;
 }
 
 #tags button {
     padding: 0 0.2rem;
-    color: @fg_dark;
+    color: @fg-dark;
 }
 
 #tags button.occupied,

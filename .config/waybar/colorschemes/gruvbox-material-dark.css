@@ -1,4 +1,8 @@
 @define-color fg #d4be98;
-@define-color fg_dark #7c6f64;
+@define-color fg-dark #7c6f64;
 @define-color bg #141617;
-@define-color bg_light #3c3836;
+@define-color bg-50 rgba(20, 22, 23, 0.50);
+@define-color bg-75 rgba(20, 22, 23, 0.75);
+@define-color bg-light #3c3836;
+@define-color bg-light-50 rgba(60, 56, 54, 0.50);
+@define-color bg-light-75 rgba(60, 56, 54, 0.75);
