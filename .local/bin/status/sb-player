@@ -23,8 +23,12 @@ info+="$title"
 # Label max length. Setting it to 0 disables cut-off.
 max_length=90
 
-if (( max_length > 0 && ${#info} > max_length )); then
-    info="${info:0:(( max_length - 3 ))}..."
-fi
+if [ "$1" == "--icon-only" ]; then
+    printf "%s\n%s\n" "$label" "$info"
+else
+    if (( max_length > 0 && ${#info} > max_length )); then
+        info="${info:0:(( max_length - 3 ))}..."
+    fi
 
-printf "%s %s\n" "$label" "$info"
+    printf "%s %s\n" "$label" "$info"
+fi
