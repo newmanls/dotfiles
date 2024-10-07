@@ -82,6 +82,9 @@ riverctl rule-add -app-id "Inskcape" tags 3
 riverctl rule-add -app-id "*-float" float
 riverctl rule-add -app-id "mpv" float
 riverctl rule-add -app-id "Nsxiv" float
+riverctl rule-add -app-id "steam" float
+riverctl rule-add -app-id "steam" -title "Steam" no-float
+riverctl rule-add -app-id "firefox" -title "Picture-in-Picture" float
 
 # Options
 riverctl background-color       "0x${background:1}"
