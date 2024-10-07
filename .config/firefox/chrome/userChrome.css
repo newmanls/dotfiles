@@ -1,28 +1,22 @@
-@import "tweaks/simple-squared-tabs.css";
-@import "tweaks/full-width-tabs.css";
-@import "tweaks/tabs-below-navbar.css";
-@import "tweaks/center-tab-content.css";
-@import "tweaks/hide-only-one-tab.css";
-@import "tweaks/center-unfocused-urlbar.css";
-@import "tweaks/sidebar-styling.css";
+/*@import "tweaks/simple-squared-tabs.css";*/
+/*@import "tweaks/full-width-tabs.css";*/
+/*@import "tweaks/tabs-below-navbar.css";*/
+/*@import "tweaks/center-tab-content.css";*/
+/*@import "tweaks/hide-only-one-tab.css";*/
+/*@import "tweaks/center-unfocused-urlbar.css";*/
+/*@import "tweaks/sidebar-styling.css";*/
 /* @import "icons/papirus/icons.css"; */
-
-/* reduce outlines width */
-#urlbar[focused="true"]:not([suppress-focus-border])>#urlbar-background,
-#searchbar:focus-within,
-.findbar-textbox:focus {
-    outline-width: 1px !important;
-}
+/*@import "tweaks/reduce-outlines-width.css";*/
 
 /* hide elements */
-.tab-close-button,
-.private-browsing-indicator,
-#private-browsing-indicator-with-label,
-.panel-header,
-#unified-extensions-view>toolbarseparator:first-of-type,
-.unified-extensions-item-message-deck,
+
+/*.tab-close-button,*/
+/*.private-browsing-indicator,*/
+/*#private-browsing-indicator-with-label,*/
+/*.panel-header,*/
+/*#unified-extensions-view>toolbarseparator:first-of-type,*/
+/*.unified-extensions-item-message-deck,*/
 .titlebar-spacer,
-.titlebar-buttonbox-container,
-.unified-extensions-item-menu-button.subviewbutton {
+.titlebar-buttonbox-container {
     display: none !important;
 }
