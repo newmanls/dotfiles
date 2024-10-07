@@ -11,27 +11,27 @@
 
 #waybar {
     font-family: "Iosevka Nerd Font";
-    font-size: 12px;
-    background: @bg-75;
+    font-weight: bold;
+    font-size: 14px;
+    background: @bg-50;
     color: @fg;
 }
 
 label.module {
-    padding: 0 0.5rem;
-}
-
-#tags button.focused {
-    background: @bg-light-75;
-}
-
-label.module:hover,
-#tags button:hover {
-    background: @bg-light;
+    padding: 0.25rem;
+    margin: 0.25rem;
+    min-height: 1rem;
+    border-radius: 0.25rem;
 }
 
 #tags button {
     padding: 0 0.2rem;
+    margin: 0.25rem;
     color: @fg-dark;
+}
+
+#tags button.focused {
+    background: @fg-dark-50;
 }
 
 #tags button.occupied,
@@ -42,4 +42,9 @@ label.module:hover,
 #tags button.urgent {
     color: @bg;
     background: @fg;
+}
+
+label.module:hover,
+#tags button:hover {
+    background: @bg-light;
 }

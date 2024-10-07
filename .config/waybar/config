@@ -1,7 +1,6 @@
 {
     "layer": "top",
-    "position": "top",
-    "height": 18,
+    "position": "left",
     "modules-left": [
         "river/tags",
     ],
@@ -16,41 +15,49 @@
     ],
     "river/tags": {
         "num-tags": 5,
+        "tag-labels": ["󰧞", "󰧞", "󰧞", "󰧞", "󰧞"],
     },
     "custom/player": {
-        "exec": "sb-player",
+        "exec": "sb-player --icon-only",
+        "on-click": "playerctl play-pause",
         "interval": 1,
     },
     "custom/dollar": {
         "exec": "sb-dollar",
+        "format": "",
         "interval": 21600,
     },
     "network": {
         "interval": 5,
         "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
-        "format-wifi": "{icon}  {essid}",
-        "format-ethernet": "󰈀 ",
-        "format-disconnected": "󰇨 ",
-        "tooltip-format": "{ifname}: {ipaddr}/{cidr}"
+        "format-wifi": "{icon}",
+        "format-ethernet": "󰈀",
+        "format-disconnected": "󰇨",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip-format-wifi": "{essid}: {ipaddr}/{cidr}",
+        "align": 0.25,
     },
     "pulseaudio": {
-        "format": "󰎈 {volume}",
-        "format-muted": "󰎊  muted",
+        "format": "{icon}",
+        "format-icons": ["󰕿", "󰖀", "󰕾"],
+        "format-muted": "󰝟",
+        "align": 0.4,
         "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "tooltip-format": "{volume} ({desc})",
         "scroll-step": 5,
     },
     "clock": {
       "interval": 60,
-      "format": "{:%a %b %d %R}",
+      "format": "{:%H\n%M}",
       "tooltip-format": "<tt><small>{calendar}</small></tt>",
       "calendar": {
           "mode-mon-col": 3,
           "format": {
-              "months":     "<b>{}</b>",
-              "days":       "{}",
-              "weeks":      "<b>{:%W}</b>",
-              "weekdays":   "<b>{}</b>",
-              "today":      "<b><u>{}</u></b>",
+              "months": "<b>{}</b>",
+              "days": "{}",
+              "weeks": "<b>{:%W}</b>",
+              "weekdays": "<b>{}</b>",
+              "today": "<b><u>{}</u></b>",
           },
       },
       "actions": {
