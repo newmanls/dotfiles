@@ -41,7 +41,7 @@ select="Select region"
 timer="Timer (${delay}s)"
 colorpicker="Color picker"
 options="${fullscreen}\n${select}\n${timer}\n${colorpicker}"
-selected_option=$(printf "%b\n" "$options" | bemenu -p "Take screenshot")
+selected_option=$(printf "%b\n" "$options" | $DMENU_CMD -p "Take screenshot")
 
 case "$selected_option" in
     "$fullscreen")  take_screenshot ;;

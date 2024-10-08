@@ -11,7 +11,7 @@ prompt=$(uptime -p | sed -e 's/up/Uptime:/' \
     -e ' s/ minutes\?/m/' \
     -e 's/,//g')
 options="Shutdown\nSuspend\nHibernate\nReboot\nLock\nLogout"
-chosen=$(printf "%b" "${options}" | bemenu -p "${prompt}")
+chosen=$(printf "%b" "${options}" | $DMENU_CMD -p "${prompt}")
 
 case "${chosen}" in
     Shutdown)  systemctl poweroff -i ;;

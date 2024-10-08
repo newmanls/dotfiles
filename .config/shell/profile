@@ -3,6 +3,7 @@
 # Default programs
 export BROWSER='firefox'
 export EDITOR='nvim'
+export DMENU_CMD='rofi -dmenu -i'
 
 # Settings
 # Add all directories in `~/.local/bin` to $PATH

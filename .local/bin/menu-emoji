@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # dmenu-like script to insert emojis and copy them to clipboard.
-# Depends on bemenu and wl-copy/wtype (for wayland) or xclip/xdotool (for x11).
+# Depends on wl-copy/wtype (for wayland) or xclip/xdotool (for x11).
 # Author: Newman Sanchez (https://github.com/newmanls)
 
 set -euo pipefail
@@ -43,7 +43,7 @@ case "${1:-}" in "--download"|"-d")
     download_emojis ;;
 esac
 
-chosen=$(get_output | bemenu -p '' -l 10 --center -W 0.3 --fn 'sans-serif 16')
+chosen=$(get_output | $DMENU_CMD)
 
 save_to_history "$chosen"
 
