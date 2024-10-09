@@ -22,49 +22,39 @@ return {
         },
     },
     {
-        "MeanderingProgrammer/render-markdown.nvim",
+        "OXY2DEV/markview.nvim",
+        ft = "markdown",
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
             "echasnovski/mini.icons",
         },
-        opts = {
-            heading = {
-                icons = { "⦿ " },
-                backgrounds = { "CursorLine" }
-            },
-            bullet = {
-                icons = { "•", "◦" },
-                highlight = "@markup.list",
-            },
-            checkbox = {
-                unchecked = {
-                    icon = "☐ ",
-                    highlight = "@diff.minus",
-                },
-                checked = {
-                    icon = "☑ ",
-                    highlight = "@diff.plus",
-                },
-                custom = {
-                    todo = {
-                        raw = "[-]",
-                        rendered = "▣ ",
-                        highlight = "@diff.delta"
+        config = function()
+            local presets = require("markview.presets");
+
+            require("markview").setup({
+                hybrid_modes = { "n" },
+                headings = presets.headings.glow,
+                horizontal_rules = presets.horizontal_rules.thin,
+                list_items = {
+                    marker_minus = {
+                        text = "•",
+                    },
+                    marker_plus = {
+                        text = "•",
+                    },
+                    marker_star = {
+                        text = "•",
                     },
                 },
-            },
-            sign = {
-                enabled = false,
-            },
-        },
-        ft = "markdown",
-        cmd = "RenderMarkdown",
+                checkboxes = presets.checkboxes.nerd,
+            });
+        end,
         keys = {
             {
                 "<leader>mr",
-                "<Cmd>RenderMarkdown toggle<CR>",
+                "<Cmd>Markview toggle<CR>",
                 desc = "Toggle Markdown Rendering"
             },
         },
-    }
+    },
 }
