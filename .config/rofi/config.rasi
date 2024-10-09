@@ -1,6 +1,5 @@
 configuration {
   modes: "drun";
-  show-icons: true;
   drun-display-format: "{name}";
   disable-history: true;
   cycle: false;
@@ -16,4 +15,5 @@ configuration {
   me-select-entry: "";
   me-accept-entry: "MousePrimary";
 }
-@theme "/home/newman/.config/rofi/themes/appsmenu.rasi"
+
+@theme "/home/newman/.config/rofi/themes/main.rasi"
