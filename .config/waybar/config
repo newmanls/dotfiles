@@ -1,6 +1,7 @@
 {
     "layer": "top",
-    "position": "left",
+    "position": "top",
+    "height": 18,
     "modules-left": [
         "river/tags",
     ],
@@ -18,46 +19,39 @@
         "tag-labels": ["󰧞", "󰧞", "󰧞", "󰧞", "󰧞"],
     },
     "custom/player": {
-        "exec": "sb-player --icon-only",
-        "on-click": "playerctl play-pause",
+        "exec": "sb-player",
         "interval": 1,
     },
     "custom/dollar": {
         "exec": "sb-dollar",
-        "format": "",
         "interval": 21600,
     },
     "network": {
         "interval": 5,
         "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
-        "format-wifi": "{icon}",
-        "format-ethernet": "󰈀",
-        "format-disconnected": "󰇨",
-        "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
-        "tooltip-format-wifi": "{essid}: {ipaddr}/{cidr}",
-        "align": 0.25,
+        "format-wifi": "{icon}  {essid}",
+        "format-ethernet": "󰈀 ",
+        "format-disconnected": "󰇨 ",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}"
     },
     "pulseaudio": {
-        "format": "{icon}",
-        "format-icons": ["󰕿", "󰖀", "󰕾"],
-        "format-muted": "󰝟",
-        "align": 0.4,
+        "format": "󰎈 {volume}",
+        "format-muted": "󰎊  muted",
         "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-        "tooltip-format": "{volume} ({desc})",
         "scroll-step": 5,
     },
     "clock": {
       "interval": 60,
-      "format": "{:%H\n%M}",
+      "format": "{:%a %b %d %R}",
       "tooltip-format": "<tt><small>{calendar}</small></tt>",
       "calendar": {
           "mode-mon-col": 3,
           "format": {
-              "months": "<b>{}</b>",
-              "days": "{}",
-              "weeks": "<b>{:%W}</b>",
-              "weekdays": "<b>{}</b>",
-              "today": "<b><u>{}</u></b>",
+              "months":     "<b>{}</b>",
+              "days":       "{}",
+              "weeks":      "<b>{:%W}</b>",
+              "weekdays":   "<b>{}</b>",
+              "today":      "<b><u>{}</u></b>",
           },
       },
       "actions": {

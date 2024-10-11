@@ -6,45 +6,44 @@
     min-height: 0;
     margin: 0;
     padding: 0;
-    transition: none;
+    transition: 100ms;
 }
 
 #waybar {
     font-family: "Iosevka Nerd Font";
-    font-weight: bold;
-    font-size: 14px;
-    background: @bg-50;
+    font-size: 12px;
+    background: @bg-75;
     color: @fg;
 }
 
 label.module {
-    padding: 0.25rem;
-    margin: 0.25rem;
-    min-height: 1rem;
-    border-radius: 0.25rem;
-}
-
-#tags button {
-    padding: 0 0.2rem;
-    margin: 0.25rem;
-    color: @fg-dark;
-}
-
-#tags button.focused {
-    background: @fg-dark-50;
-}
-
-#tags button.occupied,
-#tags button.focused {
-    color: @fg;
-}
-
-#tags button.urgent {
-    color: @bg;
-    background: @fg;
+    padding: 0 0.5rem;
 }
 
 label.module:hover,
 #tags button:hover {
     background: @bg-light;
+}
+
+#tags button {
+    background: @bg-light;
+    min-width: 0.25rem;
+    font-size: 0;
+    padding: 0.1rem;
+    margin: 0.45rem;
+    color: @fg-dark;
+    border-radius: 1rem;
+}
+
+#tags button.focused,
+#tags button.occupied {
+    background: @fg;
+}
+
+#tags button.focused {
+    min-width: 1rem;
+}
+
+#tags button.urgent {
+    background: @urgent;
 }
