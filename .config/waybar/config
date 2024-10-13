@@ -2,25 +2,29 @@
     "layer": "top",
     "position": "top",
     "height": 18,
+    "reload_style_on_change": true,
     "modules-left": [
         "river/tags",
     ],
-    "modules-right": [
-        "custom/player",
-        "custom/dollar",
-        "battery",
-        "pulseaudio",
-        "network",
+    "modules-center": [
         "clock",
+    ],
+    "modules-right": [
+        "custom/dollar",
+        "custom/player",
+        "pulseaudio",
+        "battery",
+        "network",
         "tray",
     ],
     "river/tags": {
         "num-tags": 5,
-        "tag-labels": ["󰧞", "󰧞", "󰧞", "󰧞", "󰧞"],
     },
     "custom/player": {
         "exec": "sb-player",
+        "max-length": 60,
         "interval": 1,
+        "on-click": "playerctl play-pause",
     },
     "custom/dollar": {
         "exec": "sb-dollar",
@@ -29,29 +33,33 @@
     "network": {
         "interval": 5,
         "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
-        "format-wifi": "{icon}  {essid}",
-        "format-ethernet": "󰈀 ",
-        "format-disconnected": "󰇨 ",
-        "tooltip-format": "{ifname}: {ipaddr}/{cidr}"
+        "format-wifi": "{icon}",
+        "format-ethernet": "󰈀",
+        "format-disconnected": "󰇨",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip-format-wifi": "{essid}: {ipaddr}/{cidr}",
+        "tooltip-format-disconnected": "Disconnected",
     },
     "pulseaudio": {
-        "format": "󰎈 {volume}",
-        "format-muted": "󰎊  muted",
+        "format": "{icon}",
+        "format-icons": ["󰕿", "󰖀", "󰕾"],
+        "format-muted": "󰝟",
         "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "tooltip-format": "{volume}% ({desc})",
         "scroll-step": 5,
     },
     "clock": {
       "interval": 60,
-      "format": "{:%a %b %d %R}",
+      "format": "{:%a %d  %R}",
       "tooltip-format": "<tt><small>{calendar}</small></tt>",
       "calendar": {
           "mode-mon-col": 3,
           "format": {
-              "months":     "<b>{}</b>",
-              "days":       "{}",
-              "weeks":      "<b>{:%W}</b>",
-              "weekdays":   "<b>{}</b>",
-              "today":      "<b><u>{}</u></b>",
+              "months": "<b>{}</b>",
+              "days": "{}",
+              "weeks": "<b>{:%W}</b>",
+              "weekdays": "<b>{}</b>",
+              "today": "<b><u>{}</u></b>",
           },
       },
       "actions": {
@@ -61,7 +69,7 @@
       },
     },
     "tray": {
-        "icon-size": 16,
+        "icon-size": 12,
         "spacing": 10
     }
 }

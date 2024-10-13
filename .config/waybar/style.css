@@ -6,42 +6,51 @@
     min-height: 0;
     margin: 0;
     padding: 0;
-    transition: 100ms;
+    transition: 150ms;
 }
 
 #waybar {
     font-family: "Iosevka Nerd Font";
     font-size: 12px;
-    background: @bg-75;
+    background: @bg-alpha;
     color: @fg;
 }
 
-label.module {
+label.module,
+#tray {
     padding: 0 0.5rem;
+    margin: 2px;
+    border-radius: 1rem;
+}
+
+#network,
+#pulseaudio {
+    padding-right: 0.8rem;
 }
 
 label.module:hover,
+#tray:hover,
 #tags button:hover {
     background: @bg-light;
 }
 
 #tags button {
     background: @bg-light;
-    min-width: 0.25rem;
+    color: @bg-light;
     font-size: 0;
-    padding: 0.1rem;
-    margin: 0.45rem;
-    color: @fg-dark;
+    min-width: 0;
+    padding: 0 0.3rem;
+    margin: 0.45rem 0.4rem;
     border-radius: 1rem;
+}
+
+#tags button.focused {
+    min-width: 0.75rem;
 }
 
 #tags button.focused,
 #tags button.occupied {
     background: @fg;
-}
-
-#tags button.focused {
-    min-width: 1rem;
 }
 
 #tags button.urgent {
