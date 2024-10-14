@@ -43,7 +43,7 @@ case "${1:-}" in "--download"|"-d")
     download_emojis ;;
 esac
 
-chosen=$(get_output | $DMENU_CMD)
+chosen=$(get_output | $DMENU_CMD -p 'emoji')
 
 save_to_history "$chosen"
 
