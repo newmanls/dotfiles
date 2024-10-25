@@ -24,28 +24,16 @@ take_screenshot() {
     esac
 }
 
-pick_color() {
-    preview="${XDG_RUNTIME_DIR:-/tmp}/color.png"
-    color=$(grim -g "$(slurp -p)" -t ppm - |
-        magick - -format '%[pixel:p{0,0}]' txt:- |
-        grep -oE '#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})')
-
-    magick -size 48x48 "xc:$color" "$preview"
-    wl-copy "$color"
-    notify-send -i "$preview" "Color copied to clipboard" "$color"
-}
-
 delay=3
 fullscreen="Fullscreen"
 select="Select region"
 timer="Timer (${delay}s)"
-colorpicker="Color picker"
-options="${fullscreen}\n${select}\n${timer}\n${colorpicker}"
+options="${fullscreen}\n${select}\n${timer}"
+
 selected_option=$(printf "%b\n" "$options" | $DMENU_CMD -p "Take screenshot")
 
 case "$selected_option" in
     "$fullscreen")  take_screenshot ;;
     "$select")      take_screenshot -g "$(slurp)" ;;
     "$timer")       sleep "$delay" && take_screenshot ;;
-    "$colorpicker") pick_color ;;
 esac
