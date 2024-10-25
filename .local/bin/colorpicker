@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
-# Simple color picking script for X11.
+# Simple color picking script for Wayland.
 # Author: Newman Sanchez (https://github.com/newmanls)
 
-preview='/tmp/colorpicker-preview.png'
-color="$(xcolor)"
+preview="${XDG_RUNTIME_DIR:-/tmp}/color.png"
+color=$(grim -g "$(slurp -p)" -t ppm - |
+    magick - -format '%[pixel:p{0,0}]' txt:- |
+    grep -oE '#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})')
 
-xclip -selection clipboard -rmlastnl <<< "${color}"
-magick -size 128x128 xc:"${color}" "${preview}"
-notify-send -i "${preview}" "${color}"
+magick -size 48x48 "xc:$color" "$preview"
+wl-copy "$color"
+notify-send -i "$preview" "Color copied to clipboard" "$color"
