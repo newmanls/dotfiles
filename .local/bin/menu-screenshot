@@ -30,10 +30,17 @@ select="Select region"
 timer="Timer (${delay}s)"
 options="${fullscreen}\n${select}\n${timer}"
 
+displays=$(wlr-randr --json | jq -r '.[] | "Fullscreen: \(.name)"')
+
+if [ "$(wc -l <<< "$displays")" -gt 1 ]; then
+    options+="\n$displays"
+fi
+
 selected_option=$(printf "%b\n" "$options" | $DMENU_CMD -p "Take screenshot")
 
 case "$selected_option" in
     "$fullscreen")  take_screenshot ;;
     "$select")      take_screenshot -g "$(slurp)" ;;
     "$timer")       sleep "$delay" && take_screenshot ;;
+    Fullscreen:\ *) take_screenshot -o "${selected_option#*: }" ;;
 esac
