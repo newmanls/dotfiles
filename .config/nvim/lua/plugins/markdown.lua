@@ -37,14 +37,23 @@ return {
                 horizontal_rules = presets.horizontal_rules.thin,
                 list_items = {
                     marker_minus = {
+                        add_padding = false,
                         text = "•",
                     },
                     marker_plus = {
+                        add_padding = false,
                         text = "•",
                     },
                     marker_star = {
+                        add_padding = false,
                         text = "•",
                     },
+                    marker_dot = {
+                        add_padding = false,
+                    },
+                    marker_parenthasis = {
+                        add_padding = false,
+                    }
                 },
                 checkboxes = presets.checkboxes.nerd,
             });
