@@ -11,7 +11,7 @@ background=$(xrdb -get background)
 background_d=$(xrdb -get background_d)
 color0=$(xrdb -get color0)
 color7=$(xrdb -get color7)
-color8=$(xrdb -get color8)
+color3=$(xrdb -get color3)
 
 # Mappings
 riverctl map normal Super Return       spawn "$termcmd"
@@ -90,6 +90,7 @@ riverctl rule-add -app-id "firefox" -title "Picture-in-Picture" float
 riverctl background-color       "0x${background:1}"
 riverctl border-color-unfocused "0x${color0:1}"
 riverctl border-color-focused   "0x${color7:1}"
+riverctl border-color-urgent    "0x${color3:1}"
 riverctl border-width 1
 
 riverctl focus-follows-cursor normal
