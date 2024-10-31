@@ -24,7 +24,8 @@ scrollbar {
 }
 
 window {
-    location: center;
+    location: north;
+    y-offset: calc(50% - 140px);
     width: 360px;
 
     background-color: @bg1;
