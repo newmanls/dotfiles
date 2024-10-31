@@ -5,5 +5,6 @@ font=Iosevka Nerd Font 11
 margin=8
 padding=12
 border-size=1
+border-radius=4
 
 # vi: ft=properties
