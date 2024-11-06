@@ -15,7 +15,7 @@ def fetch_data(url: str) -> dict:
 
 
 def format_text(data: list) -> str:
-    text = [str(monitor["price"]) for monitor in data]
+    text = [f"{monitor["price"]:n}" for monitor in data]
 
     return f" {" / ".join(text)}"
 
@@ -29,7 +29,7 @@ def format_tooltip(data: list) -> str:
         change = monitor["change"]
         symbol = monitor["symbol"]
 
-        tooltip.append(f"<b>{title}:</b> {price} ({symbol} {change})")
+        tooltip.append(f"<b>{title}:</b> Bs. {price:g} ({symbol} {change:g})")
 
     return "&#013;".join(tooltip)
 
