@@ -34,15 +34,10 @@ window {
     border-radius: @radius;
 }
 
-mainbox {
-    padding: 8px;
-}
-
 inputbar {
-    padding: 4px 8px;
+    padding: 8px 12px;
     spacing: 8px;
     background-color: @bg0;
-    border-radius: @radius;
     children: [prompt, entry];
 }
 
@@ -58,15 +53,13 @@ textbox {
 listview {
     lines: 8;
     spacing: 4px;
-    margin: 8px 0 0 0;
     fixed-height: false;
 }
 
 element {
     orientation: horizontal;
     spacing: 8px;
-    padding: 4px 8px;
-    border-radius: @radius;
+    padding: 4px 12px;
 }
 
 element normal urgent {
