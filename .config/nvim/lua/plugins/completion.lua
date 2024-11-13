@@ -20,6 +20,7 @@ return {
         "dcampos/nvim-snippy",
         event = { "BufReadPost", "BufWritePost", "BufNewFile" },
         opts = {
+            enable_auto = true,
             mappings = {
                 is = {
                     ["<Tab>"] = "expand_or_advance",
