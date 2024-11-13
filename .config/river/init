@@ -104,7 +104,10 @@ riverctl default-layout rivertile
 rivertile -view-padding 0 -outer-padding 0 -main-ratio 0.5 &
 
 # Autostart
+polkit="/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+polkit_name="polkit-gnome-authentication-agent-1"
 riverctl spawn "${XDG_CONFIG_HOME}/display.sh"
+riverctl spawn "pidof $polkit_name || $polkit"
 riverctl spawn "setbg"
 riverctl spawn "pkill waybar; waybar"
 riverctl spawn "pkill mako; mako --background-color=${background_d} --text-color=${foreground} --border-color=${color0} --progress-color=\"over ${color0}\""
