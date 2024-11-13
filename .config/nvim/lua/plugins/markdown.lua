@@ -37,7 +37,7 @@ return {
 
             require("markview").setup({
                 hybrid_modes = { "n" },
-                headings = presets.headings.glow,
+                headings = presets.headings.marker,
                 horizontal_rules = presets.horizontal_rules.thin,
                 list_items = {
                     marker_minus = list_item,
