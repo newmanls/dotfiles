@@ -30,24 +30,19 @@ return {
         },
         config = function()
             local presets = require("markview.presets");
+            local list_item = {
+                add_padding = false,
+                text = "•",
+            }
 
             require("markview").setup({
                 hybrid_modes = { "n" },
                 headings = presets.headings.glow,
                 horizontal_rules = presets.horizontal_rules.thin,
                 list_items = {
-                    marker_minus = {
-                        add_padding = false,
-                        text = "•",
-                    },
-                    marker_plus = {
-                        add_padding = false,
-                        text = "•",
-                    },
-                    marker_star = {
-                        add_padding = false,
-                        text = "•",
-                    },
+                    marker_minus = list_item,
+                    marker_plus = list_item,
+                    marker_star = list_item,
                     marker_dot = {
                         add_padding = false,
                     },
