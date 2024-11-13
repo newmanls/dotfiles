@@ -52,7 +52,7 @@ return {
         "williamboman/mason-lspconfig.nvim",
         lazy = true,
         opts = {
-            ensure_installed = { "bashls", "html", "lua_ls", "pylsp", "ts_ls" },
+            ensure_installed = { "bashls", "html", "lua_ls", "ts_ls" },
             handlers = {
                 function(server_name)
                     require("lspconfig")[server_name].setup({})
