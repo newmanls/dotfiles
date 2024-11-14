@@ -70,6 +70,9 @@ return {
                         settings = {
                             pylsp = {
                                 plugins = {
+                                    isort = {
+                                        enabled = true
+                                    },
                                     rope_autoimport = {
                                         enabled = true,
                                     }
