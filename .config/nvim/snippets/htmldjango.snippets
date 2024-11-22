@@ -1,0 +1,17 @@
+extends html
+
+snippet % "Django tag"
+    {% ${0:${VISUAL}} %}
+
+snippet %% "Django section"
+    {% ${1:tag_name} %}
+    ${0:${VISUAL}}
+    {% end$1 %}
+
+snippet block "Django block"
+    {% block ${1:tag_name} %}${0:${VISUAL}}{% endblock %}
+
+snippet var
+    {{ ${0:${VISUAL}} }}
+
+# vim:ft=snippets:foldmethod=manual
