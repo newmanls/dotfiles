@@ -12,10 +12,10 @@
     "modules-right": [
         "custom/dollar",
         "custom/player",
+        "tray",
         "pulseaudio",
         "battery",
         "network",
-        "tray",
     ],
     "river/tags": {
         "num-tags": 5,
