@@ -97,7 +97,7 @@ riverctl focus-follows-cursor normal
 riverctl hide-cursor timeout 5000
 riverctl hide-cursor when-typing enabled
 riverctl set-repeat 50 300
-riverctl xcursor-theme "Simp1e-Adw"
+riverctl xcursor-theme "Pop"
 riverctl keyboard-layout -variant "altgr-intl" -options "ctrl:swapcaps" "us"
 
 riverctl default-layout rivertile

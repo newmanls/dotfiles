@@ -10,7 +10,7 @@ export DMENU_CMD='rofi -dmenu -i'
 localpath=$(find "${HOME}/.local/bin" -type d | paste -sd ':' -)
 export PATH="$PATH:$localpath"
 export HISTCONTROL='ignoredups'
-export QT_QPA_PLATFORMTHEME='qt5ct'
+export QT_QPA_PLATFORMTHEME='gtk2'
 
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_CACHE_HOME="${HOME}/.cache"
