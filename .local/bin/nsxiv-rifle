@@ -5,7 +5,7 @@ tmp="$TMPDIR/nsxiv_rifle_$$"
 nsxiv_command="nsxiv -abg 1280x720"
 
 is_img_extension() {
-    grep -iE '\.(jpe?g|png|svg|webp|tiff|heif|avif|ico|bmp|gif)$'
+    grep -iE '\.(jpe?g|png|svg|webp|tiff|heif|avif|ico|bmp|gif|jxl)$'
 }
 
 listfiles() {
