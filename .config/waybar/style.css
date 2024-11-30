@@ -11,13 +11,24 @@
 
 #waybar {
     font-family: "Iosevka Nerd Font";
-    font-size: 12px;
+    font-size: 11px;
     background: @bg-alpha;
     color: @fg;
 }
 
-label.module,
 #tray {
+    margin: 2px;
+}
+
+#tray > widget {
+    border-radius: 1rem;
+}
+
+#tray > widget > image {
+    padding: 0 0.5rem;
+}
+
+label.module {
     padding: 0 0.5rem;
     margin: 2px;
     border-radius: 1rem;
@@ -25,11 +36,11 @@ label.module,
 
 #network,
 #pulseaudio {
-    padding-right: 0.8rem;
+    padding-right: 0.7rem;
 }
 
 label.module:hover,
-#tray:hover,
+#tray > widget:hover,
 #tags button:hover {
     background: @bg-light;
 }
