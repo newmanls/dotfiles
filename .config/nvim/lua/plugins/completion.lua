@@ -17,19 +17,18 @@ return {
         opts = {}
     },
     {
-        "dcampos/nvim-snippy",
+        'echasnovski/mini.snippets',
+        version = false,
         event = { "BufReadPost", "BufWritePost", "BufNewFile" },
-        opts = {
-            enable_auto = true,
-            mappings = {
-                is = {
-                    ["<Tab>"] = "expand_or_advance",
-                    ["<S-Tab>"] = "previous",
+        config = function()
+            local snippets_gen_loader = require('mini.snippets').gen_loader
+
+            require('mini.snippets').setup({
+                snippets = {
+                    snippets_gen_loader.from_file('~/.config/nvim/snippets/_.json'),
+                    snippets_gen_loader.from_lang(),
                 },
-                nx = {
-                    ["<leader>x"] = "cut_text",
-                },
-            },
-        }
+            })
+        end
     }
 }

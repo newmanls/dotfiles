@@ -1,0 +1,126 @@
+{
+    "header 1": {
+        "prefix": "h1",
+        "description": "Add header level 1",
+        "body": ["# ${0}"]
+    },
+    "header 2": {
+        "prefix": "h2",
+        "description": "Add header level 2",
+        "body": ["## ${0}"]
+    },
+    "header 3": {
+        "prefix": "h3",
+        "description": "Add header level 3",
+        "body": ["### ${0}"]
+    },
+    "header 4": {
+        "prefix": "h4",
+        "description": "Add header level 4",
+        "body": ["#### ${0}"]
+    },
+    "header 5": {
+        "prefix": "h5",
+        "description": "Add header level 5",
+        "body": ["##### ${0}"]
+    },
+    "header 6": {
+        "prefix": "h6",
+        "description": "Add header level 6",
+        "body": ["###### ${0}"]
+    },
+    "links": {
+        "prefix": ["l", "link", "a"],
+        "description": "Add links",
+        "body": ["[${1:text}](${2:url}) ${0}"]
+    },
+    "urls": {
+        "prefix": ["u", "url"],
+        "description": "Add urls",
+        "body": ["<${1}> ${0}"]
+    },
+    "images": {
+        "prefix": "img",
+        "description": "Add images",
+        "body": ["![${1:alt text}](${2:path}) ${0}"]
+    },
+    "strikethrough": {
+        "prefix": ["strikethrough", "st"],
+        "description": "Insert strikethrough",
+        "body": "~~${1}~~ ${0}"
+    },
+    "bold text": {
+        "prefix": ["bold", "b"],
+        "description": "Insert bold text",
+        "body": "**${1}** $0"
+    },
+    "italic text": {
+        "prefix": ["italic", "i"],
+        "description": "Insert italic text",
+        "body": "*${1}* $0"
+    },
+    "bold and italic text": {
+        "prefix": ["bold and italic", "bi"],
+        "description": "Insert bold and italic text",
+        "body": "***${1}*** $0"
+    },
+    "quoted text": {
+        "prefix": "quote",
+        "description": "Insert quoted text",
+        "body": "> ${1}"
+    },
+    "code": {
+        "prefix": "code",
+        "description": "Insert code",
+        "body": "`${1}` $0"
+    },
+    "code block": {
+        "prefix": ["codeblock", "cb"],
+        "description": "Insert code block",
+        "body": [
+            "```${1:language}",
+            "$0",
+            "```"
+        ]
+    },
+    "task list item": {
+        "prefix": ["task", "ti"],
+        "description": "Insert task list item",
+        "body": ["- [${1| ,x|}] ${2:text}", "${0}"]
+    },
+    "subscript": {
+        "prefix": "sub",
+        "description": "Create a subscript.",
+        "body": ["${1}<sub>${0}"]
+    },
+    "superscript": {
+        "prefix": "sup",
+        "description": "Create a superscript.",
+        "body": ["${1}<sup>${0}"]
+    },
+    "note": {
+        "prefix": ["note", "n"],
+        "description": "Insert Note",
+        "body": "> [!NOTE]\n> "
+    },
+    "tip": {
+        "prefix": ["tip", "t"],
+        "description": "Insert Tip",
+        "body": "> [!TIP]\n> "
+    },
+    "important": {
+        "prefix": ["important", "imp"],
+        "description": "Insert Important",
+        "body": "> [!IMPORTANT]\n> "
+    },
+    "warning": {
+        "prefix": ["warning", "w"],
+        "description": "Insert Warning",
+        "body": "> [!WARNING]\n> "
+    },
+    "caution": {
+        "prefix": ["caution", "c"],
+        "description": "Insert Caution",
+        "body": "> [!CAUTION]\n> "
+    }
+}

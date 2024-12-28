@@ -1,0 +1,83 @@
+{
+    "block": {
+        "prefix": "block",
+        "description": "block tag django template",
+        "body": [
+            "{% block ${1:blockname} %}",
+            "$0",
+            "{% endblock $1 %}"
+        ]
+    },
+    "comment": {
+        "prefix": "comment",
+        "description": "Comment tag django template",
+        "body": [
+            "{% comment %}",
+            "  $0",
+            "{% endcomment %}"
+        ]
+    },
+    "extends": {
+        "prefix": ["ext", "extends"],
+        "description": "extends tag django template",
+        "body": ["{% extends \"$1\" %}"]
+    },
+    "for": {
+        "prefix": "for",
+        "description": "for tag django template",
+        "body": [
+            "{% for $1 in $2 %}",
+            "$3",
+            "{% endfor %}"
+        ]
+    },
+    "if": {
+        "prefix": "if",
+        "description": "if tag django template",
+        "body": [
+            "{% if $1 %}",
+            "$2",
+            "{% endif %}"
+        ]
+    },
+    "ifelse": {
+        "prefix": ["ife", "ifelse"],
+        "description": "if else tag django template",
+        "body": [
+            "{% if $1 %}",
+            "$2",
+            "{% else %}",
+            "$3",
+            "{% endif %}"
+        ]
+    },
+    "include": {
+        "prefix": ["inc", "include"],
+        "description": "include tag django template",
+        "body": ["{% include \"$1\" %}"]
+    },
+    "load": {
+        "prefix": "load",
+        "description": "load tag django template",
+        "body": ["{% load $1 %}"]
+    },
+    "static": {
+        "prefix": "static",
+        "description": "static tag django template",
+        "body": ["{% static \"$1\" %}"]
+    },
+    "url": {
+        "prefix": "url",
+        "description": "url tag django template",
+        "body": ["{% url $1 %}"]
+    },
+    "var": {
+        "prefix": "var",
+        "description": "Variable autocomplete",
+        "body": ["{{ $1 }}"]
+    },
+    "tag": {
+        "prefix": "tag",
+        "description": "tag autocomplete no oficial",
+        "body": ["{% $1 %}"]
+    },
