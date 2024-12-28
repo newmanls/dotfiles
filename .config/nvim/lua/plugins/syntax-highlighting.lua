@@ -1,5 +1,16 @@
 return {
     {
+        "OXY2DEV/helpview.nvim",
+        ft = "help",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter"
+        }
+    },
+    {
+        "brenoprata10/nvim-highlight-colors",
+        opts = {}
+    },
+    {
         "nvim-treesitter/nvim-treesitter",
         dependencies = { "nvim-treesitter/nvim-treesitter-context" },
         main = "nvim-treesitter.configs",
@@ -15,9 +26,5 @@ return {
             },
         },
         event = { "BufReadPost", "BufWritePost", "BufNewFile" },
-    },
-    {
-        "brenoprata10/nvim-highlight-colors",
-        opts = {}
     },
 }
