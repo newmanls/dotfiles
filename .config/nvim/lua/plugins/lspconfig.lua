@@ -58,12 +58,6 @@ return {
                     require("lspconfig")[server_name].setup({})
                 end,
 
-                ["html"] = function()
-                    require("lspconfig").html.setup({
-                        filetypes = { "html", "htmldjango" }
-                    })
-                end,
-
                 -- Run :PylspInstall python-lsp-isort
                 ["pylsp"] = function()
                     require("lspconfig").pylsp.setup({
