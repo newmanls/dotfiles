@@ -54,22 +54,6 @@ return {
         event = "VeryLazy",
     },
     {
-        "echasnovski/mini.notify",
-        version = false,
-        init = function()
-            vim.notify = require("mini.notify").make_notify()
-        end,
-        opts = {
-            content = {
-                format = function(notif) return notif.msg end,
-            },
-            window = {
-                winblend = 0,
-            }
-        },
-        event = "VeryLazy",
-    },
-    {
         "kassio/neoterm",
         init = function()
             vim.g.neoterm_autoinsert = true
