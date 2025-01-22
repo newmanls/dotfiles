@@ -22,7 +22,7 @@
     },
     "custom/player": {
         "exec": "sb-player",
-        "max-length": 60,
+        "max-length": 30,
         "interval": 1,
         "on-click": "playerctl play-pause",
     },
