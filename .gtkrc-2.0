@@ -2,10 +2,10 @@
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
 include "/home/newman/.gtkrc-2.0.mine"
-gtk-theme-name="Materia-dark"
+gtk-theme-name="adw-gtk3-dark"
 gtk-icon-theme-name="Papirus-Dark"
 gtk-font-name="Roboto 11"
-gtk-cursor-theme-name="Pop"
+gtk-cursor-theme-name="Adwaita"
 gtk-cursor-theme-size=24
 gtk-toolbar-style=GTK_TOOLBAR_ICONS
 gtk-toolbar-icon-size=GTK_ICON_SIZE_SMALL_TOOLBAR
@@ -15,5 +15,5 @@ gtk-enable-event-sounds=1
 gtk-enable-input-feedback-sounds=0
 gtk-xft-antialias=1
 gtk-xft-hinting=1
-gtk-xft-hintstyle="hintfull"
+gtk-xft-hintstyle="hintslight"
 gtk-xft-rgba="rgb"
