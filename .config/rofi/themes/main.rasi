@@ -25,7 +25,7 @@ scrollbar {
 
 window {
     location: north;
-    y-offset: calc(50% - 140px);
+    y-offset: calc(50% - 110px);
     width: 360px;
 
     background-color: @bg1;
@@ -51,7 +51,7 @@ textbox {
 }
 
 listview {
-    lines: 8;
+    lines: 6;
     spacing: 4px;
     fixed-height: false;
 }
