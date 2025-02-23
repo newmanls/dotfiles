@@ -8,7 +8,7 @@ fi
 
 # Sources
 source "${ZINIT_HOME}/zinit.zsh"
-source "${XDG_CONFIG_HOME}/shell/aliasrc"
+source "${XDG_CONFIG_HOME:-${HOME}/.config}/shell/aliasrc"
 
 # Plugins
 zinit light zsh-users/zsh-syntax-highlighting
@@ -25,7 +25,7 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 
 # History
-HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/history"
+HISTFILE="${XDG_CACHE_HOME:-${HOME}/.cache}/zsh/history"
 HISTSIZE=1000
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
