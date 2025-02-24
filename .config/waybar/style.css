@@ -11,7 +11,7 @@
 
 #waybar {
     font-family: "Iosevka Nerd Font";
-    font-size: 11px;
+    font-size: 12px;
     background: @bg-alpha;
     color: @fg;
 }
@@ -41,12 +41,12 @@ label.module {
 
 label.module:hover,
 #tray > widget:hover,
-#tags button:hover {
+#workspaces button:hover {
     background: @bg-light;
 }
 
-#tags button {
-    background: @bg-light;
+#workspaces button {
+    background: @fg;
     color: @bg-light;
     font-size: 0;
     min-width: 0.4rem;
@@ -54,15 +54,14 @@ label.module:hover,
     border-radius: 1rem;
 }
 
-#tags button.focused {
+#workspaces button.active {
     min-width: 1.25rem;
 }
 
-#tags button.focused,
-#tags button.occupied {
-    background: @fg;
-}
+/*#workspaces button.empty {*/
+/*    background: @bg-light;*/
+/*}*/
 
-#tags button.urgent {
+#workspaces button.urgent {
     background: @urgent;
 }

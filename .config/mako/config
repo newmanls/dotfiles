@@ -6,5 +6,9 @@ margin=8
 padding=12
 border-size=1
 border-radius=4
+background-color=#141617
+text-color=#d4be98
+border-color=#3c3836
+progress-color=over #3c3836
 
 # vi: ft=properties
