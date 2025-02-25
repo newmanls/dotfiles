@@ -4,6 +4,7 @@
     "height": 18,
     "reload_style_on_change": true,
     "modules-left": [
+        "river/tags",
         "hyprland/workspaces",
     ],
     "modules-center": [
@@ -19,6 +20,9 @@
     ],
     "hyprland/workspaces": {
         "all-outputs": true,
+    },
+    "river/tags": {
+        "num-tags": 5,
     },
     "custom/player": {
         "exec": "sb-player",
