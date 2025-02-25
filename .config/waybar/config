@@ -18,7 +18,6 @@
         "network",
     ],
     "hyprland/workspaces": {
-        "format": "",
         "all-outputs": true,
     },
     "custom/player": {

@@ -54,13 +54,14 @@ label.module:hover,
     border-radius: 1rem;
 }
 
-#workspaces button.active {
-    min-width: 1.25rem;
+#workspaces button.empty {
+    background: @bg-light;
 }
 
-/*#workspaces button.empty {*/
-/*    background: @bg-light;*/
-/*}*/
+#workspaces button.active {
+    background: @fg;
+    min-width: 1.25rem;
+}
 
 #workspaces button.urgent {
     background: @urgent;
