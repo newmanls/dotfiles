@@ -41,28 +41,37 @@ label.module {
 
 label.module:hover,
 #tray > widget:hover,
+#tags button:hover,
 #workspaces button:hover {
     background: @bg-light;
 }
 
+#tags button,
 #workspaces button {
-    background: @fg;
-    color: @bg-light;
     font-size: 0;
     min-width: 0.4rem;
     margin: 0.5rem 0.4rem;
     border-radius: 1rem;
 }
 
+#tags button,
 #workspaces button.empty {
     background: @bg-light;
 }
 
+#tags button.focused,
+#tags button.occupied,
+#workspaces button,
 #workspaces button.active {
     background: @fg;
+}
+
+#tags button.focused,
+#workspaces button.active {
     min-width: 1.25rem;
 }
 
+#tags button.urgent,
 #workspaces button.urgent {
     background: @urgent;
 }

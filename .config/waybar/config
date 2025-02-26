@@ -5,6 +5,7 @@
     "reload_style_on_change": true,
     "modules-left": [
         "hyprland/workspaces",
+        "river/tags",
     ],
     "modules-center": [
         "clock",
@@ -17,6 +18,9 @@
         "battery",
         "network",
     ],
+    "river/tags": {
+        "num-tags": 5,
+    },
     "hyprland/workspaces": {
         "all-outputs": true,
     },
