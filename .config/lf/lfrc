@@ -13,7 +13,6 @@ cmd chmod %chmod $* ${fx} && lf -remote "send reload"
 cmd extract !clear; aunpack -- ${fx}
 cmd execute !"${f}"
 cmd open-terminal-here &setsid -f "${TERMINAL}" >/dev/null 2>&1
-cmd open-with &setsid -f ${1} ${fx}
 cmd set-as-wallpaper &setbg ${f}
 
 cmd create &{{
@@ -42,12 +41,31 @@ cmd open ${{
     esac
 }}
 
+cmd open-with &setsid -f ${1} ${fx}
+
+cmd open-with-and-set-default &{{
+    app="$1"
+    file="$f"
+    mimetype=$(xdg-mime query filetype "$file")
+
+    "$app" "$file" &
+
+    if [ $? -eq 0 ]; then
+        xdg-mime default "${app}.desktop" "$mimetype"
+        msg="$app set as default application for $mimetype."
+        lf -remote "send $id echomsg $msg"
+    else
+        msg="Failed to open file with $app."
+        lf -remote "send $id echoerr $msg"
+    fi
+}}
+
 cmd move-to-trash &{{
     if trash-put ${fx}; then
         lf -remote "send load"
-        lf -remote "send ${id} echo 'File(s) sent to trash'"
+        lf -remote "send ${id} echomsg 'File(s) sent to trash'"
     else
-        lf -remote "send ${id} echo 'Deletion failed'"
+        lf -remote "send ${id} echoerr 'Deletion failed'"
     fi
 }}
 
@@ -71,6 +89,7 @@ map p
 map pp paste
 map gm cd /media
 map o  push :open-with<space>
+map O  push :open-with-and-set-default<space>
 
 map xw set-as-wallpaper
 map xe extract
