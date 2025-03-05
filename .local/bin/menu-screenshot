@@ -11,6 +11,7 @@ take_screenshot() {
 
     [ ! -d "$savedir" ] && mkdir -p "$savedir"
 
+    sleep 0.5
     grim "$@" "$filepath"
     wl-copy < "$filepath"
     action=$(notify-send -i "$filepath" \
