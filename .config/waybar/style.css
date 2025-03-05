@@ -1,4 +1,4 @@
-@import url("./colorschemes/gruvbox-material-dark.css");
+@import url("./colorschemes/adwaita-dark.css");
 
 * {
     border: none;
@@ -10,10 +10,15 @@
 }
 
 #waybar {
-    font-family: "Iosevka Nerd Font";
+    font-family: "sans-serif";
+    font-weight: 600;
     font-size: 12px;
     background: @bg-alpha;
     color: @fg;
+}
+
+.modules-right.horizontal {
+    margin-right: 4px;
 }
 
 #tray {
@@ -29,34 +34,40 @@
 }
 
 label.module {
-    padding: 0 0.5rem;
-    margin: 2px;
+    padding: 0 10px;
+    margin: 2px 0;
     border-radius: 1rem;
 }
 
 #network,
 #pulseaudio {
-    padding-right: 0.7rem;
+    padding: 0 12px 0 8px;
 }
 
 label.module:hover,
-#tray > widget:hover,
-#tags button:hover,
-#workspaces button:hover {
+#tray > widget:hover {
     background: @bg-light;
+}
+
+#tags,
+#workspaces {
+    margin: 2px;
+    padding: 0 4px;
+    border-radius: 1rem;
+    background: none;
 }
 
 #tags button,
 #workspaces button {
     font-size: 0;
-    min-width: 0.4rem;
-    margin: 0.5rem 0.4rem;
+    min-width: 6px;
+    margin: 0.45rem 4px;
     border-radius: 1rem;
 }
 
 #tags button,
 #workspaces button.empty {
-    background: @bg-light;
+    background: @fg-dark;
 }
 
 #tags button.focused,
@@ -68,7 +79,8 @@ label.module:hover,
 
 #tags button.focused,
 #workspaces button.active {
-    min-width: 1.25rem;
+    min-width: 1.75rem;
+    margin: 0.4rem 0.3rem;
 }
 
 #tags button.urgent,

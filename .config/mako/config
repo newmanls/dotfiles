@@ -1,14 +1,16 @@
 icon-path=/usr/share/icons/Papirus-Dark
 max-icon-size=48
 default-timeout=5000
-font=Iosevka Nerd Font 11
+font=sans-serif 11
 margin=8
 padding=12
 border-size=1
-border-radius=4
-background-color=#141617
-text-color=#d4be98
-border-color=#3c3836
-progress-color=over #3c3836
+border-radius=12
+background-color=#383838
+text-color=#ffffff
+border-color=#5e5c64
+progress-color=over #78aeed
+layer=overlay
+anchor=top-center
 
 # vi: ft=properties

@@ -1,0 +1,97 @@
+* {
+    font: "sans-serif 11";
+
+    bg0: #1e1e1e;
+    bg1: #2a2a2a;
+    bg2: #383838;
+    bg3: #77767b;
+    fg0: #ffffff;
+    fg1: #9a9996;
+    accent: #78aeed;
+    urgent: #cd9309;
+
+    background-color: transparent;
+    text-color: @fg0;
+
+    margin: 0;
+    padding: 0;
+    spacing: 0;
+}
+
+element-icon,
+element-text,
+scrollbar {
+    cursor: pointer;
+}
+
+window {
+    location: north;
+    y-offset: calc(50% - 140px);
+    width: 360px;
+
+    background-color: @bg1;
+    border: 1px solid;
+    border-color: @bg3;
+    border-radius: 8px;
+}
+
+mainbox {
+    padding: 8px;
+    spacing: 8px;
+}
+
+inputbar {
+    padding: 8px 12px;
+    spacing: 10px;
+    border: 2px solid;
+    border-radius: 4px;
+    border-color: @accent;
+    background-color: @bg2;
+  children: [icon-search, entry];
+}
+
+icon-search {
+  expand:   false;
+  filename: "search";
+  vertical-align: 0.5;
+}
+
+textbox {
+    padding: 8px;
+    background-color: @bg2;
+}
+
+listview {
+    lines: 5;
+    fixed-height: true;
+}
+
+element {
+    orientation: horizontal;
+    spacing: 10px;
+    padding: 10px 16px;
+    border-radius: 4px;
+}
+
+element normal urgent {
+    text-color: @urgent;
+}
+
+element normal active {
+    text-color: @fg1;
+}
+
+element selected {
+    background-color: @bg2;
+}
+
+element selected urgent {
+    background-color: @urgent;
+}
+
+element-text {
+    text-color: inherit;
+    highlight: none;
+}
+
+// vi:ft=rasi:commentstring=//\ %s
