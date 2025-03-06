@@ -1,0 +1,7 @@
+@define-color fg #FFFFFF;
+@define-color fg-dark #7B7B7B;
+@define-color bg #000000;
+@define-color bg-alpha rgba(0, 0, 0, 0.9);
+@define-color bg-light #4A4A4A;
+@define-color bg-light-alpha rgba(74, 74, 74, 0.75);
+@define-color urgent #e78a4e;
