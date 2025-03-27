@@ -13,4 +13,7 @@ progress-color=over #78aeed
 layer=overlay
 anchor=top-center
 
+[urgency="low"]
+default-timeout=2000
+
 # vi: ft=properties
