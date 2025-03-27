@@ -1,15 +1,19 @@
 #!/usr/bin/env bash
 # dmenu-like script for taking screenshots in wayland.
-# Depends on grim, slurp, imagemagick and wl-clipboard
+# Depends on grim, slurp, imagemagick, wf-recorder and wl-clipboard
 # Author: Newman Sanchez (https://github.com/newmanls)
 
 set -euo pipefail
 
-take_screenshot() {
-    savedir="${HOME}/Pictures/Screenshots"
-    filepath="${savedir}/$(date "+%Y%m%d_%H%M%S").png"
+timer_delay=3
+image_savedir="${HOME}/Pictures/Screenshots"
+video_savedir="${HOME}/Videos/Captures"
 
-    [ ! -d "$savedir" ] && mkdir -p "$savedir"
+
+take_screenshot() {
+    filepath="${image_savedir}/$(date "+%Y%m%d_%H%M%S").png"
+
+    [ ! -d "$image_savedir" ] && mkdir -p "$image_savedir"
 
     sleep 0.5
     grim "$@" "$filepath"
@@ -25,23 +29,58 @@ take_screenshot() {
     esac
 }
 
-delay=3
-fullscreen="Fullscreen"
-select="Select region"
-timer="Timer (${delay}s)"
-options="${fullscreen}\n${select}\n${timer}"
 
-displays=$(wlr-randr --json | jq -r '.[] | "Fullscreen: \(.name)"')
+record_screen() {
+    filepath="${video_savedir}/$(date "+%Y%m%d_%H%M%S").mp4"
 
-if [ "$(wc -l <<< "$displays")" -gt 1 ]; then
-    options+="\n$displays"
+    [ ! -d "$video_savedir" ] && mkdir -p "$video_savedir"
+
+    wf-recorder -f "$filepath" > /dev/null 2>&1 &
+
+    if pgrep -x "wf-recorder" > /dev/null; then
+        notify-send --urgency=low \
+            --icon="record-desktop-indicator-recording"\
+            "Recording..."
+    else
+        notify-send -i dialog-error "Recording failed"
+    fi
+}
+
+
+main() {
+    fullscreen="Fullscreen"
+    select="Select region"
+    timer="Timer (${timer_delay}s)"
+    record="Record screen"
+
+    options="${fullscreen}\n${select}\n${timer}"
+
+    if [ -n "$WAYLAND_DISPLAY" ]; then
+        displays=$(wlr-randr --json | jq -r '.[] | "Fullscreen: \(.name)"')
+
+        if [ "$(wc -l <<< "$displays")" -gt 1 ]; then
+            options+="\n$displays"
+        fi
+
+        options+="\n${record}"
+    fi
+
+    selected_option=$(printf "%b\n" "$options" | $DMENU_CMD -p "Take screenshot")
+
+    case "$selected_option" in
+        "$fullscreen")  take_screenshot ;;
+        "$select")      take_screenshot -g "$(slurp)" ;;
+        "$timer")       sleep "$timer_delay" && take_screenshot ;;
+        "$record")      record_screen ;;
+        Fullscreen:\ *) take_screenshot -o "${selected_option#*: }" ;;
+    esac
+}
+
+
+if pgrep -x "wf-recorder" > /dev/null; then
+    pkill -x "wf-recorder"
+    notify-send -i record-desktop "Recording stopped" \
+        "Saved at \"${video_savedir//$HOME\//}\""
+else
+    main
 fi
-
-selected_option=$(printf "%b\n" "$options" | $DMENU_CMD -p "Take screenshot")
-
-case "$selected_option" in
-    "$fullscreen")  take_screenshot ;;
-    "$select")      take_screenshot -g "$(slurp)" ;;
-    "$timer")       sleep "$delay" && take_screenshot ;;
-    Fullscreen:\ *) take_screenshot -o "${selected_option#*: }" ;;
-esac
