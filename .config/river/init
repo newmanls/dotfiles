@@ -106,3 +106,9 @@ riverctl spawn "pkill mako; mako"
 riverctl spawn "pidof footclient || pkill foot; foot -s"
 riverctl spawn "pidof ${polkit##*/} || $polkit"
 riverctl spawn 'xrdb "${XDG_CONFIG_HOME}/x11/Xresources"'
+
+# Fix screencasting
+# https://wiki.archlinux.org/title/River#Screencasting
+systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
+systemctl --user restart xdg-desktop-portal
