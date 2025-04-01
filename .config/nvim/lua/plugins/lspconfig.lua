@@ -30,18 +30,13 @@ return {
                     require("lspconfig")[server_name].setup({})
                 end,
 
-                -- Run :PylspInstall python-lsp-isort
                 ["pylsp"] = function()
                     require("lspconfig").pylsp.setup({
                         settings = {
                             pylsp = {
                                 plugins = {
-                                    isort = {
-                                        enabled = true
-                                    },
-                                    rope_autoimport = {
-                                        enabled = true,
-                                    }
+                                    -- Run :PylspInstall python-lsp-isort
+                                    isort = { enabled = true }
                                 }
                             }
                         }
