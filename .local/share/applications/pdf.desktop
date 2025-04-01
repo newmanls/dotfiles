@@ -1,7 +1,0 @@
-[Desktop Entry]
-Type=Application
-Icon=document-viewer
-Exec=zathura %u
-Name=Document Viewer
-Categories=Office;Viewer;
-MimeType=application/pdf;application/oxps;application/epub+zip;application/x-fictionbook;
