@@ -70,35 +70,35 @@ later(function()
 end)
 
 later(function ()
-   add('ibhagwan/fzf-lua')
+    add('ibhagwan/fzf-lua')
 
-   require("fzf-lua").setup()
-   FzfLua.register_ui_select()
+    require("fzf-lua").setup()
+    FzfLua.register_ui_select()
 
-   vim.keymap.set(
-       'n',
-       '<leader>ff',
-       '<Cmd>FzfLua files<CR>',
-       { desc = "Search files" }
-   )
-   vim.keymap.set(
-       'n',
-       '<leader>fb',
-       '<Cmd>FzfLua buffers<CR>',
-       { desc = "Search buffers" }
-   )
-   vim.keymap.set(
-       'n',
-       '<leader>fg',
-       '<Cmd>FzfLua live_grep<CR>',
-       { desc = "Search for a pattern" }
-   )
-   vim.keymap.set(
-       'n',
-       '<leader>fd',
-       '<Cmd>FzfLua lsp_workspace_diagnostics<CR>',
-       { desc = "Search workspace diagnostics" }
-   )
+    vim.keymap.set(
+        'n',
+        '<leader>ff',
+        '<Cmd>FzfLua files<CR>',
+        { desc = "Search files" }
+    )
+    vim.keymap.set(
+        'n',
+        '<leader>fb',
+        '<Cmd>FzfLua buffers<CR>',
+        { desc = "Search buffers" }
+    )
+    vim.keymap.set(
+        'n',
+        '<leader>fg',
+        '<Cmd>FzfLua live_grep<CR>',
+        { desc = "Search for a pattern" }
+    )
+    vim.keymap.set(
+        'n',
+        '<leader>fd',
+        '<Cmd>FzfLua lsp_workspace_diagnostics<CR>',
+        { desc = "Search workspace diagnostics" }
+    )
 end)
 
 later(function() add('mattn/emmet-vim') end)
