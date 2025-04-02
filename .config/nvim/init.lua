@@ -1,19 +1,11 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local path_package = vim.fn.stdpath('data') .. '/site/'
+local mini_path = path_package .. 'pack/deps/start/mini.nvim'
 
-if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable",
-        lazypath,
-    })
+if not vim.loop.fs_stat(mini_path) then vim.cmd('echo "Installing `mini.nvim`" | redraw')
+    local clone_cmd = { 'git', 'clone', '--filter=blob:none', 'https://github.com/echasnovski/mini.nvim', mini_path }
+    vim.fn.system(clone_cmd)
+    vim.cmd('packadd mini.nvim | helptags ALL')
+    vim.cmd('echo "Installed `mini.nvim`" | redraw')
 end
 
-vim.opt.rtp:prepend(lazypath)
-
-require('options')
-require('mappings')
-require('lazy').setup('plugins')
-vim.cmd.colorscheme("gruvbox-material")
+require('mini.deps').setup()

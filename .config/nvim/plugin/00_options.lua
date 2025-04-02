@@ -1,4 +1,3 @@
--- Interface
 vim.opt.colorcolumn = '80'
 vim.opt.cursorline = true
 vim.opt.laststatus = 2
@@ -27,12 +26,5 @@ vim.opt.linebreak = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
--- Autocommands
-vim.api.nvim_create_autocmd('TextYankPost', {
-    callback = function() vim.highlight.on_yank() end
-})
-
-vim.api.nvim_create_autocmd({ "BufRead", "BufEnter" }, {
-    pattern = { "*.astro" },
-    command = "set filetype=astro"
-})
+-- Diagnostics
+vim.diagnostic.config({ virtual_text = true })
