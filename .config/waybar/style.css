@@ -1,18 +1,10 @@
 @import url("./colorschemes/adwaita-dark.css");
 
 * {
-    border: none;
-    border-radius: 0;
-    min-height: 0;
-    margin: 0;
-    padding: 0;
     transition: 150ms;
 }
 
 #waybar {
-    font-family: "sans-serif";
-    font-weight: 600;
-    font-size: 12px;
     background: @bg-alpha;
     color: @fg;
 }
@@ -34,6 +26,8 @@
 }
 
 label.module {
+    font-weight: 600;
+    font-size: 12px;
     padding: 0 10px;
     margin: 2px 0;
     border-radius: 1rem;
@@ -60,7 +54,10 @@ label.module:hover,
 #tags button,
 #workspaces button {
     font-size: 0;
-    min-width: 6px;
+    min-width: 4px;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
     margin: 0.45rem 4px;
     border-radius: 1rem;
 }
