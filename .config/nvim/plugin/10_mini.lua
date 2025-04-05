@@ -11,7 +11,6 @@ later(function() require('mini.ai').setup() end)
 later(function() require('mini.align').setup() end)
 later(function() require('mini.move').setup() end)
 later(function() require('mini.pairs').setup() end)
-later(function() require('mini.pick').setup() end)
 later(function() require('mini.surround').setup() end)
 later(function() require('mini.splitjoin').setup() end)
 
