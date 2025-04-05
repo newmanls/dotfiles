@@ -1,7 +1,7 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 22,
+    "height": 28,
     "reload_style_on_change": true,
     "modules-left": [
         "hyprland/workspaces",
@@ -16,7 +16,6 @@
         "tray",
         "pulseaudio",
         "battery",
-        "network",
     ],
     "river/tags": {
         "num-tags": 5,
@@ -33,16 +32,6 @@
     "custom/dollar": {
         "exec": "sb-dollar",
         "interval": 21600,
-    },
-    "network": {
-        "interval": 5,
-        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
-        "format-wifi": "{icon}",
-        "format-ethernet": "󰈀",
-        "format-disconnected": "󰇨",
-        "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
-        "tooltip-format-wifi": "{essid}: {ipaddr}/{cidr}",
-        "tooltip-format-disconnected": "Disconnected",
     },
     "pulseaudio": {
         "format": "{icon}",
@@ -73,7 +62,7 @@
       },
     },
     "tray": {
-        "icon-size": 12,
+        "icon-size": 16,
         "spacing": 4
     }
 }
