@@ -105,6 +105,7 @@ riverctl spawn "setbg"
 riverctl spawn "pkill waybar; waybar"
 riverctl spawn "pkill mako; mako"
 riverctl spawn "pidof footclient || pkill foot; foot -s"
+riverctl spawn "pidof nm-applet || nm-applet"
 riverctl spawn "pidof ${polkit##*/} || $polkit"
 riverctl spawn 'xrdb "${XDG_CONFIG_HOME}/x11/Xresources"'
 
