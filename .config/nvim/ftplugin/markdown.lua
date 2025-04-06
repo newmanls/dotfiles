@@ -20,21 +20,27 @@ now(function()
     }
 
     require("markview").setup({
-        hybrid_modes = { "n" },
-        headings = presets.headings.marker,
-        horizontal_rules = presets.horizontal_rules.thin,
-        list_items = {
-            marker_minus = list_item,
-            marker_plus = list_item,
-            marker_star = list_item,
-            marker_dot = {
-                add_padding = false,
-            },
-            marker_parenthasis = {
-                add_padding = false,
-            }
+        preview = {
+            hybrid_modes = { "n" },
         },
-        checkboxes = presets.checkboxes.nerd,
+        markdown = {
+            headings = presets.headings.marker,
+            horizontal_rules = presets.horizontal_rules.thin,
+            list_items = {
+                marker_minus = list_item,
+                marker_plus = list_item,
+                marker_star = list_item,
+                marker_dot = {
+                    add_padding = false,
+                },
+                marker_parenthasis = {
+                    add_padding = false,
+                }
+            },
+        },
+        markdown_inline = {
+            checkboxes = presets.checkboxes.nerd,
+        },
     })
 
     vim.keymap.set(
