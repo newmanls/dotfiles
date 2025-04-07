@@ -1,7 +1,3 @@
-vim.opt_local.colorcolumn = '0'
-vim.opt_local.spell = true
-vim.opt_local.spelllang = 'es,en'
-
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 
 now(function()
