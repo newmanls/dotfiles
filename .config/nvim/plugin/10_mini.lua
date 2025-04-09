@@ -3,6 +3,7 @@ local now, later = MiniDeps.now, MiniDeps.later
 now(function()
     require('mini.icons').setup()
     MiniIcons.mock_nvim_web_devicons()
+    MiniIcons.tweak_lsp_kind()
 end)
 
 now(function() require('mini.completion').setup() end)
