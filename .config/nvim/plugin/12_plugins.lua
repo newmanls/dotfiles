@@ -146,19 +146,4 @@ later(function()
     )
 end)
 
-now(function()
-    add('folke/which-key.nvim')
-
-    vim.o.timeout = true
-    vim.o.timeoutlen = 300
-
-    require('which-key').setup({
-        icons = {
-            breadcrumb = ">",
-            separator = ">",
-            group = "+",
-        },
-    })
-end)
-
 later(function() add('jghauser/mkdir.nvim') end)
