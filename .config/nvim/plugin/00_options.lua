@@ -27,9 +27,18 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Diagnostics
-vim.diagnostic.config({ virtual_text = true })
+vim.diagnostic.config({
+    severity_sort = true,
+    jump = { float = true },
+})
 
 -- Autocmds
 vim.api.nvim_create_autocmd('TextYankPost', {
     callback = function() vim.highlight.on_yank() end
+})
+
+vim.api.nvim_create_autocmd('CursorHold', {
+    callback = function()
+        vim.diagnostic.open_float(nil, { focus = false })
+    end
 })
