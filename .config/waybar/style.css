@@ -42,7 +42,7 @@ label.module {
 
 label.module:hover,
 #tray > widget:hover {
-    background: @bg-light;
+    background: @bg-light-alpha;
 }
 
 #tags,
