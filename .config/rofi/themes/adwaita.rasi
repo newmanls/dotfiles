@@ -63,7 +63,7 @@ textbox {
 
 listview {
     lines: 5;
-    fixed-height: true;
+    fixed-height: false;
 }
 
 element {
