@@ -99,6 +99,12 @@ later(function ()
         '<Cmd>FzfLua lsp_workspace_diagnostics<CR>',
         { desc = "Find workspace diagnostics" }
     )
+    vim.keymap.set(
+        'n',
+        '<leader>fh',
+        '<Cmd>FzfLua helptags<CR>',
+        { desc = "Find help tags" }
+    )
 end)
 
 later(function() add('mattn/emmet-vim') end)

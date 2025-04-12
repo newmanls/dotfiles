@@ -69,7 +69,7 @@ vim.api.nvim_create_user_command(
 
 vim.keymap.set(
     'n',
-    '<leader>fh',
+    '<leader>fm',
     '<Cmd>FindMDHeaders<CR>',
-    { desc = 'Find Markdown Headers' }
+    { desc = 'Find markdown headers' }
 )
