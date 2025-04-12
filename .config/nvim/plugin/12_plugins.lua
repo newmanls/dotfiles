@@ -79,25 +79,25 @@ later(function ()
         'n',
         '<leader>ff',
         '<Cmd>FzfLua files<CR>',
-        { desc = "Search files" }
+        { desc = "Find files" }
     )
     vim.keymap.set(
         'n',
         '<leader>fb',
         '<Cmd>FzfLua buffers<CR>',
-        { desc = "Search buffers" }
+        { desc = "Find buffers" }
     )
     vim.keymap.set(
         'n',
         '<leader>fg',
         '<Cmd>FzfLua live_grep<CR>',
-        { desc = "Search for a pattern" }
+        { desc = "Find pattern in current project" }
     )
     vim.keymap.set(
         'n',
         '<leader>fd',
         '<Cmd>FzfLua lsp_workspace_diagnostics<CR>',
-        { desc = "Search workspace diagnostics" }
+        { desc = "Find workspace diagnostics" }
     )
 end)
 
@@ -139,10 +139,10 @@ later(function()
     })
 
     vim.keymap.set(
-        '',
+        'n',
         '<leader>ee',
         '<Cmd>Tfm<CR>',
-        { desc = "Open file manager" }
+        { desc = "Open file explorer" }
     )
 end)
 

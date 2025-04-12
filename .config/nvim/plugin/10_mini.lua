@@ -49,7 +49,6 @@ later(function()
             { mode = 'n', keys = 'z' },
             { mode = 'x', keys = 'z' },
         },
-
         clues = {
             -- Enhance this by adding descriptions for <Leader> mapping groups
             miniclue.gen_clues.builtin_completion(),
@@ -58,6 +57,8 @@ later(function()
             miniclue.gen_clues.registers(),
             miniclue.gen_clues.windows(),
             miniclue.gen_clues.z(),
+            { mode = 'n', keys = '<Leader>f', desc = '+FzfLua' },
+            { mode = 'n', keys = '<Leader>e', desc = '+Explorer' },
         },
     })
 end)
