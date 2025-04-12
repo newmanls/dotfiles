@@ -63,7 +63,7 @@ later(function()
     })
 end)
 
-later(function ()
+later(function()
     local indentscope = require("mini.indentscope")
 
     indentscope.setup({
@@ -72,6 +72,14 @@ later(function ()
             animation = indentscope.gen_animation.none()
         },
         symbol = "│"
+    })
+end)
+
+later(function()
+    require('mini.operators').setup({
+        exchange = { prefix = '' },
+        multiply = { prefix = '' },
+        replace = { prefix = '' },
     })
 end)
 
