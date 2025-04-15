@@ -6,10 +6,17 @@ now(function()
     MiniIcons.tweak_lsp_kind()
 end)
 
+now(function()
+    local statusline = require('mini.statusline')
+    statusline.setup()
+    statusline.section_location = function() return '%l,%c%V%  %P' end
+end)
+
 now(function() require('mini.completion').setup() end)
 
 later(function() require('mini.ai').setup() end)
 later(function() require('mini.align').setup() end)
+later(function() require('mini.git').setup() end)
 later(function() require('mini.move').setup() end)
 later(function() require('mini.pairs').setup() end)
 later(function() require('mini.surround').setup() end)
