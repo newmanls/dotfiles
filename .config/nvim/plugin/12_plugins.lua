@@ -52,6 +52,11 @@ now(function()
     })
 end)
 
+now(function()
+    add('brenoprata10/nvim-highlight-colors')
+    require('nvim-highlight-colors').setup()
+end)
+
 later(function()
     add({
         source = 'nvim-treesitter/nvim-treesitter',
