@@ -7,6 +7,7 @@ set shellopts '-eu'
 set cleaner '~/.config/lf/cleaner'
 set previewer '~/.config/lf/scope'
 set sixel true
+set errorfmt "\033[31m"
 
 cmd bulk-rename $renamer ${fx}
 cmd chmod %chmod $* ${fx} && lf -remote "send reload"
