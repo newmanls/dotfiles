@@ -1,12 +1,12 @@
-@import url("./colorschemes/adwaita-dark.css");
+@import url("./colors.css");
 
 * {
     transition: 150ms;
 }
 
 #waybar {
-    background: @bg-alpha;
-    color: @fg;
+    background: @background;
+    color: @on_background;
 }
 
 .modules-right.horizontal {
@@ -42,7 +42,7 @@ label.module {
 
 label.module:hover,
 #tray > widget:hover {
-    background: @bg-light-alpha;
+    background: @surface_container_highest;
 }
 
 #tags,
@@ -66,14 +66,14 @@ label.module:hover,
 
 #tags button,
 #workspaces button.empty {
-    background: @fg-dark;
+    background: @outline_variant;
 }
 
 #tags button.focused,
 #tags button.occupied,
 #workspaces button,
 #workspaces button.active {
-    background: @fg;
+    background: @on_background;
 }
 
 #tags button.focused,
@@ -84,5 +84,5 @@ label.module:hover,
 
 #tags button.urgent,
 #workspaces button.urgent {
-    background: @urgent;
+    background: @primary;
 }

@@ -1,11 +1,12 @@
 set n-completion-items      8
-set font                    'Iosevka Nerd Font 10'
-set guioptions              s
+set font                    'sans-serif 10'
+set guioptions              ''
 set page-padding            8
+set recolor                 false
 set recolor-keephue         true
 set recolor-reverse-video   true
 set statusbar-basename      true
 set zoom-center             true
 set selection-clipboard     clipboard
 
-include 'themes/onedark-warmer'
+include 'colors'

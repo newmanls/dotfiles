@@ -14,7 +14,7 @@ cmd chmod %chmod $* ${fx} && lf -remote "send reload"
 cmd extract !clear; aunpack -- ${fx}
 cmd execute !"${f}"
 cmd open-terminal-here &setsid -f "${TERMINAL}" >/dev/null 2>&1
-cmd set-as-wallpaper &setbg ${f}
+cmd set-as-wallpaper &matugen image ${f}
 
 cmd create &{{
     file="$@"

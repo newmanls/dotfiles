@@ -1,3 +1,4 @@
+include=~/.config/mako/colors.ini
 icon-path=/usr/share/icons/Papirus-Dark
 max-icon-size=48
 default-timeout=5000
@@ -5,13 +6,9 @@ font=sans-serif 11
 margin=8
 padding=12
 border-size=1
-border-radius=12
-background-color=#383838
-text-color=#ffffff
-border-color=#5e5c64
-progress-color=over #78aeed
+border-radius=4
 layer=overlay
-anchor=top-center
+anchor=top-right
 
 [urgency="low"]
 default-timeout=2000

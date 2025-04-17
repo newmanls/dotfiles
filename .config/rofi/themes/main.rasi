@@ -1,17 +1,9 @@
+@import './colors.rasi'
+
 * {
     font: "sans-serif 11";
-
-    bg0: #141617;
-    bg1: #1d2021;
-    bg2: #3c3836;
-    fg0: #d4be98;
-    fg1: #928374;
-    urgent: #e78a4e;
-    radius: 4px;
-
     background-color: transparent;
-    text-color: @fg0;
-
+    text-color: @on-surface;
     margin: 0;
     padding: 0;
     spacing: 0;
@@ -25,60 +17,73 @@ scrollbar {
 
 window {
     location: north;
-    y-offset: calc(50% - 110px);
+    y-offset: calc(50% - 140px);
     width: 360px;
 
-    background-color: @bg1;
+    background-color: @surface-container;
     border: 1px solid;
-    border-color: @fg1;
-    border-radius: @radius;
+    border-color: @outline-variant;
+    border-radius: 8px;
+}
+
+mainbox {
+    padding: 8px 8px 0;
 }
 
 inputbar {
     padding: 8px 12px;
-    spacing: 8px;
-    background-color: @bg0;
-    children: [prompt, entry];
+    spacing: 10px;
+    margin: 0 0 8px 0;
+    border: 2px solid;
+    border-radius: 4px;
+    border-color: @outline;
+    background-color: @surface-container-high;
+    children: [icon-search, entry];
 }
 
-prompt {
-    text-color: @fg1;
+icon-search {
+  expand:   false;
+  filename: "search";
+  vertical-align: 0.5;
 }
 
 textbox {
     padding: 8px;
-    background-color: @bg2;
+    background-color: @surface-container-high;
 }
 
 listview {
-    lines: 6;
-    spacing: 4px;
+    lines: 5;
     fixed-height: false;
+    margin: 0 0 8px 0;
 }
 
 element {
     orientation: horizontal;
-    spacing: 8px;
-    padding: 4px 12px;
+    spacing: 10px;
+    padding: 10px 16px;
+    border-radius: 4px;
 }
 
 element normal urgent {
-    text-color: @urgent;
+    text-color: @primary;
 }
 
 element normal active {
-    text-color: @fg1;
+    text-color: @on-surface-variant;
 }
 
 element selected {
-    background-color: @bg2;
+    background-color: @surface-container-high;
 }
 
 element selected urgent {
-    background-color: @urgent;
+    background-color: @primary;
 }
 
 element-text {
     text-color: inherit;
     highlight: none;
 }
+
+// vi:ft=rasi:commentstring=//\ %s

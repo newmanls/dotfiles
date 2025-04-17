@@ -3,7 +3,6 @@
 termcmd="footclient"
 termfloat="$termcmd -a term-float"
 calculator="$termfloat -W 56x8 -o 'font=monospace-14' -e python -qi -c 'from math import *'"
-polkit="/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 
 # Mappings
 riverctl map normal Super Return       spawn "$termcmd"
@@ -83,10 +82,7 @@ riverctl rule-add -app-id "hyprland-share-picker" float
 riverctl rule-add -app-id "steam" -title "Steam" no-float
 
 # Options
-riverctl background-color       "0x242424"
-riverctl border-color-unfocused "0x383838"
-riverctl border-color-focused   "0x77767b"
-riverctl border-color-urgent    "0xcd9309"
+source "${HOME}/.config/river/colors"
 riverctl border-width 1
 
 riverctl focus-follows-cursor normal
@@ -101,12 +97,12 @@ rivertile -view-padding 0 -outer-padding 0 -main-ratio 0.5 &
 
 # Autostart
 riverctl spawn "${XDG_CONFIG_HOME}/display.sh"
-riverctl spawn "setbg"
-riverctl spawn "pkill waybar; waybar"
-riverctl spawn "pkill mako; mako"
-riverctl spawn "pidof footclient || pkill foot; foot -s"
-riverctl spawn "pidof nm-applet || nm-applet"
-riverctl spawn "pidof ${polkit##*/} || $polkit"
+riverctl spawn 'pidof waybar || waybar'
+riverctl spawn 'pidof footclient || pkill foot; foot -s'
+riverctl spawn 'swww-daemon'
+riverctl spawn 'mako'
+riverctl spawn 'nm-applet'
+riverctl spawn '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1'
 riverctl spawn 'xrdb "${XDG_CONFIG_HOME}/x11/Xresources"'
 
 # Fix screencasting
