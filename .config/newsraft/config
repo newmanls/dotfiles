@@ -1,5 +1,0 @@
-set scrolloff 4
-set open-in-browser-command ~/.local/bin/linkhandler "%l"
-set menu-item-sorting unread-desc
-
-bind E exec nvim "$XDG_CONFIG_HOME/newsraft/feeds"

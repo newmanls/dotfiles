@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-riverctl background-color       '0x0e1514'
-riverctl border-color-unfocused '0x3f4948'
-riverctl border-color-focused   '0x889391'
-riverctl border-color-urgent    '0xb1c9e8'

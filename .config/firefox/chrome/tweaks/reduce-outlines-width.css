@@ -1,6 +1,0 @@
-/* reduce outlines width */
-#urlbar[focused="true"]:not([suppress-focus-border])>#urlbar-background,
-#searchbar:focus-within,
-.findbar-textbox:focus {
-    outline-width: 1px !important;
-}
