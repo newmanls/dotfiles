@@ -12,4 +12,4 @@ configuration {
   me-accept-entry: "MousePrimary";
 }
 
-@theme "/home/newman/.config/rofi/themes/main.rasi"
+@theme "~/.config/rofi/themes/main.rasi"
