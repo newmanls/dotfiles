@@ -36,7 +36,7 @@ inputbar {
     margin: 0 0 8px 0;
     border: 2px solid;
     border-radius: 4px;
-    border-color: @outline;
+    border-color: @primary;
     background-color: @surface-container-high;
     children: [icon-search, entry];
 }
