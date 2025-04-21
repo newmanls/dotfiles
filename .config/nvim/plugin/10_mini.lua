@@ -9,7 +9,7 @@ end)
 now(function()
     local statusline = require('mini.statusline')
     statusline.setup()
-    statusline.section_location = function() return '%l,%c%V%  %P' end
+    statusline.section_location = function() return '%3l:%-3(%c%V%) %P' end
 end)
 
 now(function() require('mini.completion').setup() end)
