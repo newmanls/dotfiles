@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+riverctl background-color       '0x{{colors.surface.default.hex_stripped}}'
+riverctl border-color-unfocused '0x{{colors.outline_variant.default.hex_stripped}}'
+riverctl border-color-focused   '0x{{colors.outline.default.hex_stripped}}'
+riverctl border-color-urgent    '0x{{colors.tertiary.default.hex_stripped}}'
