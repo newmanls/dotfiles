@@ -63,7 +63,7 @@
     },
     "tray": {
         "icon-size": 16,
-        "spacing": 4
+        "spacing": 2,
     }
 }
 

@@ -13,10 +13,6 @@
     margin-right: 4px;
 }
 
-#tray {
-    margin: 2px;
-}
-
 #tray > widget {
     border-radius: 1rem;
 }
