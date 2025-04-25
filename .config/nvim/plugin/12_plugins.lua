@@ -17,7 +17,9 @@ now(function()
 
     require("mason").setup()
     require("mason-lspconfig").setup({
-        ensure_installed = { "bashls", "html", "lua_ls", "pylsp", "ts_ls" },
+        ensure_installed = {
+            'bashls', 'cssls', 'harper_ls', 'html', 'lua_ls', 'pylsp', 'ts_ls'
+        },
         handlers = {
             function(server_name)
                 require("lspconfig")[server_name].setup({})
