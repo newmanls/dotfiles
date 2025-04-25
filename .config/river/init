@@ -67,19 +67,21 @@ riverctl map-pointer normal Super BTN_MIDDLE toggle-float
 
 # Rules
 riverctl rule-add -app-id "$termcmd" tags 1
-riverctl rule-add -app-id "firefox" tags 2
-riverctl rule-add -app-id "libreoffice-*" tags 3
-riverctl rule-add -app-id "Gimp" tags 3
-riverctl rule-add -app-id "Inskcape" tags 3
+riverctl rule-add -app-id 'firefox' tags 2
+riverctl rule-add -app-id 'gimp-*' tags 4
+riverctl rule-add -app-id 'org.inkscape.Inkscape' tags 4
+riverctl rule-add -app-id 'libreoffice-*' tags 4
+riverctl rule-add -title  'LibreOffice' tags 4
+riverctl rule-add -app-id 'obsidian' tags 16
 
-riverctl rule-add -app-id "*" ssd
-riverctl rule-add -app-id "*-float" float
-riverctl rule-add -app-id "mpv" float
-riverctl rule-add -app-id "Nsxiv" float
-riverctl rule-add -app-id "firefox" -title "Picture-in-Picture" float
-riverctl rule-add -app-id "steam" float
-riverctl rule-add -app-id "hyprland-share-picker" float
-riverctl rule-add -app-id "steam" -title "Steam" no-float
+riverctl rule-add -app-id '*' ssd
+riverctl rule-add -app-id '*-float' float
+riverctl rule-add -app-id 'mpv' float
+riverctl rule-add -app-id 'Nsxiv' float
+riverctl rule-add -app-id 'firefox' -title 'Picture-in-Picture' float
+riverctl rule-add -app-id 'hyprland-share-picker' float
+riverctl rule-add -app-id 'steam' float
+riverctl rule-add -app-id 'steam' -title 'Steam' no-float
 
 # Options
 source "${HOME}/.config/river/colors"
@@ -104,6 +106,7 @@ riverctl spawn 'mako'
 riverctl spawn 'nm-applet'
 riverctl spawn '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1'
 riverctl spawn 'xrdb "${XDG_CONFIG_HOME}/x11/Xresources"'
+riverctl spawn 'obsidian'
 
 # Fix screencasting
 # https://wiki.archlinux.org/title/River#Screencasting
