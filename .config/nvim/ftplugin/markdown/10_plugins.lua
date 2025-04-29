@@ -20,7 +20,7 @@ now(function()
             hybrid_modes = { "n" },
         },
         markdown = {
-            headings = presets.headings.marker,
+            headings = presets.headings.glow,
             horizontal_rules = presets.horizontal_rules.thin,
             list_items = {
                 marker_minus = list_item,
