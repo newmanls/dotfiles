@@ -145,7 +145,7 @@ later(function()
         replace_netrw = true,
         enable_cmds = true,
         ui = {
-            border = "single",
+            border = vim.opt.winborder:get(),
             height = 0.8,
             width = 0.9,
         }

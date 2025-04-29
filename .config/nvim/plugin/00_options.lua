@@ -1,4 +1,5 @@
 vim.opt.colorcolumn = '80'
+vim.opt.winborder = 'single'
 vim.opt.cursorline = true
 vim.opt.laststatus = 2
 vim.opt.number = true
@@ -30,7 +31,6 @@ vim.opt.smartcase = true
 -- Diagnostics
 vim.diagnostic.config({
     severity_sort = true,
-    float = { border = 'rounded' },
 })
 
 -- Open floating diagnostic on cursor move
