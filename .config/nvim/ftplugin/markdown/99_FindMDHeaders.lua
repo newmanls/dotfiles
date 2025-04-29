@@ -49,7 +49,7 @@ function M.find_headers()
     vim.ui.select(
         items,
         {
-            prompt = 'Headers:',
+            prompt = 'Headers',
             format_item = function(item) return item.display end
         },
         function(selection)

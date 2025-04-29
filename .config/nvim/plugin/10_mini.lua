@@ -16,11 +16,53 @@ now(function() require('mini.completion').setup() end)
 
 later(function() require('mini.ai').setup() end)
 later(function() require('mini.align').setup() end)
+later(function() require('mini.extra').setup() end)
 later(function() require('mini.git').setup() end)
 later(function() require('mini.move').setup() end)
 later(function() require('mini.pairs').setup() end)
 later(function() require('mini.surround').setup() end)
 later(function() require('mini.splitjoin').setup() end)
+
+later(function ()
+    require('mini.pick').setup({
+        window = {
+            prompt_caret = '█',
+        },
+    })
+
+    vim.ui.select = MiniPick.ui_select
+
+    vim.keymap.set(
+        'n',
+        '<leader>ff',
+        '<Cmd>Pick files<CR>',
+        { desc = "Find files" }
+    )
+    vim.keymap.set(
+        'n',
+        '<leader>fb',
+        '<Cmd>Pick buffers<CR>',
+        { desc = "Find buffers" }
+    )
+    vim.keymap.set(
+        'n',
+        '<leader>fg',
+        '<Cmd>Pick grep_live<CR>',
+        { desc = "Find pattern in current project" }
+    )
+    vim.keymap.set(
+        'n',
+        '<leader>fd',
+        '<Cmd>Pick diagnostic<CR>',
+        { desc = "Find workspace diagnostics" }
+    )
+    vim.keymap.set(
+        'n',
+        '<leader>fh',
+        '<Cmd>Pick help<CR>',
+        { desc = "Find help tags" }
+    )
+end)
 
 later(function()
     local miniclue = require('mini.clue')
@@ -64,7 +106,7 @@ later(function()
             miniclue.gen_clues.registers(),
             miniclue.gen_clues.windows(),
             miniclue.gen_clues.z(),
-            { mode = 'n', keys = '<Leader>f', desc = '+FzfLua' },
+            { mode = 'n', keys = '<Leader>f', desc = '+Find' },
             { mode = 'n', keys = '<Leader>e', desc = '+Explorer' },
         },
     })

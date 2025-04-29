@@ -79,44 +79,6 @@ end)
 later(function() add('mattn/emmet-vim') end)
 later(function() add('jghauser/mkdir.nvim') end)
 
-later(function ()
-    add('ibhagwan/fzf-lua')
-
-    require("fzf-lua").setup()
-    FzfLua.register_ui_select()
-
-    vim.keymap.set(
-        'n',
-        '<leader>ff',
-        '<Cmd>FzfLua files<CR>',
-        { desc = "Find files" }
-    )
-    vim.keymap.set(
-        'n',
-        '<leader>fb',
-        '<Cmd>FzfLua buffers<CR>',
-        { desc = "Find buffers" }
-    )
-    vim.keymap.set(
-        'n',
-        '<leader>fg',
-        '<Cmd>FzfLua live_grep<CR>',
-        { desc = "Find pattern in current project" }
-    )
-    vim.keymap.set(
-        'n',
-        '<leader>fd',
-        '<Cmd>FzfLua lsp_workspace_diagnostics<CR>',
-        { desc = "Find workspace diagnostics" }
-    )
-    vim.keymap.set(
-        'n',
-        '<leader>fh',
-        '<Cmd>FzfLua helptags<CR>',
-        { desc = "Find help tags" }
-    )
-end)
-
 later(function()
     add({
         source = 'OXY2DEV/helpview.nvim',
