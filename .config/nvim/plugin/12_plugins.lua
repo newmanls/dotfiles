@@ -55,11 +55,6 @@ now(function()
 end)
 
 now(function()
-    add('brenoprata10/nvim-highlight-colors')
-    require('nvim-highlight-colors').setup()
-end)
-
-later(function()
     add({
         source = 'nvim-treesitter/nvim-treesitter',
         depends = { 'nvim-treesitter/nvim-treesitter-context' },
@@ -75,6 +70,14 @@ later(function()
         incremental_selection = { enable = true },
     })
 end)
+
+now(function()
+    add('brenoprata10/nvim-highlight-colors')
+    require('nvim-highlight-colors').setup()
+end)
+
+later(function() add('mattn/emmet-vim') end)
+later(function() add('jghauser/mkdir.nvim') end)
 
 later(function ()
     add('ibhagwan/fzf-lua')
@@ -113,8 +116,6 @@ later(function ()
         { desc = "Find help tags" }
     )
 end)
-
-later(function() add('mattn/emmet-vim') end)
 
 later(function()
     add({
@@ -164,5 +165,3 @@ later(function()
         { desc = "Open file explorer" }
     )
 end)
-
-later(function() add('jghauser/mkdir.nvim') end)
