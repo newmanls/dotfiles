@@ -121,6 +121,12 @@ later(function()
         source = 'OXY2DEV/helpview.nvim',
         dependencies = { 'nvim-treesitter/nvim-treesitter' }
     })
+
+    require('helpview').setup({
+        vimdoc = {
+            headings = { enable = false },
+        }
+    })
 end)
 
 later(function()
