@@ -108,6 +108,8 @@ later(function()
             miniclue.gen_clues.z(),
             { mode = 'n', keys = '<Leader>f', desc = '+Find' },
             { mode = 'n', keys = '<Leader>e', desc = '+Explorer' },
+            { mode = 'n', keys = '<Leader>o', desc = '+Obsidian' },
+            { mode = 'v', keys = '<Leader>o', desc = '+Obsidian' },
         },
     })
 end)

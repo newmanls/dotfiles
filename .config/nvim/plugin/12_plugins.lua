@@ -106,6 +106,81 @@ later(function()
     )
 end)
 
+later(function ()
+    add({
+        source = 'obsidian-nvim/obsidian.nvim',
+        depends = {
+            'nvim-lua/plenary.nvim',
+            'OXY2DEV/markview.nvim'
+        },
+    })
+
+    require('obsidian').setup({
+        workspaces = {
+            {
+                name = 'obsidian-vault',
+                path = '~/Documents/Obsidian/obsidian-vault',
+            }
+        },
+        daily_notes = {
+            folder = '2-Areas/Journal',
+        },
+        ui = { enable = false },
+        attachments = {
+            img_folder = '.',
+        }
+    })
+
+    vim.keymap.set(
+        '',
+        '<leader>ob',
+        '<Cmd>Obsidian backlinks<CR>',
+        { desc = 'Find backlinks' }
+    )
+
+    vim.keymap.set(
+        '',
+        '<leader>od',
+        '<Cmd>Obsidian dailies<CR>',
+        { desc = 'Find daily notes' }
+    )
+
+    vim.keymap.set(
+        '',
+        '<leader>ol',
+        '<Cmd>Obsidian links<CR>',
+        { desc = 'Find links in the buffer' }
+    )
+
+    vim.keymap.set(
+        '',
+        '<leader>on',
+        '<Cmd>Obsidian new<CR>',
+        { desc = 'Create new note' }
+    )
+
+    vim.keymap.set(
+        '',
+        '<leader>oj',
+        '<Cmd>Obsidian today<CR>',
+        { desc = 'Open today daily note' }
+    )
+
+    vim.keymap.set(
+        '',
+        '<leader>of',
+        '<Cmd>Obsidian search<CR>',
+        { desc = 'Find notes' }
+    )
+
+    vim.keymap.set(
+        '',
+        '<leader>ot',
+        '<Cmd>Obsidian tags<CR>',
+        { desc = 'Find tags' }
+    )
+end)
+
 later(function()
     add('rolv-apneseth/tfm.nvim')
 
