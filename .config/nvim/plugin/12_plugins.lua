@@ -1,55 +1,14 @@
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 
 now(function()
-    add('williamboman/mason.nvim')
-    add({
-        source = 'williamboman/mason-lspconfig.nvim',
-        depends = { 'williamboman/mason.nvim' }
-    })
-    add({
-        source = 'neovim/nvim-lspconfig',
-        -- Supply dependencies near target plugin
-        depends = {
-            'williamboman/mason.nvim',
-            'williamboman/mason-lspconfig.nvim',
-        }
-    })
+    add('mason-org/mason.nvim')
+    add('mason-org/mason-lspconfig.nvim')
+    add('neovim/nvim-lspconfig')
 
     require("mason").setup()
     require("mason-lspconfig").setup({
         ensure_installed = {
             'bashls', 'cssls', 'harper_ls', 'html', 'lua_ls', 'pylsp', 'ts_ls'
-        },
-        handlers = {
-            function(server_name)
-                require("lspconfig")[server_name].setup({})
-            end,
-
-            ["pylsp"] = function()
-                require("lspconfig").pylsp.setup({
-                    settings = {
-                        pylsp = {
-                            plugins = {
-                                -- Run :PylspInstall python-lsp-isort
-                                isort = { enabled = true }
-                            }
-                        }
-                    }
-                })
-            end,
-
-            ["lua_ls"] = function()
-                local lspconfig = require("lspconfig")
-                lspconfig.lua_ls.setup {
-                    settings = {
-                        Lua = {
-                            diagnostics = {
-                                globals = { "vim" }
-                            }
-                        }
-                    }
-                }
-            end,
         }
     })
 end)
