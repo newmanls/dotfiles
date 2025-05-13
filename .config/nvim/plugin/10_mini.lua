@@ -2,26 +2,44 @@ local now, later = MiniDeps.now, MiniDeps.later
 
 now(function()
     require('mini.icons').setup()
-    MiniIcons.mock_nvim_web_devicons()
-    MiniIcons.tweak_lsp_kind()
+
+    later(MiniIcons.mock_nvim_web_devicons())
+    later(MiniIcons.tweak_lsp_kind())
 end)
 
 now(function()
-    local statusline = require('mini.statusline')
-    statusline.setup()
-    statusline.section_location = function() return '%3l:%-3(%c%V%) %P' end
+    require('mini.statusline').setup()
+
+    MiniStatusline.section_location = function ()
+        return '%3l:%-3(%c%V%) %P'
+    end
 end)
 
 now(function() require('mini.completion').setup() end)
 
 later(function() require('mini.ai').setup() end)
 later(function() require('mini.align').setup() end)
+later(function() require('mini.diff').setup() end)
 later(function() require('mini.extra').setup() end)
 later(function() require('mini.git').setup() end)
 later(function() require('mini.move').setup() end)
 later(function() require('mini.pairs').setup() end)
 later(function() require('mini.surround').setup() end)
 later(function() require('mini.splitjoin').setup() end)
+
+later(function ()
+    require('mini.notify').setup({
+        content = {
+            format = function(notification)
+                return notification.msg
+            end
+        },
+        lsp_progress = { enable = false },
+        window = { winblend = 0 },
+    })
+
+    vim.notify = MiniNotify.make_notify()
+end)
 
 later(function ()
     require('mini.pick').setup({
@@ -106,7 +124,7 @@ later(function()
             miniclue.gen_clues.registers(),
             miniclue.gen_clues.windows(),
             miniclue.gen_clues.z(),
-            { mode = 'n', keys = '<Leader>f', desc = '+Find' },
+            { mode = 'n', keys = '<Leader>f', desc = '+Pick' },
             { mode = 'n', keys = '<Leader>e', desc = '+Explorer' },
             { mode = 'n', keys = '<Leader>o', desc = '+Obsidian' },
             { mode = 'v', keys = '<Leader>o', desc = '+Obsidian' },
