@@ -77,7 +77,8 @@ later(function ()
         source = 'obsidian-nvim/obsidian.nvim',
         depends = {
             'nvim-lua/plenary.nvim',
-            'OXY2DEV/markview.nvim'
+            'OXY2DEV/markview.nvim',
+            'bullets-vim/bullets.vim',
         },
     })
 
