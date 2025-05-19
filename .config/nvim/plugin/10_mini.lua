@@ -11,7 +11,7 @@ now(function()
     require('mini.statusline').setup()
 
     MiniStatusline.section_location = function ()
-        return '%3l:%-3(%c%V%) %P'
+        return '%3l:%-3v %P'
     end
 end)
 
