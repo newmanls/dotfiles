@@ -8,7 +8,14 @@ now(function()
     require("mason").setup()
     require("mason-lspconfig").setup({
         ensure_installed = {
-            'bashls', 'cssls', 'harper_ls', 'html', 'lua_ls', 'pylsp', 'ts_ls'
+            'arduino_language_server',
+            'bashls',
+            'clangd',
+            'cssls',
+            'html',
+            'lua_ls',
+            'pylsp',
+            'ts_ls',
         }
     })
 end)
