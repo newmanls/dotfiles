@@ -3,10 +3,7 @@ local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 now(function()
     add({
         source = 'OXY2DEV/markview.nvim',
-        dependencies = {
-            'nvim-treesitter/nvim-treesitter',
-            'echasnovski/mini.icons',
-        }
+        dependencies = { 'nvim-treesitter/nvim-treesitter' }
     })
 
     local presets = require("markview.presets");
