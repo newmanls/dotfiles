@@ -79,7 +79,6 @@ riverctl rule-add -app-id 'gimp-*' tags 4
 riverctl rule-add -app-id 'org.inkscape.Inkscape' tags 4
 riverctl rule-add -app-id 'libreoffice-*' tags 4
 riverctl rule-add -title  'LibreOffice' tags 4
-riverctl rule-add -app-id 'obsidian' tags 16
 
 riverctl rule-add -app-id '*' ssd
 riverctl rule-add -app-id '*-float' float
@@ -113,7 +112,6 @@ riverctl spawn 'mako'
 riverctl spawn 'nm-applet'
 riverctl spawn '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1'
 riverctl spawn 'xrdb "${XDG_CONFIG_HOME}/x11/Xresources"'
-riverctl spawn 'obsidian'
 
 # Fix screencasting
 # https://wiki.archlinux.org/title/River#Screencasting

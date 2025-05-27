@@ -98,6 +98,10 @@ later(function ()
         }
     })
 
+    require('plugins.obsidian-sync').setup({
+        vault_path = '~/Documents/Obsidian/obsidian-vault'
+    })
+
     vim.keymap.set(
         '',
         '<leader>ob',
