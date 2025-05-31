@@ -12,6 +12,7 @@ now(function()
             'bashls',
             'clangd',
             'cssls',
+            'emmet_language_server',
             'html',
             'lua_ls',
             'pylsp',
@@ -42,7 +43,6 @@ now(function()
     require('nvim-highlight-colors').setup()
 end)
 
-later(function() add('mattn/emmet-vim') end)
 later(function() add('jghauser/mkdir.nvim') end)
 
 later(function()
