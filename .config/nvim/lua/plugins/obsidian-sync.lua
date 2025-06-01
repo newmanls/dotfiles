@@ -1,8 +1,8 @@
 --- obsidian-sync.lua ---
 -- This module provides Git automation for an Obsidian vault within Neovim.
--- It integrates automatic Git pull operations when opening files in the vault,
--- automatic Git add/commit/push operations when saving files in the vault,
--- and a user-callable command for manual synchronization.
+-- It offers explicit user commands for pulling, committing, and pushing changes
+-- to a Git-backed Obsidian vault, and optionally enables automatic synchronization
+-- based on file events within the vault.
 -- It leverages 'plenary.job' for asynchronous Git command execution.
 -- Based on https://github.com/ViViDboarder/vim-settings/blob/23cf5fc1feabcc1baf66a622ffb869117b51e50f/neovim/lua/plugins/obsidian.lua
 
@@ -83,8 +83,8 @@ local run_git_command = function(command, args, cwd, success_msg, error_msg, on_
 end
 
 --- Performs a 'git pull' operation on the configured Obsidian vault.
--- This function is typically called when a file within the vault is opened,
--- or as the first step in a manual synchronization.
+-- This function is called explicitly by the `:ObsidianSync pull` command,
+-- or automatically if `autosync` is enabled.
 --
 -- @param on_complete fun(success: boolean, result_lines: table, return_val: number) An optional callback function
 --                      to execute after the pull operation finishes.
@@ -104,6 +104,8 @@ end
 -- This function is designed to automatically stage all changes, commit them with a timestamped message,
 -- and then push to the remote repository. It gracefully handles the scenario where there are no
 -- changes to commit.
+-- This function is called explicitly by the `:ObsidianSync commit_and_push` command,
+-- or automatically if `autosync` is enabled.
 --
 -- @param on_complete fun(success: boolean, result_lines: table, return_val: number) An optional callback function
 --                      to execute after the entire commit/push sequence finishes.
@@ -131,7 +133,7 @@ local do_commit_and_push = function(on_complete)
             -- to prevent it from being treated as a general error, allowing for a custom message.
             run_git_command(
                 "git",
-                { "commit", "-m", "vault backup: " .. date_string }, -- Changed commit message here
+                { "commit", "-m", "vault backup: " .. date_string },
                 M.vault_path, -- Execute 'git commit' in the vault directory
                 "Changes committed.",
                 "Failed to commit changes.",
@@ -165,10 +167,9 @@ local do_commit_and_push = function(on_complete)
     )
 end
 
---- Initiates a full manual synchronization of the Obsidian vault.
--- This function first pulls changes from the remote, then adds, commits, and pushes
--- any local changes. It provides comprehensive notifications throughout the process.
--- This is the function executed when the `:ObsidianSync` user command is called.
+--- Initiates a full synchronization of the Obsidian vault (pull then commit/push).
+-- This is the function executed when the `:ObsidianSync` or `:ObsidianSync sync` user command is called,
+-- or automatically if `autosync` is enabled.
 M.sync_vault = function()
     -- Start by pulling remote changes
     do_pull(function(pull_success)
@@ -192,12 +193,11 @@ M.sync_vault = function()
 end
 
 --- Sets up automatic Git synchronization autocommands.
--- This function creates Neovim autocommands that trigger Git operations
--- automatically based on file events within the Obsidian vault.
+-- This function is called only if `autosync = true` is provided in the `M.setup` options.
 --
 -- - `BufRead`, `BufNewFile`: Triggers a `git pull` when a file in the vault is opened or newly created.
 -- - `BufWritePost`: Triggers a `git add`, `git commit`, and `git push` when a file in the vault is saved.
-function M.auto_git()
+local setup_autocmds = function()
     -- Create an autocommand group to manage these specific autocommands, allowing for easy clearing.
     local group_id = vim.api.nvim_create_augroup("obsidian-git", { clear = true })
 
@@ -218,11 +218,13 @@ end
 
 --- Configures the Obsidian Git automation module.
 -- This is the primary entry point for setting up the plugin from your Neovim configuration.
--- It expects a table of options, which should include the `vault_path`.
+-- It initializes the vault path and registers the `:ObsidianSync` user command with subcommands.
 --
 -- @param opts table A table containing configuration options for the plugin.
 --                   @field opts.vault_path string The path to your Obsidian vault. This path can contain a tilde (`~`)
 --                                                 for the home directory, as it will be expanded internally.
+--                   @field opts.autosync boolean|nil If `true`, enables automatic Git sync operations
+--                                                 (pull on read, commit/push on write). Defaults to `false`.
 function M.setup(opts)
     opts = opts or {} -- Ensure opts is a table even if nil is passed
 
@@ -240,16 +242,47 @@ function M.setup(opts)
     -- `plenary.job` requires absolute paths for its `cwd` option.
     M.vault_path = vim.fn.expand(opts.vault_path)
 
-    -- Set up the automatic autocommands for pull on open and commit/push on save.
-    M.auto_git()
+    -- Set up automatic autocommands only if autosync is explicitly enabled.
+    if opts.autosync == true then
+        setup_autocmds()
+    end
 
-    -- Create a user command accessible from Neovim's command line (e.g., `:ObsidianSync`).
+    -- Create the user command accessible from Neovim's command line (e.g., `:ObsidianSync`).
+    -- This command now accepts an optional argument to specify the action.
     vim.api.nvim_create_user_command(
         'ObsidianSync', -- The name of the new Neovim command
-        M.sync_vault,   -- The Lua function to execute when the command is called
+        function(args)
+            local subcommand = args.fargs[1] -- Get the first argument, if any
+
+            if subcommand == 'pull' then
+                do_pull()
+            elseif subcommand == 'commit_and_push' then
+                do_commit_and_push()
+            elseif subcommand == 'sync' or subcommand == nil or subcommand == '' then
+                -- Default behavior: run full sync if no argument or 'sync' is provided
+                M.sync_vault()
+            else
+                vim.notify(
+                    "Obsidian Sync: Invalid subcommand '" .. subcommand .. "'. Use 'pull', 'commit_and_push', or 'sync'.",
+                    vim.log.levels.ERROR,
+                    { title = "Obsidian Sync Error" }
+                )
+            end
+        end,
         {
-            desc = 'Sync Obsidian vault (pull & push Git changes)', -- Description for `:h :ObsidianSync` and command completion
-            nargs = 0, -- Specifies that this command takes no arguments
+            desc = 'Sync Obsidian vault (pull & push, pull only, or commit/push only)',
+            nargs = '?', -- The command can take zero or one argument
+            complete = function(arglead, cmdline, cursorpos)
+                -- Provide tab completion for subcommands
+                local subcommands = { 'sync', 'pull', 'commit_and_push' }
+                local completions = {}
+                for _, cmd in ipairs(subcommands) do
+                    if cmd:match('^' .. arglead) then
+                        table.insert(completions, cmd)
+                    end
+                end
+                return completions
+            end,
         }
     )
 end
