@@ -61,26 +61,40 @@ later(function ()
         },
     })
 
+    local vault_path = '~/Documents/Obsidian/obsidian-vault'
+
     require('obsidian').setup({
         workspaces = {
             {
                 name = 'obsidian-vault',
-                path = '~/Documents/Obsidian/obsidian-vault',
+                path = vault_path,
             }
         },
+        notes_subdir = '01-Fleeting Notes',
+        new_notes_location = 'notes_subdir',
+        note_id_func = function(title)
+            local id = title ~= nil and title or tostring(os.time())
+            return id
+        end,
+        disable_frontmatter = true,
         daily_notes = {
-            folder = '2-Areas/Journal',
+            folder = '05-Journal',
+        },
+        templates = {
+            folder = '99-Templates'
         },
         ui = { enable = false },
         attachments = {
-            img_folder = '.',
+            img_folder = 'assets/img',
         }
     })
 
     require('plugins.obsidian-sync').setup({
-        vault_path = '~/Documents/Obsidian/obsidian-vault'
+        vault_path = vault_path,
+        autosync = true,
     })
 
+    -- KEYMAPS
     vim.keymap.set(
         '',
         '<leader>ob',
