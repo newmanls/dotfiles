@@ -92,7 +92,7 @@ later(function ()
 
     require('plugins.obsidian-sync').setup({
         vault_path = vault_path,
-        autosync = true,
+        autosync = false,
     })
 
     -- KEYMAPS
