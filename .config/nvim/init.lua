@@ -13,7 +13,6 @@ vim.o.termguicolors = true
 -- Behavior
 vim.o.clipboard = 'unnamedplus'
 vim.o.confirm = true
-vim.o.updatetime = 500
 vim.o.scrolloff = 4
 vim.o.splitright = true
 vim.o.splitbelow = true
