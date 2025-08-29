@@ -14,6 +14,7 @@ vim.o.termguicolors = true
 vim.o.clipboard = 'unnamedplus'
 vim.o.confirm = true
 vim.o.scrolloff = 4
+vim.o.sidescrolloff = 24
 vim.o.splitright = true
 vim.o.splitbelow = true
 
@@ -23,6 +24,7 @@ vim.o.softtabstop = -1
 vim.o.expandtab = true
 
 -- Line wrapping
+vim.o.wrap = false
 vim.o.breakindent = true
 vim.o.linebreak = true
 
