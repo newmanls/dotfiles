@@ -64,6 +64,7 @@ later(function ()
     local vault_path = '~/Documents/Obsidian/obsidian-vault'
 
     require('obsidian').setup({
+        legacy_commands = false,
         workspaces = {
             {
                 name = 'obsidian-vault',
