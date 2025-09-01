@@ -65,6 +65,7 @@ now(function()
                     add_padding = false,
                 }
             },
+            tables = presets.tables.none,
         },
         markdown_inline = {
             checkboxes = presets.checkboxes.nerd,
