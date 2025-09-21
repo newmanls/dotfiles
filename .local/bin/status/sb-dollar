@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# api from https://github.com/fcoagz/api-pydolarvenezuela
+# api from https://dolarapi.com
 
 import requests
 
@@ -15,34 +15,27 @@ def fetch_data(url: str) -> dict:
 
 
 def format_text(data: list) -> str:
-    text = [f"{monitor["price"]:n}" for monitor in data]
+    text = [f"{monitor['promedio']:.2f}" for monitor in data]
 
-    return f" {" / ".join(text)}"
+    return f" {' / '.join(text)}"
 
 
 def format_tooltip(data: list) -> str:
-    tooltip = []
+    tooltip = [f"<b>{monitor['nombre']}:</b> Bs. {monitor['promedio']:.2f}"
+               for monitor in data]
 
-    for monitor in data:
-        title = monitor["title"]
-        price = monitor["price"]
-        change = monitor["change"]
-        symbol = monitor["symbol"]
-
-        tooltip.append(f"<b>{title}:</b> Bs. {price:g} ({symbol} {change:g})")
-
-    return "&#013;".join(tooltip)
+    return '&#013;'.join(tooltip)
 
 
 def main():
-    url = "http://pydolarve.org/api/v1/dollar"
-    monitors = ["bcv", "enparalelovzla"]
+    url = 'https://ve.dolarapi.com/v1/dolares'
+    monitors = ['oficial', 'paralelo']
     raw_data = fetch_data(url)
-    data = [raw_data["monitors"][monitor] for monitor in monitors]
+    data = [monitor for monitor in raw_data if monitor['fuente'] in monitors]
 
     print(format_text(data))
     print(format_tooltip(data))
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
