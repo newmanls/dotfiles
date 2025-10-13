@@ -77,7 +77,9 @@ later(function ()
             local id = title ~= nil and title or tostring(os.time())
             return id
         end,
-        disable_frontmatter = true,
+        frontmatter = {
+            enabled = false,
+        },
         daily_notes = {
             folder = '05-Journal',
         },
