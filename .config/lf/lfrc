@@ -28,6 +28,8 @@ cmd create &{{
     esac
 }}
 
+cmd dragon-drop &setsid -f dragon-drop --and-exit ${fx}
+
 cmd open ${{
     case "${f##*.}" in
         cbr|cbz)
@@ -94,6 +96,7 @@ map O  push :open-with-and-set-default<space>
 
 map xw set-as-wallpaper
 map xe extract
+map xd dragon-drop
 map xr bulk-rename
 map xt open-terminal-here
 map xx execute
