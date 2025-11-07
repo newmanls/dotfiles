@@ -47,8 +47,15 @@ vim.keymap.set('n', '<Esc>', '<Cmd>noh<CR>')
 
 
 -- AUTOCMDS
+-- highlight yanked text
 vim.api.nvim_create_autocmd('TextYankPost', {
     callback = function() vim.highlight.on_yank() end
+})
+
+-- Open help in vertical split
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = 'help',
+    command = 'wincmd L',
 })
 
 

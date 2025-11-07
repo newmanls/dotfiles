@@ -157,8 +157,12 @@ later(function()
 
     snippets.setup({
         snippets = {
-            snippets.gen_loader.from_file('~/.config/nvim/snippets/_.json'),
-            snippets.gen_loader.from_lang(),
+            snippets.gen_loader.from_file('~/.config/nvim/after/snippets/_.json'),
+            snippets.gen_loader.from_lang({
+                lang_patterns = {
+                    markdown_inline = { 'markdown.json' },
+                }
+            }),
         },
     })
 end)
