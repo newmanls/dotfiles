@@ -10,12 +10,29 @@ image_savedir="${HOME}/Pictures/Screenshots"
 video_savedir="${HOME}/Videos/Captures"
 
 
+edit_screenshot() {
+    filepath="$1"
+
+    if ! which satty > /dev/null 2>&1; then
+        notify-send -i dialog-error \
+            "Unable to edit the screenshot" \
+            "Program \"satty\" not found."
+        exit 1
+    fi
+
+    satty \
+        --filename "$filepath" \
+        --early-exit \
+        --no-window-decoration \
+        --output-filename "${filepath/%.png/_edit.png}"
+}
+
+
 take_screenshot() {
     filepath="${image_savedir}/$(date "+%Y%m%d_%H%M%S").png"
 
     [ ! -d "$image_savedir" ] && mkdir -p "$image_savedir"
 
-    sleep 0.5
     grim "$@" "$filepath"
     wl-copy < "$filepath"
     action=$(notify-send -i "$filepath" \
@@ -24,8 +41,7 @@ take_screenshot() {
         "Click to edit.")
 
     case "$action" in
-        "default")
-            swappy -f "$filepath" -o "${filepath/%.png/_swappy.png}" ;;
+        "default") edit_screenshot "$filepath" ;;
     esac
 }
 

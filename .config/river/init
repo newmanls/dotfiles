@@ -83,9 +83,8 @@ riverctl rule-add -app-id 'steam' tags 4
 riverctl rule-add -app-id '*' ssd
 riverctl rule-add -app-id '*-float' float
 riverctl rule-add -app-id 'mpv' float
-riverctl rule-add -app-id 'Nsxiv' float
+riverctl rule-add -app-id 'viewnior' float
 riverctl rule-add -app-id 'firefox' -title 'Picture-in-Picture' float
-riverctl rule-add -app-id 'hyprland-share-picker' float
 riverctl rule-add -app-id 'steam' float
 riverctl rule-add -app-id 'steam' -title 'Steam' no-float
 
