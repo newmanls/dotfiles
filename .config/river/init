@@ -1,17 +1,16 @@
 #!/usr/bin/env bash
 
-termcmd="footclient"
-termfloat="$termcmd -a term-float"
-calculator="$termfloat -W 56x8 -o 'font=monospace-14' -e python -qi -c 'from math import *'"
+term="footclient"
+term_float="$term -a term-float"
+calculator="$term_float -W 56x8 -o 'font=monospace-14' -e python -qic 'from math import *'"
 
 # Mappings
-riverctl map normal Super Return       spawn "$termcmd"
-riverctl map normal Super+Shift Return spawn "$termfloat"
+riverctl map normal Super Return       spawn "$term"
+riverctl map normal Super+Shift Return spawn "$term_float"
 riverctl map normal Super W            spawn "firefox"
-riverctl map normal Super+Shift W      spawn "firefox --private-window"
-riverctl map normal Super E            spawn "$termcmd -e lf"
+riverctl map normal Super E            spawn "$term -e lf"
 riverctl map normal Super C            spawn "$calculator"
-riverctl map normal Super+Shift C      spawn "$termfloat -e nmtui-connect"
+riverctl map normal Super+Shift C      spawn "$term_float -e nmtui-connect"
 
 riverctl map normal Super Space        spawn "rofi -show drun -show-icons"
 riverctl map normal Super+Shift Space  spawn "rofi -show run"
@@ -19,7 +18,7 @@ riverctl map normal Super+Shift Escape spawn "menu-session"
 riverctl map normal Super+Shift S      spawn "menu-screenshot"
 riverctl map normal Super+Shift M      spawn "menu-disks mount"
 riverctl map normal Super+Shift U      spawn "menu-disks unmount"
-riverctl map normal Super+Shift E      spawn "menu-emoji"
+riverctl map normal Super period       spawn "rofi -show emoji"
 
 riverctl map normal Super 0            spawn "notify-pulse mute"
 riverctl map normal Super Minus        spawn "notify-pulse down"
@@ -73,12 +72,13 @@ riverctl map-pointer normal Super BTN_RIGHT resize-view
 riverctl map-pointer normal Super BTN_MIDDLE toggle-float
 
 # Rules
-riverctl rule-add -app-id "$termcmd" tags 1
+riverctl rule-add -app-id "$term" tags 1
 riverctl rule-add -app-id 'firefox' tags 2
 riverctl rule-add -app-id 'gimp-*' tags 4
 riverctl rule-add -app-id 'org.inkscape.Inkscape' tags 4
 riverctl rule-add -app-id 'libreoffice-*' tags 4
 riverctl rule-add -title  'LibreOffice' tags 4
+riverctl rule-add -app-id 'steam' tags 4
 
 riverctl rule-add -app-id '*' ssd
 riverctl rule-add -app-id '*-float' float
