@@ -3,10 +3,6 @@ command = 'swww'
 arguments = ['img', '--transition-step', '10']
 set = true
 
-[templates.hyprland]
-input_path = './templates/hyprland-colors.conf'
-output_path = '~/.config/hypr/colors.conf'
-
 [templates.mako]
 input_path = './templates/mako.ini'
 output_path = '~/.config/mako/colors.ini'
@@ -19,7 +15,7 @@ post_hook = '~/.config/river/colors'
 
 [templates.rofi]
 input_path = './templates/rofi-colors.rasi'
-output_path = '~/.config/rofi/themes/colors.rasi'
+output_path = '~/.config/rofi/colors.rasi'
 
 [templates.waybar]
 input_path = './templates/colors.css'
