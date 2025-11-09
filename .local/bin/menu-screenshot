@@ -28,6 +28,18 @@ edit_screenshot() {
 }
 
 
+pick_color() {
+    preview="${XDG_RUNTIME_DIR:-/tmp}/color.png"
+    color=$(grim -g "$(slurp -p)" -t ppm - |
+        magick - -format '%[pixel:p{0,0}]' txt:- |
+        grep -oE '#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})')
+
+    magick -size 48x48 "xc:$color" "$preview"
+    wl-copy "$color"
+    notify-send -i "$preview" "Color copied to clipboard" "<tt>$color</tt>"
+}
+
+
 take_screenshot() {
     filepath="${image_savedir}/$(date "+%Y%m%d_%H%M%S").png"
 
@@ -67,6 +79,7 @@ main() {
     fullscreen="Fullscreen"
     select="Select region"
     timer="Timer (${timer_delay}s)"
+    colorpicker="Color picker"
     record="Record screen"
 
     options="${fullscreen}\n${select}\n${timer}"
@@ -81,6 +94,8 @@ main() {
         options+="\n${record}"
     fi
 
+    options+="\n${colorpicker}"
+
     selected_option=$(printf "%b\n" "$options" | $DMENU_CMD -p "Take screenshot")
 
     case "$selected_option" in
@@ -89,6 +104,7 @@ main() {
         "$timer")       sleep "$timer_delay" && take_screenshot ;;
         "$record")      record_screen ;;
         Fullscreen:\ *) take_screenshot -o "${selected_option#*: }" ;;
+        "$colorpicker") pick_color ;;
     esac
 }
 
