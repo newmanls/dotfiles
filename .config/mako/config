@@ -7,7 +7,7 @@ margin=8
 padding=12
 border-size=1
 border-radius=4
-layer=overlay
+layer=top
 anchor=top-right
 
 [urgency="low"]
