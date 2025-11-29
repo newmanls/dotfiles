@@ -22,8 +22,6 @@ now(function()
     require('nvim-highlight-colors').setup()
 end)
 
-later(function() add('jghauser/mkdir.nvim') end)
-
 later(function()
     add({
         source = 'OXY2DEV/helpview.nvim',
