@@ -147,23 +147,19 @@ later(function ()
 end)
 
 later(function()
-    add('rolv-apneseth/tfm.nvim')
+    add('stevearc/oil.nvim')
 
-    require('tfm').setup({
-        file_manager = "lf",
-        replace_netrw = true,
-        enable_cmds = true,
-        ui = {
-            border = vim.opt.winborder:get(),
-            height = 0.8,
-            width = 0.9,
+    require('oil').setup({
+        default_file_explorer = false,
+        win_options = {
+            colorcolumn = '0',
         }
     })
 
     vim.keymap.set(
         'n',
-        '<leader>ee',
-        '<Cmd>Tfm<CR>',
-        { desc = "Open file explorer" }
+        '-',
+        '<CMD>Oil<CR>',
+        { desc = 'Open parent directory with Oil' }
     )
 end)
