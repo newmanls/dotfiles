@@ -104,13 +104,12 @@ rivertile -view-padding 0 -outer-padding 0 -main-ratio 0.5 &
 
 # Autostart
 riverctl spawn "${XDG_CONFIG_HOME}/display.sh"
-riverctl spawn 'pidof waybar || waybar'
 riverctl spawn 'pidof footclient || pkill foot; foot -s'
-riverctl spawn 'swww-daemon'
-riverctl spawn 'mako'
+riverctl spawn 'pkill waybar; waybar'
+riverctl spawn 'pkill swww-daemon; swww-daemon'
+riverctl spawn 'pkill mako; mako'
 riverctl spawn 'nm-applet'
 riverctl spawn '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1'
-riverctl spawn 'xrdb "${XDG_CONFIG_HOME}/x11/Xresources"'
 
 # Fix screencasting
 # https://wiki.archlinux.org/title/River#Screencasting
