@@ -33,6 +33,10 @@ vim.o.linebreak = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
+-- Netrw
+vim.g.netrw_banner = false
+vim.g.netrw_liststyle = 3
+
 
 -- KEYMAPS
 -- Set <Space> as leader key
