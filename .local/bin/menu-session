@@ -10,7 +10,16 @@ prompt=$(uptime -p | sed -e 's/up/Uptime:/' \
     -e 's/ hours\?/h/' \
     -e ' s/ minutes\?/m/' \
     -e 's/,//g')
-options="Shutdown\nSuspend\nReboot\nLogout\nKill process"
+
+shutdown="Shutdown"
+suspend="Suspend"
+reboot="Reboot"
+logout="Logout"
+pkill="Kill process"
+uefi="UEFI Firmware Settings (BIOS)"
+
+options="${shutdown}\n${suspend}\n${reboot}\n${logout}\n${uefi}\n${pkill}"
+
 chosen=$(printf "%b" "${options}" | $DMENU_CMD -p "${prompt}")
 
 kill_process() {
@@ -21,9 +30,10 @@ kill_process() {
 }
 
 case "${chosen}" in
-    Shutdown)  systemctl poweroff -i ;;
-    Suspend)   systemctl suspend ;;
-    Reboot)    systemctl reboot ;;
-    Logout)    loginctl terminate-user "$(whoami)" ;;
-    Kill*)     kill_process ;;
+    "$shutdown") systemctl poweroff -i ;;
+    "$suspend")  systemctl suspend ;;
+    "$reboot")   systemctl reboot ;;
+    "$logout")   loginctl terminate-user "$(whoami)" ;;
+    "$uefi")     systemctl reboot --firmware-setup ;;
+    "$pkill")    kill_process ;;
 esac
