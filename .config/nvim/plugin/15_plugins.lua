@@ -23,19 +23,6 @@ now(function()
 end)
 
 later(function()
-    add({
-        source = 'OXY2DEV/helpview.nvim',
-        dependencies = { 'nvim-treesitter/nvim-treesitter' }
-    })
-
-    require('helpview').setup({
-        vimdoc = {
-            headings = { enable = false },
-        }
-    })
-end)
-
-later(function()
     add('kassio/neoterm')
 
     vim.g.neoterm_autoinsert = true
