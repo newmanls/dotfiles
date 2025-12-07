@@ -134,6 +134,28 @@ later(function ()
 end)
 
 later(function()
+    add('rolv-apneseth/tfm.nvim')
+
+    require('tfm').setup({
+        file_manager = "lf",
+        replace_netrw = false,
+        enable_cmds = true,
+        ui = {
+            border = vim.opt.winborder:get(),
+            height = 0.8,
+            width = 0.9,
+        }
+    })
+
+    vim.keymap.set(
+        'n',
+        '<leader>ee',
+        '<Cmd>Tfm<CR>',
+        { desc = "Open file explorer" }
+    )
+end)
+
+later(function()
     add('stevearc/oil.nvim')
 
     require('oil').setup({
