@@ -17,52 +17,56 @@ scrollbar {
 
 window {
     location: north;
-    y-offset: calc(50% - 140px);
-    width: 360px;
+    y-offset: calc(50% - 8em);
+    width: 20em;
 
     background-color: @surface-container;
     border: 1px solid;
     border-color: @outline-variant;
-    border-radius: 8px;
+    border-radius: 0.5em;
 }
 
 mainbox {
-    padding: 8px 8px 0;
+    padding: 0.5em 0.5em 0;
 }
 
 inputbar {
-    padding: 8px 12px;
-    spacing: 10px;
-    margin: 0 0 8px 0;
+    padding: 0.5em 0.6em;
+    spacing: 0.5em;
+    margin: 0 0 0.5em 0;
     border: 2px solid;
-    border-radius: 4px;
+    border-radius: 0.25em;
     border-color: @primary;
     background-color: @surface-container-high;
-    children: [icon-search, entry];
+    children: [icon-search, entry, prompt];
+}
+
+prompt {
+    text-color: @outline;
 }
 
 icon-search {
-  expand:   false;
-  filename: "search";
-  vertical-align: 0.5;
+    expand: false;
+    filename: "search";
+    vertical-align: 0.5;
 }
 
 textbox {
-    padding: 8px;
+    padding: 0.5em;
     background-color: @surface-container-high;
 }
 
 listview {
     lines: 5;
     fixed-height: false;
-    margin: 0 0 8px 0;
+    margin: 0 0 0.5em 0;
 }
 
 element {
     orientation: horizontal;
-    spacing: 10px;
-    padding: 10px 16px;
-    border-radius: 4px;
+    spacing: 0.5em;
+    padding: 0.5em 0.7em;
+    border-radius: 0.25em;
 }
 
 element normal urgent {
