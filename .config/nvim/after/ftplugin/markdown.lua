@@ -42,15 +42,15 @@ now(function()
         dependencies = { 'nvim-treesitter/nvim-treesitter' }
     })
 
-    local presets = require("markview.presets");
+    local presets = require('markview.presets');
     local list_item = {
         add_padding = false,
-        text = "•",
+        text = '•',
     }
 
-    require("markview").setup({
+    require('markview').setup({
         preview = {
-            hybrid_modes = { "n" },
+            hybrid_modes = { 'n' },
         },
         markdown = {
             headings = presets.headings.glow,
@@ -87,3 +87,4 @@ later(function()
 end)
 
 later(function() require('plugins.find-md-headers') end)
+later(function () add('brianhuster/live-preview.nvim') end)
