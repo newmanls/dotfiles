@@ -25,3 +25,15 @@ end)
 vim.diagnostic.config({
     severity_sort = true,
 })
+
+-- Keymaps
+vim.api.nvim_create_autocmd('LspAttach', {
+    callback = function()
+        vim.keymap.set(
+            '',
+            'grf',
+            function() vim.lsp.buf.format() end,
+            { desc = 'vim.lsp.buf.format()' }
+        )
+    end,
+})
