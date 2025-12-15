@@ -84,6 +84,7 @@ riverctl rule-add -app-id '*' ssd
 riverctl rule-add -app-id '*-float' float
 riverctl rule-add -app-id 'mpv' float
 riverctl rule-add -app-id 'viewnior' float
+riverctl rule-add -app-id 'viewnior' dimensions 1280 720
 riverctl rule-add -app-id 'firefox' -title 'Picture-in-Picture' float
 riverctl rule-add -app-id 'steam' float
 riverctl rule-add -app-id 'steam' -title 'Steam' no-float
