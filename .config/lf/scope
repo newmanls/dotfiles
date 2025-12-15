@@ -17,7 +17,7 @@ hash() {
 }
 
 image_pv() {
-    chafa -f sixel -s "${width}x${height}" --animate off --polite on "${1}"
+    chafa -f sixel -s "${width}x${height}" --animate off --polite on -t 1 --bg black "${1}"
 }
 
 thumbnail_pv() {

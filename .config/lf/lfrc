@@ -4,7 +4,6 @@ set ifs "\n"
 set ratios 1:1
 set scrolloff 4
 set shellopts '-eu'
-set cleaner '~/.config/lf/cleaner'
 set previewer '~/.config/lf/scope'
 set errorfmt "\033[31m"
 
