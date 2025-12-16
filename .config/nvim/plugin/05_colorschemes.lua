@@ -7,5 +7,5 @@ now(function()
     vim.g.gruvbox_material_enable_bold = true
     vim.g.gruvbox_material_better_performance = true
 
-    vim.cmd.colorscheme('gruvbox-material')
+    -- vim.cmd.colorscheme('gruvbox-material')
 end)

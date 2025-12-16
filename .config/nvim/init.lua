@@ -94,13 +94,20 @@ vim.api.nvim_create_autocmd('BufWritePre', {
     end
 })
 
+-- Source mini_hues on SIGUSR1
+vim.api.nvim_create_autocmd("Signal", {
+    pattern = "SIGUSR1",
+    command = ":source ~/.config/nvim/plugin/99_mini_hues.lua"
+})
+
 
 -- PLUGINS
 -- Automatically download mini.deps
 local path_package = vim.fn.stdpath('data') .. '/site/'
 local mini_path = path_package .. 'pack/deps/start/mini.nvim'
 
-if not vim.loop.fs_stat(mini_path) then vim.cmd('echo "Installing `mini.nvim`" | redraw')
+if not vim.loop.fs_stat(mini_path) then
+    vim.cmd('echo "Installing `mini.nvim`" | redraw')
     local clone_cmd = { 'git', 'clone', '--filter=blob:none', 'https://github.com/echasnovski/mini.nvim', mini_path }
     vim.fn.system(clone_cmd)
     vim.cmd('packadd mini.nvim | helptags ALL')

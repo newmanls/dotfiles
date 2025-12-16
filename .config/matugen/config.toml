@@ -8,6 +8,11 @@ input_path = './templates/mako.ini'
 output_path = '~/.config/mako/colors.ini'
 post_hook = 'makoctl reload'
 
+[templates.nvim]
+input_path = './templates/nvim_mini_hues.lua'
+output_path = '~/.config/nvim/plugin/99_mini_hues.lua'
+post_hook = 'pkill -SIGUSR1 nvim'
+
 [templates.river]
 input_path = './templates/river'
 output_path = '~/.config/river/colors'
