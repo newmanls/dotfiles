@@ -6,14 +6,14 @@ now(function()
         depends = { 'nvim-treesitter/nvim-treesitter-context' },
         hooks = {
             post_checkout = function() vim.cmd('TSUpdate') end
-        },
+        }
     })
 
-    require('nvim-treesitter.configs').setup({
+    add('MeanderingProgrammer/treesitter-modules.nvim')
+
+    require('treesitter-modules').setup({
         auto_install = true,
-        ignore_install = { 'latex' },
         highlight = { enable = true },
-        incremental_selection = { enable = true },
     })
 end)
 
@@ -36,7 +36,7 @@ later(function()
     )
 end)
 
-later(function ()
+later(function()
     add({
         source = 'obsidian-nvim/obsidian.nvim',
         depends = {
