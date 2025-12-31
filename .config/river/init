@@ -111,6 +111,7 @@ systemctl --user restart xdg-desktop-portal
 
 # Autostart
 [ -f "${XDG_CONFIG_HOME}/display.sh" ] && sh "${XDG_CONFIG_HOME}/display.sh"
+matugen image "$(find "$HOME/.local/share/backgrounds" -regex '.*\.\(jpg\|png\)$' | shuf -n 1)"
 pidof -q waybar || waybar &
 swww-daemon &
 mako &
