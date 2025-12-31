@@ -103,17 +103,17 @@ riverctl keyboard-layout -variant "altgr-intl" -options "ctrl:swapcaps" "us"
 riverctl default-layout rivertile
 rivertile -view-padding 0 -outer-padding 0 -main-ratio 0.5 &
 
-# Autostart
-riverctl spawn "${XDG_CONFIG_HOME}/display.sh"
-riverctl spawn 'pidof footclient || pkill foot; foot -s'
-riverctl spawn 'pkill waybar; waybar'
-riverctl spawn 'pkill swww-daemon; swww-daemon'
-riverctl spawn 'pkill mako; mako'
-riverctl spawn 'nm-applet'
-riverctl spawn '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1'
-
 # Fix screencasting
 # https://wiki.archlinux.org/title/River#Screencasting
 systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
 systemctl --user restart xdg-desktop-portal
+
+# Autostart
+[ -f "${XDG_CONFIG_HOME}/display.sh" ] && sh "${XDG_CONFIG_HOME}/display.sh"
+pidof -q waybar || waybar &
+swww-daemon &
+mako &
+foot -s &
+nm-applet &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
