@@ -1,6 +1,6 @@
 [config.wallpaper]
 command = 'swww'
-arguments = ['img', '--transition-step', '10']
+arguments = ['img', '--transition-type', 'fade']
 set = true
 
 [templates.mako]
