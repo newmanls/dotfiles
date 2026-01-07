@@ -23,15 +23,15 @@ is_muted=$(pactl get-sink-mute @DEFAULT_SINK@ | sed -n "s/Mute: //p")
 
 if [ "${is_muted}" = "yes" ]; then
     volume="muted"
-    icon="audio-volume-muted-symbolic"
+    icon="audio-volume-muted"
 elif (( vol == 0 )); then
-    icon="audio-volume-muted-symbolic"
+    icon="audio-volume-muted"
 elif (( vol <= 30 )); then
-    icon="audio-volume-low-symbolic"
+    icon="audio-volume-low"
 elif (( vol <= 70 )); then
-    icon="audio-volume-medium-symbolic"
+    icon="audio-volume-medium"
 else
-    icon="audio-volume-high-symbolic"
+    icon="audio-volume-high"
 fi
 
 notify-send \
