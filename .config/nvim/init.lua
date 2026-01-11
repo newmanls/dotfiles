@@ -2,19 +2,14 @@
 vim.o.colorcolumn = '80'
 vim.o.winborder = 'single'
 vim.o.cursorline = true
-vim.o.laststatus = 2
-vim.o.cmdheight = 1
-vim.o.showmode = false
 vim.o.number = true
 vim.o.relativenumber = true
-vim.o.syntax = 'on'
 vim.o.termguicolors = true
-vim.o.formatoptions = 'jcrql'
 
 -- Behavior
 vim.o.clipboard = 'unnamedplus'
 vim.o.confirm = true
-vim.o.scrolloff = 4
+vim.o.scrolloff = 8
 vim.o.sidescrolloff = 24
 vim.o.splitright = true
 vim.o.splitbelow = true

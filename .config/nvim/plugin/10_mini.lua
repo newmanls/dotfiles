@@ -2,17 +2,14 @@ local now, later = MiniDeps.now, MiniDeps.later
 
 now(function()
     require('mini.icons').setup()
-
     later(MiniIcons.mock_nvim_web_devicons())
     later(MiniIcons.tweak_lsp_kind())
 end)
 
 now(function()
     require('mini.statusline').setup()
-
-    MiniStatusline.section_location = function ()
-        return '%3l:%-3v %P'
-    end
+    MiniStatusline.section_location = function() return '%3l:%-3v %P' end
+    vim.o.showmode = false
 end)
 
 now(function() require('mini.completion').setup() end)
@@ -27,7 +24,7 @@ later(function() require('mini.pairs').setup() end)
 later(function() require('mini.surround').setup() end)
 later(function() require('mini.splitjoin').setup() end)
 
-later(function ()
+later(function()
     require('mini.notify').setup({
         content = {
             format = function(notification)
@@ -41,7 +38,7 @@ later(function ()
     vim.notify = MiniNotify.make_notify()
 end)
 
-later(function ()
+later(function()
     require('mini.pick').setup({
         window = {
             prompt_caret = '█',
