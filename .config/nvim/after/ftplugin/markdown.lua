@@ -10,30 +10,30 @@ vim.cmd.compiler('pandoc')
 local has_mini_surround, mini_surround = pcall(require, 'mini.surround')
 
 if has_mini_surround then
-  vim.b.minisurround_config = {
-    custom_surroundings = {
-      -- Bold
-      B = {
-          input = { '%*%*().-()%*%*' },
-          output = { left = '**', right = '**' }
-      },
+    vim.b.minisurround_config = {
+        custom_surroundings = {
+            -- Bold
+            B = {
+                input = { '%*%*().-()%*%*' },
+                output = { left = '**', right = '**' }
+            },
 
-      -- Italics
-      i = {
-          input = { '%*().-()%*' },
-          output = { left = '*', right = '*' }
-      },
+            -- Italics
+            i = {
+                input = { '%*().-()%*' },
+                output = { left = '*', right = '*' }
+            },
 
-      -- Link
-      l = {
-        input = { '%[().-()%]%(.-%)' },
-        output = function()
-          local link = mini_surround.user_input('Link')
-          return { left = '[', right = '](' .. link .. ')' }
-        end,
-      },
-    },
-  }
+            -- Link
+            l = {
+                input = { '%[().-()%]%(.-%)' },
+                output = function()
+                    local link = mini_surround.user_input('Link')
+                    return { left = '[', right = '](' .. link .. ')' }
+                end,
+            },
+        },
+    }
 end
 
 -- PLUGINS
