@@ -1,0 +1,270 @@
+% VARIABLES:
+% - title: cadena. Título del documento
+% - author: cadena, lista de cadenas o lista de objetos con los los posibles siguientes atributos:
+%   - name: cadena. Nombre
+%   - id: cadena. Cédula
+%   - role: cadena. Rol o cargo
+%   - phone: cadena. Número telefónico
+%   - email: cadena. Correo electrónico
+% - institution: cadena. Institución
+% - program: cadena. Carrera universitaria
+% - section: cadena. Sección
+% - subject: cadena. Materia
+% - location: cadena. Dirección (ciudad, estado)
+% - teacher: cadena. Docente
+% - classic-titlepage: booleano. Usar formato antiguo para portada
+% - no-titlepage: booleano. Reemplazar portada por encabezado simple
+
+\documentclass[12pt, titlepage]{article}
+%\documentclass[10pt, titlepage]{article}
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage[spanish, mexico]{babel}
+\usepackage{array, calc} % fix error when calculing long tables
+
+% fonts
+\ifPDFTeX
+  % Settings for pdfLaTeX (Legacy)
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{newtxtext, newtxmath}
+  \usepackage{textcomp}
+  % \usepackage[scale=0.85]{sourcecodepro}
+  \usepackage[scale=matchlowercase]{sourcecodepro}
+\else
+  % Settings for LuaLaTeX / XeLaTeX (Modern)
+  \usepackage{fontspec}
+  \setmainfont[Ligatures=TeX]{Liberation Serif}
+  \setsansfont[Ligatures=TeX]{Liberation Sans}
+  \setmonofont[Scale=MatchLowercase, Contextuals=Alternate]{Liberation Mono}
+  % \setmonofont[Scale=MatchLowercase, Contextuals=Alternate]{Iosevka Nerd Font Mono}
+  \usepackage{newtxmath}
+\fi
+
+% COLORES <<<
+\usepackage{xcolor}
+\definecolor{background}{HTML}{fafafa}
+\definecolor{background-dark}{HTML}{c9c9c9}
+\definecolor{foreground}{HTML}{383a42}
+\definecolor{magenta}{HTML}{a626a4}
+\definecolor{green}{HTML}{50a14f}
+\definecolor{orange}{HTML}{c18401}
+\definecolor{blue}{HTML}{4078f2}
+\definecolor{yellow}{HTML}{986801}
+\definecolor{cyan}{HTML}{0184bc}
+\definecolor{red}{HTML}{e45649}
+\definecolor{gray}{HTML}{a0a1a7}
+% >>>
+% HIPERVINCULOS <<<
+\usepackage[
+    colorlinks=true,
+    linktoc=all,
+    pagebackref=true,
+    allcolors=blue,
+]{hyperref}
+% >>>
+% ESPACIADOS <<<
+\usepackage{setspace}
+\doublespacing
+%\linespread{2.5}
+\pagestyle{myheadings}
+\raggedright
+\setlength{\parindent}{0.5in}
+\setlength{\parskip}{0in}
+% >>>
+% TITULOS <<<
+\usepackage{titlesec}
+\titleformat{\section}[hang]{\pagebreak\centering\bfseries}{}{0pt}{}
+\titleformat{\subsection}[hang]{\bfseries}{}{0pt}{}
+\titleformat{\subsubsection}[hang]{\bfseries\itshape}{}{0pt}{}
+\titleformat{\paragraph}[runin]{\bfseries}{}{0pt}{}[.]
+\titleformat{\subparagraph}[runin]{\bfseries\itshape}{}{0pt}{}[.]
+\titlespacing{\section}{0pt}{*0}{*0}
+\titlespacing{\subsection}{0pt}{*0}{*0}
+\titlespacing{\subsubsection}{0pt}{*0}{*0}
+\titlespacing{\paragraph}{\parindent}{*0}{*1}
+\titlespacing{\subparagraph}{\parindent}{*0}{*1}
+% >>>
+% GRAFICOS <<<
+$if(graphics)$
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+
+\usepackage{float}
+\floatplacement{figure}{$if(float-placement-figure)$$float-placement-figure$$else$H$endif$}
+\makeatother
+$endif$
+$if(svg)$
+\usepackage{svg}
+$endif$
+% >>>
+% LISTAS <<<
+\usepackage{enumitem}
+\setlist{
+  nosep,
+  leftmargin=\dimexpr\parindent + 1em \relax,
+  labelindent=\leftmargin,
+}
+\setlist[description]{
+  leftmargin=\parindent,
+  labelindent=\leftmargin,
+}
+\def\tightlist{}
+% >>>
+% TABLAS <<<
+$if(tables)$\usepackage{longtable, booktabs, multirow}$endif$
+% >>>
+% CAPTIONS <<<
+\usepackage[
+  labelsep=newline,
+  justification=raggedright,
+  singlelinecheck=false,
+  font=doublespacing,
+  labelfont=bf,
+  textfont=it
+]{caption}
+% >>>
+% BLOQUES DE CODIGO <<<
+$if(listings)$
+\usepackage{listings}
+\lstset{
+  aboveskip=1.5em,
+  belowskip=0.5em,
+  tabsize=4,
+  showstringspaces=false,
+  flexiblecolumns=true,
+  numbers=left,
+  numberstyle=\color{gray}\ttfamily,
+  basicstyle=\color{foreground}\linespread{1.0}\ttfamily,
+  identifierstyle=\color{foreground},
+  commentstyle=\color{gray}\itshape,
+  stringstyle=\color{green},
+  keywordstyle=\color{magenta}\bfseries,
+  keywordstyle=[2]\color{blue}\bfseries,
+  keywordstyle=[3]\color{yellow}\bfseries\itshape,
+  backgroundcolor=\color{background},
+  rulecolor=\color{background-dark},
+  xleftmargin=3em,
+  xrightmargin=0.5em,
+  resetmargins=true,
+  breaklines=true,
+  breakatwhitespace=true,
+  frame=single,
+  framesep=0.2em,
+  framexleftmargin=2.5em,
+}
+\newcommand{\passthrough}[1]{#1}
+$endif$
+% >>>
+% CITAS <<<
+\usepackage{changepage}
+\renewenvironment{quote}{\begin{adjustwidth}{\parindent}{0in}}{\end{adjustwidth}}
+% >>>
+
+\begin{document}
+$if(no-titlepage)$ % <<<
+{
+  \setlength{\parindent}{0in}
+
+  $if(institution)$$for(institution)$$institution$ \\$endfor$$endif$
+  $if(program)$$program$$if(subject)$: $subject$$endif$$if(teacher)$, $teacher$$endif$ \\$endif$
+
+  $if(author)$$for(author)$
+  $if(it.name)$
+  $it.name$$if(it.role)$\quad $it.role$$endif$$if(it.id)$\quad C.I. $it.id$$endif$
+  $else$
+  $it$
+  $endif$
+  \\ $endfor$$endif$
+
+  \vspace*{1em}
+
+  {
+    \centering
+    \textbf{$title$}
+
+  }
+} % >>>
+$elseif(classic-titlepage)$ % <<<
+\begin{titlepage}
+  \makeatletter
+  \centering
+  $for(institution)$$it$ \\$endfor$
+  $if(program)$$program$$if(section)$, Sección $section$$endif$ \\$endif$
+  $if(subject)$$subject$ \\$endif$
+  $if(location)$$location$ \\$endif$
+  \vfill
+  \textbf{$title$}
+  $if(subtitle)$\textbf{$subtitle$} \\$endif$
+  \vfill
+  \hfill
+  \begin{tabular}{llll}
+    $for(author)$$~$
+    $if(it.name)$
+    $author.name$
+    $if(it.id)$ & CI: $it.id$$endif$
+    $if(it.phone)$ & $it.phone$$endif$
+    $if(it.email)$ & $it.email$$endif$
+    $else$
+    $author$
+    $endif$ \\ $~$
+    $endfor$
+  \end{tabular}
+  \vfill
+  $if(fecha)$$fecha$$else$\@date$endif$
+\end{titlepage}
+% >>>
+$else$ % APA titlepage <<<
+\begin{titlepage}
+  \makeatletter
+  \centering
+  \vspace*{\fill}
+
+  $if(title)$\textbf{$title$} \\$endif$
+  $if(subtitle)$\textbf{$subtitle$} \\$endif$
+
+  \vspace*{2em}
+
+  $if(author)$$for(author)$
+  $if(it.name)$
+  $it.name$$if(it.role)$\quad $it.role$$endif$$if(it.id)$\quad C.I. $it.id$$endif$
+  $else$
+  $it$
+  $endif$
+  \\ $endfor$$endif$
+
+  \vspace*{2em}
+
+  $if(institution)$$for(institution)$$institution$ \\$endfor$$endif$
+
+  $if(program)$$program$$if(subject)$: $subject$$endif$ \\$endif$
+  $if(teacher)$$teacher$ \\$endif$
+
+  \vspace*{2em}
+
+  $if(location)$$location$$else$Caracas, Venezuela$endif$ \\
+  $if(date)$$date$$else$\@date$endif$ \\
+  \vspace*{\fill}
+\end{titlepage}
+% >>>
+$endif$
+
+$if(toc)$
+\tableofcontents
+$if(lof)$\listoffigures$endif$
+$if(lot)$\listoftables $endif$
+\pagebreak
+$endif$
+
+$body$
+
+\end{document}

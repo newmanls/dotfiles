@@ -3,6 +3,9 @@ vim.opt_local.spell = true
 vim.opt_local.wrap = true
 vim.opt_local.spelllang = 'es,en'
 
+vim.b.pandoc_compiler_args = '--pdf-engine=lualatex --template apa7 --listings'
+vim.cmd.compiler('pandoc')
+
 -- Add bold, italics and link surrounds to 'mini.surround'
 local has_mini_surround, mini_surround = pcall(require, 'mini.surround')
 
@@ -87,4 +90,4 @@ later(function()
 end)
 
 later(function() require('plugins.find-md-headers') end)
-later(function () add('brianhuster/live-preview.nvim') end)
+later(function() add('brianhuster/live-preview.nvim') end)
