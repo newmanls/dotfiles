@@ -12,6 +12,7 @@ now(function()
     add('MeanderingProgrammer/treesitter-modules.nvim')
 
     require('treesitter-modules').setup({
+        ignore_install = { 'csv' },
         auto_install = true,
         highlight = { enable = true },
     })
