@@ -137,6 +137,7 @@ end)
 later(function()
     add('rolv-apneseth/tfm.nvim')
 
+    ---@diagnostic disable: missing-fields
     require('tfm').setup({
         file_manager = "lf",
         replace_netrw = false,
@@ -147,6 +148,7 @@ later(function()
             width = 0.9,
         }
     })
+    ---@diagnostic enable
 
     vim.keymap.set(
         'n',
