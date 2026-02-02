@@ -6,13 +6,13 @@
     "modules-left": [
         "hyprland/workspaces",
         "river/tags",
+        "custom/player",
     ],
     "modules-center": [
         "clock",
     ],
     "modules-right": [
         "custom/dollar",
-        "custom/player",
         "tray",
         "pulseaudio",
         "battery",
@@ -25,7 +25,7 @@
     },
     "custom/player": {
         "exec": "sb-player",
-        "max-length": 30,
+        "max-length": 40,
         "interval": 1,
         "on-click": "playerctl play-pause",
     },
@@ -63,7 +63,7 @@
     },
     "tray": {
         "icon-size": 16,
-        "spacing": 2,
+        "spacing": 1,
     }
 }
 
