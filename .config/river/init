@@ -110,7 +110,7 @@ dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 systemctl --user restart xdg-desktop-portal
 
 # Autostart
-[ -f "${XDG_CONFIG_HOME}/display.sh" ] && sh "${XDG_CONFIG_HOME}/display.sh"
+kanshi &
 matugen image "$(find "$HOME/.local/share/backgrounds" -regex '.*\.\(jpg\|png\)$' | shuf -n 1)"
 pidof -q waybar || waybar &
 swww-daemon &
