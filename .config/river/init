@@ -72,22 +72,22 @@ riverctl map-pointer normal Super BTN_RIGHT resize-view
 riverctl map-pointer normal Super BTN_MIDDLE toggle-float
 
 # Rules
-riverctl rule-add -app-id "$term" tags 1
-riverctl rule-add -app-id 'firefox' tags 2
-riverctl rule-add -app-id 'gimp-*' tags 4
-riverctl rule-add -app-id 'org.inkscape.Inkscape' tags 4
-riverctl rule-add -app-id 'libreoffice-*' tags 4
-riverctl rule-add -title  'LibreOffice' tags 4
-riverctl rule-add -app-id 'steam' tags 4
-
-riverctl rule-add -app-id '*' ssd
-riverctl rule-add -app-id '*-float' float
-riverctl rule-add -app-id 'mpv' float
-riverctl rule-add -app-id 'viewnior' float
-riverctl rule-add -app-id 'viewnior' dimensions 1280 720
-riverctl rule-add -app-id 'firefox' -title 'Picture-in-Picture' float
-riverctl rule-add -app-id 'steam' float
-riverctl rule-add -app-id 'steam' -title 'Steam' no-float
+riverctl rule-add -app-id '*'                       ssd
+riverctl rule-add -app-id "$term"                   tags 1
+riverctl rule-add -app-id 'firefox'                 tags 2
+riverctl rule-add -app-id 'steam'                   tags 4
+riverctl rule-add -app-id 'gimp-*'                  tags 4
+riverctl rule-add -app-id 'org.inkscape.Inkscape'   tags 4
+riverctl rule-add -app-id 'libreoffice-*'           tags 4
+riverctl rule-add -title  'LibreOffice'             tags 4
+riverctl rule-add -title  'Picture-in-Picture'      tags $sticky_tag
+riverctl rule-add -title  'Picture-in-Picture'      float
+riverctl rule-add -app-id '*-float'                 float
+riverctl rule-add -app-id 'mpv'                     float
+riverctl rule-add -app-id 'viewnior'                float
+riverctl rule-add -app-id 'viewnior'                dimensions 1280 720
+riverctl rule-add -app-id 'steam'                   float
+riverctl rule-add -app-id 'steam' -title 'Steam'    no-float
 
 # Options
 source "${HOME}/.config/river/colors"
