@@ -52,12 +52,13 @@ label.module:hover,
 #tags button,
 #workspaces button {
     font-size: 0;
-    min-width: 4px;
+    min-width: 6px;
     min-height: 0;
     margin: 0;
     padding: 0;
     margin: 9px 4px;
     border-radius: 1rem;
+    border: 0;
 }
 
 #tags button,
