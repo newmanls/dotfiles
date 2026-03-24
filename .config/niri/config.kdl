@@ -20,6 +20,15 @@ output "PNP(JEP) ZETA ONE 2.0 0x00000001" {
     mode "1920x1080@144"
 }
 
+output "Lenovo Group Limited LEN T2014A U45G3665" {
+    position x=0 y=0
+    focus-at-startup
+}
+
+output "Lenovo Group Limited LEN T2014A U35CB891" {
+    position x=1600 y=0
+}
+
 layout {
     gaps 0
     center-focused-column "on-overflow"
@@ -163,15 +172,20 @@ binds {
     // Mod+Shift+R     { switch-preset-window-height; }
     // Mod+Ctrl+R      { reset-window-height; }
 
-    Mod+H              { focus-column-left; }
-    Mod+L              { focus-column-right; }
-    Mod+Shift+H        { move-column-left; }
-    Mod+Shift+L        { move-column-right; }
+    Mod+H              { focus-column-or-monitor-left; }
+    Mod+L              { focus-column-or-monitor-right; }
+    Mod+Shift+H        { move-column-left-or-to-monitor-left; }
+    Mod+Shift+L        { move-column-right-or-to-monitor-right; }
 
     Mod+J              { focus-window-or-workspace-down; }
     Mod+K              { focus-window-or-workspace-up; }
     Mod+Shift+J        { move-window-down-or-to-workspace-down; }
     Mod+Shift+K        { move-window-up-or-to-workspace-up; }
+
+    Mod+Ctrl+H         { focus-monitor-left; }
+    Mod+Ctrl+L         { focus-monitor-right; }
+    Mod+Ctrl+Shift+H   { move-window-to-monitor-left; }
+    Mod+Ctrl+Shift+L   { move-window-to-monitor-right; }
 
     Mod+1              { focus-workspace 1; }
     Mod+2              { focus-workspace 2; }
