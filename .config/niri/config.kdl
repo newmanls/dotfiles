@@ -1,0 +1,273 @@
+// This config is in the KDL format: https://kdl.dev
+// https://yalter.github.io/niri/Configuration:-Introduction
+
+input {
+    keyboard {
+        xkb {
+            layout "us"
+            variant "altgr-intl"
+            options "ctrl:swapcaps"
+        }
+        repeat-delay 300
+        repeat-rate 50
+        numlock
+    }
+    touchpad { tap; }
+    focus-follows-mouse max-scroll-amount="0%"
+}
+
+output "PNP(JEP) ZETA ONE 2.0 0x00000001" {
+    mode "1920x1080@144"
+}
+
+layout {
+    gaps 0
+    center-focused-column "on-overflow"
+    always-center-single-column
+
+    preset-column-widths {
+        proportion 0.5
+        proportion 1.0
+    }
+
+    default-column-width {}
+
+    preset-window-heights {
+        proportion 0.5
+        proportion 1.0
+    }
+
+    focus-ring {
+        off
+    }
+
+    border {
+        width 1
+        active-color "#ffc87f"
+        inactive-color "#505050"
+        urgent-color "#9b0000"
+    }
+
+    shadow {
+        // on
+        // draw-behind-window true
+        softness 30
+        spread 5
+        offset x=0 y=5
+        color "#0007"
+    }
+
+    struts {
+        left 32
+        right 32
+        top 8
+        bottom 8
+    }
+}
+
+// Misc
+
+spawn-at-startup "swww-daemon"
+spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+// spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
+
+prefer-no-csd
+screenshot-path null
+
+cursor {
+    hide-when-typing
+    hide-after-inactive-ms 1000
+}
+
+hotkey-overlay {
+    skip-at-startup
+    hide-not-bound
+}
+
+
+// Window Rules
+
+window-rule {
+    open-maximized true
+    open-maximized-to-edges false
+
+    match app-id="^firefox$"
+    match app-id="^com.obsproject.Studio$"
+    match app-id="^gimp"
+    match app-id="^org.inkscape.Inkscape$"
+    match app-id="^libreoffice-"
+    match app-id="^LibreOffice"
+    match app-id="^steam$" title="^Steam$"
+}
+
+window-rule {
+    open-floating true
+
+    match app-id="^firefox$" title="^Picture-in-Picture$"
+    match app-id="-float$"
+}
+
+window-rule {
+    default-column-width { proportion 0.5; }
+
+    match app-id="footclient"
+}
+
+window-rule {
+    match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+
+    default-floating-position x=8 y=8 relative-to="bottom-right"
+    // border { off; }
+}
+
+window-rule {
+    draw-border-with-background false
+    clip-to-geometry true
+}
+
+
+// Binds
+
+binds {
+    Mod+Return       { spawn "footclient"; }
+    Mod+E            { spawn-sh "footclient -e lf"; }
+    Mod+C            { spawn-sh "footclient -a term-float -W 56x8 -o 'font=monospace-14' -e python -qic 'from math import *'"; }
+    Mod+Shift+C      { spawn-sh "footclient -a term-float -e nmtui-connect"; }
+    Mod+W            { spawn "firefox"; }
+
+    Mod+space        { spawn-sh "rofi -show drun -show-icons"; }
+    Mod+Shift+space  { spawn-sh "rofi -show run"; }
+    Mod+Shift+Escape { spawn "menu-session"; }
+    Mod+Shift+S      { spawn "menu-screenshot"; }
+    Mod+Shift+M      { spawn-sh "menu-disks mount"; }
+    Mod+Shift+U      { spawn-sh "menu-disks unmount"; }
+    Mod+period       { spawn-sh "rofi -show emoji"; }
+
+    Mod+0            { spawn-sh "notify-pulse mute"; }
+    Mod+Minus        { spawn-sh "notify-pulse down"; }
+    Mod+Equal        { spawn-sh "notify-pulse up"; }
+    Mod+bracketleft  { spawn-sh "playerctl previous"; }
+    Mod+bracketright { spawn-sh "playerctl next"; }
+    Mod+backslash    { spawn-sh "playerctl play-pause"; }
+
+
+    Ctrl+Alt+Delete    { quit; }
+    Mod+O repeat=false { toggle-overview; }
+    Mod+Q repeat=false { close-window; }
+
+    Mod+F              { toggle-window-floating; }
+    Mod+Shift+F        { switch-focus-between-floating-and-tiling; }
+    // Mod+Shift+F     { fullscreen-window; }
+    Mod+M              { switch-preset-column-width; }
+    // Mod+Shift+R     { switch-preset-window-height; }
+    // Mod+Ctrl+R      { reset-window-height; }
+
+    Mod+H              { focus-column-left; }
+    Mod+L              { focus-column-right; }
+    Mod+Shift+H        { move-column-left; }
+    Mod+Shift+L        { move-column-right; }
+
+    Mod+J              { focus-window-or-workspace-down; }
+    Mod+K              { focus-window-or-workspace-up; }
+    Mod+Shift+J        { move-window-down-or-to-workspace-down; }
+    Mod+Shift+K        { move-window-up-or-to-workspace-up; }
+
+    Mod+1              { focus-workspace 1; }
+    Mod+2              { focus-workspace 2; }
+    Mod+3              { focus-workspace 3; }
+    Mod+4              { focus-workspace 4; }
+    Mod+5              { focus-workspace 5; }
+    Mod+6              { focus-workspace 6; }
+    Mod+7              { focus-workspace 7; }
+    Mod+8              { focus-workspace 8; }
+    Mod+9              { focus-workspace 9; }
+    Mod+Shift+1        { move-window-to-workspace 1; }
+    Mod+Shift+2        { move-window-to-workspace 2; }
+    Mod+Shift+3        { move-window-to-workspace 3; }
+    Mod+Shift+4        { move-window-to-workspace 4; }
+    Mod+Shift+5        { move-window-to-workspace 5; }
+    Mod+Shift+6        { move-window-to-workspace 6; }
+    Mod+Shift+7        { move-window-to-workspace 7; }
+    Mod+Shift+8        { move-window-to-workspace 8; }
+    Mod+Shift+9        { move-window-to-workspace 9; }
+
+    // Mouse bindings
+    Mod+MouseMiddle                { close-window; }
+
+    Mod+WheelScrollDown            { focus-workspace-down; }
+    Mod+WheelScrollUp              { focus-workspace-up; }
+    Mod+Ctrl+WheelScrollDown       { move-column-to-workspace-down; }
+    Mod+Ctrl+WheelScrollUp         { move-column-to-workspace-up; }
+
+    Mod+WheelScrollRight           { focus-column-right; }
+    Mod+WheelScrollLeft            { focus-column-left; }
+    Mod+Ctrl+WheelScrollRight      { move-column-right; }
+    Mod+Ctrl+WheelScrollLeft       { move-column-left; }
+
+    Mod+Shift+WheelScrollDown      { focus-column-right; }
+    Mod+Shift+WheelScrollUp        { focus-column-left; }
+    Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
+    Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
+
+
+
+
+    // Mod+Shift+H     { focus-monitor-left; }
+    // Mod+Shift+J     { focus-monitor-down; }
+    // Mod+Shift+K     { focus-monitor-up; }
+    // Mod+Shift+L     { focus-monitor-right; }
+
+    // Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
+    // Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
+    // Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
+    // Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
+
+    // For example, with 2 workspaces + 1 empty, indices 3, 4, 5 and so on
+    // will all refer to the 3rd workspace.
+
+    // The following binds move the focused window in and out of a column.
+    // If the window is alone, they will consume it into the nearby column to the side.
+    // If the window is already in a column, they will expel it out.
+    // Mod+BracketLeft  { consume-or-expel-window-left; }
+    // Mod+BracketRight { consume-or-expel-window-right; }
+
+    // Consume one window from the right to the bottom of the focused column.
+    // Mod+Comma  { consume-window-into-column; }
+    // Expel the bottom window from the focused column to the right.
+    // Mod+Period { expel-window-from-column; }
+
+    // Mod+C { center-column; }
+
+    // Finer width adjustments.
+    // This command can also:
+    // * set width in pixels: "1000"
+    // * adjust width in pixels: "-5" or "+5"
+    // * set width as a percentage of screen width: "25%"
+    // * adjust width as a percentage of screen width: "-10%" or "+10%"
+    // Pixel sizes use logical, or scaled, pixels. I.e. on an output with scale 2.0,
+    // set-column-width "100" will make the column occupy 200 physical screen pixels.
+    // Mod+U { set-column-width "-10%"; }
+    // Mod+I { set-column-width "+10%"; }
+
+    // Finer height adjustments when in column with other windows.
+    // Mod+Shift+Minus { set-window-height "-10%"; }
+    // Mod+Shift+Equal { set-window-height "+10%"; }
+
+    // Actions to switch layouts.
+    // Note: if you uncomment these, make sure you do NOT have
+    // a matching layout switch hotkey configured in xkb options above.
+    // Having both at once on the same hotkey will break the switching,
+    // since it will switch twice upon pressing the hotkey (once by xkb, once by niri).
+    // Mod+Space       { switch-layout "next"; }
+    // Mod+Shift+Space { switch-layout "prev"; }
+
+    // Print { screenshot; }
+    // Ctrl+Print { screenshot-screen; }
+    // Alt+Print { screenshot-window; }
+
+    // Powers off the monitors. To turn them back on, do any input like
+    // moving the mouse or pressing any other key.
+    // Mod+Shift+P { power-off-monitors; }
+}
+
+animations {}
