@@ -1,0 +1,11 @@
+layout {
+    border {
+        active-color   "{{colors.outline.default.hex}}"
+        inactive-color "{{colors.outline_variant.default.hex}}"
+        urgent-color   "{{colors.tertiary.default.hex}}"
+    }
+}
+
+overview {
+    backdrop-color "{{colors.background.default.hex}}"
+}

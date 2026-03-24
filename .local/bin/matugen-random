@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+matugen --source-color-index 0 image "$(find "$HOME/.local/share/backgrounds" -regex '.*\.\(jpg\|png\)$' | shuf -n 1)"

@@ -68,8 +68,8 @@ layout {
 // Misc
 
 spawn-at-startup "swww-daemon"
+spawn-at-startup "matugen-random"
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
-// spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
 
 prefer-no-csd
 screenshot-path null
@@ -150,6 +150,7 @@ binds {
     Mod+bracketright { spawn-sh "playerctl next"; }
     Mod+backslash    { spawn-sh "playerctl play-pause"; }
 
+    Mod+Ctrl+R       { spawn "matugen-random"; }
 
     Ctrl+Alt+Delete    { quit; }
     Mod+O repeat=false { toggle-overview; }
@@ -271,3 +272,5 @@ binds {
 }
 
 animations {}
+
+include "colors.kdl"
