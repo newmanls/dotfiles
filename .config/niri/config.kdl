@@ -151,7 +151,7 @@ binds {
     Mod+Shift+S      { spawn "menu-screenshot"; }
     Mod+Shift+M      { spawn-sh "menu-disks mount"; }
     Mod+Shift+U      { spawn-sh "menu-disks unmount"; }
-    Mod+period       { spawn-sh "rofi -show emoji"; }
+    Mod+Shift+E      { spawn-sh "rofi -show emoji"; }
 
     Mod+0            { spawn-sh "notify-pulse mute"; }
     Mod+Minus        { spawn-sh "notify-pulse down"; }
@@ -169,8 +169,9 @@ binds {
     Mod+F              { toggle-window-floating; }
     Mod+Shift+F        { switch-focus-between-floating-and-tiling; }
     // Mod+Shift+F     { fullscreen-window; }
-    Mod+M              { switch-preset-column-width; }
-    // Mod+Shift+R     { switch-preset-window-height; }
+    Mod+M              { maximize-window-to-edges; }
+    Mod+R              { switch-preset-column-width; }
+    Mod+Shift+R        { switch-preset-window-height; }
     // Mod+Ctrl+R      { reset-window-height; }
 
     Mod+H              { focus-column-or-monitor-left; }
@@ -183,10 +184,10 @@ binds {
     Mod+Shift+J        { move-window-down-or-to-workspace-down; }
     Mod+Shift+K        { move-window-up-or-to-workspace-up; }
 
-    Mod+Ctrl+H         { focus-monitor-left; }
-    Mod+Ctrl+L         { focus-monitor-right; }
-    Mod+Ctrl+Shift+H   { move-window-to-monitor-left; }
-    Mod+Ctrl+Shift+L   { move-window-to-monitor-right; }
+    Mod+Comma          { focus-monitor-previous; }
+    Mod+Period         { focus-monitor-next; }
+    Mod+Shift+Comma    { move-window-to-monitor-previous; }
+    Mod+Shift+Period   { move-window-to-monitor-next; }
 
     Mod+1              { focus-workspace 1; }
     Mod+2              { focus-workspace 2; }
