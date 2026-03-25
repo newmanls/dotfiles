@@ -111,6 +111,7 @@ window-rule {
 
 window-rule {
     open-floating true
+    default-floating-position x=8 y=8 relative-to="bottom-right"
 
     match app-id="^firefox$" title="^Picture-in-Picture$"
     match app-id="-float$"
