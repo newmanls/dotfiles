@@ -105,8 +105,14 @@ window-rule {
     match app-id="^gimp"
     match app-id="^org.inkscape.Inkscape$"
     match app-id="^libreoffice-"
-    match app-id="^LibreOffice"
+    match title="^LibreOffice"
     match app-id="^steam$" title="^Steam$"
+}
+
+window-rule {
+    open-floating true
+
+    match app-id="-float$"
 }
 
 window-rule {
@@ -114,7 +120,6 @@ window-rule {
     default-floating-position x=8 y=8 relative-to="bottom-right"
 
     match app-id="^firefox$" title="^Picture-in-Picture$"
-    match app-id="-float$"
 }
 
 window-rule {
