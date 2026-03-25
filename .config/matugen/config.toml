@@ -1,6 +1,6 @@
 [config.wallpaper]
 set = true
-command = 'swww img --transition-type fade {{ image }}'
+command = 'awww img --transition-type fade {{ image }}'
 
 [templates.mako]
 input_path = './templates/mako.ini'

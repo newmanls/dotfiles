@@ -111,7 +111,7 @@ systemctl --user restart xdg-desktop-portal
 
 # Autostart
 kanshi &
-swww-daemon &
+awww-daemon &
 matugen --source-color-index 0 image "$(find "$HOME/.local/share/backgrounds" -regex '.*\.\(jpg\|png\)$' | shuf -n 1)"
 pidof -q waybar || waybar &
 mako &
