@@ -30,7 +30,7 @@ output "Lenovo Group Limited LEN T2014A U35CB891" {
 }
 
 layout {
-    gaps 0
+    gaps 8
     center-focused-column "on-overflow"
     always-center-single-column
 
@@ -69,8 +69,8 @@ layout {
     struts {
         left 32
         right 32
-        top 8
-        bottom 8
+        top 0
+        bottom 0
     }
 }
 
