@@ -22,11 +22,11 @@ output "PNP(JEP) ZETA ONE 2.0 0x00000001" {
 
 output "Lenovo Group Limited LEN T2014A U45G3665" {
     position x=0 y=0
-    focus-at-startup
 }
 
 output "Lenovo Group Limited LEN T2014A U35CB891" {
     position x=1600 y=0
+    focus-at-startup
 }
 
 layout {
