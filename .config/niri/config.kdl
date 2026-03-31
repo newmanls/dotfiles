@@ -1,6 +1,8 @@
 // This config is in the KDL format: https://kdl.dev
 // https://yalter.github.io/niri/Configuration:-Introduction
 
+include "colors.kdl"
+
 input {
     keyboard {
         xkb {
@@ -62,27 +64,16 @@ layout {
 
     border {
         width 1
-        active-color "#ffc87f"
-        inactive-color "#505050"
-        urgent-color "#9b0000"
     }
 
-    shadow {
-        // on
-        // draw-behind-window true
-        softness 30
-        spread 5
-        offset x=0 y=5
-        color "#0007"
-    }
+    shadow {}
 
     struts {
         left 32
         right 32
-        top 0
-        bottom 0
     }
 }
+
 
 // Misc
 
@@ -107,52 +98,52 @@ hotkey-overlay {
 // Window Rules
 
 window-rule {
-    open-maximized true
-    open-maximized-to-edges false
+    draw-border-with-background true
+    clip-to-geometry true
+}
 
+// Maximize windows
+window-rule {
     match app-id="^firefox$"
     match app-id="^com.obsproject.Studio$"
     match app-id="^gimp"
     match app-id="^org.inkscape.Inkscape$"
     match app-id="^libreoffice-"
-    match title="^LibreOffice"
     match app-id="^steam$" title="^Steam$"
+
+    open-maximized true
+    open-maximized-to-edges false
 }
 
+// Floating windows
 window-rule {
-    open-floating true
-
     match app-id="-float$"
-}
 
-window-rule {
     open-floating true
-    default-floating-position x=8 y=8 relative-to="bottom-right"
-
-    match app-id="^firefox$" title="^Picture-in-Picture$"
 }
 
+// Float windows to the bottom-right corner
 window-rule {
-    default-column-width { proportion 0.5; }
+    match app-id="^firefox$" title="^Picture-in-Picture$"
+    match app-id="^steam$" title=r#"^notificationtoasts_\d+_desktop$"#
 
-    match app-id="footclient"
+    open-floating true
+    default-floating-position x=0 y=0 relative-to="bottom-right"
 }
 
+// Set foot terminal to 50% width
+window-rule {
+    match app-id="foot"
+    match app-id="footclient"
+
+    default-column-width { proportion 0.5; }
+}
+
+// Disable borders for Steam Windows
 window-rule {
     match app-id="^steam$"
 
     border { off; }
-}
-
-window-rule {
-    match app-id="^steam$" title=r#"^notificationtoasts_\d+_desktop$"#
-
-    default-floating-position x=8 y=8 relative-to="bottom-right"
-}
-
-window-rule {
-    draw-border-with-background false
-    clip-to-geometry true
 }
 
 
@@ -262,5 +253,3 @@ binds {
 }
 
 animations {}
-
-include "colors.kdl"
