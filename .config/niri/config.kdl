@@ -178,24 +178,32 @@ binds {
 
     Mod+F              { toggle-window-floating; }
     Mod+Shift+F        { switch-focus-between-floating-and-tiling; }
-    // Mod+Shift+F     { fullscreen-window; }
+    Mod+Ctrl+F         { fullscreen-window; }
     Mod+M              { maximize-window-to-edges; }
     Mod+R              { switch-preset-column-width; }
     Mod+Shift+R        { switch-preset-window-height; }
-    // Mod+Ctrl+R      { reset-window-height; }
 
     Mod+H              { focus-column-or-monitor-left; }
     Mod+L              { focus-column-or-monitor-right; }
-    Mod+Shift+H        { move-column-left-or-to-monitor-left; }
-    Mod+Shift+L        { move-column-right-or-to-monitor-right; }
-
     Mod+J              { focus-window-or-workspace-down; }
     Mod+K              { focus-window-or-workspace-up; }
+
+    Mod+Shift+H        { move-column-left-or-to-monitor-left; }
+    Mod+Shift+L        { move-column-right-or-to-monitor-right; }
     Mod+Shift+J        { move-window-down-or-to-workspace-down; }
     Mod+Shift+K        { move-window-up-or-to-workspace-up; }
 
+    Mod+Ctrl+Shift+H   { set-column-width "-10%"; }
+    Mod+Ctrl+Shift+L   { set-column-width "+10%"; }
+    Mod+Ctrl+Shift+K   { set-window-height "-10%"; }
+    Mod+Ctrl+Shift+J   { set-window-height "+10%"; }
+
+    Mod+Ctrl+Comma     { consume-window-into-column; }
+    Mod+Ctrl+Period    { expel-window-from-column; }
+
     Mod+Comma          { focus-monitor-previous; }
     Mod+Period         { focus-monitor-next; }
+
     Mod+Shift+Comma    { move-window-to-monitor-previous; }
     Mod+Shift+Period   { move-window-to-monitor-next; }
 
@@ -235,58 +243,6 @@ binds {
     Mod+Shift+WheelScrollUp        { focus-column-left; }
     Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
     Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
-
-
-
-
-    // Mod+Shift+H     { focus-monitor-left; }
-    // Mod+Shift+J     { focus-monitor-down; }
-    // Mod+Shift+K     { focus-monitor-up; }
-    // Mod+Shift+L     { focus-monitor-right; }
-
-    // Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
-    // Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
-    // Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
-    // Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
-
-    // For example, with 2 workspaces + 1 empty, indices 3, 4, 5 and so on
-    // will all refer to the 3rd workspace.
-
-    // The following binds move the focused window in and out of a column.
-    // If the window is alone, they will consume it into the nearby column to the side.
-    // If the window is already in a column, they will expel it out.
-    // Mod+BracketLeft  { consume-or-expel-window-left; }
-    // Mod+BracketRight { consume-or-expel-window-right; }
-
-    // Consume one window from the right to the bottom of the focused column.
-    // Mod+Comma  { consume-window-into-column; }
-    // Expel the bottom window from the focused column to the right.
-    // Mod+Period { expel-window-from-column; }
-
-    // Mod+C { center-column; }
-
-    // Finer width adjustments.
-    // This command can also:
-    // * set width in pixels: "1000"
-    // * adjust width in pixels: "-5" or "+5"
-    // * set width as a percentage of screen width: "25%"
-    // * adjust width as a percentage of screen width: "-10%" or "+10%"
-    // Pixel sizes use logical, or scaled, pixels. I.e. on an output with scale 2.0,
-    // set-column-width "100" will make the column occupy 200 physical screen pixels.
-    // Mod+U { set-column-width "-10%"; }
-    // Mod+I { set-column-width "+10%"; }
-
-    // Finer height adjustments when in column with other windows.
-    // Mod+Shift+Minus { set-window-height "-10%"; }
-    // Mod+Shift+Equal { set-window-height "+10%"; }
-
-    // Actions to switch layouts.
-    // Note: if you uncomment these, make sure you do NOT have
-    // a matching layout switch hotkey configured in xkb options above.
-    // Having both at once on the same hotkey will break the switching,
-    // since it will switch twice upon pressing the hotkey (once by xkb, once by niri).
-    // Mod+Space       { switch-layout "next"; }
-    // Mod+Shift+Space { switch-layout "prev"; }
 
     // Print { screenshot; }
     // Ctrl+Print { screenshot-screen; }
