@@ -18,7 +18,10 @@ input {
         accel-profile "flat"
     }
 
-    touchpad { tap; }
+    touchpad {
+        tap
+        dwt
+    }
 
     focus-follows-mouse max-scroll-amount="0%"
 }
