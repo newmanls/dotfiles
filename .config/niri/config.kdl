@@ -81,7 +81,7 @@ spawn-at-startup "matugen-random"
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 
 prefer-no-csd
-screenshot-path null
+screenshot-path "~/Pictures/Screenshots/%Y%m%d_%H%M%S.png"
 
 cursor {
     hide-when-typing
@@ -226,7 +226,13 @@ binds {
     Mod+Shift+8        { move-window-to-workspace 8 focus=false; }
     Mod+Shift+9        { move-window-to-workspace 9 focus=false; }
 
+    Print              { screenshot; }
+    Ctrl+Print         { screenshot-screen; }
+    Alt+Print          { screenshot-window; }
+
+
     // Mouse bindings
+
     Mod+MouseMiddle                { close-window; }
 
     Mod+WheelScrollDown            { focus-workspace-down; }
@@ -243,14 +249,6 @@ binds {
     Mod+Shift+WheelScrollUp        { focus-column-left; }
     Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
     Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
-
-    // Print { screenshot; }
-    // Ctrl+Print { screenshot-screen; }
-    // Alt+Print { screenshot-window; }
-
-    // Powers off the monitors. To turn them back on, do any input like
-    // moving the mouse or pressing any other key.
-    // Mod+Shift+P { power-off-monitors; }
 }
 
 animations {}
