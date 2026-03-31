@@ -8,11 +8,18 @@ input {
             variant "altgr-intl"
             options "ctrl:swapcaps"
         }
+
         repeat-delay 300
         repeat-rate 50
         numlock
     }
+
+    mouse {
+        accel-profile "flat"
+    }
+
     touchpad { tap; }
+
     focus-follows-mouse max-scroll-amount="0%"
 }
 
