@@ -66,7 +66,14 @@ layout {
         width 1
     }
 
-    shadow {}
+    shadow {
+        off
+        draw-behind-window true
+        softness 16
+        spread 0
+        offset x=0 y=8
+        color "#0006"
+    }
 
     struts {
         left 32
@@ -100,6 +107,13 @@ hotkey-overlay {
 window-rule {
     draw-border-with-background true
     clip-to-geometry true
+}
+
+// Enable shadows on floating windows
+window-rule {
+    match is-floating=true
+
+    shadow { on; }
 }
 
 // Maximize windows
@@ -144,6 +158,15 @@ window-rule {
     match app-id="^steam$"
 
     border { off; }
+}
+
+
+// Layer rules
+
+layer-rule {
+    match namespace="^rofi$"
+
+    shadow { on; }
 }
 
 
