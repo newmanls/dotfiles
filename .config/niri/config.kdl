@@ -129,10 +129,15 @@ window-rule {
 }
 
 window-rule {
-    match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+    match app-id="^steam$"
+
+    border { off; }
+}
+
+window-rule {
+    match app-id="^steam$" title=r#"^notificationtoasts_\d+_desktop$"#
 
     default-floating-position x=8 y=8 relative-to="bottom-right"
-    // border { off; }
 }
 
 window-rule {
