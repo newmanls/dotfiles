@@ -28,10 +28,18 @@ input {
     focus-follows-mouse max-scroll-amount="0%"
 }
 
+// Home setup
 output "PNP(JEP) ZETA ONE 2.0 0x00000001" {
     mode "1920x1080@144"
+    position x=0 y=0
+    focus-at-startup
 }
 
+output "Lenovo Group Limited L197 Wide V1VM278" {
+    position x=1920 y=100
+}
+
+// Office setup
 output "Lenovo Group Limited LEN T2014A U45G3665" {
     position x=0 y=0
 }
