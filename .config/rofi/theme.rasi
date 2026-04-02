@@ -52,8 +52,9 @@ icon-search {
 }
 
 textbox {
-    padding: 0.5em;
-    background-color: @surface-container-high;
+    padding: 0.5em 0.75em;
+    margin: 0 0 0.5em 0;
+    text-color: @outline;
 }
 
 listview {
