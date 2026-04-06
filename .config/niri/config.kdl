@@ -129,9 +129,11 @@ window-rule {
     match app-id="^firefox$"
     match app-id="^com.obsproject.Studio$"
     match app-id="^gimp"
-    match app-id="^org.inkscape.Inkscape$"
+    match app-id="^org.inkscape.Inkscape$" title="Inkscape$"
     match app-id="^libreoffice-"
     match app-id="^steam$" title="^Steam$"
+    match app-id="^FreeCAD$"
+    exclude app-id="^FreeCAD$" title="^FreeCAD$"
 
     open-maximized true
     open-maximized-to-edges false
@@ -140,6 +142,7 @@ window-rule {
 // Floating windows
 window-rule {
     match app-id="-float$"
+    match app-id="^FreeCAD$" title="^FreeCAD$"
 
     open-floating true
 }
