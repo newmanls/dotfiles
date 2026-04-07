@@ -3,3 +3,4 @@
 .config/nvim/.luarc.json
 .config/nvim/lazy-lock.json
 .config/nvim/nvim-pack-lock.json
+.config/nvim/plugin/99_mini_hues.lua
