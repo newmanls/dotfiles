@@ -24,11 +24,11 @@ vim.keymap.set(
 -- tfm
 ---@diagnostic disable: missing-fields
 require('tfm').setup({
-    file_manager = "lf",
+    file_manager = 'lf',
     replace_netrw = false,
     enable_cmds = true,
     ui = {
-        border = vim.opt.winborder:get(),
+        border = vim.o.winborder,
         height = 0.8,
         width = 0.9,
     }
