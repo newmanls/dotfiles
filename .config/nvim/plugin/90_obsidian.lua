@@ -31,9 +31,6 @@ require('obsidian').setup({
         folder = '99-Templates'
     },
     ui = { enable = false },
-    attachments = {
-        img_folder = 'assets/img',
-    }
 })
 
 require('plugins.obsidian-sync').setup({
