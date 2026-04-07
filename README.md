@@ -3,16 +3,16 @@
 # Details
 
 Category        | Value
---- | ---
-Distro          | [Arch Linux](https://archlinux.org/)
-Wallpaper       | [here](.local/share/backgrounds)
-Colorscheme     | [gruvbox-material-dark](https://github.com/sainnhe/gruvbox-material)
-Compositor      | [river](https://codeberg.org/river/river)
+--------------- | ---
+Distro          | [CachyOS](https://cachyos.org/)
+Wallpaper       | [here](.local/share/backgrounds), set using [awww](https://codeberg.org/LGFae/awww)
+Colorscheme     | Dynamically generated with [matugen](https://github.com/InioX/matugen)
+Compositor      | [niri](https://github.com/YaLTeR/niri)
 Status bar      | [waybar](https://github.com/Alexays/Waybar/)
-Notifications   | [mako](https://mako-project.org)
+Notifications   | [mako](https://github.com/emersion/mako)
 Launcher        | [rofi](https://davatorium.github.io/rofi)
 Terminal        | [foot](https://codeberg.org/dnkl/foot)
-Terminal font   | [Iosevka Nerd Font](https://www.nerdfonts.com/)
+Terminal font   | [Iosevka Nerd Font Mono](https://www.nerdfonts.com/)
 Shell           | [zsh](https://www.zsh.org/) with [starship](https://starship.rs/)
 Text editor     | [neovim](https://neovim.io/)
 File manager    | [lf](https://github.com/gokcehan/lf)
