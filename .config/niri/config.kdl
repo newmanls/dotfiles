@@ -218,8 +218,8 @@ binds {
     Mod+R              { switch-preset-column-width; }
     Mod+Shift+R        { switch-preset-window-height; }
 
-    Mod+H              { focus-column-or-monitor-left; }
-    Mod+L              { focus-column-or-monitor-right; }
+    Mod+H              { focus-column-left; }
+    Mod+L              { focus-column-right; }
     Mod+J              { focus-window-or-workspace-down; }
     Mod+K              { focus-window-or-workspace-up; }
 
