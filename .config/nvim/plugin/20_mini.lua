@@ -3,7 +3,6 @@ vim.pack.add({ 'https://github.com/nvim-mini/mini.nvim' })
 
 -- No-config modules
 require('mini.completion').setup()
-require('mini.ai').setup()
 require('mini.align').setup()
 require('mini.diff').setup()
 require('mini.extra').setup()
@@ -12,6 +11,15 @@ require('mini.move').setup()
 require('mini.pairs').setup()
 require('mini.surround').setup()
 require('mini.splitjoin').setup()
+
+
+-- MiniAi
+require('mini.ai').setup({
+    mappings = {
+        around_next = '',
+        inside_next = '',
+    }
+})
 
 
 -- MiniIcons
