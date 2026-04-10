@@ -45,3 +45,8 @@ vim.api.nvim_create_autocmd("Signal", {
     pattern = "SIGUSR1",
     command = ":source ~/.config/nvim/plugin/99_mini_hues.lua"
 })
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+    pattern = "default",
+    command = ":source ~/.config/nvim/plugin/99_mini_hues.lua"
+})

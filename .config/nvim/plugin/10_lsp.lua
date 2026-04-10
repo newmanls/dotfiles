@@ -1,25 +1,23 @@
-local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
+vim.pack.add({
+    'https://github.com/mason-org/mason.nvim',
+    'https://github.com/mason-org/mason-lspconfig.nvim',
+    'https://github.com/neovim/nvim-lspconfig'
+})
 
-now(function()
-    add('mason-org/mason.nvim')
-    add('mason-org/mason-lspconfig.nvim')
-    add('neovim/nvim-lspconfig')
-
-    require("mason").setup()
-    require("mason-lspconfig").setup({
-        ensure_installed = {
-            'arduino_language_server',
-            'bashls',
-            'clangd',
-            'cssls',
-            'emmet_language_server',
-            'html',
-            'lua_ls',
-            'pylsp',
-            'ts_ls',
-        }
-    })
-end)
+require("mason").setup()
+require("mason-lspconfig").setup({
+    ensure_installed = {
+        'arduino_language_server',
+        'bashls',
+        'clangd',
+        'cssls',
+        'emmet_language_server',
+        'html',
+        'lua_ls',
+        'pylsp',
+        'ts_ls',
+    }
+})
 
 -- Diagnostics
 vim.diagnostic.config({
