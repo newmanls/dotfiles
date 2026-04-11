@@ -9,16 +9,8 @@
     color: @on_background;
 }
 
-.modules-right.horizontal {
-    margin-right: 4px;
-}
-
-#tray > widget {
-    border-radius: 1rem;
-}
-
-#tray > widget > image {
-    padding: 0 0.5rem;
+#waybar > box {
+    margin: 4px;
 }
 
 label.module {
@@ -26,27 +18,48 @@ label.module {
     font-weight: bold;
     font-size: 13px;
     padding: 0 10px;
-    margin: 2px 0;
+    border-radius: 1rem;
+    margin: 0 4px;
+}
+
+label.module#custom-player.playing {
+    background: @primary_container;
+    color: @on_primary_container;
+}
+
+label.module#custom-player.paused {
+    color: @outline;
+}
+
+label.module#custom-player.playing:hover {
+    background: @inverse_primary;
+    color: @on_primary_container;
+}
+
+label.module#pulseaudio {
+    padding: 0 12px 0 6px;
+    font-size: 18px;
+}
+
+#tray > widget {
     border-radius: 1rem;
 }
 
-#network,
-#pulseaudio {
-    padding: 0 1rem 0 0.6rem;
-    font-size: 18px;
+#tray > widget > image {
+    margin: 0 6px;
 }
 
 label.module:hover,
 #tray > widget:hover {
     background: @surface_container_highest;
+    color: @on_surface;
 }
 
 #tags,
 #workspaces {
-    margin: 2px;
-    padding: 0 4px;
+    margin: 0px;
     border-radius: 1rem;
-    background: none;
+    padding: 4px 6px;
 }
 
 #tags button,
@@ -54,11 +67,17 @@ label.module:hover,
     font-size: 0;
     min-width: 6px;
     min-height: 0;
-    margin: 0;
     padding: 0;
-    margin: 9px 4px;
+    margin: 5px 4px;
     border-radius: 1rem;
     border: 0;
+}
+
+#tags button.focused,
+#workspaces button.active {
+    min-width: 1.75rem;
+    margin-top: 4px;
+    margin-bottom: 4px;
 }
 
 #tags button,
@@ -71,12 +90,6 @@ label.module:hover,
 #workspaces button,
 #workspaces button.active {
     background: @on_background;
-}
-
-#tags button.focused,
-#workspaces button.active {
-    min-width: 1.75rem;
-    margin: 8px 0.3rem;
 }
 
 #tags button.urgent,
