@@ -1,34 +1,32 @@
 #!/usr/bin/env bash
 
-which playerctl > /dev/null 2>&1 || exit 1
+set -euo pipefail
 
-status="$(playerctl status 2> /dev/null)"
+command -v playerctl > /dev/null 2>&1 || exit 1
 
-case "${status@L}" in
-    playing)
-        label="󰐊" ;;
-    paused)
-        label="󰏤" ;;
-    *)
-        exit 0 ;;
+output=$(playerctl -s metadata --format '{{status}}\n{{artist}}\n{{title}}')
+
+mapfile -t lines <<< "${output@E}"
+
+status=${lines[0]@L}
+artist=${lines[1]}
+title=${lines[2]}
+
+case $status in
+    playing) label="󰐊" ;;
+    paused)  label="󰏤" ;;
+    *)       exit 0 ;;
 esac
 
-artist="$(playerctl metadata artist)"
-title="$(playerctl metadata title)"
+info=${artist:+$artist - }${title}
 
-info=""
-[ "$artist" ] && info+="${artist} - "
-info+="$title"
-
-# Label max length. Setting it to 0 disables cut-off.
-max_length=90
-
-if [ "$1" == "--icon-only" ]; then
-    printf "%s\n%s\n" "$label" "$info"
+if [ "${1:-}" = "--icon-only" ]; then
+    text=$label
 else
-    if (( max_length > 0 && ${#info} > max_length )); then
-        info="${info:0:(( max_length - 3 ))}..."
-    fi
-
-    printf "%s %s\n" "$label" "$info"
+    text="$label $info"
 fi
+
+tooltip="<b>${status@u}:</b> $info"
+class=$status
+
+printf "%s\n%s\n%s\n" "${text//&/&amp;}" "${tooltip//&/&amp;}" "$class"

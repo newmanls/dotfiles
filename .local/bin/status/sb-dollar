@@ -3,39 +3,20 @@
 
 import requests
 
+URL = 'https://ve.dolarapi.com/v1/dolares'
+MONITORS = ['oficial', 'paralelo']
 
-def fetch_data(url: str) -> dict:
-    try:
-        req = requests.get(url)
-        req.raise_for_status()
+try:
+    req = requests.get(URL)
+    req.raise_for_status()
+    monitors = req.json()
+except requests.exceptions.RequestException:
+    exit(1)
 
-        return req.json()
-    except requests.exceptions.RequestException:
-        exit(1)
+data = [(m['nombre'], round(m['promedio'], 2))
+        for m in monitors if m.get('fuente') in MONITORS]
+text = " " + " / ".join([str(value) for _, value in data])
+tooltip = '&#013;'.join([f"<b>{nombre}:</b> Bs. {promedio}"
+                         for nombre, promedio in data])
 
-
-def format_text(data: list) -> str:
-    text = [f"{monitor['promedio']:.2f}" for monitor in data]
-
-    return f" {' / '.join(text)}"
-
-
-def format_tooltip(data: list) -> str:
-    tooltip = [f"<b>{monitor['nombre']}:</b> Bs. {monitor['promedio']:.2f}"
-               for monitor in data]
-
-    return '&#013;'.join(tooltip)
-
-
-def main():
-    url = 'https://ve.dolarapi.com/v1/dolares'
-    monitors = ['oficial', 'paralelo']
-    raw_data = fetch_data(url)
-    data = [monitor for monitor in raw_data if monitor['fuente'] in monitors]
-
-    print(format_text(data))
-    print(format_tooltip(data))
-
-
-if __name__ == '__main__':
-    main()
+print(text, tooltip, sep="\n")
