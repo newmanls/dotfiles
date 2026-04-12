@@ -81,13 +81,9 @@ vim.keymap.set(
     'n',
     '<leader>mr',
     '<Cmd>Markview toggle<CR>',
-    {desc = "Toggle Markdown Rendering"}
+    { desc = "Toggle Markdown Rendering" }
 )
 
 
 -- bullets.vim
 vim.g.bullets_checkbox_markers = ' -x'
-
-
--- Custom find-md-headers
-require('plugins.find-md-headers')
