@@ -41,22 +41,8 @@
     "clock": {
       "interval": 60,
       "format": "{:%a %d  %R}",
-      "tooltip-format": "<tt><small>{calendar}</small></tt>",
-      "calendar": {
-          "mode-mon-col": 3,
-          "format": {
-              "months": "<b>{}</b>",
-              "days": "{}",
-              "weeks": "<b>{:%W}</b>",
-              "weekdays": "<b>{}</b>",
-              "today": "<b><u>{}</u></b>",
-          },
-      },
-      "actions": {
-          "on-click": "mode",
-          "on-scroll-up": "shift_up",
-          "on-scroll-down": "shift_down",
-      },
+      "tooltip": false,
+      "on-click": "gsimplecal",
     },
     "tray": {
         "icon-size": 16,
