@@ -1,5 +1,5 @@
 // This config is in the KDL format: https://kdl.dev
-// https://yalter.github.io/niri/Configuration:-Introduction
+// https://niri-wm.github.io/niri/Configuration%3A-Introduction.html
 
 include "colors.kdl"
 
