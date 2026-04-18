@@ -13,6 +13,7 @@ vim.o.scrolloff = 8
 vim.o.sidescrolloff = 24
 vim.o.splitright = true
 vim.o.splitbelow = true
+vim.o.nrformats = 'bin,hex,blank'
 
 -- Indentation
 vim.o.shiftwidth = 4
