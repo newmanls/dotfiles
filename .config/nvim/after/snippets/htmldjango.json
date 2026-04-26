@@ -80,4 +80,5 @@
         "prefix": "tag",
         "description": "tag autocomplete no oficial",
         "body": ["{% $1 %}"]
-    },
+    }
+}
