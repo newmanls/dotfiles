@@ -1,7 +1,7 @@
 // This config is in the KDL format: https://kdl.dev
 // https://niri-wm.github.io/niri/Configuration%3A-Introduction.html
 
-include "colors.kdl"
+include optional=true "colors.kdl"
 
 input {
     keyboard {
