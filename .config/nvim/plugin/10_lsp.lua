@@ -1,28 +1,25 @@
-vim.pack.add({
-    'https://github.com/mason-org/mason.nvim',
-    'https://github.com/mason-org/mason-lspconfig.nvim',
-    'https://github.com/neovim/nvim-lspconfig'
+vim.pack.add({ 'https://github.com/neovim/nvim-lspconfig' })
+
+
+-- Enable LSPs
+vim.lsp.enable({
+    'arduino_language_server',
+    'bashls',
+    'clangd',
+    'cssls',
+    'emmet_ls',
+    'html',
+    'lua_ls',
+    'pylsp',
+    'ts_ls',
 })
 
-require("mason").setup()
-require("mason-lspconfig").setup({
-    ensure_installed = {
-        'arduino_language_server',
-        'bashls',
-        'clangd',
-        'cssls',
-        'emmet_language_server',
-        'html',
-        'lua_ls',
-        'pylsp',
-        'ts_ls',
-    }
-})
 
 -- Diagnostics
 vim.diagnostic.config({
     severity_sort = true,
 })
+
 
 -- Keymaps
 vim.api.nvim_create_autocmd('LspAttach', {
