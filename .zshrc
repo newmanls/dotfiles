@@ -85,6 +85,15 @@ zle -N zle-line-init
 
 set_cursor_beam
 # }}}
+# OSC 7 {{{
+precmd() {
+    printf '\033]7;file://%s%s\007' \
+        "$(hostname -f 2>/dev/null || hostname)" \
+        "${PWD// /%20}";
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook chpwd precmd
+# }}}
 # Zinit plugin manager {{{
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/"
 
