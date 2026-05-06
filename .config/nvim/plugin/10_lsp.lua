@@ -23,12 +23,25 @@ vim.diagnostic.config({
 
 -- Keymaps
 vim.api.nvim_create_autocmd('LspAttach', {
-    callback = function()
-        vim.keymap.set(
-            '',
-            'grf',
-            function() vim.lsp.buf.format() end,
-            { desc = 'vim.lsp.buf.format()' }
-        )
+    callback = function(ev)
+        local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
+
+        -- Auto-format ("lint") on save and on manual action.
+        -- Usually not needed if server supports "textDocument/willSaveWaitUntil".
+        if not client:supports_method('textDocument/willSaveWaitUntil')
+            and client:supports_method('textDocument/formatting') then
+            vim.api.nvim_create_autocmd('BufWritePre', {
+                buffer = ev.buf,
+                callback = function()
+                    vim.lsp.buf.format({
+                        bufnr = ev.buf,
+                        id = client.id,
+                        timeout_ms = 1000,
+                    })
+                end,
+            })
+
+            vim.keymap.set('', 'grf', function() vim.lsp.buf.format() end)
+        end
     end,
 })
