@@ -1,12 +1,8 @@
 vim.pack.add({
-    'https://github.com/brenoprata10/nvim-highlight-colors',
     'https://github.com/kassio/neoterm',
     'https://github.com/rolv-apneseth/tfm.nvim',
     'https://github.com/stevearc/oil.nvim',
 })
-
-
-require('nvim-highlight-colors').setup()
 
 
 -- neoterm
