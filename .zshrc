@@ -113,4 +113,7 @@ zinit light Aloxaf/fzf-tab
 source <(fzf --zsh)
 source <(starship init zsh)
 # }}}
+# Custom plugins {{{
+source $HOME/.local/lib/fzf-projects
+# }}}
 # vi:foldmethod=marker:foldmarker={{{,}}}

@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# Usage: `source ~/bin/fp` OR `. ~/bin/fp`
+# Select a project (has a .git directory) under `~/Projects` with fzf and cd
+# into it.
+# Depends on fzf, and bat for previews.
+
+fp() {
+    projects="${1:-$HOME/Projects}"
+
+    # find git repo roots (prune .git directories, follow symlinks)
+    repos=$(find -L "$projects" -type d -name .git -prune -print 2>/dev/null |
+        sed -e 's#/.git$##' -e "s#^${projects}/##" |
+        sort -u)
+
+    [ -z "$repos" ] && return 1 2>/dev/null
+
+    selected=$(fzf --height 40% --reverse --prompt='Repo> ' \
+        --preview "bat --color always ${projects}/{}/README.md 2>/dev/null" \
+        <<< "$repos")
+
+    [ -z "$selected" ] && return 0
+
+    cd "$projects/$selected" || return 1
+
+    # Try to activate virtualenv named .venv or venv (in that order).
+    for venv_dir in .venv venv; do
+        if [ -f "$venv_dir/bin/activate" ]; then
+            # shellcheck disable=SC1091
+            source "$venv_dir/bin/activate"
+            return 0
+        fi
+    done
+
+    return 0
+}
