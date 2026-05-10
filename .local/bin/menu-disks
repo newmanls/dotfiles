@@ -28,8 +28,9 @@ def has_valid_filesystem(device: dict) -> bool:
 def get_devices(action: str) -> list:
     lsblk_cmd = "lsblk -JMp -o name,label,uuid,fstype,size,rm,mountpoint"
     blockdevices = json.loads(getoutput(lsblk_cmd))["blockdevices"]
-    removable_devices = [device for device in blockdevices if
-                         is_removable(device)]
+    removable_devices = [
+        device for device in blockdevices if is_removable(device)
+    ]
 
     unpacked_devices = []
 
@@ -40,28 +41,37 @@ def get_devices(action: str) -> list:
         else:
             unpacked_devices.append(device)
 
-    devices = [device for device in unpacked_devices if
-               has_valid_filesystem(device) and (
-                   action == "mount" and not is_mounted(device) or
-                   action == "unmount" and is_mounted(device))]
+    devices = [
+        device
+        for device in unpacked_devices
+        if has_valid_filesystem(device)
+        and (
+            action == "mount"
+            and not is_mounted(device)
+            or action == "unmount"
+            and is_mounted(device)
+        )
+    ]
 
     return devices
 
 
 def format_entry(device: dict) -> str:
     return "{}: {} ({})".format(
-        device['name'],
-        device['label'] or device['uuid'],
-        device['size']
+        device["name"],
+        device["label"] or device["uuid"],
+        device["size"],
     )
 
 
 def select_device(devices: list, prompt: str) -> str:
     devices = [format_entry(device) for device in devices]
-    selected_device = run(os.environ.get("DMENU_CMD").split() + ["-p", prompt],
-                          input="\n".join(devices),
-                          capture_output=True,
-                          text=True).stdout
+    selected_device = run(
+        os.environ.get("DMENU_CMD").split() + ["-p", prompt],
+        input="\n".join(devices),
+        capture_output=True,
+        text=True,
+    ).stdout
 
     if not selected_device:
         exit()
@@ -70,8 +80,11 @@ def select_device(devices: list, prompt: str) -> str:
 
 
 def run_udiskctl(action: str, device: str) -> None:
-    command = run(["udisksctl", action, "-b", device],
-                  capture_output=True, text=True)
+    command = run(
+        ["udisksctl", action, "-b", device],
+        capture_output=True,
+        text=True,
+    )
 
     if command.returncode > 0:
         message = "\n".join(command.stderr.split(": ")[2:]).strip()
@@ -83,11 +96,14 @@ def run_udiskctl(action: str, device: str) -> None:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Mount or unmount removable storage devices.")
+        description="Mount or unmount removable storage devices."
+    )
 
-    parser.add_argument("action",
-                        choices=["mount", "unmount"],
-                        help="Action to perform on the devices.")
+    parser.add_argument(
+        "action",
+        choices=["mount", "unmount"],
+        help="Action to perform on the devices.",
+    )
 
     args = parser.parse_args()
     devices = get_devices(action=args.action)

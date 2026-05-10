@@ -3,8 +3,8 @@
 
 import requests
 
-URL = 'https://ve.dolarapi.com/v1/dolares'
-MONITORS = ['oficial', 'paralelo']
+URL = "https://ve.dolarapi.com/v1/dolares"
+MONITORS = ["oficial", "paralelo"]
 
 try:
     req = requests.get(URL)
@@ -13,10 +13,14 @@ try:
 except requests.exceptions.RequestException:
     exit(1)
 
-data = [(m['nombre'], round(m['promedio'], 2))
-        for m in monitors if m.get('fuente') in MONITORS]
+data = [
+    (m["nombre"], round(m["promedio"], 2))
+    for m in monitors
+    if m.get("fuente") in MONITORS
+]
 text = " " + " / ".join([str(value) for _, value in data])
-tooltip = '&#013;'.join([f"<b>{nombre}:</b> Bs. {promedio}"
-                         for nombre, promedio in data])
+tooltip = "&#013;".join(
+    [f"<b>{nombre}:</b> Bs. {promedio}" for nombre, promedio in data]
+)
 
 print(text, tooltip, sep="\n")
