@@ -2,21 +2,20 @@
 # Usage: `source ~/bin/fp` OR `. ~/bin/fp`
 # Select a project (has a .git directory) under `~/Projects` with fzf and cd
 # into it.
-# Depends on fzf, and bat for previews.
+# Depends on fzf and fd, and bat for previews.
 
 fp() {
     projects="${1:-$HOME/Projects}"
 
     # find git repo roots (prune .git directories, follow symlinks)
-    repos=$(find -L "$projects" -type d -name .git -prune -print 2>/dev/null |
-        sed -e 's#/.git$##' -e "s#^${projects}/##" |
-        sort -u)
+    repos=$(fd -t d -H --prune '^.git$' --format '{//}' "$projects" |
+        sed "s#^${projects}/##" | sort -u)
 
     [ -z "$repos" ] && return 1 2>/dev/null
 
     selected=$(fzf --height 40% --reverse --prompt='Repo> ' \
         --preview "bat --color always ${projects}/{}/README.md 2>/dev/null" \
-        <<< "$repos")
+        <<<"$repos")
 
     [ -z "$selected" ] && return 0
 
