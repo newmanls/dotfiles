@@ -10,6 +10,7 @@ vim.lsp.enable({
     'emmet_ls',
     'html',
     'lua_ls',
+    'markdown_oxide',
     'pylsp',
     'ts_ls',
 })

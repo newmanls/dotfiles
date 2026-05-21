@@ -122,5 +122,30 @@
         "prefix": ["caution", "c"],
         "description": "Insert Caution",
         "body": "> [!CAUTION]\n> "
+    },
+    "frontmatter": {
+        "prefix": ["frontmatter", "fm"],
+        "description": "Insert frontmatter",
+        "body": [
+            "---",
+            "$0",
+            "---"
+        ]
+    },
+    "note": {
+        "prefix": ["note"],
+        "description": "Obsidian-like note",
+        "body": [
+            "---",
+            "title: $1",
+            "date: ${2:$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE}",
+            "---",
+            "",
+            "# $1",
+            "",
+            "$0",
+            "",
+            "## Referencias"
+        ]
     }
 }
