@@ -11,56 +11,86 @@ BCV_URL = "https://www.bcv.org.ve/"
 PARALELO_URL = "https://ve.dolarapi.com/v1/dolares/paralelo"
 
 
-def get_bcv() -> dict | None:
+def safe_get(url: str, **kwargs) -> requests.Response | None:
     try:
-        with warnings.catch_warnings():
-            warnings.simplefilter("ignore", InsecureRequestWarning)
-            req = requests.get(BCV_URL, verify=False)
-            req.raise_for_status()
-    except requests.exceptions.RequestException:
+        req = requests.get(url, timeout=10, **kwargs)
+        req.raise_for_status()
+        return req
+    except requests.RequestException:
+        return None
+
+
+def get_cambios_bcv() -> list | None:
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", InsecureRequestWarning)
+        req = safe_get(BCV_URL, verify=False)
+
+    if not req:
         return None
 
     soup = BeautifulSoup(req.text, "lxml")
-    promedio_el = soup.select_one("#dolar strong.strong-tb")
     fecha_el = soup.select_one("span.date-display-single")
+    fecha = fecha_el.attrs.get("content") if fecha_el else None
+    monedas = [
+        ("USD", "dolar"),
+        ("EUR", "euro"),
+    ]
 
-    if not promedio_el:
-        return None
+    cambios = []
+    for codigo, nombre in monedas:
+        el = soup.select_one(f"#{nombre} strong.strong-tb")
 
-    promedio = float(promedio_el.get_text(strip=True).replace(",", "."))
+        if not el:
+            continue
+        try:
+            promedio = float(el.get_text(strip=True).replace(",", "."))
+        except ValueError:
+            continue
 
-    return {
-        "moneda": "USD",
-        "fuente": "bcv",
-        "nombre": "BCV",
-        "promedio": promedio,
-        "fechaActualizacion": (
-            fecha_el.attrs.get("content") if fecha_el else None
-        ),
-    }
+        cambios.append(
+            {
+                "moneda": codigo,
+                "fuente": "BCV",
+                "nombre": nombre,
+                "promedio": promedio,
+                "fechaActualizacion": fecha,
+            }
+        )
+
+    return cambios
 
 
-def get_paralelo():
-    try:
-        dolarapi_req = requests.get(PARALELO_URL)
-        dolarapi_req.raise_for_status()
-    except requests.exceptions.RequestException:
-        return None
-
-    return dolarapi_req.json()
+def get_paralelo() -> dict | None:
+    req = safe_get(PARALELO_URL)
+    return req.json() if req is not None else None
 
 
 if __name__ == "__main__":
-    bcv = get_bcv()
+    cambios = get_cambios_bcv() or []
     paralelo = get_paralelo()
-    monitors = [m for m in (bcv, paralelo) if m is not None]
+    if paralelo:
+        cambios.append(paralelo)
 
-    text = " " + " / ".join(
-        str(round(m.get("promedio"), 2)) for m in monitors
+    if not cambios:
+        exit(1)
+
+    cambio_principal = next(
+        (
+            c.get("promedio", 0.0)
+            for c in cambios
+            if c.get("moneda") == "USD" and c.get("fuente") == "BCV"
+        ),
+        cambios[0]["promedio"] if cambios else 0.0,
     )
+
+    text = f" {round(cambio_principal, 2)}"
     tooltip = "&#013;".join(
-        f"<b>{m.get('nombre')}:</b> Bs. {round(m.get('promedio'), 2)}"
-        for m in monitors
+        "<b>{moneda} {fuente}:</b> Bs. {promedio}".format(
+            moneda=c.get("moneda", "?"),
+            fuente=c.get("fuente", "?"),
+            promedio=round(c.get("promedio", 0.0), 2),
+        )
+        for c in cambios
     )
 
     print(text, tooltip, sep="\n")
