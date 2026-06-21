@@ -2,6 +2,7 @@
 # api from https://dolarapi.com
 
 import warnings
+from datetime import datetime
 
 import requests
 from bs4 import BeautifulSoup
@@ -85,12 +86,15 @@ if __name__ == "__main__":
 
     text = f" {round(cambio_principal, 2)}"
     tooltip = "&#013;".join(
-        "<b>{moneda} {fuente}:</b> Bs. {promedio}".format(
-            moneda=c.get("moneda", "?"),
-            fuente=c.get("fuente", "?"),
-            promedio=round(c.get("promedio", 0.0), 2),
-        )
-        for c in cambios
+        [
+            "<b>{moneda} {fuente}:</b> Bs. {promedio}".format(
+                moneda=c.get("moneda", "?"),
+                fuente=c.get("fuente", "?"),
+                promedio=round(c.get("promedio", 0.0), 2),
+            )
+            for c in cambios
+        ]
+        + ["", datetime.now().strftime("<i>%x %X</i>")]
     )
 
     print(text, tooltip, sep="\n")
