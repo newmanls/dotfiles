@@ -28,7 +28,10 @@
     },
     "custom/dollar": {
         "exec": "sb-dollar",
+        "on-click": "pkill -RTMIN+4 waybar",
+        "on-right-click": "xdg-open https://bcv.org.ve/",
         "interval": 21600,
+        "signal": 4,
     },
     "pulseaudio": {
         "format": "{icon}",
