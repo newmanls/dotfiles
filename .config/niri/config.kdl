@@ -49,6 +49,19 @@ output "Lenovo Group Limited LEN T2014A U35CB891" {
     focus-at-startup
 }
 
+// TV
+output "Technical Concepts Ltd 32S335 Unknown" {
+    scale 1.5
+
+    layout {
+        gaps 0
+        default-column-width { proportion 1.0; }
+        border { off; }
+        struts { left 0; right 0; }
+    }
+}
+
+
 layout {
     gaps 8
     center-focused-column "on-overflow"
