@@ -217,7 +217,7 @@ binds {
 
     Mod+space        { spawn-sh "rofi -show drun -show-icons"; }
     Mod+Shift+space  { spawn-sh "rofi -show run"; }
-    Mod+Shift+Escape { spawn "menu-session"; }
+    Mod+Shift+Escape { spawn "menu-kill"; }
     Mod+Shift+S      { spawn "menu-screenshot"; }
     Mod+Shift+M      { spawn-sh "menu-disks mount"; }
     Mod+Shift+U      { spawn-sh "menu-disks unmount"; }
