@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=UEFI Firmware Setup
+Comment=Reboot into firmware setup (BIOS)
+Exec=systemctl reboot --firmware-setup
+Terminal=false
+Categories=System;Utility;
+Icon=firmware-manager

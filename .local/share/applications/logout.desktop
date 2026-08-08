@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Logout
+Comment=Terminate this user session
+Exec=sh -c 'loginctl terminate-user "$USER"'
+Terminal=false
+Categories=System;Utility;
+Icon=system-log-out
