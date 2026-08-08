@@ -169,6 +169,13 @@ window-rule {
     default-floating-position x=0 y=0 relative-to="bottom-right"
 }
 
+
+window-rule {
+    match app-id="^steam$" title="Big Picture"
+
+    open-fullscreen true
+}
+
 window-rule {
     match app-id="^gsimplecal$"
     default-floating-position x=0 y=0 relative-to="top"
