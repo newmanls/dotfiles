@@ -163,9 +163,10 @@ window-rule {
 // Float windows to the bottom-right corner
 window-rule {
     match app-id="^firefox$" title="^Picture-in-Picture$"
-    match app-id="^steam$" title=r#"^notificationtoasts_\d+_desktop$"#
+    match app-id="^steam$" title=r#"^notificationtoasts_.+_desktop$"#
 
     open-floating true
+    open-focused false
     default-floating-position x=0 y=0 relative-to="bottom-right"
 }
 
