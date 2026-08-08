@@ -4,6 +4,7 @@ max-icon-size=48
 default-timeout=5000
 font=sans-serif 11
 margin=8
+height=200
 padding=12
 border-size=1
 border-radius=4
