@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+    <object class="GtkMenu" id="menu">
+        <child>
+            <object class="GtkMenuItem" id="mute-toggle">
+                <property name="label">Toggle mute</property>
+            </object>
+        </child>
+        <child>
+            <object class="GtkSeparatorMenuItem" id="delimiter1"/>
+        </child>
+        <child>
+            <object class="GtkMenuItem" id="open-pavucontrol">
+                <property name="label">Volume control</property>
+            </object>
+        </child>
+    </object>
+</interface>
