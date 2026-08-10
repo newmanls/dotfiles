@@ -93,7 +93,7 @@ layout {
         softness 16
         spread 0
         offset x=0 y=8
-        color "#0006"
+        color "#0003"
     }
 
     struts {
@@ -201,6 +201,7 @@ window-rule {
 
 layer-rule {
     match namespace="^rofi$"
+    match namespace="^notifications$"
 
     shadow { on; }
 }
