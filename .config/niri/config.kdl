@@ -219,7 +219,7 @@ binds {
     Mod+space        { spawn-sh "rofi -show drun -show-icons"; }
     Mod+Shift+space  { spawn-sh "rofi -show run"; }
     Mod+Shift+Escape { spawn "menu-kill"; }
-    Mod+Shift+S      { spawn "menu-screenshot"; }
+    Mod+Shift+S      { screenshot show-pointer=false; }
     Mod+Shift+M      { spawn-sh "menu-disks mount"; }
     Mod+Shift+U      { spawn-sh "menu-disks unmount"; }
     Mod+Shift+E      { spawn-sh "rofi -show emoji"; }
@@ -287,7 +287,7 @@ binds {
     Mod+Shift+8        { move-window-to-workspace 8 focus=false; }
     Mod+Shift+9        { move-window-to-workspace 9 focus=false; }
 
-    Print              { screenshot; }
+    Print              { screenshot show-pointer=false; }
     Ctrl+Print         { screenshot-screen; }
     Alt+Print          { screenshot-window; }
 
