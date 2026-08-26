@@ -91,8 +91,8 @@ layout {
         off
         draw-behind-window true
         softness 16
-        spread 0
-        offset x=0 y=8
+        spread -4
+        offset x=0 y=12
         color "#0003"
     }
 
@@ -127,6 +127,7 @@ hotkey-overlay {
 window-rule {
     draw-border-with-background true
     clip-to-geometry true
+    geometry-corner-radius 12
 }
 
 // Enable shadows on floating windows
