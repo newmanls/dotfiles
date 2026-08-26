@@ -1,6 +1,7 @@
 configuration {
   modes: "drun";
   drun-display-format: "{name}";
+  scroll-method: 1;
   disable-history: true;
   cycle: false;
   hover-select: true;

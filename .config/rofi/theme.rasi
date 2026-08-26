@@ -17,27 +17,25 @@ scrollbar {
 
 window {
     location: north;
-    y-offset: calc(50% - 8em);
+    y-offset: 1em;
     width: 20em;
-
-    background-color: @surface-container;
-    border: 1px solid;
-    border-color: @outline-variant;
-    border-radius: 0.5em;
 }
 
 mainbox {
-    padding: 0.5em 0.5em 0;
+    background-color: @surface-container-high;
+    border: 1px solid;
+    border-color: @outline-variant;
+    border-radius: 16px;
+    padding: 0.5em;
 }
 
 inputbar {
-    padding: 0.5em 0.6em;
+    padding: 0.5em 0.75em;
     spacing: 0.5em;
-    margin: 0 0 0.5em 0;
     border: 2px solid;
-    border-radius: 0.25em;
     border-color: @primary;
-    background-color: @surface-container-high;
+    border-radius: 8;
+    background-color: @surface-container;
     children: [icon-search, entry, prompt];
 }
 
@@ -51,23 +49,38 @@ icon-search {
     vertical-align: 0.5;
 }
 
-textbox {
+message, error-message {
     padding: 0.5em 0.75em;
-    margin: 0 0 0.5em 0;
+    background-color: @surface-container-high;
     text-color: @outline;
+    border-radius: 16px;
+    border: 1px solid;
+    border-color: @outline-variant;
 }
 
 listview {
     lines: 5;
     fixed-height: false;
-    margin: 0 0 0.5em 0;
+    dynamic: true;
+    margin: 0.5em 0 0 0;
+    scrollbar: true;
+    scrollbar-width: 2px;
+    spacing: 8px;
+}
+
+scrollbar {
+    background-color: @surface-container;
+    border-radius: 50%;
+    handle-color: @primary;
+    handle-rounded-corners: true;
 }
 
 element {
     orientation: horizontal;
     spacing: 0.5em;
-    padding: 0.5em 0.7em;
-    border-radius: 0.25em;
+    padding: 0.5em 0.75em;
+    border-radius: 8px;
+    height: 5em;
 }
 
 element normal urgent {
@@ -79,7 +92,7 @@ element normal active {
 }
 
 element selected {
-    background-color: @surface-container-high;
+    background-color: @surface-bright;
 }
 
 element selected urgent {
@@ -89,6 +102,15 @@ element selected urgent {
 element-text {
     text-color: inherit;
     highlight: none;
+    vertical-align: 0.5;
+}
+
+element-text span {
+    text-color: red;
+}
+
+element-icon {
+    size: 1em;
 }
 
 // vi:ft=rasi:commentstring=//\ %s
