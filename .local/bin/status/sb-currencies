@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 # api from https://dolarapi.com
 
+import argparse
 import warnings
 from datetime import datetime
+from subprocess import run
 
 import requests
 from bs4 import BeautifulSoup
@@ -44,7 +46,7 @@ def get_cambios_bcv() -> list | None:
         if not el:
             continue
         try:
-            promedio = float(el.get_text(strip=True).replace(",", "."))
+            promedio = float(el.get_text(strip=True).replace(".", "").replace(",", "."))
         except ValueError:
             continue
 
@@ -67,6 +69,10 @@ def get_paralelo() -> dict | None:
 
 
 if __name__ == "__main__":
+    arg_parser = argparse.ArgumentParser()
+    arg_parser.add_argument("-n", "--notify", action="store_true")
+    args = arg_parser.parse_args()
+
     cambios = get_cambios_bcv() or []
     paralelo = get_paralelo()
     if paralelo:
@@ -84,17 +90,29 @@ if __name__ == "__main__":
         cambios[0]["promedio"] if cambios else 0.0,
     )
 
+    resumen_cambios = [
+        "<b>{moneda} {fuente}:</b> Bs. {promedio}".format(
+            moneda=c.get("moneda", "?"),
+            fuente=c.get("fuente", "?"),
+            promedio=round(c.get("promedio", 0.0), 2),
+        )
+        for c in cambios
+    ]
+
     text = f" {round(cambio_principal, 2)}"
     tooltip = "&#013;".join(
-        [
-            "<b>{moneda} {fuente}:</b> Bs. {promedio}".format(
-                moneda=c.get("moneda", "?"),
-                fuente=c.get("fuente", "?"),
-                promedio=round(c.get("promedio", 0.0), 2),
-            )
-            for c in cambios
-        ]
-        + ["", datetime.now().strftime("<i>%x %X</i>")]
+        resumen_cambios + ["", datetime.now().strftime("<i>%x %X</i>")]
     )
 
     print(text, tooltip, sep="\n")
+
+    if args.notify:
+        run(
+            [
+                "notify-send",
+                "Tasas de cambio actualizadas",
+                "\n".join(resumen_cambios),
+                "-h",
+                "string:x-canonical-private-synchronous:sb-currencies",
+            ]
+        )

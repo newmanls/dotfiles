@@ -1,7 +1,6 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 28,
     "reload_style_on_change": true,
     "modules-left": [
         "niri/workspaces",
@@ -12,7 +11,7 @@
         "clock",
     ],
     "modules-right": [
-        "custom/dollar",
+        "custom/currencies",
         "tray",
         "pulseaudio",
         "battery",
@@ -26,12 +25,17 @@
         "interval": 1,
         "on-click": "playerctl play-pause",
     },
-    "custom/dollar": {
-        "exec": "sb-dollar",
-        "on-click": "pkill -RTMIN+4 waybar",
-        "on-right-click": "xdg-open https://bcv.org.ve/",
+    "custom/currencies": {
+        "exec": "sb-currencies --notify",
+        "exec-on-event": false,
         "interval": 21600,
         "signal": 4,
+        "menu": "on-click",
+        "menu-file": "~/.config/waybar/menu/currencies.xml",
+        "menu-actions": {
+            "update": "pkill -RTMIN+4 waybar",
+            "open-bcv": "xdg-open https://bcv.org.ve/",
+        }
     },
     "pulseaudio": {
         "format": "{icon}",
