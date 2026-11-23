@@ -44,7 +44,7 @@ thumbnail_pv() {
 
 # Handle mimetype
 case "$file_mimetype" in
-    */zip | */java-archive)
+    */zip | application/x-7z-compressed | */java-archive)
         atool --list -- "$file" && exit 1 ;;
     application/pdf | video/* | image/svg+xml)
         thumbnail_pv && exit 1 ;;
