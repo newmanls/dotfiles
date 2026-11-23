@@ -14,8 +14,8 @@ alias \
     mv="mv -iv" \
     rm="rm -vI" \
     mkdir="mkdir -pv" \
-    yt="yt-dlp" \
-    yta="yt -x -f bestaudio/best" \
+    yt="yt-dlp --format 'bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4]'" \
+    yta="yt-dlp -x -f bestaudio/best" \
     ffmpeg="ffmpeg -hide_banner"
 
 # Colorize commands when possible
