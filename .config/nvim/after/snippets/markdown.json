@@ -42,7 +42,7 @@
     "images": {
         "prefix": "img",
         "description": "Add images",
-        "body": ["![${1:alt text}](${2:path}) ${0}"]
+        "body": "![${1:alt text}](${2:path})"
     },
     "strikethrough": {
         "prefix": ["strikethrough", "st"],

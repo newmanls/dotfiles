@@ -1,7 +1,5 @@
 vim.pack.add({
     'https://github.com/nvim-lua/plenary.nvim',
-    'https://github.com/OXY2DEV/markview.nvim',
-    'https://github.com/bullets-vim/bullets.vim',
     'https://github.com/obsidian-nvim/obsidian.nvim',
 })
 
